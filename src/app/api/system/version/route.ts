@@ -21,13 +21,19 @@ const execFileAsync = promisify(execFile);
 
 export const dynamic = "force-dynamic";
 
-async function getLatestNpmVersion(): Promise<string | null> {
+async function getLatestGitHubVersion(): Promise<string | null> {
   try {
-    const { stdout } = await execFileAsync("npm", ["info", "nextroute", "version", "--json"], {
-      timeout: 10000,
-    });
-    const parsed = JSON.parse(stdout.trim());
-    return typeof parsed === "string" ? parsed : null;
+    const res = await fetch(
+      "https://api.github.com/repos/DevMHOne/nextroute/releases/latest",
+      {
+        headers: { "User-Agent": "nextroute-app" },
+        next: { revalidate: 3600 },
+      }
+    );
+    if (!res.ok) return null;
+    const data = await res.json();
+    const tag: string = data.tag_name ?? "";
+    return tag.replace(/^v/, "") || null;
   } catch {
     return null;
   }
@@ -71,7 +77,7 @@ export async function GET(req: NextRequest) {
   const config = getAutoUpdateConfig();
 
   const [latest, news, validation] = await Promise.all([
-    getLatestNpmVersion(),
+    getLatestGitHubVersion(),
     getNews(),
     validateAutoUpdateRuntime(config),
   ]);

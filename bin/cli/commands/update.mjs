@@ -19,10 +19,14 @@ async function getCurrentVersion() {
 
 async function getLatestVersion() {
   try {
-    const { stdout } = await execFileAsync("npm", ["view", "nextroute", "version"], {
-      timeout: 15000,
-    });
-    return stdout.trim();
+    const res = await fetch(
+      "https://api.github.com/repos/DevMHOne/nextroute/releases/latest",
+      { headers: { "User-Agent": "nextroute-cli" } }
+    );
+    if (!res.ok) return null;
+    const data = await res.json();
+    const tag = data.tag_name ?? "";
+    return tag.replace(/^v/, "") || null;
   } catch {
     return null;
   }
@@ -94,23 +98,12 @@ export async function runUpdateCommand(opts = {}) {
   }
 
   if (!latest) {
-    printError("Could not check latest version. Is npm available?");
+    printError("Could not check latest version from GitHub. Check your internet connection.");
     return 1;
   }
 
   if (showChangelog) {
-    try {
-      const { stdout } = await execFileAsync("npm", ["view", "nextroute", "changelog"], {
-        timeout: 10000,
-      });
-      if (stdout.trim()) {
-        console.log(stdout.trim());
-      } else {
-        console.log(`Changelog: https://github.com/your-org/nextroute/releases/tag/v${latest}`);
-      }
-    } catch {
-      console.log(`Changelog: https://github.com/your-org/nextroute/releases/tag/v${latest}`);
-    }
+    console.log(`Changelog: https://github.com/DevMHOne/nextroute/releases/tag/v${latest}`);
     return 0;
   }
 
@@ -132,7 +125,7 @@ export async function runUpdateCommand(opts = {}) {
   }
 
   if (dryRun) {
-    console.log("\n  [DRY RUN] Would run: npm install -g nextroute@latest");
+    console.log("\n  [DRY RUN] Would run: git pull && npm install");
     if (!skipBackup) console.log("  [DRY RUN] Would create backup in ~/.nextroute/backups/");
     return 0;
   }
@@ -164,9 +157,10 @@ export async function runUpdateCommand(opts = {}) {
   printInfo("Updating NextRoute...");
   try {
     const { execSync } = await import("child_process");
-    execSync("npm install -g nextroute@latest", { stdio: "inherit" });
+    execSync("git pull origin main", { stdio: "inherit" });
+    execSync("npm install", { stdio: "inherit" });
     printSuccess(`Updated to version ${latest}`);
-    printInfo("Run `nextroute --version` to verify.");
+    printInfo("Restart NextRoute to apply the update.");
     return 0;
   } catch (err) {
     printError(`Update failed: ${err.message}`);

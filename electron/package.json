@@ -45,8 +45,8 @@
     },
     "publish": {
       "provider": "github",
-      "owner": "diegosouzapw",
-      "repo": "NextRoute"
+      "owner": "DevMHOne",
+      "repo": "nextroute"
     },
     "files": [
       "main.js",
