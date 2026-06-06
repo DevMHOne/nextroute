@@ -1,10 +1,10 @@
 <div align="center">
 
-<img src="./docs/screenshots/MainOmniRoute.png" alt="OmniRoute Dashboard" width="820"/>
+<img src="./docs/screenshots/MainNextRoute.png" alt="NextRoute Dashboard" width="820"/>
 
 <br/>
 
-# 🚀 OmniRoute — The Free AI Gateway
+# 🚀 NextRoute — The Free AI Gateway
 
 ### Never stop coding. Connect every AI tool to **177 providers** — **50+ free** — through one endpoint.
 
@@ -31,29 +31,29 @@
 
 <br/>
 
-<a href="https://trendshift.io/repositories/23589" target="_blank"><img src="https://trendshift.io/api/badge/repositories/23589" alt="diegosouzapw%2FOmniRoute | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+<a href="https://trendshift.io/repositories/23589" target="_blank"><img src="https://trendshift.io/api/badge/repositories/23589" alt="diegosouzapw%2FNextRoute | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
 
-[![npm](https://img.shields.io/npm/v/omniroute?logo=npm&style=flat-square)](https://www.npmjs.com/package/omniroute)
+[![npm](https://img.shields.io/npm/v/nextroute?logo=npm&style=flat-square)](https://www.npmjs.com/package/nextroute)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 [![Node](https://img.shields.io/badge/node-%E2%89%A522.22.2-brightgreen?style=flat-square)](package.json)
-[![Stars](https://img.shields.io/github/stars/diegosouzapw/OmniRoute?style=social)](https://github.com/diegosouzapw/OmniRoute)
+[![Stars](https://img.shields.io/github/stars/diegosouzapw/NextRoute?style=social)](https://github.com/diegosouzapw/NextRoute)
 
 <div align="center">
 
-[![npm version](https://img.shields.io/npm/v/omniroute?color=cb3837&logo=npm)](https://www.npmjs.com/package/omniroute)
-![NPM Monthly](https://img.shields.io/npm/dm/omniroute?label=npm/month&color=cb3837&logo=npm)
-[![Docker Hub](https://img.shields.io/docker/v/diegosouzapw/omniroute?label=Docker%20Hub&logo=docker&color=2496ED)](https://hub.docker.com/r/diegosouzapw/omniroute)
-![Docker Pulls](https://img.shields.io/docker/pulls/diegosouzapw/omniroute?label=docker%20pulls&logo=docker&color=2496ED)
-![Electron Downloads](https://img.shields.io/github/downloads/diegosouzapw/omniroute/total?style=flat&label=electron%20downloads&logo=electron&color=47848F)
-[![Website](https://img.shields.io/badge/Website-omniroute.online-blue?logo=google-chrome&logoColor=white)](https://omniroute.online)
+[![npm version](https://img.shields.io/npm/v/nextroute?color=cb3837&logo=npm)](https://www.npmjs.com/package/nextroute)
+![NPM Monthly](https://img.shields.io/npm/dm/nextroute?label=npm/month&color=cb3837&logo=npm)
+[![Docker Hub](https://img.shields.io/docker/v/diegosouzapw/nextroute?label=Docker%20Hub&logo=docker&color=2496ED)](https://hub.docker.com/r/diegosouzapw/nextroute)
+![Docker Pulls](https://img.shields.io/docker/pulls/diegosouzapw/nextroute?label=docker%20pulls&logo=docker&color=2496ED)
+![Electron Downloads](https://img.shields.io/github/downloads/diegosouzapw/nextroute/total?style=flat&label=electron%20downloads&logo=electron&color=47848F)
+[![Website](https://img.shields.io/badge/Website-nextroute.online-blue?logo=google-chrome&logoColor=white)](https://nextroute.online)
 
 </div>
 
 <br/>
 
-[**🚀 Quick Start**](#-quick-start) • [**🎯 Combos**](#-combos--the-flagship) • [**🌐 Providers**](#-177-ai-providers--50-free) • [**🔌 CLI & MCP**](#-full-cli--a2a--mcp) • [**🗜️ Compression**](#%EF%B8%8F-save-1595-tokens--automatically) • [**🌍 Website**](https://omniroute.online) • [**💬 WhatsApp 🌍**](https://chat.whatsapp.com/JI7cDQ1GyaiDHhVBpLxf8b?mode=gi_t) • [**💬 WhatsApp 🇧🇷**](https://chat.whatsapp.com/CeGCxdFzqBe5Uki288wOvf)
+[**🚀 Quick Start**](#-quick-start) • [**🎯 Combos**](#-combos--the-flagship) • [**🌐 Providers**](#-177-ai-providers--50-free) • [**🔌 CLI & MCP**](#-full-cli--a2a--mcp) • [**🗜️ Compression**](#%EF%B8%8F-save-1595-tokens--automatically) • [**🌍 Website**](https://nextroute.online) • [**💬 WhatsApp 🌍**](https://chat.whatsapp.com/JI7cDQ1GyaiDHhVBpLxf8b?mode=gi_t) • [**💬 WhatsApp 🇧🇷**](https://chat.whatsapp.com/CeGCxdFzqBe5Uki288wOvf)
 
-[💥 The Promise](#-the-promise) • [🤔 Why](#-why-omniroute) • [🏆 What Sets Apart](#-what-sets-omniroute-apart) • [🤖 Compatible CLIs](#-compatible-clis--coding-agents) • [🖥️ Where It Runs](#%EF%B8%8F-where-omniroute-runs--anywhere) • [🔒 Private](#-private--local-first) • [🎬 In Action](#-omniroute-in-action) • [📚 Explore More](#-explore-more) • [📧 Support](#-support--community)
+[💥 The Promise](#-the-promise) • [🤔 Why](#-why-nextroute) • [🏆 What Sets Apart](#-what-sets-nextroute-apart) • [🤖 Compatible CLIs](#-compatible-clis--coding-agents) • [🖥️ Where It Runs](#%EF%B8%8F-where-nextroute-runs--anywhere) • [🔒 Private](#-private--local-first) • [🎬 In Action](#-nextroute-in-action) • [📚 Explore More](#-explore-more) • [📧 Support](#-support--community)
 
 </div>
 
@@ -110,7 +110,7 @@
 
 </div>
 
-> One endpoint. **177 providers.** Never stop building — and let OmniRoute pick the cheapest one that works.
+> One endpoint. **177 providers.** Never stop building — and let NextRoute pick the cheapest one that works.
 
 <table>
   <tr>
@@ -130,13 +130,13 @@
 
 <div align="center">
 
-# 🤔 Why OmniRoute?
+# 🤔 Why NextRoute?
 
 </div>
 
 > Stop juggling 10 dashboards, dead API keys, and surprise bills.
 
-| ❌ The daily pain                                      | ✅ How OmniRoute fixes it                                                     |
+| ❌ The daily pain                                      | ✅ How NextRoute fixes it                                                     |
 | ------------------------------------------------------ | ----------------------------------------------------------------------------- |
 | 📉 Subscription quota expires unused every month       | **Maximize subscriptions** — track quota, use every token before reset        |
 | 🛑 Rate limits stop you mid-coding                     | **4-tier auto-fallback** — Subscription → API → Cheap → Free, in milliseconds |
@@ -154,7 +154,7 @@
                           │ http://localhost:20128/v1
                           ▼
 ┌──────────────────────────────────────────────────────────┐
-│                  OmniRoute — Smart Router                  │
+│                  NextRoute — Smart Router                  │
 │  RTK + Caveman compression · 14 routing strategies         │
 │  Circuit breakers · TLS stealth · MCP · A2A · Guardrails   │
 └─────────────────────────┬──────────────────────────────────┘
@@ -176,11 +176,11 @@
 
 </div>
 
-> A **combo** is a chain of models OmniRoute routes across **automatically**. Quota runs out, a provider fails, or costs spike — the combo silently slides to the next model. **This is what makes OmniRoute unbreakable.** 🛡️
+> A **combo** is a chain of models NextRoute routes across **automatically**. Quota runs out, a provider fails, or costs spike — the combo silently slides to the next model. **This is what makes NextRoute unbreakable.** 🛡️
 
 ### ⚡ Zero-config — just use `auto`
 
-No combo to create. Set your model to `auto` (or a variant) and OmniRoute builds a virtual combo from your connected providers, scored live:
+No combo to create. Set your model to `auto` (or a variant) and NextRoute builds a virtual combo from your connected providers, scored live:
 
 | Model ID       | What it optimizes for                                          |
 | -------------- | -------------------------------------------------------------- |
@@ -231,11 +231,11 @@ Result: 4 layers of fallback = zero downtime
 
 <div align="center">
 
-# 🏆 What Sets OmniRoute Apart
+# 🏆 What Sets NextRoute Apart
 
 </div>
 
-| Feature                                | OmniRoute                                                   | Other routers |
+| Feature                                | NextRoute                                                   | Other routers |
 | -------------------------------------- | ----------------------------------------------------------- | ------------- |
 | 🌐 Providers                           | **177**                                                     | 20–100        |
 | 🆓 Free providers                      | **50+ (11 free forever)**                                   | 1–5           |
@@ -250,7 +250,7 @@ Result: 4 layers of fallback = zero downtime
 | 🖥️ Multi-platform                      | **Web · Desktop · Termux · PWA**                            | Web only      |
 | 🌍 i18n                                | **40+ locales**                                             | 0–4           |
 
-<sub>📊 Detailed comparison vs LiteLLM, OpenRouter & Portkey → [`docs/comparison/OMNIROUTE_VS_ALTERNATIVES.md`](docs/comparison/OMNIROUTE_VS_ALTERNATIVES.md)</sub>
+<sub>📊 Detailed comparison vs LiteLLM, OpenRouter & Portkey → [`docs/comparison/NEXTROUTE_VS_ALTERNATIVES.md`](docs/comparison/NEXTROUTE_VS_ALTERNATIVES.md)</sub>
 
 <br/>
 
@@ -285,7 +285,7 @@ Result: 4 layers of fallback = zero downtime
 <b>＋ also works with</b> · Cline · Antigravity · Windsurf · AMP · Hermes · Qwen CLI · Roo · Continue · <b>any OpenAI-compatible tool</b>
 </div>
 
-<sub>📖 Per-tool setup for all 16+ tools → [`docs/reference/CLI-TOOLS.md`](docs/reference/CLI-TOOLS.md) · 🧩 OpenCode plugin → [`@omniroute/opencode-provider`](https://www.npmjs.com/package/@omniroute/opencode-provider)</sub>
+<sub>📖 Per-tool setup for all 16+ tools → [`docs/reference/CLI-TOOLS.md`](docs/reference/CLI-TOOLS.md) · 🧩 OpenCode plugin → [`@nextroute/opencode-provider`](https://www.npmjs.com/package/@nextroute/opencode-provider)</sub>
 
 </div>
 
@@ -325,7 +325,7 @@ Result: 4 layers of fallback = zero downtime
 
 <div align="center">
 
-# 🖥️ Where OmniRoute Runs — Anywhere
+# 🖥️ Where NextRoute Runs — Anywhere
 
 </div>
 
@@ -333,13 +333,13 @@ Result: 4 layers of fallback = zero downtime
 
 | Platform                  | Install                                      | Highlights                                                |
 | ------------------------- | -------------------------------------------- | --------------------------------------------------------- |
-| 📦 **npm (global)**       | `npm install -g omniroute`                   | One command, any OS                                       |
-| 🐳 **Docker**             | `docker run … diegosouzapw/omniroute`        | Multi-arch **AMD64 + ARM64**                              |
+| 📦 **npm (global)**       | `npm install -g nextroute`                   | One command, any OS                                       |
+| 🐳 **Docker**             | `docker run … diegosouzapw/nextroute`        | Multi-arch **AMD64 + ARM64**                              |
 | 🖥️ **Desktop (Electron)** | `npm run electron:build`                     | Native window + system tray — **Windows / macOS / Linux** |
 | 💪 **ARM**                | native `arm64`                               | Raspberry Pi, ARM servers, Apple Silicon                  |
-| 📱 **Android (Termux)**   | `pkg install nodejs-lts && npx -y omniroute` | Runs **on your phone**, 24/7, no root                     |
+| 📱 **Android (Termux)**   | `pkg install nodejs-lts && npx -y nextroute` | Runs **on your phone**, 24/7, no root                     |
 | 📲 **PWA**                | "Add to Home Screen"                         | Fullscreen, offline, installable from browser             |
-| 🧩 **OpenCode plugin**    | `@omniroute/opencode-provider`               | Native OpenCode integration                               |
+| 🧩 **OpenCode plugin**    | `@nextroute/opencode-provider`               | Native OpenCode integration                               |
 | 🛠️ **From source**        | `npm install && npm run dev`                 | Hack on it, contribute                                    |
 
 <sub>📖 [Docker Guide](docs/guides/DOCKER_GUIDE.md) · [Desktop](electron/README.md) · [Termux](docs/guides/TERMUX_GUIDE.md) · [PWA](docs/guides/PWA_GUIDE.md) · [OpenCode](docs/frameworks/OPENCODE.md)</sub>
@@ -352,9 +352,9 @@ Result: 4 layers of fallback = zero downtime
 
 </div>
 
-> Your keys, your machine, your data. OmniRoute is a **local proxy** — it never phones home.
+> Your keys, your machine, your data. NextRoute is a **local proxy** — it never phones home.
 
-- 🏠 **Runs 100% on your hardware** — npm, Docker, desktop, or your phone. No OmniRoute cloud sits in the request path.
+- 🏠 **Runs 100% on your hardware** — npm, Docker, desktop, or your phone. No NextRoute cloud sits in the request path.
 - 🔐 **Credentials encrypted at rest** — API keys & OAuth tokens sealed with **AES-256-GCM**.
 - 🚫 **Zero telemetry by default** — your prompts go only to the providers _you_ choose, nowhere else.
 - 🛡️ **Hardened gateway** — API-key scoping, IP filtering, rate limits, prompt-injection guard, loopback-only process routes.
@@ -370,15 +370,15 @@ Result: 4 layers of fallback = zero downtime
 
 </div>
 
-> OmniRoute isn't just a server — it's a **full command-line cockpit** with **60+ commands**, plus open agent protocols so an AI agent can drive OmniRoute **by itself**.
+> NextRoute isn't just a server — it's a **full command-line cockpit** with **60+ commands**, plus open agent protocols so an AI agent can drive NextRoute **by itself**.
 
 ### ⌨️ A real CLI (not just `start`)
 
 ```bash
-omniroute               # serve gateway + dashboard (port 20128)
-omniroute chat          # interactive TUI chat client (slash: /model /combo /skill /memory)
-omniroute setup         # guided first-run wizard
-omniroute doctor        # diagnose providers, ports, native deps
+nextroute               # serve gateway + dashboard (port 20128)
+nextroute chat          # interactive TUI chat client (slash: /model /combo /skill /memory)
+nextroute setup         # guided first-run wizard
+nextroute doctor        # diagnose providers, ports, native deps
 ```
 
 <div align="center">
@@ -387,20 +387,20 @@ omniroute doctor        # diagnose providers, ports, native deps
 
 </div>
 
-### 🤝 Connect an agent — and it controls OmniRoute itself
+### 🤝 Connect an agent — and it controls NextRoute itself
 
-Expose OmniRoute over **MCP** or **A2A** and any capable agent gets the keys to the whole gateway — routing, providers, combos, cache, compression, memory — autonomously.
+Expose NextRoute over **MCP** or **A2A** and any capable agent gets the keys to the whole gateway — routing, providers, combos, cache, compression, memory — autonomously.
 
 | Protocol           | Endpoint                                        | Use it for                                             |
 | ------------------ | ----------------------------------------------- | ------------------------------------------------------ |
-| 🧰 **MCP (stdio)** | `omniroute --mcp`                               | Plug into Claude Desktop, Cursor, any MCP client       |
+| 🧰 **MCP (stdio)** | `nextroute --mcp`                               | Plug into Claude Desktop, Cursor, any MCP client       |
 | 🌊 **MCP (HTTP)**  | `http://localhost:20128/api/mcp/stream`         | Remote MCP — **37 tools**, 13 scopes, full audit trail |
 | 📡 **MCP (SSE)**   | `http://localhost:20128/api/mcp/sse`            | Streaming MCP transport                                |
 | 🤝 **A2A**         | `http://localhost:20128/.well-known/agent.json` | Agent-to-agent, **JSON-RPC 2.0** + SSE, 5 skills       |
 
 ```bash
-# Give Claude Code the full OmniRoute toolset over MCP:
-claude mcp add-server omniroute --type http --url http://localhost:20128/api/mcp/stream
+# Give Claude Code the full NextRoute toolset over MCP:
+claude mcp add-server nextroute --type http --url http://localhost:20128/api/mcp/stream
 ```
 
 <sub>📖 [MCP Server](docs/frameworks/MCP-SERVER.md) · [A2A Server](docs/frameworks/A2A-SERVER.md) · [Agent Protocols](docs/frameworks/AGENT_PROTOCOLS_GUIDE.md)</sub>
@@ -413,7 +413,7 @@ claude mcp add-server omniroute --type http --url http://localhost:20128/api/mcp
 
 </div>
 
-> **Why use many token when few token do trick?** Every request passes through OmniRoute's compression pipeline **transparently** — no client changes. It stacks ideas from [RTK](https://github.com/rtk-ai/rtk), [Caveman](https://github.com/JuliusBrussee/caveman) (⭐ 51K+), and [Troglodita](https://github.com/leninejunior/troglodita) (PT-BR).
+> **Why use many token when few token do trick?** Every request passes through NextRoute's compression pipeline **transparently** — no client changes. It stacks ideas from [RTK](https://github.com/rtk-ai/rtk), [Caveman](https://github.com/JuliusBrussee/caveman) (⭐ 51K+), and [Troglodita](https://github.com/leninejunior/troglodita) (PT-BR).
 
 | Mode                           | Savings    | Best for                    |
 | ------------------------------ | ---------- | --------------------------- |
@@ -445,7 +445,7 @@ claude mcp add-server omniroute --type http --url http://localhost:20128/api/mcp
 ### 📖 How it works — pipeline, architecture & savings math</b></summary>
 
 ```
-Client (10,000 tok) ──▶ OmniRoute Compression (7 options) ──▶ Provider (~1,080 tok, up to 95% saved)
+Client (10,000 tok) ──▶ NextRoute Compression (7 options) ──▶ Provider (~1,080 tok, up to 95% saved)
 ```
 
 Default stacked combo runs `RTK → Caveman`. When both act on the same tool/context payload, savings compound:
@@ -471,8 +471,8 @@ Code blocks, URLs, JSON and structured data are **always protected** by the pres
 **1) Install & run**
 
 ```bash
-npm install -g omniroute
-omniroute
+npm install -g nextroute
+nextroute
 ```
 
 Dashboard at `http://localhost:20128` · API at `http://localhost:20128/v1`.
@@ -495,7 +495,7 @@ Model:    auto            (zero-config smart routing — or any provider/model)
 curl http://localhost:20128/v1/models -H "Authorization: Bearer YOUR_KEY"
 ```
 
-You should see your connected models listed. 🎉 That's it — start coding, and OmniRoute auto-routes & falls back for you.
+You should see your connected models listed. 🎉 That's it — start coding, and NextRoute auto-routes & falls back for you.
 
 <br/>
 
@@ -504,8 +504,8 @@ You should see your connected models listed. 🎉 That's it — start coding, an
 **🐳 Docker**
 
 ```bash
-docker run -d --name omniroute --restart unless-stopped --stop-timeout 40 \
-  -p 20128:20128 -v omniroute-data:/app/data diegosouzapw/omniroute:latest
+docker run -d --name nextroute --restart unless-stopped --stop-timeout 40 \
+  -p 20128:20128 -v nextroute-data:/app/data diegosouzapw/nextroute:latest
 ```
 
 **🛠️ From source**
@@ -518,13 +518,13 @@ PORT=20128 npm run dev
 **📦 pnpm**
 
 ```bash
-pnpm install -g omniroute && pnpm approve-builds -g && omniroute
+pnpm install -g nextroute && pnpm approve-builds -g && nextroute
 ```
 
 **🐧 Arch Linux (AUR)**
 
 ```bash
-yay -S omniroute-bin && systemctl --user enable --now omniroute.service
+yay -S nextroute-bin && systemctl --user enable --now nextroute.service
 ```
 
 **🔧 Nix (Flake)**
@@ -544,7 +544,7 @@ devbox run npm run dev
 
 ```bash
 # 1. Build the image
-podman build --target runner-base -t omniroute:base .
+podman build --target runner-base -t nextroute:base .
 
 # 2. Fix data directory permissions for rootless Podman
 mkdir -p data && podman unshare chown 1000:1000 ./data
@@ -562,7 +562,7 @@ podman compose --profile base up -d
 
 <div align="center">
 
-# 🎬 OmniRoute in Action
+# 🎬 NextRoute in Action
 
 </div>
 
@@ -587,7 +587,7 @@ podman compose --profile base up -d
 
 <div align="center">
 
-> 🎬 **Made a video about OmniRoute?** Open an [issue](https://github.com/diegosouzapw/OmniRoute/issues/new) or [discussion](https://github.com/diegosouzapw/OmniRoute/discussions) with the link — we'll feature it here.
+> 🎬 **Made a video about NextRoute?** Open an [issue](https://github.com/diegosouzapw/NextRoute/issues/new) or [discussion](https://github.com/diegosouzapw/NextRoute/discussions) with the link — we'll feature it here.
 
 <br/>
 </div>
@@ -623,7 +623,7 @@ podman compose --profile base up -d
 | **NVIDIA NIM**    | `nvidia/`   | 129 models                                      | ~40 RPM           |
 | **Cerebras**      | `cerebras/` | Qwen3 235B, GPT-OSS 120B                        | 1M tok/day        |
 
-> 💡 The dashboard "cost" is a **savings tracker**, not a bill — OmniRoute never charges you. A "$290 total cost" using free models means **$290 saved**.
+> 💡 The dashboard "cost" is a **savings tracker**, not a bill — NextRoute never charges you. A "$290 total cost" using free models means **$290 saved**.
 
 📖 Complete free directory → [`docs/reference/FREE_TIERS.md`](docs/reference/FREE_TIERS.md) — 25+ providers, quotas, base URLs.
 
@@ -655,7 +655,7 @@ Compression: aggressive (~50%) → double your free quota · Cost: $0/mo
 
 <br/>
 
-🇷🇺 🇨🇳 🇮🇷 🇨🇺 🇹🇷 In a blocked region? OmniRoute's **3-level proxy** (Global / Per-Provider / Per-Connection) proxies API requests, OAuth flows, connection tests, token refresh & model sync.
+🇷🇺 🇨🇳 🇮🇷 🇨🇺 🇹🇷 In a blocked region? NextRoute's **3-level proxy** (Global / Per-Provider / Per-Connection) proxies API requests, OAuth flows, connection tests, token refresh & model sync.
 
 - **Protocols:** HTTP/HTTPS, SOCKS5, authenticated proxies
 - **🆓 1proxy marketplace** — hundreds of free validated proxies, quality scores, auto-rotation
@@ -674,7 +674,7 @@ Compression: aggressive (~50%) → double your free quota · Cost: $0/mo
 **Compatibility:** OpenAI ↔ Claude ↔ Gemini ↔ Responses API · auto OAuth refresh (PKCE, 8 providers) · multi-account round-robin · Batch + Files API · live OpenAPI 3.0.
 **Protocols:** MCP (37 tools, 3 transports, 13 scopes) · A2A (JSON-RPC 2.0, SSE, skills) · ACP · cloud agents (Codex, Devin, Jules).
 **Quality & Ops:** built-in **Evals** (golden-set: exact/contains/regex/custom) · guardrails (PII, injection, vision) · health dashboard · p50/p95/p99 telemetry · webhooks · compliance audit.
-**AI Agent Skills:** drop-in markdown manifests — point any agent at `skills/omniroute/SKILL.md`. 10 skills available.
+**AI Agent Skills:** drop-in markdown manifests — point any agent at `skills/nextroute/SKILL.md`. 10 skills available.
 
 📖 [MCP Server](open-sse/mcp-server/README.md) · [A2A Server](src/lib/a2a/README.md) · [Resilience Guide](docs/architecture/RESILIENCE_GUIDE.md) · [Features Gallery](docs/guides/FEATURES.md)
 
@@ -689,9 +689,9 @@ Compression: aggressive (~50%) → double your free quota · Cost: $0/mo
 | ----------------- | -------------- | -------------------------------- |
 | `PORT`            | `20128`        | API + dashboard port             |
 | `REQUIRE_API_KEY` | `false`        | Require API key for all requests |
-| `DATA_DIR`        | `~/.omniroute` | Database & config storage        |
+| `DATA_DIR`        | `~/.nextroute` | Database & config storage        |
 
-**Will I be charged by OmniRoute?** No — it's free, open-source software on your machine. You only pay paid providers directly. OmniRoute has no billing system.
+**Will I be charged by NextRoute?** No — it's free, open-source software on your machine. You only pay paid providers directly. NextRoute has no billing system.
 **Are FREE providers really unlimited?** Yes — Kiro, Qoder, Pollinations, LongCat, Cloudflare. No catch.
 **Will compression hurt quality?** No — it only compresses the **input**; code, URLs, JSON are always protected.
 **Does it work where AI is blocked?** Yes — 3-level proxy + 1proxy marketplace reach all 177 providers.
@@ -741,9 +741,9 @@ Compression: aggressive (~50%) → double your free quota · Cost: $0/mo
 > 💬 **Join our WhatsApp groups** — get help, share tips, stay updated:
 > · [**🌍 International**](https://chat.whatsapp.com/JI7cDQ1GyaiDHhVBpLxf8b?mode=gi_t) · [**🇧🇷 Português**](https://chat.whatsapp.com/CeGCxdFzqBe5Uki288wOvf)
 
-- 🌍 **Website**: [omniroute.online](https://omniroute.online)
-- 🐙 **GitHub**: [github.com/diegosouzapw/OmniRoute](https://github.com/diegosouzapw/OmniRoute)
-- 🐛 **Issues**: [report a bug](https://github.com/diegosouzapw/OmniRoute/issues) (attach `npm run system-info` output)
+- 🌍 **Website**: [nextroute.online](https://nextroute.online)
+- 🐙 **GitHub**: [github.com/diegosouzapw/NextRoute](https://github.com/diegosouzapw/NextRoute)
+- 🐛 **Issues**: [report a bug](https://github.com/diegosouzapw/NextRoute/issues) (attach `npm run system-info` output)
 - 🤝 **Contributing**: see [CONTRIBUTING.md](CONTRIBUTING.md) or pick a `good first issue`
 
 </div>
@@ -768,9 +768,9 @@ Compression: aggressive (~50%) → double your free quota · Cost: $0/mo
 - **Testing**: Node.js test runner + Vitest (**4,690+ test cases** across 517 files — unit, integration, E2E, security, ecosystem)
 - **Platforms**: Desktop (Electron), Android (Termux), PWA (any browser)
 - **CI/CD**: GitHub Actions (auto npm publish + Docker Hub on release)
-- **Website**: [omniroute.online](https://omniroute.online)
-- **Package**: [npmjs.com/package/omniroute](https://www.npmjs.com/package/omniroute)
-- **Docker**: [hub.docker.com/r/diegosouzapw/omniroute](https://hub.docker.com/r/diegosouzapw/omniroute)
+- **Website**: [nextroute.online](https://nextroute.online)
+- **Package**: [npmjs.com/package/nextroute](https://www.npmjs.com/package/nextroute)
+- **Docker**: [hub.docker.com/r/diegosouzapw/nextroute](https://hub.docker.com/r/diegosouzapw/nextroute)
 - **Resilience**: Circuit breaker, exponential backoff, anti-thundering herd, TLS spoofing, auto-combo self-healing
 
 <div align="center">
@@ -798,7 +798,7 @@ Compression: aggressive (~50%) → double your free quota · Cost: $0/mo
 | [Podman Guide](contrib/podman/README.md)                   | Quadlet systemd integration, podman-compose, SELinux           |
 | [VM Deployment](docs/ops/VM_DEPLOYMENT_GUIDE.md)         | Complete guide: VM + nginx + Cloudflare setup                  |
 | [Fly.io Deployment](docs/ops/FLY_IO_DEPLOYMENT_GUIDE.md) | Deploy to Fly.io with persistent storage                       |
-| [Termux Guide](docs/guides/TERMUX_GUIDE.md)                 | Run OmniRoute on Android via Termux                            |
+| [Termux Guide](docs/guides/TERMUX_GUIDE.md)                 | Run NextRoute on Android via Termux                            |
 | [PWA Guide](docs/guides/PWA_GUIDE.md)                       | Progressive Web App install, caching, architecture             |
 | [Uninstall Guide](docs/guides/UNINSTALL.md)                 | Clean removal for all install methods                          |
 | [Environment Config](docs/reference/ENVIRONMENT.md)            | Complete `.env` variables and references                       |
@@ -847,7 +847,7 @@ Compression: aggressive (~50%) → double your free quota · Cost: $0/mo
 
 # ⭐ Top Contributors
 
-> OmniRoute is shaped by a passionate open-source community. These individuals have made exceptional contributions that directly impact the quality, stability, and reach of the project. **Thank you.**
+> NextRoute is shaped by a passionate open-source community. These individuals have made exceptional contributions that directly impact the quality, stability, and reach of the project. **Thank you.**
 
 <table>
   <tr>
@@ -894,7 +894,7 @@ Compression: aggressive (~50%) → double your free quota · Cost: $0/mo
   </tr>
 </table>
 
-> 🙏 These contributors' features, bug fixes, and infrastructure improvements are a **core part** of what makes OmniRoute reliable and feature-rich. Every pull request, every test case, and every i18n translation file matters. Open source is built by people like them.
+> 🙏 These contributors' features, bug fixes, and infrastructure improvements are a **core part** of what makes NextRoute reliable and feature-rich. Every pull request, every test case, and every i18n translation file matters. Open source is built by people like them.
 
 </div>
 
@@ -908,7 +908,7 @@ Compression: aggressive (~50%) → double your free quota · Cost: $0/mo
 
 </div>
 
-[![Contributors](https://contrib.rocks/image?repo=diegosouzapw/OmniRoute&max=100&columns=20&anon=1)](https://github.com/diegosouzapw/OmniRoute/graphs/contributors)
+[![Contributors](https://contrib.rocks/image?repo=diegosouzapw/NextRoute&max=100&columns=20&anon=1)](https://github.com/diegosouzapw/NextRoute/graphs/contributors)
 
 ### How to Contribute
 
@@ -933,11 +933,11 @@ gh release create v3.8.2 --title "v3.8.2" --generate-notes
 
 ## 📊 Stars
 
-<a href="https://www.star-history.com/?repos=diegosouzapw%2Fomniroute&type=date&legend=top-left">
+<a href="https://www.star-history.com/?repos=diegosouzapw%2Fnextroute&type=date&legend=top-left">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=diegosouzapw/omniroute&type=date&theme=dark&legend=top-left" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=diegosouzapw/omniroute&type=date&legend=top-left" />
-   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=diegosouzapw/omniroute&type=date&legend=top-left" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=diegosouzapw/nextroute&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=diegosouzapw/nextroute&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=diegosouzapw/nextroute&type=date&legend=top-left" />
  </picture>
 </a>
 </div>
@@ -948,11 +948,11 @@ gh release create v3.8.2 --title "v3.8.2" --generate-notes
 
 ## 🌍 StarMapper
 
-<a href="https://starmapper.bruniaux.com/diegosouzapw/omniroute">
+<a href="https://starmapper.bruniaux.com/diegosouzapw/nextroute">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://starmapper.bruniaux.com/api/map-image/diegosouzapw/omniroute?theme=dark" />
-    <source media="(prefers-color-scheme: light)" srcset="https://starmapper.bruniaux.com/api/map-image/diegosouzapw/omniroute?theme=light" />
-    <img alt="StarMapper" src="https://starmapper.bruniaux.com/api/map-image/diegosouzapw/omniroute" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://starmapper.bruniaux.com/api/map-image/diegosouzapw/nextroute?theme=dark" />
+    <source media="(prefers-color-scheme: light)" srcset="https://starmapper.bruniaux.com/api/map-image/diegosouzapw/nextroute?theme=light" />
+    <img alt="StarMapper" src="https://starmapper.bruniaux.com/api/map-image/diegosouzapw/nextroute" />
   </picture>
 </a>
 </div>
@@ -965,15 +965,15 @@ gh release create v3.8.2 --title "v3.8.2" --generate-notes
 
 </div>
 
-Special thanks to **[9router](https://github.com/decolua/9router)** by **[decolua](https://github.com/decolua)** — the original project that inspired this fork. OmniRoute builds upon that incredible foundation with additional features, multi-modal APIs, and a full TypeScript rewrite.
+Special thanks to **[9router](https://github.com/decolua/9router)** by **[decolua](https://github.com/decolua)** — the original project that inspired this fork. NextRoute builds upon that incredible foundation with additional features, multi-modal APIs, and a full TypeScript rewrite.
 
 Special thanks to **[CLIProxyAPI](https://github.com/router-for-me/CLIProxyAPI)** by **[router-for-me](https://github.com/router-for-me)** — the original Go implementation that inspired this JavaScript port.
 
-Special thanks to **[Caveman](https://github.com/JuliusBrussee/caveman)** by **[JuliusBrussee](https://github.com/JuliusBrussee)** (⭐ 51K+) — the viral "why use many token when few token do trick" project whose caveman-speak compression philosophy inspired OmniRoute's standard compression mode and 30+ filler/condensation regex rules.
+Special thanks to **[Caveman](https://github.com/JuliusBrussee/caveman)** by **[JuliusBrussee](https://github.com/JuliusBrussee)** (⭐ 51K+) — the viral "why use many token when few token do trick" project whose caveman-speak compression philosophy inspired NextRoute's standard compression mode and 30+ filler/condensation regex rules.
 
-Special thanks to **[RTK - Rust Token Killer](https://github.com/rtk-ai/rtk)** by **[RTK AI](https://github.com/rtk-ai)** — the high-performance command-output compression project whose terminal, build, test, git, and tool-output filtering model inspired OmniRoute's RTK engine, JSON filter DSL, raw-output recovery, and stacked RTK → Caveman compression pipeline.
+Special thanks to **[RTK - Rust Token Killer](https://github.com/rtk-ai/rtk)** by **[RTK AI](https://github.com/rtk-ai)** — the high-performance command-output compression project whose terminal, build, test, git, and tool-output filtering model inspired NextRoute's RTK engine, JSON filter DSL, raw-output recovery, and stacked RTK → Caveman compression pipeline.
 
-Special thanks to **[Troglodita](https://github.com/leninejunior/troglodita)** by **[Lenine Júnior](https://github.com/leninejunior)** — the PT-BR token compression project ("por que gastar muitos tokens quando poucos resolve?") whose Portuguese-native rules power OmniRoute's pt-BR language pack: pleonasm reduction, filler removal tuned for Brazilian Portuguese grammar, and technical abbreviations for the dev BR community.
+Special thanks to **[Troglodita](https://github.com/leninejunior/troglodita)** by **[Lenine Júnior](https://github.com/leninejunior)** — the PT-BR token compression project ("por que gastar muitos tokens quando poucos resolve?") whose Portuguese-native rules power NextRoute's pt-BR language pack: pleonasm reduction, filler removal tuned for Brazilian Portuguese grammar, and technical abbreviations for the dev BR community.
 
 <br/>
 
@@ -985,9 +985,9 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 <div align="center">
 
-**[⬆ Back to top](#-omniroute)** · Built with ❤️ for the open-source AI community.
+**[⬆ Back to top](#-nextroute)** · Built with ❤️ for the open-source AI community.
 
-<sub>OmniRoute v3.8.6 · Node ≥22.22.2 · MIT License · <a href="https://omniroute.online">omniroute.online</a></sub>
+<sub>NextRoute v3.8.6 · Node ≥22.22.2 · MIT License · <a href="https://nextroute.online">nextroute.online</a></sub>
 
 </div>
 <!-- GitHub Discussions enabled for community Q&A -->

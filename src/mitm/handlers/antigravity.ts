@@ -4,7 +4,7 @@
  * Preserves the historical behavior of `src/mitm/server.cjs::intercept()`:
  *   - parses the incoming JSON body,
  *   - replaces `body.model` with the mapped model,
- *   - forwards to `/v1/chat/completions` on the OmniRoute router,
+ *   - forwards to `/v1/chat/completions` on the NextRoute router,
  *   - pipes the SSE response back to the IDE.
  *
  * Non-regressive: any change here must keep the Antigravity flow working as
@@ -35,7 +35,7 @@ export class AntigravityHandler extends MitmHandlerBase {
 
       if (!upstream.ok) {
         const errText = await upstream.text().catch(() => "");
-        throw new Error(`OmniRoute ${upstream.status}: ${errText}`);
+        throw new Error(`NextRoute ${upstream.status}: ${errText}`);
       }
 
       let collected = "";

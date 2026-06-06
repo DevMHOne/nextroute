@@ -10,7 +10,7 @@
  * handled by the in-memory cache in proxyFallback.ts.
  */
 
-import { findWorkingProxy, clearProxyFallbackCache } from "@omniroute/open-sse/utils/proxyFallback.ts";
+import { findWorkingProxy, clearProxyFallbackCache } from "@nextroute/open-sse/utils/proxyFallback.ts";
 
 // ---------------------------------------------------------------------------
 // Public API

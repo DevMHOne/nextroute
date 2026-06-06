@@ -2,7 +2,7 @@ import { getSyncedAvailableModelsByConnection } from "@/lib/db/models";
 import { getProviderConnections } from "@/lib/db/providers";
 import { getDbInstance } from "@/lib/db/core";
 import { getAllCircuitBreakerStatuses } from "@/shared/utils/circuitBreaker";
-import { getAllModelLockouts } from "@omniroute/open-sse/services/accountFallback";
+import { getAllModelLockouts } from "@nextroute/open-sse/services/accountFallback";
 
 type JsonRecord = Record<string, unknown>;
 

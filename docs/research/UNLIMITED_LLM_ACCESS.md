@@ -2,7 +2,7 @@
 
 > **Last updated:** 2026-05-29
 > **Status:** Active research
-> **Related:** [Issue #2885](https://github.com/diegosouzapw/OmniRoute/issues/2885)
+> **Related:** [Issue #2885](https://github.com/diegosouzapw/NextRoute/issues/2885)
 
 ## Overview
 
@@ -18,7 +18,7 @@ This document catalogs every known method for accessing LLMs without paying — 
 
 **How it works:** Extract session cookies/tokens from a logged-in browser session and use them to call the provider's internal API directly, bypassing the official API and its billing.
 
-**OmniRoute pattern:** Already implemented for 16 providers. Uses `webCookieAuth.ts` helpers for cookie normalization, TLS fingerprint bypass for Cloudflare, and OpenAI format translation.
+**NextRoute pattern:** Already implemented for 16 providers. Uses `webCookieAuth.ts` helpers for cookie normalization, TLS fingerprint bypass for Cloudflare, and OpenAI format translation.
 
 | Provider | Cookie/Token | API Endpoint | Feasibility | Risk | Complexity | Status |
 |----------|-------------|--------------|-------------|------|------------|--------|
@@ -315,7 +315,7 @@ interface SessionPool {
 
 ## References
 
-- OmniRoute provider definitions: `src/shared/constants/providers.ts`
+- NextRoute provider definitions: `src/shared/constants/providers.ts`
 - Cookie auth helpers: `src/lib/providers/webCookieAuth.ts`
 - Existing executors: `open-sse/executors/`
 - TLS clients: `open-sse/executors/chatgptTlsClient.ts`, `perplexityTlsClient.ts`, `claudeTlsClient.ts`

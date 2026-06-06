@@ -4,13 +4,13 @@ import {
   isSocks5ProxyEnabled,
   proxyConfigToUrl,
   proxyUrlForLogs,
-} from "@omniroute/open-sse/utils/proxyDispatcher.ts";
+} from "@nextroute/open-sse/utils/proxyDispatcher.ts";
 import { testProxySchema } from "@/shared/validation/schemas";
 import { isValidationFailure, validateBody } from "@/shared/validation/helpers";
 import { createErrorResponse, createErrorResponseFromUnknown } from "@/lib/api/errorResponse";
 import { getProxyById } from "@/lib/localDb";
 import { requireManagementAuth } from "@/lib/api/requireManagementAuth";
-import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
+import { sanitizeErrorMessage } from "@nextroute/open-sse/utils/error";
 
 const BASE_SUPPORTED_PROXY_TYPES = new Set(["http", "https"]);
 

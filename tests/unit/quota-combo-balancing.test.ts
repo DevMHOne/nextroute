@@ -20,7 +20,7 @@ import path from "node:path";
 // modules are cached across files and SQLITE_FILE is frozen at first import.
 // Wipe test data via SQL DELETEs instead to avoid cross-file path corruption.
 const TEST_DATA_DIR = fs.mkdtempSync(
-  path.join(os.tmpdir(), "omniroute-quota-combo-balancing-")
+  path.join(os.tmpdir(), "nextroute-quota-combo-balancing-")
 );
 process.env.DATA_DIR = TEST_DATA_DIR;
 

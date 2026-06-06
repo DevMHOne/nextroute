@@ -39,7 +39,7 @@ RUN --mount=type=cache,target=/root/.npm \
   && node -e "require('better-sqlite3')(':memory:').close()"
 
 # Use Turbopack for significant build speedup
-ENV OMNIROUTE_USE_TURBOPACK=1
+ENV NEXTROUTE_USE_TURBOPACK=1
 
 COPY . ./
 RUN --mount=type=cache,target=/app/.build/next/cache \
@@ -48,17 +48,17 @@ RUN --mount=type=cache,target=/app/.build/next/cache \
 # ── Runner base ────────────────────────────────────────────────────────────
 FROM base AS runner-base
 
-LABEL org.opencontainers.image.title="omniroute" \
+LABEL org.opencontainers.image.title="nextroute" \
   org.opencontainers.image.description="Unified AI proxy — route any LLM through one endpoint" \
-  org.opencontainers.image.url="https://omniroute.online" \
-  org.opencontainers.image.source="https://github.com/diegosouzapw/OmniRoute" \
+  org.opencontainers.image.url="https://nextroute.online" \
+  org.opencontainers.image.source="https://github.com/diegosouzapw/NextRoute" \
   org.opencontainers.image.licenses="MIT"
 
 ENV NODE_ENV=production
 ENV PORT=20128
 ENV HOSTNAME=0.0.0.0
-ENV OMNIROUTE_MEMORY_MB=1024
-ENV NODE_OPTIONS="--max-old-space-size=${OMNIROUTE_MEMORY_MB}"
+ENV NEXTROUTE_MEMORY_MB=1024
+ENV NODE_OPTIONS="--max-old-space-size=${NEXTROUTE_MEMORY_MB}"
 
 # Data directory inside Docker — must match the volume mount in docker-compose.yml
 ENV DATA_DIR=/app/data
@@ -79,7 +79,7 @@ COPY --from=builder /app/.build/next/standalone ./
 # starts, so guarantee the complete package independent of trace behaviour.
 COPY --from=builder /app/node_modules/better-sqlite3 ./node_modules/better-sqlite3
 # migrations land at <standalone>/migrations via assembleStandalone; point the runtime at them.
-ENV OMNIROUTE_MIGRATIONS_DIR=/app/migrations
+ENV NEXTROUTE_MIGRATIONS_DIR=/app/migrations
 
 # Docker healthcheck script — not traced by Next.js standalone output, so copy
 # it explicitly. The HEALTHCHECK CMD references it as `node healthcheck.mjs`.
@@ -108,14 +108,14 @@ CMD ["node", "dev/run-standalone.mjs"]
 # ── Runner Web (web-cookie providers: Gemini Web, Claude Turnstile) ───────────
 #
 #  Two image flavors:
-#    runner-base  →  omniroute:VERSION        Lean base (~500 MB). No browsers.
-#    runner-web   →  omniroute:VERSION-web    +Chromium/Playwright (~800 MB).
+#    runner-base  →  nextroute:VERSION        Lean base (~500 MB). No browsers.
+#    runner-web   →  nextroute:VERSION-web    +Chromium/Playwright (~800 MB).
 #
 #  Use runner-web when you need web-cookie providers (gemini-web, claude-web,
 #  claude-turnstile). For all other providers runner-base is sufficient.
 #
 #  Build:
-#    docker build --target runner-web -t omniroute:web .
+#    docker build --target runner-web -t nextroute:web .
 #  Compose:
 #    build:
 #      context: .

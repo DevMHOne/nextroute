@@ -1,9 +1,9 @@
-# OmniRoute Plugin SDK
+# NextRoute Plugin SDK
 
 ## Quick Start
 
 ```ts
-import { definePlugin } from "omniroute/plugins/sdk";
+import { definePlugin } from "nextroute/plugins/sdk";
 
 export default definePlugin({
   name: "my-plugin",
@@ -185,7 +185,7 @@ Config values are persisted in the database and accessible via the dashboard con
 ### Request Logger
 
 ```ts
-import { definePlugin } from "omniroute/plugins/sdk";
+import { definePlugin } from "nextroute/plugins/sdk";
 
 export default definePlugin({
   name: "request-logger",
@@ -198,7 +198,7 @@ export default definePlugin({
 ### Rate Limiter
 
 ```ts
-import { definePlugin, blockRequest } from "omniroute/plugins/sdk";
+import { definePlugin, blockRequest } from "nextroute/plugins/sdk";
 
 const requests = new Map<string, number[]>();
 
@@ -225,7 +225,7 @@ export default definePlugin({
 ### Response Transformer
 
 ```ts
-import { definePlugin } from "omniroute/plugins/sdk";
+import { definePlugin } from "nextroute/plugins/sdk";
 
 export default definePlugin({
   name: "response-transformer",

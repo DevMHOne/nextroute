@@ -112,17 +112,17 @@ jobs:
           #    `npm view` — it suppresses stdout and breaks the grep, which
           #    caused old releases (3.2.8) to be re-published and steal
           #    dist-tag `latest`. See incident notes in CHANGELOG.
-          PUBLISHED="$(npm view "omniroute@${VERSION}" version 2>/dev/null || true)"
+          PUBLISHED="$(npm view "nextroute@${VERSION}" version 2>/dev/null || true)"
           SKIP="false"
           if [ "$PUBLISHED" = "$VERSION" ]; then
-            echo "⚠️ omniroute@${VERSION} is already on npm — skipping publish."
+            echo "⚠️ nextroute@${VERSION} is already on npm — skipping publish."
             SKIP="true"
           fi
 
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "tag=$TAG"          >> "$GITHUB_OUTPUT"
           echo "skip=$SKIP"        >> "$GITHUB_OUTPUT"
-          echo "📦 Resolved omniroute@$VERSION dist-tag=$TAG skip=$SKIP"
+          echo "📦 Resolved nextroute@$VERSION dist-tag=$TAG skip=$SKIP"
 
       - name: Sync package.json version
         if: steps.resolve.outputs.skip != 'true'
@@ -153,7 +153,7 @@ jobs:
           # accidentally an older release, `npm publish --tag historic` will
           # NOT promote it to `@latest`.
           npm publish --access public --tag "$TAG"
-          echo "✅ Published omniroute@$VERSION (dist-tag=$TAG)"
+          echo "✅ Published nextroute@$VERSION (dist-tag=$TAG)"
 
       - name: Publish to GitHub Packages
         if: steps.resolve.outputs.skip != 'true'
@@ -165,9 +165,9 @@ jobs:
           set -euo pipefail
           echo "Configuring for GitHub Packages..."
           echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" > .npmrc
-          npm pkg set name="@diegosouzapw/omniroute"
+          npm pkg set name="@diegosouzapw/nextroute"
           npm publish --registry=https://npm.pkg.github.com --tag "$TAG" \
-            || echo "⚠️ omniroute@${VERSION} might already be published on GitHub Packages."
+            || echo "⚠️ nextroute@${VERSION} might already be published on GitHub Packages."
           echo "✅ Action finished for GitHub Packages"
 
   publish-opencode-plugin:
@@ -183,19 +183,19 @@ jobs:
           registry-url: https://registry.npmjs.org
 
       - name: Install plugin dependencies
-        working-directory: "@omniroute/opencode-plugin"
+        working-directory: "@nextroute/opencode-plugin"
         run: npm install --no-audit --no-fund
 
       - name: Build plugin
-        working-directory: "@omniroute/opencode-plugin"
+        working-directory: "@nextroute/opencode-plugin"
         run: npm run clean && npm run build
 
       - name: Test plugin
-        working-directory: "@omniroute/opencode-plugin"
+        working-directory: "@nextroute/opencode-plugin"
         run: npm test
 
-      - name: Publish @omniroute/opencode-plugin to npm
-        working-directory: "@omniroute/opencode-plugin"
+      - name: Publish @nextroute/opencode-plugin to npm
+        working-directory: "@nextroute/opencode-plugin"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |

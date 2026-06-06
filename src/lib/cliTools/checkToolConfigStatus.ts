@@ -7,7 +7,7 @@ import { getRuntimePorts } from "@/lib/runtime/ports";
 const { apiPort } = getRuntimePorts();
 
 /**
- * Check if a tool has OmniRoute configured by reading its config file directly.
+ * Check if a tool has NextRoute configured by reading its config file directly.
  * This replaces the expensive self-referential HTTP calls to /api/cli-tools/*-settings.
  *
  * @param toolId - CLI tool identifier (e.g. "claude", "codex", "cline")
@@ -28,11 +28,11 @@ export async function checkToolConfigStatus(
     // Codex uses TOML config — parse as raw text, not JSON
     if (toolId === "codex") {
       const lower = content.toLowerCase();
-      const hasOmniRoute =
-        lower.includes("omniroute") ||
+      const hasNextRoute =
+        lower.includes("nextroute") ||
         lower.includes(`localhost:${apiPort}`) ||
         lower.includes(`127.0.0.1:${apiPort}`);
-      if (!hasOmniRoute) return "not_configured";
+      if (!hasNextRoute) return "not_configured";
 
       // Also verify auth.json has an API key (not masked/empty)
       try {
@@ -52,27 +52,27 @@ export async function checkToolConfigStatus(
 
     if (toolId === "hermes") {
       const lower = content.toLowerCase();
-      const hasOmniRoute =
-        lower.includes("omniroute") ||
+      const hasNextRoute =
+        lower.includes("nextroute") ||
         lower.includes(`localhost:${apiPort}`) ||
         lower.includes(`127.0.0.1:${apiPort}`);
-      return hasOmniRoute ? "configured" : "not_configured";
+      return hasNextRoute ? "configured" : "not_configured";
     }
 
     const config = JSON.parse(content) as Record<string, unknown>;
 
-    // Each tool stores OmniRoute config differently
+    // Each tool stores NextRoute config differently
     switch (toolId) {
       case "claude":
         return (config?.env as Record<string, unknown>)?.ANTHROPIC_BASE_URL
           ? "configured"
           : "not_configured";
       case "qwen": {
-        // Check modelProviders for OmniRoute entries
+        // Check modelProviders for NextRoute entries
         const mp = config?.modelProviders;
         if (!mp) return "not_configured";
         const qwenConfigStr = JSON.stringify(mp).toLowerCase();
-        return qwenConfigStr.includes("omniroute") ||
+        return qwenConfigStr.includes("nextroute") ||
           qwenConfigStr.includes(`localhost:${apiPort}`) ||
           qwenConfigStr.includes(`127.0.0.1:${apiPort}`)
           ? "configured"
@@ -82,11 +82,11 @@ export async function checkToolConfigStatus(
       case "openclaw":
       case "cline":
       case "kilo": {
-        // Generic check: look for OmniRoute-specific markers in the config
+        // Generic check: look for NextRoute-specific markers in the config
         const configStr = JSON.stringify(config).toLowerCase();
         if (
-          configStr.includes("omniroute") ||
-          configStr.includes("sk_omniroute") ||
+          configStr.includes("nextroute") ||
+          configStr.includes("sk_nextroute") ||
           configStr.includes(`localhost:${apiPort}`) ||
           configStr.includes(`127.0.0.1:${apiPort}`)
         ) {

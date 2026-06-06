@@ -3,8 +3,8 @@ import { Agent, ProxyAgent, type Dispatcher } from "undici";
 import { socksDispatcher } from "fetch-socks";
 import { getUpstreamTimeoutConfig } from "@/shared/utils/runtimeTimeouts";
 
-const DISPATCHER_CACHE_KEY = Symbol.for("omniroute.proxyDispatcher.cache");
-const DEFAULT_DISPATCHER_KEY = Symbol.for("omniroute.proxyDispatcher.default");
+const DISPATCHER_CACHE_KEY = Symbol.for("nextroute.proxyDispatcher.cache");
+const DEFAULT_DISPATCHER_KEY = Symbol.for("nextroute.proxyDispatcher.default");
 const SUPPORTED_PROTOCOLS = new Set(["http:", "https:", "socks5:"]);
 
 type DispatcherCache = Map<string, Dispatcher>;

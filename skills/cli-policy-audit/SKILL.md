@@ -11,8 +11,8 @@ Inspect audit logs, manage access policies, view telemetry data, and review requ
 ## Quick install
 
 ```bash
-npm install -g omniroute   # or: npx omniroute
-omniroute --version
+npm install -g nextroute   # or: npx nextroute
+nextroute --version
 ```
 
 ## Subcommands
@@ -22,7 +22,7 @@ omniroute --version
 **Example:**
 
 ```bash
-omniroute audit
+nextroute audit
 ```
 
 ### `audit tail`
@@ -36,7 +36,7 @@ omniroute audit
 **Example:**
 
 ```bash
-omniroute audit tail
+nextroute audit tail
 ```
 
 ### `audit search <query>`
@@ -53,7 +53,7 @@ omniroute audit tail
 **Example:**
 
 ```bash
-omniroute audit search <query>
+nextroute audit search <query>
 ```
 
 ### `audit export <file>`
@@ -68,7 +68,7 @@ omniroute audit search <query>
 **Example:**
 
 ```bash
-omniroute audit export <file>
+nextroute audit export <file>
 ```
 
 ### `audit stats`
@@ -81,7 +81,7 @@ omniroute audit export <file>
 **Example:**
 
 ```bash
-omniroute audit stats
+nextroute audit stats
 ```
 
 ### `audit get <id>`
@@ -93,7 +93,7 @@ omniroute audit stats
 **Example:**
 
 ```bash
-omniroute audit get <id>
+nextroute audit get <id>
 ```
 
 ### `logs`
@@ -116,7 +116,7 @@ omniroute audit get <id>
 **Example:**
 
 ```bash
-omniroute logs
+nextroute logs
 ```
 
 ### `policy`
@@ -124,7 +124,7 @@ omniroute logs
 **Example:**
 
 ```bash
-omniroute policy
+nextroute policy
 ```
 
 ### `policy list`
@@ -137,7 +137,7 @@ omniroute policy
 **Example:**
 
 ```bash
-omniroute policy list
+nextroute policy list
 ```
 
 ### `policy get <id>`
@@ -145,7 +145,7 @@ omniroute policy list
 **Example:**
 
 ```bash
-omniroute policy get <id>
+nextroute policy get <id>
 ```
 
 ### `policy create`
@@ -153,7 +153,7 @@ omniroute policy get <id>
 **Example:**
 
 ```bash
-omniroute policy create
+nextroute policy create
 ```
 
 ### `policy update <id>`
@@ -161,7 +161,7 @@ omniroute policy create
 **Example:**
 
 ```bash
-omniroute policy update <id>
+nextroute policy update <id>
 ```
 
 ### `policy delete <id>`
@@ -173,7 +173,7 @@ omniroute policy update <id>
 **Example:**
 
 ```bash
-omniroute policy delete <id>
+nextroute policy delete <id>
 ```
 
 ### `policy evaluate`
@@ -186,7 +186,7 @@ omniroute policy delete <id>
 **Example:**
 
 ```bash
-omniroute policy evaluate
+nextroute policy evaluate
 ```
 
 ### `policy export <file>`
@@ -194,7 +194,7 @@ omniroute policy evaluate
 **Example:**
 
 ```bash
-omniroute policy export <file>
+nextroute policy export <file>
 ```
 
 ### `policy import <file>`
@@ -206,7 +206,7 @@ omniroute policy export <file>
 **Example:**
 
 ```bash
-omniroute policy import <file>
+nextroute policy import <file>
 ```
 
 ### `telemetry`
@@ -214,7 +214,7 @@ omniroute policy import <file>
 **Example:**
 
 ```bash
-omniroute telemetry
+nextroute telemetry
 ```
 
 ### `telemetry summary`
@@ -227,7 +227,7 @@ omniroute telemetry
 **Example:**
 
 ```bash
-omniroute telemetry summary
+nextroute telemetry summary
 ```
 
 ### `telemetry export`
@@ -240,5 +240,5 @@ omniroute telemetry summary
 **Example:**
 
 ```bash
-omniroute telemetry export
+nextroute telemetry export
 ```

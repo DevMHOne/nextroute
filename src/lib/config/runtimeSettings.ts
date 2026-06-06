@@ -255,7 +255,7 @@ function getPreviousSnapshot(): RuntimeSettingsSnapshot {
 
 async function applyPayloadRulesSection(payloadRules: unknown) {
   const { clearPayloadRulesConfigOverride, setPayloadRulesConfig } =
-    await import("@omniroute/open-sse/services/payloadRules.ts");
+    await import("@nextroute/open-sse/services/payloadRules.ts");
 
   if (payloadRules === null || payloadRules === undefined) {
     clearPayloadRulesConfigOverride();
@@ -266,13 +266,13 @@ async function applyPayloadRulesSection(payloadRules: unknown) {
 }
 
 async function applyModelAliasesSection(modelAliases: Record<string, string>) {
-  const { setCustomAliases } = await import("@omniroute/open-sse/services/modelDeprecation.ts");
+  const { setCustomAliases } = await import("@nextroute/open-sse/services/modelDeprecation.ts");
   setCustomAliases(modelAliases);
 }
 
 async function applyBackgroundDegradationSection(backgroundDegradation: JsonRecord | null) {
   const { getDefaultDegradationMap, getDefaultDetectionPatterns, setBackgroundDegradationConfig } =
-    await import("@omniroute/open-sse/services/backgroundTaskDetector.ts");
+    await import("@nextroute/open-sse/services/backgroundTaskDetector.ts");
 
   if (!backgroundDegradation) {
     setBackgroundDegradationConfig({
@@ -297,7 +297,7 @@ async function applyBackgroundDegradationSection(backgroundDegradation: JsonReco
 }
 
 async function applyCliCompatProvidersSection(cliCompatProviders: string[]) {
-  const { setCliCompatProviders } = await import("@omniroute/open-sse/config/cliFingerprints");
+  const { setCliCompatProviders } = await import("@nextroute/open-sse/config/cliFingerprints");
   setCliCompatProviders(cliCompatProviders);
 }
 
@@ -308,13 +308,13 @@ async function applyCacheControlSection() {
 
 async function applyUsageTrackingSection() {
   const { invalidateBufferTokensCache } =
-    await import("@omniroute/open-sse/utils/usageTracking.ts");
+    await import("@nextroute/open-sse/utils/usageTracking.ts");
   invalidateBufferTokensCache();
 }
 
 async function applyThoughtSignatureSection(mode: string) {
   const { setGeminiThoughtSignatureMode } =
-    await import("@omniroute/open-sse/services/geminiThoughtSignatureStore.ts");
+    await import("@nextroute/open-sse/services/geminiThoughtSignatureStore.ts");
   setGeminiThoughtSignatureMode(mode);
 }
 
@@ -335,7 +335,7 @@ async function applyCorsOriginsSection(corsOrigins: string) {
  */
 async function applyCcBridgeTransformsSection(ccBridgeTransforms: unknown) {
   const { setSystemTransformsConfig } =
-    await import("@omniroute/open-sse/services/systemTransforms.ts");
+    await import("@nextroute/open-sse/services/systemTransforms.ts");
   if (ccBridgeTransforms && typeof ccBridgeTransforms === "object") {
     setSystemTransformsConfig(ccBridgeTransforms);
   }
@@ -351,7 +351,7 @@ function applyAuthzBypassSection(snapshot: AuthzBypassSnapshot) {
 
 async function applySystemTransformsSection(systemTransforms: unknown) {
   const { setSystemTransformsConfig, resetSystemTransformsConfig } =
-    await import("@omniroute/open-sse/services/systemTransforms.ts");
+    await import("@nextroute/open-sse/services/systemTransforms.ts");
 
   if (
     systemTransforms === null ||
@@ -372,8 +372,8 @@ async function applyModelsDevSyncSection(
 ) {
   const { startPeriodicSync, stopPeriodicSync } = await import("@/lib/modelsDevSync");
   const skipBackgroundSyncInTests =
-    (isAutomatedTestProcess() && process.env.OMNIROUTE_ENABLE_RUNTIME_BACKGROUND_TASKS !== "1") ||
-    isTruthyEnvFlag(process.env.OMNIROUTE_DISABLE_BACKGROUND_SERVICES);
+    (isAutomatedTestProcess() && process.env.NEXTROUTE_ENABLE_RUNTIME_BACKGROUND_TASKS !== "1") ||
+    isTruthyEnvFlag(process.env.NEXTROUTE_DISABLE_BACKGROUND_SERVICES);
 
   if (skipBackgroundSyncInTests) {
     stopPeriodicSync();

@@ -23,7 +23,7 @@ export class ServerSupervisor {
     this.startedAt = Date.now();
     this.crashLog = [];
 
-    const showLog = process.env.OMNIROUTE_SHOW_LOG === "1";
+    const showLog = process.env.NEXTROUTE_SHOW_LOG === "1";
     this.child = spawn("node", [`--max-old-space-size=${this.memoryLimit}`, this.serverPath], {
       cwd: dirname(this.serverPath),
       env: this.env,

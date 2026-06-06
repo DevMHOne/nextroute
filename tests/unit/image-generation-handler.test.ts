@@ -4,7 +4,7 @@ import { mkdtempSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-process.env.DATA_DIR = mkdtempSync(join(tmpdir(), "omniroute-images-"));
+process.env.DATA_DIR = mkdtempSync(join(tmpdir(), "nextroute-images-"));
 
 const { IMAGE_PROVIDERS, parseImageModel, getAllImageModels } =
   await import("../../open-sse/config/imageRegistry.ts");
@@ -854,7 +854,7 @@ test("handleImageGeneration sanitizes Antigravity upstream error payloads", asyn
         error: {
           code: 500,
           message:
-            "failed at /Users/backryun/OmniRoute/open-sse/handlers/imageGeneration.ts:1\nstack",
+            "failed at /Users/backryun/NextRoute/open-sse/handlers/imageGeneration.ts:1\nstack",
           status: "INTERNAL",
         },
       }),

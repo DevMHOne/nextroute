@@ -1,20 +1,20 @@
 ---
-title: "CLI Tools — OmniRoute v3.8.6"
+title: "CLI Tools — NextRoute v3.8.6"
 version: 3.8.6
 lastUpdated: 2026-05-28
 ---
 
-# CLI Tools — OmniRoute v3.8.6
+# CLI Tools — NextRoute v3.8.6
 
 Last updated: 2026-05-28
 
-OmniRoute integrates with three categories of CLI tools spread across three dedicated dashboard pages:
+NextRoute integrates with three categories of CLI tools spread across three dedicated dashboard pages:
 
 | Page | Route | Concept | Count |
 |------|-------|---------|-------|
-| **CLI Code's** | `/dashboard/cli-code` | Coding tools you point at OmniRoute (Client → CLI → OmniRoute → Provider) | 19 |
-| **CLI Agents** | `/dashboard/cli-agents` | Autonomous agents you point at OmniRoute (same flow, broader scope) | 6 |
-| **ACP Agents** | `/dashboard/acp-agents` | CLIs that OmniRoute spawns as backend via stdio/ACP (reverse flow) | see registry |
+| **CLI Code's** | `/dashboard/cli-code` | Coding tools you point at NextRoute (Client → CLI → NextRoute → Provider) | 19 |
+| **CLI Agents** | `/dashboard/cli-agents` | Autonomous agents you point at NextRoute (same flow, broader scope) | 6 |
+| **ACP Agents** | `/dashboard/acp-agents` | CLIs that NextRoute spawns as backend via stdio/ACP (reverse flow) | see registry |
 
 Legacy routes redirect via 308: `/dashboard/cli-tools` → `/dashboard/cli-code`, `/dashboard/agents` → `/dashboard/acp-agents`.
 
@@ -26,14 +26,14 @@ Legacy routes redirect via 308: `/dashboard/cli-tools` → `/dashboard/cli-code`
 CLI Code's / CLI Agents (consumption flow):
 Claude / Codex / OpenCode / Cline / KiloCode / Continue / Hermes Agent / Goose / ...
            │
-           ▼  (all point to OmniRoute)
+           ▼  (all point to NextRoute)
     http://YOUR_SERVER:20128/v1
            │
-           ▼  (OmniRoute routes to the right provider)
+           ▼  (NextRoute routes to the right provider)
     Anthropic / OpenAI / Gemini / DeepSeek / Groq / Mistral / ...
 
 ACP Agents (reverse spawn flow):
-    Client request → OmniRoute → spawns CLI via stdio/ACP → response
+    Client request → NextRoute → spawns CLI via stdio/ACP → response
 ```
 
 **Benefits:**
@@ -111,7 +111,7 @@ Autonomous agents that appear in `/dashboard/cli-agents`:
 
 ## 3. ACP Agents (/dashboard/acp-agents)
 
-This page (renamed from `/dashboard/agents`) shows CLIs that OmniRoute can **spawn** as backend execution engines via stdio/ACP protocol. The catalog is maintained separately in `src/lib/acp/registry.ts` and is **not** the same as `CLI_TOOLS`.
+This page (renamed from `/dashboard/agents`) shows CLIs that NextRoute can **spawn** as backend execution engines via stdio/ACP protocol. The catalog is maintained separately in `src/lib/acp/registry.ts` and is **not** the same as `CLI_TOOLS`.
 
 Current ACP-spawnable CLIs (from `acpSpawnable: true` in `CLI_TOOLS` + ACP registry): codex, claude, goose, gemini-cli, openclaw, aider, opencode, cline, qwen-code, forge, interpreter, cursor-cli, warp.
 
@@ -231,7 +231,7 @@ Full PT-BR and EN translations are provided. 39 other locales fall back to EN au
 
 ## 9. Quick Start
 
-### Step 1 — Get an OmniRoute API Key
+### Step 1 — Get an NextRoute API Key
 
 1. Open `/dashboard/api-manager` → **Create API Key**
 2. Give it a name (e.g. `cli-tools`) and select all permissions
@@ -292,32 +292,32 @@ cargo install smelt  # Rust-based
 ### Step 4 — Set Global Environment Variables
 
 ```bash
-# OmniRoute Universal Endpoint
+# NextRoute Universal Endpoint
 export OPENAI_BASE_URL="http://localhost:20128/v1"
-export OPENAI_API_KEY="sk-your-omniroute-key"
+export OPENAI_API_KEY="sk-your-nextroute-key"
 export ANTHROPIC_BASE_URL="http://localhost:20128"
-export ANTHROPIC_AUTH_TOKEN="sk-your-omniroute-key"
+export ANTHROPIC_AUTH_TOKEN="sk-your-nextroute-key"
 ```
 
 > For a **remote server** replace `localhost:20128` with the server IP or domain.
 
 ---
 
-## 10. Internal OmniRoute CLI
+## 10. Internal NextRoute CLI
 
-The `omniroute` binary provides commands for server lifecycle, setup, diagnostics, and provider management. Entry point: `bin/omniroute.mjs`.
+The `nextroute` binary provides commands for server lifecycle, setup, diagnostics, and provider management. Entry point: `bin/nextroute.mjs`.
 
 ```bash
-omniroute                              # Start server (default port 20128)
-omniroute setup                        # Interactive setup wizard
-omniroute doctor                       # Check config, DB, ports, runtime
-omniroute providers list               # Configured provider connections
-omniroute providers test-all           # Test every active connection
-omniroute reset-password               # Reset the admin password
-omniroute logs                         # Stream request logs
-omniroute health                       # Detailed health (breakers, cache, memory)
-omniroute --version                    # Print version
-omniroute --help                       # Show all commands
+nextroute                              # Start server (default port 20128)
+nextroute setup                        # Interactive setup wizard
+nextroute doctor                       # Check config, DB, ports, runtime
+nextroute providers list               # Configured provider connections
+nextroute providers test-all           # Test every active connection
+nextroute reset-password               # Reset the admin password
+nextroute logs                         # Stream request logs
+nextroute health                       # Detailed health (breakers, cache, memory)
+nextroute --version                    # Print version
+nextroute --help                       # Show all commands
 ```
 
 ---
@@ -326,7 +326,7 @@ omniroute --help                       # Show all commands
 
 | Error | Cause | Fix |
 |-------|-------|-----|
-| `Connection refused` | OmniRoute not running | `omniroute serve` |
+| `Connection refused` | NextRoute not running | `nextroute serve` |
 | `401 Unauthorized` | Wrong API key | Check in `/dashboard/api-manager` |
 | `No combo configured` | No active routing combo | Set up in `/dashboard/combos` |
 | CLI shows "not installed" | Binary not in PATH | Check `which <command>` |

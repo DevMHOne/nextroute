@@ -8,7 +8,7 @@ import path from "node:path";
 
 process.env.NODE_ENV = "test";
 
-const TEST_DATA_DIR = fs.mkdtempSync(path.join(os.tmpdir(), "omniroute-token-healthcheck-"));
+const TEST_DATA_DIR = fs.mkdtempSync(path.join(os.tmpdir(), "nextroute-token-healthcheck-"));
 process.env.DATA_DIR = TEST_DATA_DIR;
 
 const core = await import("../../src/lib/db/core.ts");
@@ -399,12 +399,12 @@ test("checkConnection skips interval refresh when token expiry is known and stil
   );
 });
 
-test("checkConnection skips providers listed in OMNIROUTE_HEALTHCHECK_SKIP_PROVIDERS (#kimi-15)", async () => {
+test("checkConnection skips providers listed in NEXTROUTE_HEALTHCHECK_SKIP_PROVIDERS (#kimi-15)", async () => {
   await resetStorage();
 
   const providerId = "custom-oauth-skip-list";
   const refreshRequests: string[] = [];
-  const prevSkip = process.env.OMNIROUTE_HEALTHCHECK_SKIP_PROVIDERS;
+  const prevSkip = process.env.NEXTROUTE_HEALTHCHECK_SKIP_PROVIDERS;
 
   await withHttpServer(
     (req, res) => {
@@ -447,7 +447,7 @@ test("checkConnection skips providers listed in OMNIROUTE_HEALTHCHECK_SKIP_PROVI
           // The connection is due for refresh (no known expiry, never checked).
           // With the provider listed, the proactive sweep must skip it entirely —
           // NO refresh request is made.
-          process.env.OMNIROUTE_HEALTHCHECK_SKIP_PROVIDERS = `foo, ${providerId} ,bar`;
+          process.env.NEXTROUTE_HEALTHCHECK_SKIP_PROVIDERS = `foo, ${providerId} ,bar`;
           await tokenHealthCheck.checkConnection(connection);
           assert.equal(
             refreshRequests.length,
@@ -457,7 +457,7 @@ test("checkConnection skips providers listed in OMNIROUTE_HEALTHCHECK_SKIP_PROVI
 
           // Control: with the provider no longer listed, the same due connection
           // IS refreshed — proving the skip (not token freshness) gated it.
-          process.env.OMNIROUTE_HEALTHCHECK_SKIP_PROVIDERS = "some-other-provider";
+          process.env.NEXTROUTE_HEALTHCHECK_SKIP_PROVIDERS = "some-other-provider";
           const stillStale = await providersDb.getProviderConnectionById((connection as any).id);
           await tokenHealthCheck.checkConnection(stillStale);
           assert.equal(refreshRequests.length, 1, "non-listed provider must refresh");
@@ -466,6 +466,6 @@ test("checkConnection skips providers listed in OMNIROUTE_HEALTHCHECK_SKIP_PROVI
     }
   );
 
-  if (prevSkip === undefined) delete process.env.OMNIROUTE_HEALTHCHECK_SKIP_PROVIDERS;
-  else process.env.OMNIROUTE_HEALTHCHECK_SKIP_PROVIDERS = prevSkip;
+  if (prevSkip === undefined) delete process.env.NEXTROUTE_HEALTHCHECK_SKIP_PROVIDERS;
+  else process.env.NEXTROUTE_HEALTHCHECK_SKIP_PROVIDERS = prevSkip;
 });

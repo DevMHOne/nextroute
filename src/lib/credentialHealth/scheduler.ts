@@ -37,7 +37,7 @@ const TRUE_ENV_VALUES = new Set(["1", "true", "yes", "on"]);
 // ── State (globalThis singleton) ──────────────────────────────────────────
 
 declare global {
-  var __omnirouteCredentialHC:
+  var __nextrouteCredentialHC:
     | {
         initialized: boolean;
         sweepTimer: ReturnType<typeof setTimeout> | null;
@@ -49,15 +49,15 @@ declare global {
 }
 
 function getSchedulerState() {
-  if (!globalThis.__omnirouteCredentialHC) {
-    globalThis.__omnirouteCredentialHC = {
+  if (!globalThis.__nextrouteCredentialHC) {
+    globalThis.__nextrouteCredentialHC = {
       initialized: false,
       sweepTimer: null,
       sweepInProgress: false,
       failureCounts: new Map(),
     };
   }
-  return globalThis.__omnirouteCredentialHC;
+  return globalThis.__nextrouteCredentialHC;
 }
 
 // ── Helpers ───────────────────────────────────────────────────────────────
@@ -77,7 +77,7 @@ function isAutomatedTestProcess(): boolean {
 
 function isCredentialHealthCheckDisabled(): boolean {
   if (isBuildProcess() || isAutomatedTestProcess()) return true;
-  const val = process.env.OMNIROUTE_DISABLE_CREDENTIAL_HEALTH_CHECK;
+  const val = process.env.NEXTROUTE_DISABLE_CREDENTIAL_HEALTH_CHECK;
   return val ? TRUE_ENV_VALUES.has(val.trim().toLowerCase()) : false;
 }
 

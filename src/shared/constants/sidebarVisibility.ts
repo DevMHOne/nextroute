@@ -720,7 +720,7 @@ const HELP_ITEMS: readonly SidebarItemDefinition[] = [
   },
   {
     id: "issues",
-    href: "https://github.com/diegosouzapw/OmniRoute/issues",
+    href: "https://github.com/diegosouzapw/NextRoute/issues",
     i18nKey: "issues",
     subtitleKey: "issuesSubtitle",
     icon: "bug_report",
@@ -747,8 +747,8 @@ export const SIDEBAR_SECTIONS: readonly SidebarSectionDefinition[] = [
   },
   {
     id: "omni-proxy",
-    titleKey: "omniProxySection",
-    titleFallback: "OmniProxy",
+    titleKey: "nextProxySection",
+    titleFallback: "NextProxy",
     children: [
       ...OMNI_PROXY_ITEMS,
       COMPRESSION_CONTEXT_GROUP,
@@ -815,7 +815,7 @@ export const HIDDEN_SIDEBAR_ITEMS_SETTING_KEY = "hiddenSidebarItems";
 export const SIDEBAR_SECTION_ORDER_KEY = "sidebarSectionOrder";
 export const SIDEBAR_ITEM_ORDER_KEY = "sidebarItemOrder";
 export const SIDEBAR_PRESET_KEY = "sidebarActivePreset";
-export const SIDEBAR_SETTINGS_UPDATED_EVENT = "omniroute:settings-updated";
+export const SIDEBAR_SETTINGS_UPDATED_EVENT = "nextroute:settings-updated";
 
 // ─── Preset types & definitions ───────────────────────────────────────────────
 

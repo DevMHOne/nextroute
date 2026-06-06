@@ -11,8 +11,8 @@ Manage provider connections from the CLI: list available/configured providers, a
 ## Quick install
 
 ```bash
-npm install -g omniroute   # or: npx omniroute
-omniroute --version
+npm install -g nextroute   # or: npx nextroute
+nextroute --version
 ```
 
 ## Subcommands
@@ -24,7 +24,7 @@ Manage provider connections (use
 **Example:**
 
 ```bash
-omniroute provider-cmd provider [subcommand]
+nextroute provider-cmd provider [subcommand]
 ```
 
 ### `providers`
@@ -32,12 +32,12 @@ omniroute provider-cmd provider [subcommand]
 **Example:**
 
 ```bash
-omniroute providers
+nextroute providers
 ```
 
 ### `providers available`
 
-Show available providers in the OmniRoute catalog
+Show available providers in the NextRoute catalog
 
 **Flags:**
 
@@ -49,7 +49,7 @@ Show available providers in the OmniRoute catalog
 **Example:**
 
 ```bash
-omniroute providers available
+nextroute providers available
 ```
 
 ### `providers list`
@@ -63,7 +63,7 @@ List configured provider connections
 **Example:**
 
 ```bash
-omniroute providers list
+nextroute providers list
 ```
 
 ### `providers test <idOrName>`
@@ -77,7 +77,7 @@ Test a configured provider connection
 **Example:**
 
 ```bash
-omniroute providers test <idOrName>
+nextroute providers test <idOrName>
 ```
 
 ### `providers test-all`
@@ -91,7 +91,7 @@ Test all active provider connections
 **Example:**
 
 ```bash
-omniroute providers test-all
+nextroute providers test-all
 ```
 
 ### `providers validate`
@@ -105,7 +105,7 @@ Validate local provider configuration without calling upstream
 **Example:**
 
 ```bash
-omniroute providers validate
+nextroute providers validate
 ```
 
 ### `providers rotate <idOrName>`
@@ -122,7 +122,7 @@ omniroute providers validate
 **Example:**
 
 ```bash
-omniroute providers rotate <idOrName>
+nextroute providers rotate <idOrName>
 ```
 
 ### `providers status`
@@ -135,7 +135,7 @@ omniroute providers rotate <idOrName>
 **Example:**
 
 ```bash
-omniroute providers status
+nextroute providers status
 ```
 
 ### `providers metrics`
@@ -154,7 +154,7 @@ omniroute providers status
 **Example:**
 
 ```bash
-omniroute providers metrics
+nextroute providers metrics
 ```
 
 ### `providers metric <connectionId> <metric>`
@@ -166,7 +166,7 @@ omniroute providers metrics
 **Example:**
 
 ```bash
-omniroute providers metric <connectionId> <metric>
+nextroute providers metric <connectionId> <metric>
 ```
 
 ### `test-provider test [provider] [model]`
@@ -183,23 +183,23 @@ omniroute providers metric <connectionId> <metric>
 **Example:**
 
 ```bash
-omniroute test-provider test [provider] [model]
+nextroute test-provider test [provider] [model]
 ```
 
 <!-- skill:custom-start -->
-<!-- Migrated from skills/omniroute-cli-providers/SKILL.md (preserved curated content) -->
+<!-- Migrated from skills/nextroute-cli-providers/SKILL.md (preserved curated content) -->
 
-# OmniRoute — CLI Providers & Keys
+# NextRoute — CLI Providers & Keys
 
-Requires the `omniroute` CLI. See [CLI entry-point skill](https://raw.githubusercontent.com/diegosouzapw/OmniRoute/main/skills/omniroute-cli/SKILL.md) for install + global flags.
+Requires the `nextroute` CLI. See [CLI entry-point skill](https://raw.githubusercontent.com/diegosouzapw/NextRoute/main/skills/nextroute-cli/SKILL.md) for install + global flags.
 
 ## Provider catalog (available providers)
 
 ```bash
-omniroute providers available                        # Full OmniRoute provider catalog
-omniroute providers available --search openai        # Filter by id, name, alias
-omniroute providers available --category api-key     # Filter by category
-omniroute providers available --json                 # Machine-readable JSON
+nextroute providers available                        # Full NextRoute provider catalog
+nextroute providers available --search openai        # Filter by id, name, alias
+nextroute providers available --category api-key     # Filter by category
+nextroute providers available --json                 # Machine-readable JSON
 ```
 
 Categories: `api-key`, `oauth`, `free`, `local`, `combo`.
@@ -207,46 +207,46 @@ Categories: `api-key`, `oauth`, `free`, `local`, `combo`.
 ## Configured provider connections
 
 ```bash
-omniroute providers list                             # Connections in your DB
-omniroute providers list --json
+nextroute providers list                             # Connections in your DB
+nextroute providers list --json
 ```
 
 ## Testing connections
 
 ```bash
-omniroute providers test <id|name>                   # Test one configured connection
-omniroute providers test-all                         # Test every active connection (TUI progress)
-omniroute providers validate                         # Local-only structural validation (no HTTP)
+nextroute providers test <id|name>                   # Test one configured connection
+nextroute providers test-all                         # Test every active connection (TUI progress)
+nextroute providers validate                         # Local-only structural validation (no HTTP)
 ```
 
 `test-all` opens an interactive TUI that shows live pass/fail per connection. Use `--json` to get a machine-readable result:
 
 ```bash
-omniroute providers test-all --json
+nextroute providers test-all --json
 ```
 
-## API key management (OmniRoute keys)
+## API key management (NextRoute keys)
 
-These manage the OmniRoute API keys issued under **API Manager** — not provider credentials.
+These manage the NextRoute API keys issued under **API Manager** — not provider credentials.
 
 ```bash
-omniroute keys list                                  # List all OmniRoute API keys
-omniroute keys add <provider> [apiKey]               # Add an API key for a provider
-omniroute keys remove <provider>                     # Remove an API key
-omniroute keys regenerate <id>                       # Regenerate (rotate) a key
-omniroute keys revoke <id>                           # Revoke a key (disables it)
-omniroute keys reveal <id>                           # Show the full key value
-omniroute keys usage <id>                            # Show usage stats for a key
+nextroute keys list                                  # List all NextRoute API keys
+nextroute keys add <provider> [apiKey]               # Add an API key for a provider
+nextroute keys remove <provider>                     # Remove an API key
+nextroute keys regenerate <id>                       # Regenerate (rotate) a key
+nextroute keys revoke <id>                           # Revoke a key (disables it)
+nextroute keys reveal <id>                           # Show the full key value
+nextroute keys usage <id>                            # Show usage stats for a key
 
-omniroute keys rotate <id>                           # Rotate + revoke old key atomically
-omniroute keys expiration list                       # List key expiration times
+nextroute keys rotate <id>                           # Rotate + revoke old key atomically
+nextroute keys expiration list                       # List key expiration times
 ```
 
 ### Key policies
 
 ```bash
-omniroute keys policy show <id>                      # Show rate-limit / permission policy
-omniroute keys policy set <id> \
+nextroute keys policy show <id>                      # Show rate-limit / permission policy
+nextroute keys policy set <id> \
   --rate-limit 100 \
   --rate-window minute \
   --permissions chat,models                          # Set policy on a key
@@ -255,33 +255,33 @@ omniroute keys policy set <id> \
 ## Models
 
 ```bash
-omniroute models                                     # List all models (all providers)
-omniroute models openai                              # Filter by provider
-omniroute models --search gpt                        # Search by name
-omniroute models --json                              # JSON output
+nextroute models                                     # List all models (all providers)
+nextroute models openai                              # Filter by provider
+nextroute models --search gpt                        # Search by name
+nextroute models --json                              # JSON output
 ```
 
 ## OAuth providers
 
 ```bash
-omniroute oauth list                                 # List OAuth-configured providers
-omniroute oauth login <provider>                     # Start browser-based OAuth flow
-omniroute oauth logout <provider>                    # Revoke OAuth token
-omniroute oauth status <provider>                    # Show token state + expiry
-omniroute oauth refresh <provider>                   # Force token refresh
+nextroute oauth list                                 # List OAuth-configured providers
+nextroute oauth login <provider>                     # Start browser-based OAuth flow
+nextroute oauth logout <provider>                    # Revoke OAuth token
+nextroute oauth status <provider>                    # Show token state + expiry
+nextroute oauth refresh <provider>                   # Force token refresh
 ```
 
-For OAuth providers (Gemini, Windsurf, Antigravity, etc.) the `login` command opens the OmniRoute dashboard OAuth flow in your browser.
+For OAuth providers (Gemini, Windsurf, Antigravity, etc.) the `login` command opens the NextRoute dashboard OAuth flow in your browser.
 
 ## Provider nodes (multi-account routing)
 
 Provider nodes let you attach multiple API keys / accounts to one logical provider for round-robin or failover.
 
 ```bash
-omniroute nodes list <provider>                      # List nodes for a provider
-omniroute nodes add <provider> --api-key <key>       # Add a node
-omniroute nodes remove <provider> <nodeId>           # Remove a node
-omniroute nodes test <provider> <nodeId>             # Test one node
+nextroute nodes list <provider>                      # List nodes for a provider
+nextroute nodes add <provider> --api-key <key>       # Add a node
+nextroute nodes remove <provider> <nodeId>           # Remove a node
+nextroute nodes test <provider> <nodeId>             # Test one node
 ```
 
 ## Routing combos (CLI)
@@ -289,39 +289,39 @@ omniroute nodes test <provider> <nodeId>             # Test one node
 Create and manage routing combos from the terminal:
 
 ```bash
-omniroute combo list                                 # List all combos
-omniroute combo create <name> \
+nextroute combo list                                 # List all combos
+nextroute combo create <name> \
   --strategy priority \
   --targets anthropic/claude-opus-4-7,openai/gpt-4o  # Create combo
-omniroute combo switch <name>                        # Activate a combo as default
-omniroute combo delete <name>                        # Delete a combo
-omniroute combo suggest --task "code review"         # Ask OmniRoute to recommend a combo
+nextroute combo switch <name>                        # Activate a combo as default
+nextroute combo delete <name>                        # Delete a combo
+nextroute combo suggest --task "code review"         # Ask NextRoute to recommend a combo
 ```
 
-For the full REST API for combos see [omniroute-routing skill](https://raw.githubusercontent.com/diegosouzapw/OmniRoute/main/skills/omniroute-routing/SKILL.md).
+For the full REST API for combos see [nextroute-routing skill](https://raw.githubusercontent.com/diegosouzapw/NextRoute/main/skills/nextroute-routing/SKILL.md).
 
 ## Quota & usage
 
 ```bash
-omniroute quota                                      # Provider quota usage + reset times
-omniroute usage                                      # Request + token usage summary
-omniroute cost                                       # Cost breakdown (by provider/model)
+nextroute quota                                      # Provider quota usage + reset times
+nextroute usage                                      # Request + token usage summary
+nextroute cost                                       # Cost breakdown (by provider/model)
 ```
 
 ## Compression (CLI)
 
 ```bash
-omniroute compression status                         # Current compression mode + savings stats
-omniroute compression set --mode rtk                 # Enable RTK compression
-omniroute compression set --mode stacked             # Enable stacked (RTK + Caveman)
-omniroute compression set --mode off                 # Disable compression
-omniroute compression preview --mode rtk --text "..."  # Preview savings for sample text
+nextroute compression status                         # Current compression mode + savings stats
+nextroute compression set --mode rtk                 # Enable RTK compression
+nextroute compression set --mode stacked             # Enable stacked (RTK + Caveman)
+nextroute compression set --mode off                 # Disable compression
+nextroute compression preview --mode rtk --text "..."  # Preview savings for sample text
 ```
 
 ## Health
 
 ```bash
-omniroute health                                     # Detailed health: circuit breakers, cache, memory
+nextroute health                                     # Detailed health: circuit breakers, cache, memory
 ```
 
 ## Errors

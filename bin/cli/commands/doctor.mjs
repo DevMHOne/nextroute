@@ -9,7 +9,7 @@ import { printHeading } from "../io.mjs";
 import { t } from "../i18n.mjs";
 import { readDatabaseHealth, readEncryptedCredentialSamples } from "../sqlite.mjs";
 
-const STATIC_SALT = "omniroute-field-encryption-v1";
+const STATIC_SALT = "nextroute-field-encryption-v1";
 const KEY_LENGTH = 32;
 const CHECK_TIMEOUT_MS = 2000;
 
@@ -80,7 +80,7 @@ function checkConfig(dataDir) {
 }
 
 function resolveMigrationsDir(rootDir) {
-  const configured = process.env.OMNIROUTE_MIGRATIONS_DIR;
+  const configured = process.env.NEXTROUTE_MIGRATIONS_DIR;
   const candidates = [
     configured,
     path.join(rootDir, "src", "lib", "db", "migrations"),
@@ -324,10 +324,10 @@ async function checkNativeBinary(rootDir) {
 }
 
 function checkMemory() {
-  const configured = process.env.OMNIROUTE_MEMORY_MB || "512";
+  const configured = process.env.NEXTROUTE_MEMORY_MB || "512";
   const memoryMb = Number.parseInt(configured, 10);
   if (!Number.isFinite(memoryMb) || memoryMb < 64 || memoryMb > 16384) {
-    return fail("Memory", `Invalid OMNIROUTE_MEMORY_MB: ${configured}`, { configured });
+    return fail("Memory", `Invalid NEXTROUTE_MEMORY_MB: ${configured}`, { configured });
   }
 
   const total = os.totalmem();
@@ -367,12 +367,12 @@ function formatHostForUrl(host) {
 }
 
 function resolveLivenessUrl(options = {}) {
-  const explicitUrl = options.livenessUrl || process.env.OMNIROUTE_DOCTOR_LIVENESS_URL;
+  const explicitUrl = options.livenessUrl || process.env.NEXTROUTE_DOCTOR_LIVENESS_URL;
   if (explicitUrl) return explicitUrl;
 
   const port = parsePort(process.env.PORT || "20128", 20128);
   const dashboardPort = parsePort(process.env.DASHBOARD_PORT || String(port), port);
-  const host = String(options.livenessHost || process.env.OMNIROUTE_DOCTOR_HOST || "127.0.0.1")
+  const host = String(options.livenessHost || process.env.NEXTROUTE_DOCTOR_HOST || "127.0.0.1")
     .trim()
     .replace(/^https?:\/\//, "")
     .replace(/\/.*$/, "");
@@ -469,7 +469,7 @@ export async function runDoctorCommand(opts = {}, context = {}) {
   if (isJson) {
     console.log(JSON.stringify(result, null, 2));
   } else {
-    printHeading("OmniRoute Doctor");
+    printHeading("NextRoute Doctor");
     console.log(`Data dir: ${result.dataDir}`);
     console.log(`Database: ${result.dbPath}\n`);
     for (const check of result.checks) {

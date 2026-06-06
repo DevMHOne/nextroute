@@ -20,7 +20,7 @@ Preview compression for a message payload
 
 ```bash
 curl -X POST https://localhost:20128/api/compression/preview \
-  -H "Authorization: Bearer $OMNIROUTE_TOKEN"
+  -H "Authorization: Bearer $NEXTROUTE_TOKEN"
   -H "Content-Type: application/json" \
   -d '{}'
 ```
@@ -31,7 +31,7 @@ List Caveman compression language packs
 
 ```bash
 curl https://localhost:20128/api/compression/language-packs \
-  -H "Authorization: Bearer $OMNIROUTE_TOKEN"
+  -H "Authorization: Bearer $NEXTROUTE_TOKEN"
 ```
 
 ### GET /api/compression/rules
@@ -40,7 +40,7 @@ List Caveman compression rule metadata
 
 ```bash
 curl https://localhost:20128/api/compression/rules \
-  -H "Authorization: Bearer $OMNIROUTE_TOKEN"
+  -H "Authorization: Bearer $NEXTROUTE_TOKEN"
 ```
 
 ## Payloads
@@ -48,15 +48,15 @@ curl https://localhost:20128/api/compression/rules \
 See the full OpenAPI specification at `GET /api/openapi/spec` or `docs/reference/openapi.yaml` for detailed request/response schemas.
 
 <!-- skill:custom-start -->
-<!-- Migrated from skills/omniroute-compression/SKILL.md (preserved curated content) -->
+<!-- Migrated from skills/nextroute-compression/SKILL.md (preserved curated content) -->
 
-# OmniRoute — Compression
+# NextRoute — Compression
 
-Requires `OMNIROUTE_URL` and `OMNIROUTE_KEY`. See [entry-point SKILL](https://raw.githubusercontent.com/diegosouzapw/OmniRoute/main/skills/omniroute/SKILL.md) for setup.
+Requires `NEXTROUTE_URL` and `NEXTROUTE_KEY`. See [entry-point SKILL](https://raw.githubusercontent.com/diegosouzapw/NextRoute/main/skills/nextroute/SKILL.md) for setup.
 
 ## Overview
 
-OmniRoute compresses token payloads before forwarding to providers. No code changes required — set it once, it applies to all requests transparently.
+NextRoute compresses token payloads before forwarding to providers. No code changes required — set it once, it applies to all requests transparently.
 
 | Engine                    | Best for                             | Typical savings |
 | ------------------------- | ------------------------------------ | --------------- |
@@ -68,15 +68,15 @@ OmniRoute compresses token payloads before forwarding to providers. No code chan
 ## Get current settings
 
 ```bash
-curl $OMNIROUTE_URL/api/settings/compression \
-  -H "Authorization: Bearer $OMNIROUTE_KEY"
+curl $NEXTROUTE_URL/api/settings/compression \
+  -H "Authorization: Bearer $NEXTROUTE_KEY"
 ```
 
 ## Enable RTK (best for coding agents)
 
 ```bash
-curl -X PUT $OMNIROUTE_URL/api/settings/compression \
-  -H "Authorization: Bearer $OMNIROUTE_KEY" \
+curl -X PUT $NEXTROUTE_URL/api/settings/compression \
+  -H "Authorization: Bearer $NEXTROUTE_KEY" \
   -H "Content-Type: application/json" \
   -d '{ "mode": "rtk", "enabled": true }'
 ```
@@ -84,8 +84,8 @@ curl -X PUT $OMNIROUTE_URL/api/settings/compression \
 ## Enable stacked mode (maximum savings)
 
 ```bash
-curl -X PUT $OMNIROUTE_URL/api/settings/compression \
-  -H "Authorization: Bearer $OMNIROUTE_KEY" \
+curl -X PUT $NEXTROUTE_URL/api/settings/compression \
+  -H "Authorization: Bearer $NEXTROUTE_KEY" \
   -H "Content-Type: application/json" \
   -d '{
     "mode": "stacked",
@@ -97,8 +97,8 @@ curl -X PUT $OMNIROUTE_URL/api/settings/compression \
 ## Enable Caveman (prose / chat)
 
 ```bash
-curl -X PUT $OMNIROUTE_URL/api/settings/compression \
-  -H "Authorization: Bearer $OMNIROUTE_KEY" \
+curl -X PUT $NEXTROUTE_URL/api/settings/compression \
+  -H "Authorization: Bearer $NEXTROUTE_KEY" \
   -H "Content-Type: application/json" \
   -d '{ "mode": "standard", "enabled": true }'
 ```
@@ -108,8 +108,8 @@ Caveman intensities: `lite` (safe), `standard` (balanced), `aggressive` (long se
 ## Preview compression before enabling
 
 ```bash
-curl -X POST $OMNIROUTE_URL/api/compression/preview \
-  -H "Authorization: Bearer $OMNIROUTE_KEY" \
+curl -X POST $NEXTROUTE_URL/api/compression/preview \
+  -H "Authorization: Bearer $NEXTROUTE_KEY" \
   -H "Content-Type: application/json" \
   -d '{
     "mode": "rtk",
@@ -121,11 +121,11 @@ Response includes `compressed`, `original_length`, `compressed_length`, `savings
 
 ## MCP accessibility-tree filter (browser agent use)
 
-When OmniRoute is used with browser/Playwright MCP tools, it automatically compresses verbose accessibility-tree tool results. Enabled by default; configure thresholds:
+When NextRoute is used with browser/Playwright MCP tools, it automatically compresses verbose accessibility-tree tool results. Enabled by default; configure thresholds:
 
 ```bash
-curl -X PUT $OMNIROUTE_URL/api/settings/compression \
-  -H "Authorization: Bearer $OMNIROUTE_KEY" \
+curl -X PUT $NEXTROUTE_URL/api/settings/compression \
+  -H "Authorization: Bearer $NEXTROUTE_KEY" \
   -H "Content-Type: application/json" \
   -d '{
     "mcpAccessibility": {
@@ -144,8 +144,8 @@ curl -X PUT $OMNIROUTE_URL/api/settings/compression \
 Caveman supports language-aware rules for pt-BR, es, de, fr, ja:
 
 ```bash
-curl -X PUT $OMNIROUTE_URL/api/settings/compression \
-  -H "Authorization: Bearer $OMNIROUTE_KEY" \
+curl -X PUT $NEXTROUTE_URL/api/settings/compression \
+  -H "Authorization: Bearer $NEXTROUTE_KEY" \
   -H "Content-Type: application/json" \
   -d '{
     "mode": "standard",
@@ -159,16 +159,16 @@ curl -X PUT $OMNIROUTE_URL/api/settings/compression \
 ## Via MCP
 
 ```
-omniroute_compression_status     → current settings + savings analytics
-omniroute_compression_configure  → update mode/threshold/language
-omniroute_set_compression_engine → switch engine at runtime
+nextroute_compression_status     → current settings + savings analytics
+nextroute_compression_configure  → update mode/threshold/language
+nextroute_set_compression_engine → switch engine at runtime
 ```
 
 ## Disable compression
 
 ```bash
-curl -X PUT $OMNIROUTE_URL/api/settings/compression \
-  -H "Authorization: Bearer $OMNIROUTE_KEY" \
+curl -X PUT $NEXTROUTE_URL/api/settings/compression \
+  -H "Authorization: Bearer $NEXTROUTE_KEY" \
   -d '{ "enabled": false }'
 ```
 

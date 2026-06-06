@@ -12,7 +12,7 @@ import {
   isModelSyncInternalRequest,
 } from "@/shared/services/modelSyncScheduler";
 import { GET as getProviderModels } from "../models/route";
-import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
+import { sanitizeErrorMessage } from "@nextroute/open-sse/utils/error";
 
 type JsonRecord = Record<string, unknown>;
 
@@ -187,7 +187,7 @@ export async function ensureLoopbackServerReady(opts: EnsureReadyOptions = {}): 
         // readiness — we only care that the dispatcher succeeds (no
         // ECONNREFUSED). Using a synthetic connection id so no real DB lookup
         // is needed; the 404 is sufficient proof the server is dispatching.
-        const probePort = process.env.OMNIROUTE_PORT || process.env.PORT || "20128";
+        const probePort = process.env.NEXTROUTE_PORT || process.env.PORT || "20128";
         const res = await f(
           `http://127.0.0.1:${probePort}/api/providers/__readiness_probe__/models`,
           {

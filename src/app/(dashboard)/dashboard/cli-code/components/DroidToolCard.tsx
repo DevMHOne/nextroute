@@ -43,7 +43,7 @@ export default function DroidToolCard({
   const getConfigStatus = () => {
     if (!cliReady) return null;
     const currentConfig = droidStatus.settings?.customModels?.find(
-      (m) => m.id === "custom:OmniRoute-0"
+      (m) => m.id === "custom:NextRoute-0"
     );
     if (!currentConfig) return "not_configured";
     const localMatch =
@@ -88,7 +88,7 @@ export default function DroidToolCard({
     if (droidStatus?.installed && !hasInitializedModel.current) {
       hasInitializedModel.current = true;
       const customModel = droidStatus.settings?.customModels?.find(
-        (m) => m.id === "custom:OmniRoute-0"
+        (m) => m.id === "custom:NextRoute-0"
       );
       if (customModel) {
         if (customModel.model) setSelectedModel(customModel.model);
@@ -141,7 +141,7 @@ export default function DroidToolCard({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           baseUrl: getEffectiveBaseUrl(),
-          apiKey: !cloudEnabled ? "sk_omniroute" : null,
+          apiKey: !cloudEnabled ? "sk_nextroute" : null,
           keyId: selectedKeyId,
           model: selectedModel,
         }),
@@ -240,13 +240,13 @@ export default function DroidToolCard({
     // (#523) Look up the key object by id to get the masked display value.
     const selectedKeyObj = apiKeys?.find((k) => k.id === selectedApiKeyId);
     const keyToDisplay =
-      selectedKeyObj?.key || (!cloudEnabled ? "sk_omniroute" : "<API_KEY_FROM_DASHBOARD>");
+      selectedKeyObj?.key || (!cloudEnabled ? "sk_nextroute" : "<API_KEY_FROM_DASHBOARD>");
 
     const settingsContent = {
       customModels: [
         {
           model: selectedModel || "provider/model-id",
-          id: "custom:OmniRoute-0",
+          id: "custom:NextRoute-0",
           index: 0,
           baseUrl: getEffectiveBaseUrl(),
           apiKey: keyToDisplay,
@@ -333,7 +333,7 @@ export default function DroidToolCard({
             <>
               <div className="flex flex-col gap-2">
                 {/* Current Base URL */}
-                {droidStatus?.settings?.customModels?.find((m) => m.id === "custom:OmniRoute-0")
+                {droidStatus?.settings?.customModels?.find((m) => m.id === "custom:NextRoute-0")
                   ?.baseUrl && (
                   <div className="flex items-center gap-2">
                     <span className="w-32 shrink-0 text-sm font-semibold text-text-main text-right">
@@ -344,7 +344,7 @@ export default function DroidToolCard({
                     </span>
                     <span className="flex-1 px-2 py-1.5 text-xs text-text-muted truncate">
                       {
-                        droidStatus.settings.customModels.find((m) => m.id === "custom:OmniRoute-0")
+                        droidStatus.settings.customModels.find((m) => m.id === "custom:NextRoute-0")
                           .baseUrl
                       }
                     </span>
@@ -399,7 +399,7 @@ export default function DroidToolCard({
                     </select>
                   ) : (
                     <span className="flex-1 text-xs text-text-muted px-2 py-1.5">
-                      {cloudEnabled ? t("noApiKeysCreateOne") : t("defaultOmnirouteKey")}
+                      {cloudEnabled ? t("noApiKeysCreateOne") : t("defaultNextrouteKey")}
                     </span>
                   )}
                 </div>
@@ -464,7 +464,7 @@ export default function DroidToolCard({
                   variant="outline"
                   size="sm"
                   onClick={handleResetSettings}
-                  disabled={!droidStatus?.hasOmniRoute}
+                  disabled={!droidStatus?.hasNextRoute}
                   loading={restoring}
                 >
                   <span className="material-symbols-outlined text-[14px] mr-1">restore</span>

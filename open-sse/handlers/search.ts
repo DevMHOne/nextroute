@@ -1003,7 +1003,7 @@ async function zaiSearchExecute(params: {
     },
   });
 
-  const client = new Client({ name: "omniroute-search", version: "1.0" }, { capabilities: {} });
+  const client = new Client({ name: "nextroute-search", version: "1.0" }, { capabilities: {} });
 
   const { signal } = params;
 

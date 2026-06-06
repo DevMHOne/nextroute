@@ -4,7 +4,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 
-const TEST_DATA_DIR = fs.mkdtempSync(path.join(os.tmpdir(), "omniroute-stream-utils-"));
+const TEST_DATA_DIR = fs.mkdtempSync(path.join(os.tmpdir(), "nextroute-stream-utils-"));
 process.env.DATA_DIR = TEST_DATA_DIR;
 const core = await import("../../src/lib/db/core.ts");
 
@@ -127,7 +127,7 @@ test("createSSEStream passthrough normalizes tool-call finishes and reports the 
 test("createSSEStream passthrough converts textual tool-call content into structured call log tool_calls", async () => {
   let onCompletePayload = null;
   const toolArgs = JSON.stringify({
-    command: 'sqlite3 /root/.o\u200dmniroute/omniroute.db ".tables"',
+    command: 'sqlite3 /root/.o\u200dmniroute/nextroute.db ".tables"',
   });
   const toolText = `[Tool call: terminal]\nArguments: ${toolArgs}`;
 
@@ -171,7 +171,7 @@ test("createSSEStream passthrough converts textual tool-call content into struct
   assert.equal(choice.message.content, null);
   assert.equal(choice.message.tool_calls[0].function.name, "terminal");
   assert.deepEqual(JSON.parse(choice.message.tool_calls[0].function.arguments), {
-    command: 'sqlite3 /root/.omniroute/omniroute.db ".tables"',
+    command: 'sqlite3 /root/.nextroute/nextroute.db ".tables"',
   });
   assert.doesNotMatch(text, /\[Tool call: terminal\]/);
 });
@@ -227,7 +227,7 @@ test("createSSEStream passthrough converts split textual tool-call content at co
   assert.equal(choice.message.content, null);
   assert.equal(choice.message.tool_calls[0].function.name, "terminal");
   assert.deepEqual(JSON.parse(choice.message.tool_calls[0].function.arguments), {
-    command: 'sqlite3 ~/.omniroute/omniroute.db ".tables"',
+    command: 'sqlite3 ~/.nextroute/nextroute.db ".tables"',
   });
   assert.doesNotMatch(text, /\[Tool call: terminal\]/);
 });
@@ -271,7 +271,7 @@ test("createSSEStream passthrough buffers fragmented textual tool-call JSON befo
     {
       mode: "passthrough",
       sourceFormat: FORMATS.OPENAI,
-      provider: "omniroute",
+      provider: "nextroute",
       model: "MainAgent",
       body: { messages: [{ role: "user", content: "inspect" }] },
       onComplete(payload) {
@@ -322,7 +322,7 @@ test("createSSEStream passthrough suppresses trailing prose plus textual tool ca
     {
       mode: "passthrough",
       sourceFormat: FORMATS.OPENAI,
-      provider: "omniroute",
+      provider: "nextroute",
       model: "MainAgent",
       body: { messages: [{ role: "user", content: "inspect static files" }] },
       onComplete(payload) {
@@ -349,7 +349,7 @@ test("createSSEStream passthrough suppresses trailing prose plus textual tool ca
 test("createSSEStream passthrough suppresses textual tool calls for unknown tools", async () => {
   let onCompletePayload = null;
   const toolText = `[Tool call: search_files_ide]
-Arguments: {"path":"/opt/OmniRoute/src","target":"files"}`;
+Arguments: {"path":"/opt/NextRoute/src","target":"files"}`;
 
   const text = await readTransformed(
     [
@@ -445,7 +445,7 @@ test("createSSEStream suppresses malformed compact textual tool-call content", a
             content: {
               parts: [
                 {
-                  text: "[Tool call: search_files_ide{file_glob:*combos*.ts,path:/opt/OmniRoute,target:files}]",
+                  text: "[Tool call: search_files_ide{file_glob:*combos*.ts,path:/opt/NextRoute,target:files}]",
                 },
               ],
             },
@@ -558,7 +558,7 @@ test("createSSEStream translate mode converts Claude SSE into OpenAI chunks and 
 test("createSSEStream Responses passthrough converts textual tool-call deltas before streaming", async () => {
   let onCompletePayload = null;
   const toolText = `[Tool call: terminal]
-Arguments: {"command":"systemctl status omniroute"}`;
+Arguments: {"command":"systemctl status nextroute"}`;
   const text = await readTransformed(
     [
       `data: ${JSON.stringify({
@@ -1272,7 +1272,7 @@ test("buildStreamSummaryFromEvents preserves Gemini thought parts and function c
   });
 });
 
-test("compactStructuredStreamPayload wraps primitive summaries with Omniroute stream metadata", () => {
+test("compactStructuredStreamPayload wraps primitive summaries with Nextroute stream metadata", () => {
   const compact = compactStructuredStreamPayload({
     _streamed: true,
     _format: "sse-json",
@@ -1283,7 +1283,7 @@ test("compactStructuredStreamPayload wraps primitive summaries with Omniroute st
 
   assert.deepEqual(compact, {
     summary: "done",
-    _omniroute_stream: {
+    _nextroute_stream: {
       format: "sse-json",
       stage: "client_response",
       eventCount: 2,
@@ -1373,7 +1373,7 @@ test("createStructuredSSECollector drops excess events and compactStructuredStre
   assert.deepEqual(compact, {
     object: "response",
     status: "completed",
-    _omniroute_stream: {
+    _nextroute_stream: {
       format: "sse-json",
       stage: "client_response",
       eventCount: 2,

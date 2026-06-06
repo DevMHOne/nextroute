@@ -4,7 +4,7 @@
 
 import type { AgentSkill, SkillArea, SkillCategory } from "@/lib/agentSkills/types";
 
-const REPO = "diegosouzapw/OmniRoute";
+const REPO = "diegosouzapw/NextRoute";
 const BRANCH = "main";
 const SKILL_PATH = "skills";
 
@@ -46,7 +46,7 @@ export const CURATED_SKILLS: CuratedSkillEntry[] = [
     id: "omni-auth",
     name: "Authentication",
     description:
-      "Manage API key authentication and session tokens. Start here to authenticate requests via Bearer token, obtain session cookies, and configure login requirements for the OmniRoute API.",
+      "Manage API key authentication and session tokens. Start here to authenticate requests via Bearer token, obtain session cookies, and configure login requirements for the NextRoute API.",
     category: "api",
     area: "auth",
     icon: "lock",
@@ -84,7 +84,7 @@ export const CURATED_SKILLS: CuratedSkillEntry[] = [
     id: "omni-api-keys",
     name: "API Keys",
     description:
-      "Create, list, rotate, and revoke OmniRoute API keys. Control per-key scopes, spending limits, and expiration. Keys gate access to all proxy and management endpoints.",
+      "Create, list, rotate, and revoke NextRoute API keys. Control per-key scopes, spending limits, and expiration. Keys gate access to all proxy and management endpoints.",
     category: "api",
     area: "api-keys",
     icon: "vpn_key",
@@ -168,7 +168,7 @@ export const CURATED_SKILLS: CuratedSkillEntry[] = [
     id: "omni-cli-tools",
     name: "CLI Tools",
     description:
-      "Manage CLI tool integrations exposed via the API. List, configure, and invoke CLI tool plugins that extend OmniRoute's automation surface.",
+      "Manage CLI tool integrations exposed via the API. List, configure, and invoke CLI tool plugins that extend NextRoute's automation surface.",
     category: "api",
     area: "cli-tools",
     icon: "terminal",
@@ -177,7 +177,7 @@ export const CURATED_SKILLS: CuratedSkillEntry[] = [
     id: "omni-tunnels",
     name: "Tunnels",
     description:
-      "Create and manage secure tunnels (ngrok, Cloudflare Tunnel, custom) to expose OmniRoute to the internet or share access with remote agents and CI pipelines.",
+      "Create and manage secure tunnels (ngrok, Cloudflare Tunnel, custom) to expose NextRoute to the internet or share access with remote agents and CI pipelines.",
     category: "api",
     area: "tunnels",
     icon: "vpn_lock",
@@ -186,7 +186,7 @@ export const CURATED_SKILLS: CuratedSkillEntry[] = [
     id: "omni-sync-cloud",
     name: "Cloud Sync",
     description:
-      "Synchronise OmniRoute configuration, provider connections, and settings to/from cloud storage. Manage cloud worker authentication and remote backup targets.",
+      "Synchronise NextRoute configuration, provider connections, and settings to/from cloud storage. Manage cloud worker authentication and remote backup targets.",
     category: "api",
     area: "sync-cloud",
     icon: "cloud_sync",
@@ -213,7 +213,7 @@ export const CURATED_SKILLS: CuratedSkillEntry[] = [
     id: "omni-mcp",
     name: "MCP Server",
     description:
-      "Connect to the OmniRoute MCP server (37 tools, 3 transports: SSE/stdio/HTTP). Covers routing, cache, compression, memory, skills, providers, and audit tools across 16 permission scopes.",
+      "Connect to the NextRoute MCP server (37 tools, 3 transports: SSE/stdio/HTTP). Covers routing, cache, compression, memory, skills, providers, and audit tools across 16 permission scopes.",
     category: "api",
     area: "mcp",
     icon: "electrical_services",
@@ -222,7 +222,7 @@ export const CURATED_SKILLS: CuratedSkillEntry[] = [
     id: "omni-agents-a2a",
     name: "Agents & A2A Protocol",
     description:
-      "Interact with OmniRoute via JSON-RPC 2.0 agent-to-agent protocol. 6 built-in A2A skills: smart-routing, quota-management, provider-discovery, cost-analysis, health-report, list-capabilities.",
+      "Interact with NextRoute via JSON-RPC 2.0 agent-to-agent protocol. 6 built-in A2A skills: smart-routing, quota-management, provider-discovery, cost-analysis, health-report, list-capabilities.",
     category: "api",
     area: "agents-a2a",
     icon: "device_hub",
@@ -252,7 +252,7 @@ export const CURATED_SKILLS: CuratedSkillEntry[] = [
     id: "cli-serve",
     name: "CLI: Serve",
     description:
-      "Start, stop, and restart the OmniRoute server from the CLI. Manage daemon mode, port configuration, auto-recovery, system tray integration, and the dashboard open shortcut.",
+      "Start, stop, and restart the NextRoute server from the CLI. Manage daemon mode, port configuration, auto-recovery, system tray integration, and the dashboard open shortcut.",
     category: "cli",
     area: "cli-serve",
     icon: "play_circle",
@@ -280,7 +280,7 @@ export const CURATED_SKILLS: CuratedSkillEntry[] = [
     id: "cli-keys",
     name: "CLI: API Keys",
     description:
-      "Create, list, rotate, and revoke OmniRoute API keys from the CLI. Manage OAuth flows for provider authentication and inspect key scopes and expiration.",
+      "Create, list, rotate, and revoke NextRoute API keys from the CLI. Manage OAuth flows for provider authentication and inspect key scopes and expiration.",
     category: "cli",
     area: "cli-keys",
     icon: "vpn_key",
@@ -298,7 +298,7 @@ export const CURATED_SKILLS: CuratedSkillEntry[] = [
     id: "cli-chat",
     name: "CLI: Chat",
     description:
-      "Send chat completions, stream responses, and start an interactive REPL session from the CLI. Supports all OmniRoute providers, combo routing, and system prompt configuration.",
+      "Send chat completions, stream responses, and start an interactive REPL session from the CLI. Supports all NextRoute providers, combo routing, and system prompt configuration.",
     category: "cli",
     area: "cli-chat",
     icon: "chat",
@@ -361,7 +361,7 @@ export const CURATED_SKILLS: CuratedSkillEntry[] = [
     id: "cli-a2a",
     name: "CLI: A2A Protocol",
     description:
-      "Interact with the OmniRoute A2A server from the CLI. Send tasks, inspect skill execution history, and test the JSON-RPC 2.0 agent-to-agent protocol interactively.",
+      "Interact with the NextRoute A2A server from the CLI. Send tasks, inspect skill execution history, and test the JSON-RPC 2.0 agent-to-agent protocol interactively.",
     category: "cli",
     area: "cli-a2a",
     icon: "device_hub",
@@ -379,7 +379,7 @@ export const CURATED_SKILLS: CuratedSkillEntry[] = [
     id: "cli-backup-sync",
     name: "CLI: Backup & Sync",
     description:
-      "Backup and restore OmniRoute data from the CLI. Trigger incremental snapshots, sync to cloud storage, manage backup schedules, and restore from archive files.",
+      "Backup and restore NextRoute data from the CLI. Trigger incremental snapshots, sync to cloud storage, manage backup schedules, and restore from archive files.",
     category: "cli",
     area: "cli-backup-sync",
     icon: "backup",

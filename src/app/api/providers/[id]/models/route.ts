@@ -6,7 +6,7 @@ import {
   isSelfHostedChatProvider,
   NOAUTH_PROVIDERS,
 } from "@/shared/constants/providers";
-import { getRegistryEntry } from "@omniroute/open-sse/config/providerRegistry.ts";
+import { getRegistryEntry } from "@nextroute/open-sse/config/providerRegistry.ts";
 import { getModelsByProviderId } from "@/shared/constants/models";
 import { getStaticModelsForProvider, type LocalCatalogModel } from "@/lib/providers/staticModels";
 import {
@@ -21,57 +21,57 @@ import {
   safeOutboundFetch,
 } from "@/shared/network/safeOutboundFetch";
 import { getProviderOutboundGuard } from "@/shared/network/outboundUrlGuard";
-import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
-import { getStaticQoderModels } from "@omniroute/open-sse/services/qoderCli.ts";
-import { fetchGitHubCopilotModels } from "@omniroute/open-sse/services/githubCopilotModels.ts";
-import { getAntigravityHeaders } from "@omniroute/open-sse/services/antigravityHeaders.ts";
-import { ensureAntigravityProjectAssigned } from "@omniroute/open-sse/services/antigravityProjectBootstrap.ts";
+import { sanitizeErrorMessage } from "@nextroute/open-sse/utils/error";
+import { getStaticQoderModels } from "@nextroute/open-sse/services/qoderCli.ts";
+import { fetchGitHubCopilotModels } from "@nextroute/open-sse/services/githubCopilotModels.ts";
+import { getAntigravityHeaders } from "@nextroute/open-sse/services/antigravityHeaders.ts";
+import { ensureAntigravityProjectAssigned } from "@nextroute/open-sse/services/antigravityProjectBootstrap.ts";
 import {
   getAntigravityModelsDiscoveryUrls,
   getAntigravityFetchAvailableModelsUrls,
-} from "@omniroute/open-sse/config/antigravityUpstream.ts";
+} from "@nextroute/open-sse/config/antigravityUpstream.ts";
 import {
   buildGlmCodingHeaders,
   buildGlmModelsUrl,
-} from "@omniroute/open-sse/config/glmProvider.ts";
-import { getImageProvider } from "@omniroute/open-sse/config/imageRegistry.ts";
-import { getVideoProvider } from "@omniroute/open-sse/config/videoRegistry.ts";
-import { resolveAntigravityVersion } from "@omniroute/open-sse/services/antigravityVersion.ts";
+} from "@nextroute/open-sse/config/glmProvider.ts";
+import { getImageProvider } from "@nextroute/open-sse/config/imageRegistry.ts";
+import { getVideoProvider } from "@nextroute/open-sse/config/videoRegistry.ts";
+import { resolveAntigravityVersion } from "@nextroute/open-sse/services/antigravityVersion.ts";
 import {
   discoverBedrockNativeModels,
   isBedrockNativeApiError,
-} from "@omniroute/open-sse/services/bedrock.ts";
+} from "@nextroute/open-sse/services/bedrock.ts";
 import {
   AZURE_AI_DEFAULT_BASE_URL,
   buildAzureAiModelsUrl,
-} from "@omniroute/open-sse/config/azureAi.ts";
+} from "@nextroute/open-sse/config/azureAi.ts";
 import {
   DATAROBOT_DEFAULT_BASE_URL,
   buildDataRobotCatalogUrl,
   isDataRobotDeploymentUrl,
-} from "@omniroute/open-sse/config/datarobot.ts";
-import { OCI_DEFAULT_BASE_URL, buildOciModelsUrl } from "@omniroute/open-sse/config/oci.ts";
+} from "@nextroute/open-sse/config/datarobot.ts";
+import { OCI_DEFAULT_BASE_URL, buildOciModelsUrl } from "@nextroute/open-sse/config/oci.ts";
 import {
   SAP_DEFAULT_BASE_URL,
   buildSapModelsUrl,
   getSapResourceGroup,
-} from "@omniroute/open-sse/config/sap.ts";
+} from "@nextroute/open-sse/config/sap.ts";
 import {
   WATSONX_DEFAULT_BASE_URL,
   buildWatsonxModelsUrl,
-} from "@omniroute/open-sse/config/watsonx.ts";
+} from "@nextroute/open-sse/config/watsonx.ts";
 import {
   getClientVisibleAntigravityModelName,
   isUserCallableAntigravityModelId,
   toClientAntigravityModelId,
-} from "@omniroute/open-sse/config/antigravityModelAliases.ts";
+} from "@nextroute/open-sse/config/antigravityModelAliases.ts";
 import { normalizeAntigravityClientProfile } from "@/shared/constants/antigravityClientProfile";
-import { getEmbeddingProvider } from "@omniroute/open-sse/config/embeddingRegistry.ts";
-import { getRerankProvider } from "@omniroute/open-sse/config/rerankRegistry.ts";
+import { getEmbeddingProvider } from "@nextroute/open-sse/config/embeddingRegistry.ts";
+import { getRerankProvider } from "@nextroute/open-sse/config/rerankRegistry.ts";
 import {
   getSpeechProvider,
   getTranscriptionProvider,
-} from "@omniroute/open-sse/config/audioRegistry.ts";
+} from "@nextroute/open-sse/config/audioRegistry.ts";
 import {
   getCachedDiscoveredModels,
   isAutoFetchModelsEnabled,

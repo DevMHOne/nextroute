@@ -3,7 +3,7 @@ import { join } from "node:path";
 import { homedir } from "node:os";
 import { execSync } from "node:child_process";
 
-const RUNTIME_DIR = join(homedir(), ".omniroute", "runtime");
+const RUNTIME_DIR = join(homedir(), ".nextroute", "runtime");
 // systray2 is a maintained fork with prebuilt binaries — installed lazily at runtime,
 // not in dependencies, to avoid npm install overhead for users who don't use --tray.
 const SYSTRAY_VERSION = "systray2@1.4.5";
@@ -15,7 +15,7 @@ export async function loadSystray(): Promise<(new (...args: unknown[]) => unknow
     try {
       installSystray();
     } catch (err) {
-      console.warn(`[omniroute] tray runtime install failed: ${(err as Error).message}`);
+      console.warn(`[nextroute] tray runtime install failed: ${(err as Error).message}`);
       return null;
     }
   }
@@ -32,7 +32,7 @@ function ensureRuntimeDir(): void {
   if (!existsSync(RUNTIME_DIR)) mkdirSync(RUNTIME_DIR, { recursive: true });
   const pkg = join(RUNTIME_DIR, "package.json");
   if (!existsSync(pkg)) {
-    writeFileSync(pkg, JSON.stringify({ name: "omniroute-runtime", private: true }), "utf-8");
+    writeFileSync(pkg, JSON.stringify({ name: "nextroute-runtime", private: true }), "utf-8");
   }
 }
 

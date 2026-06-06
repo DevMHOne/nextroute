@@ -51,7 +51,7 @@ type Template = {
 
 type ProviderBreakdown = { provider: string; cost: number; pct: number };
 
-const LS_TEMPLATES = "omniroute:budget:templates";
+const LS_TEMPLATES = "nextroute:budget:templates";
 
 const DEFAULT_TEMPLATES: Template[] = [
   {

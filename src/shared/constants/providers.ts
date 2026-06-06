@@ -203,7 +203,7 @@ export const OAUTH_PROVIDERS = {
     textIcon: "GL",
     website: "https://docs.gitlab.com/user/duo_agent_platform/code_suggestions/",
     authHint:
-      "OAuth application with ai_features + read_user scopes. Configure GITLAB_DUO_OAUTH_CLIENT_ID and optionally GITLAB_DUO_OAUTH_CLIENT_SECRET on this OmniRoute instance.",
+      "OAuth application with ai_features + read_user scopes. Configure GITLAB_DUO_OAUTH_CLIENT_ID and optionally GITLAB_DUO_OAUTH_CLIENT_SECRET on this NextRoute instance.",
   },
   cursor: {
     id: "cursor",
@@ -731,7 +731,7 @@ export const APIKEY_PROVIDERS = {
     authHint:
       "Use your Azure AI Foundry key. Base URL can be https://<resource>.services.ai.azure.com/openai/v1/ or https://<resource>.openai.azure.com/openai/v1/.",
     apiHint:
-      "Foundry uses the OpenAI v1 surface with deployment names as models. OmniRoute normalizes root resource URLs to the v1 chat and /models endpoints.",
+      "Foundry uses the OpenAI v1 surface with deployment names as models. NextRoute normalizes root resource URLs to the v1 chat and /models endpoints.",
     passthroughModels: true,
   },
   bedrock: {
@@ -743,7 +743,7 @@ export const APIKEY_PROVIDERS = {
     textIcon: "BR",
     website: "https://aws.amazon.com/bedrock",
     authHint:
-      "Use your Amazon Bedrock API key and configure the AWS region where your models are enabled (for example eu-west-2). OmniRoute calls Bedrock's native Converse API directly.",
+      "Use your Amazon Bedrock API key and configure the AWS region where your models are enabled (for example eu-west-2). NextRoute calls Bedrock's native Converse API directly.",
     apiHint:
       "Native Bedrock integration: model discovery uses Bedrock foundation models and inference profiles, while chat uses the regional Bedrock Runtime Converse/ConverseStream APIs.",
     passthroughModels: true,
@@ -773,7 +773,7 @@ export const APIKEY_PROVIDERS = {
     authHint:
       "Use your OCI Generative AI API key or IAM bearer token. Base URL can be https://inference.generativeai.<region>.oci.oraclecloud.com/openai/v1/.",
     apiHint:
-      "OCI exposes OpenAI-compatible chat and responses endpoints. Project ID is optional in OmniRoute but may be required for Responses and agentic workflows.",
+      "OCI exposes OpenAI-compatible chat and responses endpoints. Project ID is optional in NextRoute but may be required for Responses and agentic workflows.",
     passthroughModels: true,
   },
   sap: {
@@ -802,7 +802,7 @@ export const APIKEY_PROVIDERS = {
     authHint:
       "Use the bearer token that protects your Modal deployment, if enabled. Base URL should point to your OpenAI-compatible Modal app, for example https://<workspace>--<app>.modal.run/v1.",
     apiHint:
-      "Modal commonly serves user-hosted OpenAI-compatible apps on /v1. OmniRoute will probe /v1/models and route chat traffic to /v1/chat/completions.",
+      "Modal commonly serves user-hosted OpenAI-compatible apps on /v1. NextRoute will probe /v1/models and route chat traffic to /v1/chat/completions.",
     hasFree: true,
     freeNote: "$30/month free credits for new accounts",
     passthroughModels: true,
@@ -816,9 +816,9 @@ export const APIKEY_PROVIDERS = {
     textIcon: "RK",
     website: "https://docs.reka.ai/chat/overview",
     authHint:
-      "Use your Reka API key. OmniRoute supports the OpenAI-compatible base URL https://api.reka.ai/v1 and sends both Authorization and X-Api-Key headers for compatibility.",
+      "Use your Reka API key. NextRoute supports the OpenAI-compatible base URL https://api.reka.ai/v1 and sends both Authorization and X-Api-Key headers for compatibility.",
     apiHint:
-      "Reka Chat is OpenAI-compatible on /v1. OmniRoute probes /v1/models and routes chat traffic to /v1/chat/completions.",
+      "Reka Chat is OpenAI-compatible on /v1. NextRoute probes /v1/models and routes chat traffic to /v1/chat/completions.",
     hasFree: true,
     freeNote: "$10/month recurring free API credits",
   },
@@ -831,9 +831,9 @@ export const APIKEY_PROVIDERS = {
     textIcon: "NLPC",
     website: "https://docs.nlpcloud.com",
     authHint:
-      "Use your NLP Cloud API key in Authorization: Token <key>. OmniRoute targets the chatbot endpoint on https://api.nlpcloud.io/v1/gpu/<model>/chatbot by default.",
+      "Use your NLP Cloud API key in Authorization: Token <key>. NextRoute targets the chatbot endpoint on https://api.nlpcloud.io/v1/gpu/<model>/chatbot by default.",
     apiHint:
-      "NLP Cloud uses a proprietary chatbot API instead of OpenAI chat/completions. OmniRoute adapts OpenAI messages to input/context/history and exposes a local catalog of supported chatbot models.",
+      "NLP Cloud uses a proprietary chatbot API instead of OpenAI chat/completions. NextRoute adapts OpenAI messages to input/context/history and exposes a local catalog of supported chatbot models.",
     hasFree: true,
     freeNote: "Trial credits for new accounts",
   },
@@ -846,9 +846,9 @@ export const APIKEY_PROVIDERS = {
     textIcon: "RW",
     website: "https://docs.dev.runwayml.com",
     authHint:
-      "Use your Runway API key in Authorization: Bearer <key>. OmniRoute targets the current Runway API at https://api.dev.runwayml.com/v1 and sends the required X-Runway-Version header automatically.",
+      "Use your Runway API key in Authorization: Bearer <key>. NextRoute targets the current Runway API at https://api.dev.runwayml.com/v1 and sends the required X-Runway-Version header automatically.",
     apiHint:
-      "Runway video generation is task-based. OmniRoute submits text-to-video or image-to-video jobs, polls /v1/tasks/{id}, and normalizes the finished video outputs back into the OpenAI-like /v1/videos/generations response.",
+      "Runway video generation is task-based. NextRoute submits text-to-video or image-to-video jobs, polls /v1/tasks/{id}, and normalizes the finished video outputs back into the OpenAI-like /v1/videos/generations response.",
   },
   anthropic: {
     id: "anthropic",
@@ -1540,7 +1540,7 @@ export const APIKEY_PROVIDERS = {
     textIcon: "CF",
     website: "https://docs.clarifai.com",
     authHint:
-      "Use your Clarifai PAT or app-specific API key. OmniRoute targets the OpenAI-compatible endpoint at https://api.clarifai.com/v2/ext/openai/v1 and authenticates with Authorization: Key <token>.",
+      "Use your Clarifai PAT or app-specific API key. NextRoute targets the OpenAI-compatible endpoint at https://api.clarifai.com/v2/ext/openai/v1 and authenticates with Authorization: Key <token>.",
     apiHint:
       "Clarifai exposes OpenAI-compatible chat, responses and /models on /v2/ext/openai/v1. Public/community models typically require a PAT; app-scoped keys only work for resources inside that app.",
     passthroughModels: true,
@@ -1826,7 +1826,7 @@ export const APIKEY_PROVIDERS = {
     textIcon: "NO",
     website: "https://portal.nousresearch.com/help",
     authHint:
-      "Use your Nous Portal API key. OmniRoute targets the official OpenAI-compatible inference endpoint at https://inference-api.nousresearch.com/v1.",
+      "Use your Nous Portal API key. NextRoute targets the official OpenAI-compatible inference endpoint at https://inference-api.nousresearch.com/v1.",
     apiHint:
       "Nous exposes an OpenAI-compatible /v1 surface with a large remote /models catalog. The /chat/completions endpoint requires a valid API key for programmatic inference.",
     hasFree: true,

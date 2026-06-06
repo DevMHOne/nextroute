@@ -1,8 +1,8 @@
 {
   "common": {
     "error": "Error: {message}",
-    "serverOffline": "OmniRoute server is offline. Start it with: omniroute serve",
-    "authRequired": "Authentication required. Set OMNIROUTE_API_KEY or run: omniroute setup",
+    "serverOffline": "NextRoute server is offline. Start it with: nextroute serve",
+    "authRequired": "Authentication required. Set NEXTROUTE_API_KEY or run: nextroute setup",
     "rateLimited": "Rate limit exceeded. Retry after {seconds}s.",
     "timeout": "Request timed out after {ms}ms.",
     "success": "Done.",
@@ -15,7 +15,7 @@
     "yesOpt": "Skip confirmation prompt"
   },
   "setup": {
-    "title": "OmniRoute Setup",
+    "title": "NextRoute Setup",
     "passwordPrompt": "Admin password",
     "providerPrompt": "Default provider (leave blank to skip)",
     "done": "Setup complete",
@@ -29,19 +29,19 @@
     "providerInfo": "Provider: {info}"
   },
   "doctor": {
-    "title": "OmniRoute Doctor",
+    "title": "NextRoute Doctor",
     "dbOk": "Database: OK ({path})",
-    "dbMissing": "Database: not initialized — run `omniroute setup`",
+    "dbMissing": "Database: not initialized — run `nextroute setup`",
     "portOk": "Port {port}: available",
     "portConflict": "Port {port}: in use by another process",
     "encryptionOk": "Encryption key: configured",
-    "encryptionMissing": "Encryption key missing — run `omniroute setup`",
+    "encryptionMissing": "Encryption key missing — run `nextroute setup`",
     "allGood": "All checks passed.",
     "warnings": "{count} warning(s) — see above."
   },
   "providers": {
     "title": "Providers",
-    "noProviders": "No providers configured. Run: omniroute setup",
+    "noProviders": "No providers configured. Run: nextroute setup",
     "testing": "Testing {name}...",
     "available": "{count} provider(s) available",
     "connected": "Connected",
@@ -70,7 +70,7 @@
       "dryRunOpt": "Print what would change without writing",
       "confirmPrompt": "Replace API key for connection \"{name}\" ({id})? [y/N] ",
       "dryRunResult": "[dry-run] Would rotate key for \"{name}\" ({id}). No changes made.",
-      "oauthHint": "OAuth connection — run: omniroute oauth {provider}",
+      "oauthHint": "OAuth connection — run: nextroute oauth {provider}",
       "envVarEmpty": "Environment variable {var} is not set or is empty.",
       "success": "Key rotated for \"{name}\". Run `providers test {id}` to verify.",
       "testPassed": "Post-rotation test passed.",
@@ -81,7 +81,7 @@
       "providerOpt": "Filter by provider name",
       "header": "ID         Provider       Name                     Expiry Status  Test Status  Cooldown Until",
       "noData": "No provider connection data available.",
-      "requiresServer": "providers status requires the OmniRoute server to be running."
+      "requiresServer": "providers status requires the NextRoute server to be running."
     }
   },
   "keys": {
@@ -89,8 +89,8 @@
     "addDescription": "Add or update an API key for a provider",
     "listDescription": "List all configured API keys",
     "removeDescription": "Remove an API key for a provider",
-    "regenerateDescription": "Regenerate an OmniRoute API key",
-    "revokeDescription": "Revoke an OmniRoute API key",
+    "regenerateDescription": "Regenerate an NextRoute API key",
+    "revokeDescription": "Revoke an NextRoute API key",
     "revealDescription": "Reveal the unmasked API key value",
     "usageDescription": "Show recent usage for an API key",
     "usageLimitOpt": "Number of recent requests",
@@ -205,10 +205,10 @@
     "reasoning": "Reasoning effort level (low|medium|high)",
     "thinking": "Extended thinking token budget",
     "explain": "Print fallback tree and cost range to stderr",
-    "noCombo": "No matching combo found. Configure one with: omniroute combo create"
+    "noCombo": "No matching combo found. Configure one with: nextroute combo create"
   },
   "chat": {
-    "description": "Send a one-shot chat prompt to OmniRoute",
+    "description": "Send a one-shot chat prompt to NextRoute",
     "file": "Read prompt from file",
     "stdin": "Read prompt from stdin",
     "system": "System prompt",
@@ -221,14 +221,14 @@
     "combo": "Force a specific combo by name",
     "responses_api": "Use /v1/responses instead of /v1/chat/completions",
     "stream": "Stream response incrementally",
-    "no_history": "Do not save to ~/.omniroute/cli-history.jsonl",
+    "no_history": "Do not save to ~/.nextroute/cli-history.jsonl",
     "error": {
       "empty_prompt": "Error: prompt is required (positional arg, --file, or --stdin)"
     }
   },
   "serve": {
-    "description": "Start the OmniRoute server (default action)",
-    "starting": "Starting OmniRoute server on port {port}...",
+    "description": "Start the NextRoute server (default action)",
+    "starting": "Starting NextRoute server on port {port}...",
     "ready": "Ready at http://localhost:{port}",
     "stopping": "Stopping server (PID {pid})...",
     "stopped": "Server stopped.",
@@ -244,7 +244,7 @@
   },
   "backup": {
     "title": "Backup",
-    "description": "Create a backup of OmniRoute data",
+    "description": "Create a backup of NextRoute data",
     "creating": "Creating backup...",
     "done": "Backup saved to {path}",
     "noFiles": "No files to backup (database not initialized)",
@@ -256,7 +256,7 @@
     "noBackups": "No backups found.",
     "notFound": "Backup not found: {name}",
     "confirmRestore": "Overwrite current data with backup from {ts}?",
-    "createDescription": "Create a backup of OmniRoute data",
+    "createDescription": "Create a backup of NextRoute data",
     "nameOpt": "Custom backup name",
     "cloudOpt": "Upload backup to cloud storage",
     "encryptOpt": "Encrypt backup with AES-256-GCM",
@@ -274,14 +274,14 @@
       "statusDescription": "Show current backup schedule status",
       "cronOpt": "Cron expression for schedule (default: daily at 3am)",
       "enabled": "Automatic backup enabled (cron: {cron}).",
-      "hint": "  The schedule is read by omniroute serve on startup.",
+      "hint": "  The schedule is read by nextroute serve on startup.",
       "disabled": "Automatic backup disabled.",
       "notConfigured": "No backup schedule configured."
     }
   },
   "health": {
     "description": "Check server health and component status",
-    "noServer": "Server not running. Start with: omniroute serve",
+    "noServer": "Server not running. Start with: nextroute serve",
     "title": "Health",
     "status": "Status: {status}",
     "uptime": "Uptime: {uptime}",
@@ -290,18 +290,18 @@
   },
   "quota": {
     "description": "Show provider quota usage",
-    "noServer": "Server not running. Start with: omniroute serve",
+    "noServer": "Server not running. Start with: nextroute serve",
     "noData": "No quota information available."
   },
   "cache": {
     "description": "Manage response cache",
-    "noServer": "Server not running. Start with: omniroute serve",
+    "noServer": "Server not running. Start with: nextroute serve",
     "cleared": "Cache cleared.",
     "clearFailed": "Failed to clear cache."
   },
   "test": {
     "description": "Test a provider connection",
-    "noServer": "Server not running. Start with: omniroute serve",
+    "noServer": "Server not running. Start with: nextroute serve",
     "testing": "Testing {provider} / {model}...",
     "passed": "Connection successful!",
     "failed": "Connection failed: {error}",
@@ -313,7 +313,7 @@
     "saved": "Results saved to {path}",
     "compareTitle": "Model Comparison",
     "compareMinTwo": "At least two models required for --compare (comma-separated)",
-    "noProviders": "No providers configured. Add one with: omniroute keys add"
+    "noProviders": "No providers configured. Add one with: nextroute keys add"
   },
   "update": {
     "checking": "Checking for updates...",
@@ -385,7 +385,7 @@
     }
   },
   "policy": {
-    "description": "Manage OmniRoute authorization policies",
+    "description": "Manage NextRoute authorization policies",
     "list": {
       "description": "List policies",
       "kind": "Filter by kind (allow|deny|rate-limit|cost-cap)",
@@ -422,7 +422,7 @@
     }
   },
   "compression": {
-    "description": "Configure and inspect the OmniRoute compression pipeline",
+    "description": "Configure and inspect the NextRoute compression pipeline",
     "status": {
       "description": "Show current compression status and settings"
     },
@@ -476,18 +476,18 @@
     "confirmRotate": "Rotate tunnel {type}? (a new URL will be generated)"
   },
   "stop": {
-    "description": "Stop the OmniRoute server",
+    "description": "Stop the NextRoute server",
     "stopping": "Stopping server (PID {pid})...",
     "stopped": "Server stopped.",
     "notRunning": "No server is running.",
     "portFallback": "No PID file found, attempting port-based stop..."
   },
   "restart": {
-    "description": "Restart the OmniRoute server",
-    "restarting": "Restarting OmniRoute server..."
+    "description": "Restart the NextRoute server",
+    "restarting": "Restarting NextRoute server..."
   },
   "dashboard": {
-    "description": "Open the OmniRoute dashboard in a browser",
+    "description": "Open the NextRoute dashboard in a browser",
     "opening": "Opening dashboard at {url}",
     "urlOnly": "Print dashboard URL without opening browser",
     "tui": "Open interactive TUI dashboard (terminal UI, 7 tabs)"
@@ -495,7 +495,7 @@
   "models": {
     "description": "List available models (requires server)",
     "search": "Filter models by id, name, provider, or description",
-    "noServer": "Server not running. Start with: omniroute serve",
+    "noServer": "Server not running. Start with: nextroute serve",
     "noModels": "No models found."
   },
   "audit": {
@@ -527,7 +527,7 @@
     }
   },
   "skills": {
-    "description": "Manage OmniRoute skills (sandbox, builtin, custom, hybrid, skillssh)",
+    "description": "Manage NextRoute skills (sandbox, builtin, custom, hybrid, skillssh)",
     "list": {
       "description": "List installed skills",
       "type": "Filter by type (sandbox|custom|builtin|hybrid|skillssh)",
@@ -600,7 +600,7 @@
     }
   },
   "memory": {
-    "description": "Manage OmniRoute conversational memory (FTS5 + vector)",
+    "description": "Manage NextRoute conversational memory (FTS5 + vector)",
     "search": {
       "description": "Search memory entries by semantic query",
       "type": "Filter by memory type (user|feedback|project|reference)",
@@ -758,7 +758,7 @@
     }
   },
   "webhooks": {
-    "description": "Manage OmniRoute webhooks",
+    "description": "Manage NextRoute webhooks",
     "events": {
       "description": "List all available webhook event types"
     },
@@ -790,16 +790,16 @@
     }
   },
   "program": {
-    "description": "OmniRoute — Smart AI Router with Auto Fallback",
+    "description": "NextRoute — Smart AI Router with Auto Fallback",
     "version": "Print version and exit",
     "output": "Output format (table, json, jsonl, csv)",
     "quiet": "Suppress non-essential output",
     "no_color": "Disable colored output",
     "timeout": "HTTP request timeout in milliseconds",
-    "api_key": "API key for OmniRoute server",
-    "base_url": "OmniRoute server base URL",
+    "api_key": "API key for NextRoute server",
+    "base_url": "NextRoute server base URL",
     "context": "Server context/profile to use for this command",
-    "lang": "Set CLI display language (overrides OMNIROUTE_LANG)"
+    "lang": "Set CLI display language (overrides NEXTROUTE_LANG)"
   },
   "files": {
     "description": "Manage files (upload, list, get, download, delete)",
@@ -1043,7 +1043,7 @@
     }
   },
   "openapi": {
-    "description": "Access and test the OmniRoute OpenAPI spec",
+    "description": "Access and test the NextRoute OpenAPI spec",
     "dump": {
       "description": "Dump OpenAPI spec to stdout or file",
       "format": "Output format: yaml|json (default: yaml)",
@@ -1113,7 +1113,7 @@
     }
   },
   "open": {
-    "description": "Open a specific OmniRoute dashboard page in the browser",
+    "description": "Open a specific NextRoute dashboard page in the browser",
     "url": "Print URL only, do not open browser"
   },
   "telemetry": {
@@ -1130,7 +1130,7 @@
     }
   },
   "sync": {
-    "description": "Sync configuration between OmniRoute instances",
+    "description": "Sync configuration between NextRoute instances",
     "push": {
       "description": "Push config to cloud or remote instance",
       "target": "Target (cloud or context:name)",
@@ -1186,10 +1186,10 @@
       "listTitle": "Available Languages",
       "current": "Language: {code} ({name})",
       "saved": "Language set to {code} ({name}).",
-      "noCode": "Language code required. Run 'omniroute config lang list' to see available codes.",
-      "unknown": "Unknown language code: {code}. Run 'omniroute config lang list' to see available codes.",
+      "noCode": "Language code required. Run 'nextroute config lang list' to see available codes.",
+      "unknown": "Unknown language code: {code}. Run 'nextroute config lang list' to see available codes.",
       "alreadySet": "Language is already set to {code}.",
-      "envHint": "Tip: you can also set OMNIROUTE_LANG={code} in your environment."
+      "envHint": "Tip: you can also set NEXTROUTE_LANG={code} in your environment."
     }
   },
   "completion": {
@@ -1206,7 +1206,7 @@
     "filter": "Filter by level (error,warn,info) — comma-separated",
     "lines": "Number of lines to fetch",
     "timeout": "Connection timeout in ms",
-    "baseUrl": "OmniRoute API base URL",
+    "baseUrl": "NextRoute API base URL",
     "requestId": "Filter by request ID",
     "apiKey": "Filter by API key",
     "combo": "Filter by combo name",
@@ -1222,10 +1222,10 @@
     "description": "Control the system tray icon",
     "show": "Show the tray icon (if server is running with --tray)",
     "hide": "Hide the tray icon",
-    "quit": "Quit OmniRoute via tray"
+    "quit": "Quit NextRoute via tray"
   },
   "autostart": {
-    "description": "Manage OmniRoute autostart at boot (Linux: systemd user service)",
+    "description": "Manage NextRoute autostart at boot (Linux: systemd user service)",
     "enable": "Enable autostart at boot",
     "disable": "Disable autostart at boot",
     "status": "Show autostart status"
@@ -1246,7 +1246,7 @@
     "resume": "Resume a saved session by name"
   },
   "plugin": {
-    "description": "Manage CLI plugins (omniroute-cmd-*)",
+    "description": "Manage CLI plugins (nextroute-cmd-*)",
     "list": "List installed plugins",
     "install": "Install a plugin from npm or local path",
     "remove": "Remove an installed plugin",

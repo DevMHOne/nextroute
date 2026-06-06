@@ -2,7 +2,7 @@
 
 **Date:** 2026-05-29
 **Status:** Draft (awaiting approval)
-**Owner:** OmniRoute team
+**Owner:** NextRoute team
 **Related:** `src/lib/oauth/providers/windsurf.ts`, `src/lib/oauth/constants/oauth.ts`, `open-sse/executors/windsurf.ts`
 
 ---
@@ -15,7 +15,7 @@ OAuth URL yang di-generate untuk Windsurf provider kembali **404** saat user buk
 https://app.devin.ai/editor/signin?response_type=code&redirect_uri=...&code_challenge=...
 ```
 
-Akibatnya user tidak bisa login ke Windsurf via OmniRoute. Provider effectively broken.
+Akibatnya user tidak bisa login ke Windsurf via NextRoute. Provider effectively broken.
 
 ### Root cause
 
@@ -66,7 +66,7 @@ Phase 1 ship dulu sebagai single PR untuk un-block user. Phase 2 ship di PR terp
 Hapus seluruh PKCE browser flow yang broken. Promosikan **import-token** sebagai satu-satunya path resmi:
 - User klik "Connect Windsurf" → modal langsung tampil paste-token
 - Tombol "Get token" buka tab baru ke `https://windsurf.com/show-auth-token` (URL ini masih hidup, return HTTP 200)
-- User copy token, paste, OmniRoute test connection, simpan
+- User copy token, paste, NextRoute test connection, simpan
 
 ### Files touched
 
@@ -116,13 +116,13 @@ Hapus seluruh PKCE browser flow yang broken. Promosikan **import-token** sebagai
 
 ### Goal
 
-Restore browser-based login automation. User klik tombol Google/GitHub/Microsoft/email → OmniRoute auto-dapat `sk-ws-...` API key + Firebase refresh token. Schedule auto-refresh sebelum token expire.
+Restore browser-based login automation. User klik tombol Google/GitHub/Microsoft/email → NextRoute auto-dapat `sk-ws-...` API key + Firebase refresh token. Schedule auto-refresh sebelum token expire.
 
 ### Reference implementation
 
 - Repo: `https://github.com/fendoushaonian/WindSurf-gRPC-API`
 - Files studied: `windsurf_api/auth.py`, `windsurf_api/services/seat_management.py` (RegisterUser), `windsurf_api/client.py`
-- Approach: port logic-nya ke TypeScript, follow OmniRoute conventions (Zod schemas, `buildErrorBody`, `resolvePublicCred`, AES-256-GCM at-rest)
+- Approach: port logic-nya ke TypeScript, follow NextRoute conventions (Zod schemas, `buildErrorBody`, `resolvePublicCred`, AES-256-GCM at-rest)
 
 ### Architecture
 
@@ -211,7 +211,7 @@ Restore browser-based login automation. User klik tombol Google/GitHub/Microsoft
   ```
 - **Refresh token at rest**: encrypt pakai `connectionEncryption` helper (AES-256-GCM, existing pattern). Never log refresh_token.
 - **Rate limit**: `/api/oauth/windsurf/firebase` rate-limited 5 attempt / 5min / IP via existing `src/lib/rateLimit/` middleware. Abuse Firebase tidak gratis.
-- **Feature flag**: `OMNIROUTE_WINDSURF_FIREBASE_AUTH=1` (default OFF). Beta testing, then default ON setelah stable.
+- **Feature flag**: `NEXTROUTE_WINDSURF_FIREBASE_AUTH=1` (default OFF). Beta testing, then default ON setelah stable.
 - **Dual flow**: import-token (Phase 1) tetap available. Kalau Firebase API key di-rotate Windsurf, user fall back ke import-token via UI banner.
 
 ### Behavior change
@@ -219,7 +219,7 @@ Restore browser-based login automation. User klik tombol Google/GitHub/Microsoft
 - WindsurfLoginModal punya 5 path: Google/GitHub/Microsoft/Email/import-token.
 - Connection schema gain optional `firebase_refresh_token`, `firebase_expires_at`. Old connections (token-only, dari Phase 1) tetap jalan tanpa migrasi.
 - Auto-refresh: api_key Windsurf TTL ±1 jam (mengikuti Firebase ID token). Worker re-register tiap 50 menit.
-- New env vars: `WINDSURF_FIREBASE_API_KEY` (override), `WINDSURF_GOOGLE_CLIENT_ID` (override), `OMNIROUTE_WINDSURF_FIREBASE_AUTH` (feature flag).
+- New env vars: `WINDSURF_FIREBASE_API_KEY` (override), `WINDSURF_GOOGLE_CLIENT_ID` (override), `NEXTROUTE_WINDSURF_FIREBASE_AUTH` (feature flag).
 
 ### Validation plan
 
@@ -234,7 +234,7 @@ Restore browser-based login automation. User klik tombol Google/GitHub/Microsoft
   - Env override `WINDSURF_FIREBASE_API_KEY` (bisa di-update tanpa redeploy)
   - Monitoring `auth/invalid-api-key` error → auto-banner di UI: "Browser login broken, please use import-token (Phase 1 fallback)"
   - Phase 1 import-token tetap aktif — user tidak total stuck
-- **Rollback**: feature flag `OMNIROUTE_WINDSURF_FIREBASE_AUTH=0`. Migration tidak di-revert (kolom optional, NULL-safe). Phase 1 path tetap jalan.
+- **Rollback**: feature flag `NEXTROUTE_WINDSURF_FIREBASE_AUTH=0`. Migration tidak di-revert (kolom optional, NULL-safe). Phase 1 path tetap jalan.
 
 ### Success criteria Phase 2
 
@@ -252,7 +252,7 @@ Restore browser-based login automation. User klik tombol Google/GitHub/Microsoft
 | Step | When | What |
 |---|---|---|
 | 1 | T+0 | Phase 1 PR merged → released → users un-blocked via import-token |
-| 2 | T+1d to T+1w | Phase 2 PR opened, behind `OMNIROUTE_WINDSURF_FIREBASE_AUTH=1` flag |
+| 2 | T+1d to T+1w | Phase 2 PR opened, behind `NEXTROUTE_WINDSURF_FIREBASE_AUTH=1` flag |
 | 3 | T+1w to T+3w | Beta testing dengan opt-in users |
 | 4 | T+3w | Flag default ON, import-token tetap available sebagai fallback |
 | 5 | T+3m | Evaluate: kalau Firebase OAuth stable + 0 critical issue, deprecate import-token UI option (keep API endpoint untuk backward compat) |

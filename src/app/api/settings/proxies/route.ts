@@ -12,7 +12,7 @@ import { createProxyRegistrySchema, updateProxyRegistrySchema } from "@/shared/v
 import { isValidationFailure, validateBody } from "@/shared/validation/helpers";
 import { createErrorResponse, createErrorResponseFromUnknown } from "@/lib/api/errorResponse";
 import { requireManagementAuth } from "@/lib/api/requireManagementAuth";
-import { clearDispatcherCache } from "@omniroute/open-sse/utils/proxyDispatcher";
+import { clearDispatcherCache } from "@nextroute/open-sse/utils/proxyDispatcher";
 
 export async function GET(request: Request) {
   const authError = await requireManagementAuth(request);

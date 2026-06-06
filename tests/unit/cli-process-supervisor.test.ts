@@ -199,7 +199,7 @@ test("ServerSupervisor reseta restartCount após processo viver >=30s", async ()
 
 test("writePidFile/readPidFile/cleanupPidFile operam por service", async () => {
   const os = await import("node:os");
-  const tmpDir = os.default.tmpdir() + "/omniroute-pid-test-" + Date.now();
+  const tmpDir = os.default.tmpdir() + "/nextroute-pid-test-" + Date.now();
   process.env.DATA_DIR = tmpDir;
 
   const { writePidFile, readPidFile, cleanupPidFile } = await import("../../bin/cli/utils/pid.mjs");

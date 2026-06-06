@@ -91,7 +91,7 @@ describe("Semantic Cache", () => {
     });
 
     it("returns false when no-cache header is set", () => {
-      const headers = new Headers({ "x-omniroute-no-cache": "true" });
+      const headers = new Headers({ "x-nextroute-no-cache": "true" });
       assert.equal(isCacheableForRead({ temperature: 0 }, headers), false);
     });
 
@@ -115,7 +115,7 @@ describe("Semantic Cache", () => {
     });
 
     it("returns false when no-cache header is set", () => {
-      const headers = new Headers({ "x-omniroute-no-cache": "true" });
+      const headers = new Headers({ "x-nextroute-no-cache": "true" });
       assert.equal(isCacheableForWrite({ temperature: 0 }, headers), false);
     });
   });

@@ -1,4 +1,4 @@
-const CACHE_NAME = "omniroute-pwa-v2";
+const CACHE_NAME = "nextroute-pwa-v2";
 const APP_SHELL = [
   "/",
   "/offline",
@@ -117,15 +117,15 @@ self.addEventListener("push", (event) => {
   try {
     data = event.data ? event.data.json() : {};
   } catch {
-    data = { title: "OmniRoute", body: event.data?.text() || "New notification" };
+    data = { title: "NextRoute", body: event.data?.text() || "New notification" };
   }
 
-  const title = data.title || "OmniRoute";
+  const title = data.title || "NextRoute";
   const options = {
     body: data.body || "",
     icon: data.icon || "/icon-512.png",
     badge: data.badge || "/icon-192.png",
-    tag: data.tag || "omniroute-default",
+    tag: data.tag || "nextroute-default",
     data: {
       url: data.url || "/dashboard",
       timestamp: Date.now(),

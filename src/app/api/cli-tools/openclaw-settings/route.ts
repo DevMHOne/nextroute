@@ -30,10 +30,10 @@ const readSettings = async () => {
   }
 };
 
-// Check if settings has OmniRoute config
-const hasOmniRouteConfig = (settings: any) => {
+// Check if settings has NextRoute config
+const hasNextRouteConfig = (settings: any) => {
   if (!settings || !settings.models || !settings.models.providers) return false;
-  return !!settings.models.providers["omniroute"];
+  return !!settings.models.providers["nextroute"];
 };
 
 // GET - Check openclaw CLI and read current settings
@@ -70,7 +70,7 @@ export async function GET(request: Request) {
       runtimeMode: runtime.runtimeMode,
       reason: runtime.reason,
       settings,
-      hasOmniRoute: hasOmniRouteConfig(settings),
+      hasNextRoute: hasNextRouteConfig(settings),
       settingsPath: getOpenClawSettingsPath(),
     });
   } catch (error) {
@@ -79,7 +79,7 @@ export async function GET(request: Request) {
   }
 }
 
-// POST - Update OmniRoute settings (merge with existing settings)
+// POST - Update NextRoute settings (merge with existing settings)
 export async function POST(request: Request) {
   const authError = await requireCliToolsAuth(request);
   if (authError) return authError;
@@ -144,10 +144,10 @@ export async function POST(request: Request) {
     const normalizedBaseUrl = baseUrl.endsWith("/v1") ? baseUrl : `${baseUrl}/v1`;
 
     // Update agents.defaults.model.primary
-    settings.agents.defaults.model.primary = `omniroute/${model}`;
+    settings.agents.defaults.model.primary = `nextroute/${model}`;
 
-    // Update models.providers.omniroute
-    settings.models.providers["omniroute"] = {
+    // Update models.providers.nextroute
+    settings.models.providers["nextroute"] = {
       baseUrl: normalizedBaseUrl,
       apiKey: apiKey || "your_api_key",
       api: "openai-completions",
@@ -180,7 +180,7 @@ export async function POST(request: Request) {
   }
 }
 
-// DELETE - Remove OmniRoute settings only (keep other settings)
+// DELETE - Remove NextRoute settings only (keep other settings)
 export async function DELETE(request: Request) {
   const authError = await requireCliToolsAuth(request);
   if (authError) return authError;
@@ -211,9 +211,9 @@ export async function DELETE(request: Request) {
       throw error;
     }
 
-    // Remove OmniRoute from models.providers
+    // Remove NextRoute from models.providers
     if (settings.models && settings.models.providers) {
-      delete settings.models.providers["omniroute"];
+      delete settings.models.providers["nextroute"];
 
       // Remove providers object if empty
       if (Object.keys(settings.models.providers).length === 0) {
@@ -221,8 +221,8 @@ export async function DELETE(request: Request) {
       }
     }
 
-    // Reset agents.defaults.model.primary if it uses omniroute
-    if (settings.agents?.defaults?.model?.primary?.startsWith("omniroute/")) {
+    // Reset agents.defaults.model.primary if it uses nextroute
+    if (settings.agents?.defaults?.model?.primary?.startsWith("nextroute/")) {
       delete settings.agents.defaults.model.primary;
     }
 
@@ -238,7 +238,7 @@ export async function DELETE(request: Request) {
 
     return NextResponse.json({
       success: true,
-      message: "OmniRoute settings removed successfully",
+      message: "NextRoute settings removed successfully",
     });
   } catch (error) {
     console.log("Error resetting openclaw settings:", error);

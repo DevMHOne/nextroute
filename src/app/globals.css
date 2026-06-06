@@ -16,7 +16,7 @@
 
 /* Fumadocs sidebar width override */
 :root {
-  --fd-sidebar-width: 220px;
+  --fd-sidebar-width: 240px;
 }
 
 /* OpenClaw × ClawHub Color Palette */
@@ -25,14 +25,14 @@
   --desktop-safe-bottom: 0px;
   color-scheme: light;
 
-  /* Primary - Coral Red (OpenClaw) */
-  --color-primary: #e54d5e;
-  --color-primary-hover: #c93d4e;
+  /* Primary - Indigo/Violet (Premium vibe) */
+  --color-primary: #6366f1;
+  --color-primary-hover: #4f46e5;
 
-  /* Accent - Indigo/Violet (buttons, links, gradients) */
-  --color-accent: #6366f1;
-  --color-accent-hover: #8b5cf6;
-  --color-accent-light: #a855f7;
+  /* Accent - Coral/Amber */
+  --color-accent: #e54d5e;
+  --color-accent-hover: #c93d4e;
+  --color-accent-light: #f43f5e;
 
   /* Semantic */
   --color-error: #ef4444;
@@ -45,17 +45,17 @@
   --color-traffic-green: #27c93f;
 
   /* Light theme */
-  --color-bg: #f9f9fb;
-  --color-bg-alt: #f0f0f5;
-  --color-bg-primary: #f9f9fb;
-  --color-bg-subtle: #f0f0f5;
+  --color-bg: #f5f7fa;
+  --color-bg-alt: #ebedf2;
+  --color-bg-primary: #f5f7fa;
+  --color-bg-subtle: #ebedf2;
   --color-surface: #ffffff;
   --color-card: #ffffff;
-  --color-sidebar: #f5f5fa;
-  --color-border: rgba(0, 0, 0, 0.08);
-  --color-text-main: #1a1a2e;
-  --color-text-primary: #1a1a2e;
-  --color-text-muted: #71717a;
+  --color-sidebar: #ffffff;
+  --color-border: rgba(99, 102, 241, 0.08);
+  --color-text-main: #0f172a;
+  --color-text-primary: #0f172a;
+  --color-text-muted: #64748b;
 
   /* Fumadocs light theme */
   --color-fd-background: #f9f9fb;
@@ -67,13 +67,13 @@
   --color-fd-card: #ffffff;
   --color-fd-card-foreground: #1a1a2e;
   --color-fd-border: rgba(0, 0, 0, 0.08);
-  --color-fd-primary: #e54d5e;
+  --color-fd-primary: #6366f1;
   --color-fd-primary-foreground: #ffffff;
   --color-fd-secondary: #f0f0f5;
   --color-fd-secondary-foreground: #1a1a2e;
-  --color-fd-accent: rgba(229, 77, 94, 0.08);
+  --color-fd-accent: rgba(99, 102, 241, 0.08);
   --color-fd-accent-foreground: #1a1a2e;
-  --color-fd-ring: #e54d5e;
+  --color-fd-ring: #6366f1;
 
   /* Shadows */
   --shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.02), 0 4px 12px rgba(0, 0, 0, 0.015);
@@ -84,17 +84,17 @@
 .dark {
   /* Dark theme (ClawHub deep) */
   color-scheme: dark;
-  --color-bg: #0b0e14;
-  --color-bg-alt: #111520;
-  --color-bg-primary: #0b0e14;
-  --color-bg-subtle: #111520;
-  --color-surface: #161b22;
-  --color-card: #161b22;
-  --color-sidebar: #10141e;
-  --color-border: rgba(255, 255, 255, 0.08);
-  --color-text-main: #e6e6ef;
-  --color-text-primary: #e6e6ef;
-  --color-text-muted: #a1a1aa;
+  --color-bg: #090d16;
+  --color-bg-alt: #0f1624;
+  --color-bg-primary: #090d16;
+  --color-bg-subtle: #0f1624;
+  --color-surface: #121b2c;
+  --color-card: #121b2c;
+  --color-sidebar: #0b111e;
+  --color-border: rgba(99, 102, 241, 0.12);
+  --color-text-main: #f8fafc;
+  --color-text-primary: #f8fafc;
+  --color-text-muted: #94a3b8;
 
   /* Fumadocs theme mapping */
   --color-fd-background: #0b0e14;
@@ -106,13 +106,13 @@
   --color-fd-card: #161b22;
   --color-fd-card-foreground: #e6e6ef;
   --color-fd-border: rgba(255, 255, 255, 0.08);
-  --color-fd-primary: #e54d5e;
+  --color-fd-primary: #6366f1;
   --color-fd-primary-foreground: #ffffff;
   --color-fd-secondary: #111520;
   --color-fd-secondary-foreground: #e6e6ef;
-  --color-fd-accent: rgba(229, 77, 94, 0.12);
+  --color-fd-accent: rgba(99, 102, 241, 0.12);
   --color-fd-accent-foreground: #e6e6ef;
-  --color-fd-ring: #e54d5e;
+  --color-fd-ring: #6366f1;
 
   /* Dark shadows */
   --shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1);

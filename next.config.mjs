@@ -62,12 +62,12 @@ function isNextIntlExtractorDynamicImportWarning(warning) {
   );
 }
 
-// OMNIROUTE_BUILD_PROFILE=minimal physically removes four optional privileged
+// NEXTROUTE_BUILD_PROFILE=minimal physically removes four optional privileged
 // modules (MITM cert install, Zed keychain import, Cloud Sync, 9router
 // installer) from the built bundle by aliasing them to feature-disabled stubs.
-// The resulting artifact is intended to be published as `omniroute-secure`
+// The resulting artifact is intended to be published as `nextroute-secure`
 // for security-sensitive environments. See docs/security/SOCKET_DEV_FINDINGS.md.
-const isMinimalBuild = process.env.OMNIROUTE_BUILD_PROFILE === "minimal";
+const isMinimalBuild = process.env.NEXTROUTE_BUILD_PROFILE === "minimal";
 
 const minimalBuildAliases = isMinimalBuild
   ? {
@@ -91,7 +91,7 @@ const nextConfig = {
     },
   },
   output: "standalone",
-  // OmniRoute is a proxy for AI APIs — request bodies routinely include
+  // NextRoute is a proxy for AI APIs — request bodies routinely include
   // multi-MB payloads (vision models, image edits, base64-encoded files,
   // long chat histories with embedded images). Next.js's Server Action
   // handler intercepts POSTs with multipart/form-data or
@@ -102,7 +102,7 @@ const nextConfig = {
   // more.
   experimental: {
     serverActions: {
-      bodySizeLimit: process.env.OMNIROUTE_SERVER_ACTIONS_BODY_LIMIT || "50mb",
+      bodySizeLimit: process.env.NEXTROUTE_SERVER_ACTIONS_BODY_LIMIT || "50mb",
     },
     // Next.js proxy (middleware) has a default 10MB body clone limit. File
     // uploads (OpenAI-compatible /v1/files) routinely exceed this. Match the
@@ -173,7 +173,7 @@ const nextConfig = {
     "util",
     "process",
   ],
-  transpilePackages: ["@omniroute/open-sse", "@lobehub/icons", "fumadocs-ui", "fumadocs-core"],
+  transpilePackages: ["@nextroute/open-sse", "@lobehub/icons", "fumadocs-ui", "fumadocs-core"],
   allowedDevOrigins: ["localhost", "127.0.0.1", "192.168.0.250"],
   typescript: {
     // TODO: Re-enable after fixing all sub-component useTranslations scope issues
@@ -257,7 +257,7 @@ const nextConfig = {
         source: "/:path*",
         headers: securityHeaders,
       },
-      // G-10: allow OmniRoute's own dashboard to embed the 9Router UI via our reverse proxy.
+      // G-10: allow NextRoute's own dashboard to embed the 9Router UI via our reverse proxy.
       // `frame-ancestors 'self'` overrides the global `frame-ancestors 'none'` only for this
       // path. The route is already LOCAL_ONLY (routeGuard.ts) so remote origins cannot reach it.
       {

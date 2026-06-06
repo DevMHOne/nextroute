@@ -1,14 +1,14 @@
 ---
-title: "OmniRoute Codebase Documentation"
+title: "NextRoute Codebase Documentation"
 version: 3.8.2
 lastUpdated: 2026-05-13
 ---
 
-# OmniRoute Codebase Documentation
+# NextRoute Codebase Documentation
 
 > **Version:** v3.8.0
 > **Last updated:** 2026-05-13
-> **Audience:** Engineers contributing to OmniRoute or building integrations on top of it.
+> **Audience:** Engineers contributing to NextRoute or building integrations on top of it.
 >
 > For high-level architecture diagrams and the reasoning behind each subsystem, read
 > [ARCHITECTURE.md](./ARCHITECTURE.md). For deep dives on individual subsystems
@@ -39,22 +39,22 @@ without inventing new modules.
 Path aliases (`tsconfig.json`):
 
 - `@/*` → `src/*`
-- `@omniroute/open-sse` → `open-sse/index.ts`
-- `@omniroute/open-sse/*` → `open-sse/*`
+- `@nextroute/open-sse` → `open-sse/index.ts`
+- `@nextroute/open-sse/*` → `open-sse/*`
 
 Default HTTP port: **`20128`** (API and dashboard share the same process). Data
-directory is `DATA_DIR` env var, defaulting to `~/.omniroute/`.
+directory is `DATA_DIR` env var, defaulting to `~/.nextroute/`.
 
 ---
 
 ## 2. Repository Layout
 
 ```
-OmniRoute/
+NextRoute/
 ├── src/                  Next.js application (App Router, libs, domain, server, shared)
-├── open-sse/             Streaming engine workspace (@omniroute/open-sse)
+├── open-sse/             Streaming engine workspace (@nextroute/open-sse)
 ├── electron/             Desktop wrapper (Electron 41 main + preload)
-├── bin/                  CLI entry points (omniroute, reset-password)
+├── bin/                  CLI entry points (nextroute, reset-password)
 ├── tests/                Unit, integration, e2e, protocols-e2e, translator, security, fixtures
 ├── scripts/              Build, sync, check, migration, and runtime helper scripts
 ├── docs/                 Public documentation (this directory)
@@ -302,7 +302,7 @@ table groups the actual directories and notable top-level files.
 | `runtime/`        | Runtime feature detection                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | `search/`         | `executeWebSearch.ts`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | `services/`       | Embedded services framework: `ServiceSupervisor.ts` (generic child-process supervisor with operation lock, ring buffer, health checker), `bootstrap.ts` (process-level registration and auto-start), `registry.ts` (tool → supervisor map), `apiKey.ts` (AES-256-GCM key store), `modelSync.ts` (periodic model sync), `ringBuffer.ts` (5 MB circular log buffer), `healthCheck.ts` (HTTP health probe), `types.ts`, `embedWsProxy.ts` (WebSocket proxy), `installers/{ninerouter,cliproxy}.ts`. See `docs/frameworks/EMBEDDED-SERVICES.md` |
-| `agentSkills/`    | Agent Skills catalog + generator: `catalog.ts` (getCatalog/getSkillById/filterCatalog/computeCoverage), `generator.ts` (generateAgentSkills → writes `skills/{id}/SKILL.md`), `openapiParser.ts` (extracts REST endpoints from OpenAPI spec), `cliRegistryParser.ts` (extracts CLI subcommands from bin/cli-registry), `schemas.ts` (Zod: AgentSkillSchema, SkillCoverageSchema, ListQuerySchema, GenerateBodySchema), `types.ts` (AgentSkill, SkillCoverage, SkillMarkdown, GeneratorReport). Consumed by REST routes (`/api/agent-skills/*`), MCP tools (`omniroute_agent_skills_*`), and A2A skill `list-capabilities`. See [AGENT-SKILLS.md](../frameworks/AGENT-SKILLS.md). |
+| `agentSkills/`    | Agent Skills catalog + generator: `catalog.ts` (getCatalog/getSkillById/filterCatalog/computeCoverage), `generator.ts` (generateAgentSkills → writes `skills/{id}/SKILL.md`), `openapiParser.ts` (extracts REST endpoints from OpenAPI spec), `cliRegistryParser.ts` (extracts CLI subcommands from bin/cli-registry), `schemas.ts` (Zod: AgentSkillSchema, SkillCoverageSchema, ListQuerySchema, GenerateBodySchema), `types.ts` (AgentSkill, SkillCoverage, SkillMarkdown, GeneratorReport). Consumed by REST routes (`/api/agent-skills/*`), MCP tools (`nextroute_agent_skills_*`), and A2A skill `list-capabilities`. See [AGENT-SKILLS.md](../frameworks/AGENT-SKILLS.md). |
 | `skills/`         | Skill framework: `registry.ts`, `executor.ts`, `interception.ts`, `injection.ts`, `sandbox.ts`, `custom.ts`, `hybrid.ts`, `builtins.ts`, `a2a.ts`, `providerSettings.ts`, `schemas.ts`, `skillssh.ts`, `types.ts`, plus `builtin/browser.ts`                                                                                                                                                                                                                                                                                                |
 | `spend/`          | `batchWriter.ts` (write-behind buffer)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | `sync/`           | `bundle.ts`, `tokens.ts` (Cloud Sync)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
@@ -389,7 +389,7 @@ Pure business logic, no I/O. Imported by routes and handlers.
 | `degradation.ts`                           | Degraded-mode transitions                         |
 | `providerExpiration.ts`                    | Expired account/key detection                     |
 | `quotaCache.ts`                            | Cached quota decisions                            |
-| `responses.ts`, `omnirouteResponseMeta.ts` | Response shape helpers                            |
+| `responses.ts`, `nextrouteResponseMeta.ts` | Response shape helpers                            |
 | `configAudit.ts`                           | Config change audit                               |
 | `assessment/`                              | Model assessment (per RFC, partially implemented) |
 | `types.ts`                                 | Shared domain types                               |
@@ -441,7 +441,7 @@ Split into focused subdirectories:
 
 ## 4. `open-sse/` — Streaming engine workspace
 
-Separate npm workspace published as `@omniroute/open-sse`. Owns request
+Separate npm workspace published as `@nextroute/open-sse`. Owns request
 processing, executors, translators, services, transformer, and the MCP server.
 
 ```
@@ -606,7 +606,7 @@ Five npm scripts at the workspace root: `electron:dev`, `electron:build`,
 
 ```
 bin/
-├── omniroute.mjs           Main CLI entry (Node ESM)
+├── nextroute.mjs           Main CLI entry (Node ESM)
 ├── reset-password.mjs      Reset the management password from CLI
 ├── mcp-server.mjs          MCP server launcher (stdio)
 ├── nodeRuntimeSupport.mjs  Node version guard
@@ -629,8 +629,8 @@ bin/
 
 Two binaries are exposed in `package.json` → `bin`:
 
-- `omniroute` → `bin/omniroute.mjs`
-- `omniroute-reset-password` → `bin/reset-password.mjs`
+- `nextroute` → `bin/nextroute.mjs`
+- `nextroute-reset-password` → `bin/reset-password.mjs`
 
 ---
 
@@ -786,7 +786,7 @@ See [A2A-SERVER.md § Adding a New Skill](../frameworks/A2A-SERVER.md). Skills l
 
 - **Code style**: 2-space indent, double quotes, 100 char width, semicolons,
   `es5` trailing commas — enforced by Prettier via `lint-staged`.
-- **Imports**: external → internal (`@/`, `@omniroute/open-sse`) → relative.
+- **Imports**: external → internal (`@/`, `@nextroute/open-sse`) → relative.
 - **Naming**: files `camelCase` or `kebab-case`, components `PascalCase`,
   constants `UPPER_SNAKE`.
 - **ESLint**: `no-eval`, `no-implied-eval`, `no-new-func` = `error` everywhere;

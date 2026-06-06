@@ -1,8 +1,8 @@
 {
   "common": {
     "error": "Ошибка: {message}",
-    "serverOffline": "Сервер OmniRoute отключён. Запустите: omniroute serve",
-    "authRequired": "Требуется аутентификация. Установите OMNIROUTE_API_KEY или выполните: omniroute setup",
+    "serverOffline": "Сервер NextRoute отключён. Запустите: nextroute serve",
+    "authRequired": "Требуется аутентификация. Установите NEXTROUTE_API_KEY или выполните: nextroute setup",
     "rateLimited": "Превышен лимит запросов. Повторите через {seconds}с.",
     "timeout": "Запрос истёк через {ms}мс.",
     "success": "Готово.",
@@ -15,15 +15,15 @@
     "yesOpt": "Пропустить подтверждение"
   },
   "program": {
-    "description": "OmniRoute — Умный AI-маршрутизатор с автоматическим переключением",
+    "description": "NextRoute — Умный AI-маршрутизатор с автоматическим переключением",
     "version": "Вывести версию и выйти",
     "output": "Формат вывода (table, json, jsonl, csv)",
     "quiet": "Подавить несущественный вывод",
     "no_color": "Отключить цветной вывод",
     "timeout": "Таймаут HTTP-запросов в миллисекундах",
-    "api_key": "API-ключ для сервера OmniRoute",
-    "base_url": "Базовый URL сервера OmniRoute",
+    "api_key": "API-ключ для сервера NextRoute",
+    "base_url": "Базовый URL сервера NextRoute",
     "context": "Контекст/профиль сервера для этой команды",
-    "lang": "Установить язык отображения CLI (переопределяет OMNIROUTE_LANG)"
+    "lang": "Установить язык отображения CLI (переопределяет NEXTROUTE_LANG)"
   }
 }

@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import type { CompressionPipelineStep } from "@omniroute/open-sse/services/compression/types.ts";
+import type { CompressionPipelineStep } from "@nextroute/open-sse/services/compression/types.ts";
 
 import { backupDbFile } from "./backup";
 import { getDbInstance, rowToCamel } from "./core";

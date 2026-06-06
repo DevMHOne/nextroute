@@ -29,7 +29,7 @@ test("AgentSkillSchema — valid cli skill parses successfully", () => {
   const input = {
     id: "cli-serve",
     name: "Serve",
-    description: "Start the OmniRoute server",
+    description: "Start the NextRoute server",
     category: "cli" as const,
     area: "cli-serve",
     cliCommands: ["serve", "serve --port 8080"],

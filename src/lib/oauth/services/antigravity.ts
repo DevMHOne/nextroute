@@ -5,8 +5,8 @@ import {
   antigravityNativeOAuthUserAgent,
   getAntigravityHeaders,
   getAntigravityLoadCodeAssistMetadata,
-} from "@omniroute/open-sse/services/antigravityHeaders.ts";
-import { extractCodeAssistOnboardTierId } from "@omniroute/open-sse/services/codeAssistSubscription.ts";
+} from "@nextroute/open-sse/services/antigravityHeaders.ts";
+import { extractCodeAssistOnboardTierId } from "@nextroute/open-sse/services/codeAssistSubscription.ts";
 import { getServerCredentials } from "../config/index";
 import { startLocalServer } from "../utils/server";
 import { spinner as createSpinner } from "../utils/ui";

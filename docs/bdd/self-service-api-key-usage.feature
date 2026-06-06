@@ -1,7 +1,7 @@
 Feature: Self-service API key usage and account quota visibility
 
   Background:
-    Given OmniRoute has usage accounting enabled
+    Given NextRoute has usage accounting enabled
     And management APIs require a dashboard session or a key with "manage" or "admin"
 
   Scenario: A delegated key reads its own cost and token usage
@@ -49,7 +49,7 @@ Feature: Self-service API key usage and account quota visibility
   Scenario: Existing ordinary keys are backfilled for own usage visibility
     Given an ordinary API key named "legacy-key" existed before self-service usage scopes
     And "legacy-key" does not have the scope "self:usage"
-    When OmniRoute runs the compatibility migration
+    When NextRoute runs the compatibility migration
     Then "legacy-key" should have the scope "self:usage"
     And "legacy-key" should not have the scope "self:account-quota"
 
@@ -90,7 +90,7 @@ Feature: Self-service API key usage and account quota visibility
     Given an API key named "team-a" has the scope "self:usage"
     And "team-a" has the scope "self:account-quota"
     And "team-a" has no explicit allowed connection restrictions
-    And OmniRoute has active Codex and Cursor provider connections with quota data
+    And NextRoute has active Codex and Cursor provider connections with quota data
     When "team-a" calls GET "/api/v1/me/status" with its Bearer token
     Then the response status should be 200
     And the response accountQuotas should contain the Codex account quota
@@ -100,7 +100,7 @@ Feature: Self-service API key usage and account quota visibility
     Given an API key named "team-a" has the scope "self:usage"
     And "team-a" has the scope "self:account-quota"
     And "team-a" is restricted to a Codex connection and another provider connection
-    And OmniRoute cannot resolve the other provider connection metadata
+    And NextRoute cannot resolve the other provider connection metadata
     When "team-a" calls GET "/api/v1/me/status" with its Bearer token
     Then the response status should be 200
     And the response should still include own cost and token usage

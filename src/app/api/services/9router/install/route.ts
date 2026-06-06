@@ -2,7 +2,7 @@ import { z } from "zod";
 import { install, InstallResult } from "@/lib/services/installers/ninerouter";
 import { InstallError } from "@/lib/services/installers/utils";
 import { createErrorResponse } from "@/lib/api/errorResponse";
-import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
+import { sanitizeErrorMessage } from "@nextroute/open-sse/utils/error";
 
 const BodySchema = z.object({
   version: z.string().optional().default("latest"),

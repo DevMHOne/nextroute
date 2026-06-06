@@ -653,19 +653,19 @@ function normalizeEffortValue(value: unknown): string | undefined {
 }
 
 function consumeResponsesStoreMarker(body: Record<string, unknown>): unknown {
-  const marker = body._omnirouteResponsesStore;
-  delete body._omnirouteResponsesStore;
+  const marker = body._nextrouteResponsesStore;
+  delete body._nextrouteResponsesStore;
   return marker;
 }
 
 /**
- * Global Codex WebSocket kill-switch (feature flag OMNIROUTE_CODEX_WS_ENABLED,
+ * Global Codex WebSocket kill-switch (feature flag NEXTROUTE_CODEX_WS_ENABLED,
  * default ON). Fail-open: if the flag store is unreachable (e.g. DB not yet
  * ready), treat as enabled so codex routing is never broken by the read itself.
  */
 function isCodexWsGloballyEnabled(): boolean {
   try {
-    return isFeatureFlagEnabled("OMNIROUTE_CODEX_WS_ENABLED");
+    return isFeatureFlagEnabled("NEXTROUTE_CODEX_WS_ENABLED");
   } catch {
     return true;
   }
@@ -676,7 +676,7 @@ export function isCodexResponsesWebSocketRequired(_model: string, credentials: u
   // transport — even per-connection codexTransport=websocket falls back to the
   // HTTP Responses SSE endpoint.
   if (!isCodexWsGloballyEnabled()) return false;
-  // OmniRoute is an HTTP→SSE gateway — WebSocket transport is unnecessary and
+  // NextRoute is an HTTP→SSE gateway — WebSocket transport is unnecessary and
   // breaks when upstream requests go through an HTTP proxy (403 on WS upgrade).
   // Default to the standard HTTP Responses SSE endpoint for all Codex models.
   // Users who need WebSocket can opt in via the provider codexTransport setting.
@@ -1383,7 +1383,7 @@ export class CodexExecutor extends BaseExecutor {
     }
 
     // Delete session_id and conversation_id from the body.
-    // These are often injected by OmniRoute's fallback logic for store=true,
+    // These are often injected by NextRoute's fallback logic for store=true,
     // but the upstream Codex API strictly rejects them as unsupported parameters.
     delete body.session_id;
     delete body.conversation_id;
@@ -1412,8 +1412,8 @@ export class CodexExecutor extends BaseExecutor {
       "previous_response_id",
       "prompt_cache_key",
       "client_metadata",
-      // Internal markers used by OmniRoute pipeline
-      "_omnirouteResponsesStore",
+      // Internal markers used by NextRoute pipeline
+      "_nextrouteResponsesStore",
     ]);
 
     for (const key of Object.keys(body)) {

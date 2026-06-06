@@ -24,7 +24,7 @@ describe("normalizeQdrantConfig — defaults & disabled state", () => {
     expect(cfg.apiKey).toBeNull();
     // Defaults still applied for non-toggle fields:
     expect(cfg.port).toBe(6333);
-    expect(cfg.collection).toBe("omniroute_memory");
+    expect(cfg.collection).toBe("nextroute_memory");
     expect(cfg.embeddingModel).toBe("openai/text-embedding-3-small");
   });
 

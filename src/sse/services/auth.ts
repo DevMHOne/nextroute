@@ -29,21 +29,21 @@ import {
   hasPerModelQuota,
   getRuntimeProviderProfile,
   recordModelLockoutFailure,
-} from "@omniroute/open-sse/services/accountFallback.ts";
-import { isLocalProvider } from "@omniroute/open-sse/config/providerRegistry.ts";
-import { COOLDOWN_MS } from "@omniroute/open-sse/config/constants.ts";
+} from "@nextroute/open-sse/services/accountFallback.ts";
+import { isLocalProvider } from "@nextroute/open-sse/config/providerRegistry.ts";
+import { COOLDOWN_MS } from "@nextroute/open-sse/config/constants.ts";
 import {
   preflightQuota,
   isQuotaPreflightEnabled,
-} from "@omniroute/open-sse/services/quotaPreflight.ts";
+} from "@nextroute/open-sse/services/quotaPreflight.ts";
 import { resolveResilienceSettings } from "@/lib/resilience/settings";
-import { syncHealthFromDB, type KeyHealth } from "@omniroute/open-sse/services/apiKeyRotator.ts";
+import { syncHealthFromDB, type KeyHealth } from "@nextroute/open-sse/services/apiKeyRotator.ts";
 import {
   classifyProviderError,
   PROVIDER_ERROR_TYPES,
-} from "@omniroute/open-sse/services/errorClassifier.ts";
+} from "@nextroute/open-sse/services/errorClassifier.ts";
 import { looksLikeQuotaExhausted } from "@/shared/utils/classify429";
-import { getCodexModelScope } from "@omniroute/open-sse/executors/codex.ts";
+import { getCodexModelScope } from "@nextroute/open-sse/executors/codex.ts";
 import {
   getProviderById,
   getProviderAlias,
@@ -250,7 +250,7 @@ export function extractSessionAffinityKey(
   const headerKey = normalizeSessionKey(
     readHeaderValue(headers, "x-codex-session-id") ??
       readHeaderValue(headers, "x-session-id") ??
-      readHeaderValue(headers, "x-omniroute-session"),
+      readHeaderValue(headers, "x-nextroute-session"),
     "header"
   );
   if (headerKey) return headerKey;
@@ -2028,7 +2028,7 @@ export async function clearRecoveredProviderState(
  * Extract API key from request headers.
  *
  * Honors both:
- * - `Authorization: Bearer <key>` (OpenAI / OmniRoute / Codex CLI / Bearer clients)
+ * - `Authorization: Bearer <key>` (OpenAI / NextRoute / Codex CLI / Bearer clients)
  * - `x-api-key: <key>` (Anthropic Messages API contract — Claude Code,
  *   `@anthropic-ai/sdk`, any SDK that sets `anthropic-version`)
  *
@@ -2040,7 +2040,7 @@ export async function clearRecoveredProviderState(
  * speaking the Anthropic Messages API contract. Without this scoping,
  * non-Anthropic SDKs that happen to set `x-api-key` (or local-mode tools
  * with placeholder keys) would be treated as authenticated attempts and
- * rejected by per-route gates that compare against OmniRoute keys.
+ * rejected by per-route gates that compare against NextRoute keys.
  */
 export function extractApiKey(request: Request) {
   const authHeader = request.headers.get("Authorization") || request.headers.get("authorization");
@@ -2068,7 +2068,7 @@ export function extractApiKey(request: Request) {
 
 /**
  * Validate API key (optional - for local use can skip).
- * Feature #1350: Supports OMNIROUTE_API_KEY / ROUTER_API_KEY env vars as
+ * Feature #1350: Supports NEXTROUTE_API_KEY / ROUTER_API_KEY env vars as
  * persistent passthrough keys that always validate, surviving Docker
  * restarts and backup restores without DB dependency.
  */
@@ -2076,7 +2076,7 @@ export async function isValidApiKey(apiKey: string) {
   if (!apiKey) return false;
 
   // Persistent env-var key — always valid regardless of DB state (#1350)
-  const envKey = process.env.OMNIROUTE_API_KEY || process.env.ROUTER_API_KEY;
+  const envKey = process.env.NEXTROUTE_API_KEY || process.env.ROUTER_API_KEY;
   if (envKey && apiKey === envKey) return true;
 
   return await validateApiKey(apiKey);

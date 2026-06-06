@@ -5,7 +5,7 @@ import {
   getProviderConnections,
   updateProviderConnection,
 } from "@/lib/db/providers";
-import { clearProviderFailure, clearModelLock } from "@omniroute/open-sse/services/accountFallback";
+import { clearProviderFailure, clearModelLock } from "@nextroute/open-sse/services/accountFallback";
 
 type JsonRecord = Record<string, unknown>;
 
@@ -258,8 +258,8 @@ export async function buildProviderHealthAutopilotReport(
   const [{ getAllCircuitBreakerStatuses }, { getAllModelLockouts }, quotaMonitor] =
     await Promise.all([
       import("@/shared/utils/circuitBreaker"),
-      import("@omniroute/open-sse/services/accountFallback"),
-      import("@omniroute/open-sse/services/quotaMonitor.ts").catch(() => null),
+      import("@nextroute/open-sse/services/accountFallback"),
+      import("@nextroute/open-sse/services/quotaMonitor.ts").catch(() => null),
     ]);
 
   const connections = (await getProviderConnections(

@@ -2,12 +2,12 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { requireManagementAuth } from "@/lib/api/requireManagementAuth";
 import { compressionPreviewConfigSchema } from "@/shared/validation/compressionConfigSchemas";
-import { applyCompression } from "@omniroute/open-sse/services/compression/strategySelector";
+import { applyCompression } from "@nextroute/open-sse/services/compression/strategySelector";
 import type {
   CompressionConfig,
   CompressionMode,
-} from "@omniroute/open-sse/services/compression/types";
-import { buildCompressionPreviewDiff } from "@omniroute/open-sse/services/compression/diffHelper";
+} from "@nextroute/open-sse/services/compression/types";
+import { buildCompressionPreviewDiff } from "@nextroute/open-sse/services/compression/diffHelper";
 
 export const PreviewCompressionConfigSchema = compressionPreviewConfigSchema;
 

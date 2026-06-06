@@ -1,7 +1,7 @@
 import { fileURLToPath } from "node:url";
 import { dirname, resolve } from "node:path";
 import { createPrompt, printHeading, printInfo, printSuccess } from "../io.mjs";
-import { openOmniRouteDb } from "../sqlite.mjs";
+import { openNextRouteDb } from "../sqlite.mjs";
 import { getSettings, hashManagementPassword, updateSettings } from "../settings-store.mjs";
 import { testProviderApiKey } from "../provider-test.mjs";
 import { updateProviderTestResult, upsertApiKeyProviderConnection } from "../provider-store.mjs";
@@ -83,7 +83,7 @@ async function resolveProviderInput(opts, prompt, nonInteractive) {
   }
 
   if (!apiKey) {
-    throw new Error("Provider API key is required. Pass --api-key or OMNIROUTE_API_KEY.");
+    throw new Error("Provider API key is required. Pass --api-key or NEXTROUTE_API_KEY.");
   }
 
   if (!name) {
@@ -173,8 +173,8 @@ export async function runSetupCommand(opts = {}) {
   const prompt = createPrompt();
 
   try {
-    printHeading("OmniRoute Setup");
-    const { db, dbPath } = await openOmniRouteDb();
+    printHeading("NextRoute Setup");
+    const { db, dbPath } = await openNextRouteDb();
     printInfo(`Database: ${dbPath}`);
 
     const before = getSettings(db);

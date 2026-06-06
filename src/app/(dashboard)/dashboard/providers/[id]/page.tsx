@@ -2715,7 +2715,7 @@ export default function ProviderDetailPage() {
       notify.success(
         enabled
           ? "Requests now route through CLIProxyAPI (deeper emulation)"
-          : "Requests now use native OmniRoute (direct)"
+          : "Requests now use native NextRoute (direct)"
       );
     } catch {
       notify.error("Failed to update CLIProxyAPI routing");
@@ -4079,7 +4079,7 @@ export default function ProviderDetailPage() {
               {showZedManual && (
                 <div className="flex flex-col gap-3 mt-1">
                   <p className="text-sm text-text-muted">
-                    Use this when OmniRoute runs in Docker or the keychain is unavailable. Paste the
+                    Use this when NextRoute runs in Docker or the keychain is unavailable. Paste the
                     API key that Zed stored under{" "}
                     <code className="font-mono text-xs">~/.config/zed/settings.json</code> or copy
                     it from the Zed AI settings panel.
@@ -5482,7 +5482,7 @@ export default function ProviderDetailPage() {
                   <p className="text-text-muted mt-0.5">
                     Clique em <strong>Add Connection</strong>, cole o valor do{" "}
                     <code className="bg-surface-2 px-1 rounded font-mono text-xs">__client</code> no
-                    campo de API Key e salve. O OmniRoute renovará a sessão automaticamente.
+                    campo de API Key e salve. O NextRoute renovará a sessão automaticamente.
                   </p>
                 </div>
               </li>
@@ -9141,7 +9141,7 @@ function ImportCodexAuthModal({ onClose, onSuccess }: ImportCodexAuthModalProps)
                 />
                 <p className="text-xs text-text-muted">
                   {t("codexImportFileHint") ||
-                    "Select the auth.json file exported from Codex or OmniRoute."}
+                    "Select the auth.json file exported from Codex or NextRoute."}
                 </p>
               </div>
             )}

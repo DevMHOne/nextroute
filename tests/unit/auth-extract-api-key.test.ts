@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 const { extractApiKey } = await import("../../src/sse/services/auth.ts");
 
 function makeRequest(headers: Record<string, string>): Request {
-  return new Request("https://omniroute.test/v1/messages", { headers });
+  return new Request("https://nextroute.test/v1/messages", { headers });
 }
 
 const ANTHROPIC = { "anthropic-version": "2023-06-01" } as const;

@@ -6,7 +6,7 @@ title: "Route Guard Tiers"
 
 ## Overview
 
-All OmniRoute management API routes are classified into one of three protection
+All NextRoute management API routes are classified into one of three protection
 tiers. Classification is static, defined in `src/server/authz/routeGuard.ts`,
 and evaluated before any other auth branch runs.
 

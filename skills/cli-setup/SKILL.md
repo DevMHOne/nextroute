@@ -11,8 +11,8 @@ Run initial setup, configure global CLI settings, manage environment variables, 
 ## Quick install
 
 ```bash
-npm install -g omniroute   # or: npx omniroute
-omniroute --version
+npm install -g nextroute   # or: npx nextroute
+nextroute --version
 ```
 
 ## Subcommands
@@ -22,7 +22,7 @@ omniroute --version
 **Example:**
 
 ```bash
-omniroute autostart
+nextroute autostart
 ```
 
 ### `autostart enable`
@@ -30,7 +30,7 @@ omniroute autostart
 **Example:**
 
 ```bash
-omniroute autostart enable
+nextroute autostart enable
 ```
 
 ### `autostart disable`
@@ -38,7 +38,7 @@ omniroute autostart enable
 **Example:**
 
 ```bash
-omniroute autostart disable
+nextroute autostart disable
 ```
 
 ### `autostart status`
@@ -46,7 +46,7 @@ omniroute autostart disable
 **Example:**
 
 ```bash
-omniroute autostart status
+nextroute autostart status
 ```
 
 ### `config`
@@ -56,7 +56,7 @@ Show or update CLI tool configuration
 **Example:**
 
 ```bash
-omniroute config
+nextroute config
 ```
 
 ### `config list`
@@ -70,7 +70,7 @@ List all CLI tools and config status
 **Example:**
 
 ```bash
-omniroute config list
+nextroute config list
 ```
 
 ### `config get <tool>`
@@ -84,7 +84,7 @@ Show current config for a tool
 **Example:**
 
 ```bash
-omniroute config get <tool>
+nextroute config get <tool>
 ```
 
 ### `config set <tool>`
@@ -100,7 +100,7 @@ Write config for a tool
 **Example:**
 
 ```bash
-omniroute config set <tool>
+nextroute config set <tool>
 ```
 
 ### `config validate <tool>`
@@ -115,7 +115,7 @@ Validate config format without writing
 **Example:**
 
 ```bash
-omniroute config validate <tool>
+nextroute config validate <tool>
 ```
 
 ### `config opencode`
@@ -131,7 +131,7 @@ Generate OpenCode config (alias for
 **Example:**
 
 ```bash
-omniroute config opencode
+nextroute config opencode
 ```
 
 ### `config lang`
@@ -139,7 +139,7 @@ omniroute config opencode
 **Example:**
 
 ```bash
-omniroute config lang
+nextroute config lang
 ```
 
 ### `config get`
@@ -151,7 +151,7 @@ omniroute config lang
 **Example:**
 
 ```bash
-omniroute config get
+nextroute config get
 ```
 
 ### `config set <code>`
@@ -163,7 +163,7 @@ omniroute config get
 **Example:**
 
 ```bash
-omniroute config set <code>
+nextroute config set <code>
 ```
 
 ### `config list`
@@ -175,7 +175,7 @@ omniroute config set <code>
 **Example:**
 
 ```bash
-omniroute config list
+nextroute config list
 ```
 
 ### `env`
@@ -185,7 +185,7 @@ Show and manage environment variables
 **Example:**
 
 ```bash
-omniroute env
+nextroute env
 ```
 
 ### `env show`
@@ -199,7 +199,7 @@ Show current environment variables
 **Example:**
 
 ```bash
-omniroute env show
+nextroute env show
 ```
 
 ### `env get <key>`
@@ -209,7 +209,7 @@ Get a single environment variable
 **Example:**
 
 ```bash
-omniroute env get <key>
+nextroute env get <key>
 ```
 
 ### `env set <key> <value>`
@@ -219,7 +219,7 @@ Set an environment variable (current session only)
 **Example:**
 
 ```bash
-omniroute env set <key> <value>
+nextroute env set <key> <value>
 ```
 
 ### `setup`
@@ -240,7 +240,7 @@ omniroute env set <key> <value>
 **Example:**
 
 ```bash
-omniroute setup
+nextroute setup
 ```
 
 ### `update`
@@ -257,5 +257,5 @@ omniroute setup
 **Example:**
 
 ```bash
-omniroute update
+nextroute update
 ```

@@ -8,11 +8,11 @@ Step-by-step for contributors who already have a fork and a working fix.
 
 ```bash
 # Clone your fork
-git clone https://github.com/<your-username>/OmniRoute.git
-cd OmniRoute
+git clone https://github.com/<your-username>/NextRoute.git
+cd NextRoute
 
 # Add the upstream repo so you can sync
-git remote add upstream https://github.com/diegosouzapw/OmniRoute.git
+git remote add upstream https://github.com/diegosouzapw/NextRoute.git
 
 # Install dependencies (.env is auto-created from .env.example)
 npm install
@@ -87,7 +87,7 @@ Common scopes: `api`, `dashboard`, `db`, `sse`, `oauth`, `providers`, `combo`, `
 git push -u origin fix/your-description
 ```
 
-Then open a PR on GitHub targeting **`diegosouzapw/OmniRoute`** → **`release/v3.8.3`**.
+Then open a PR on GitHub targeting **`diegosouzapw/NextRoute`** → **`release/v3.8.3`**.
 
 PR description checklist:
 

@@ -1,5 +1,5 @@
 # ──────────────────────────────────────────────────────────────────────
-#  OmniRoute — Docker Compose
+#  NextRoute — Docker Compose
 # ──────────────────────────────────────────────────────────────────────
 #
 #  Profiles:
@@ -44,7 +44,7 @@ services:
   # ── Redis (Rate Limiter Backend) ──────────────────────────────────
   redis:
     image: docker.io/library/redis:7-alpine
-    container_name: omniroute-redis
+    container_name: nextroute-redis
     restart: unless-stopped
     ports:
       - "${REDIS_PORT:-6379}:6379"
@@ -58,13 +58,13 @@ services:
       retries: 3
 
   # ── Profile: base (minimal, no CLI tools) ──────────────────────────
-  omniroute-base:
+  nextroute-base:
     <<: *common
-    container_name: omniroute
+    container_name: nextroute
     build:
       context: .
       target: runner-base
-    image: omniroute:base
+    image: nextroute:base
     ports:
       - "${DASHBOARD_PORT:-20128}:${DASHBOARD_PORT:-20128}"
       - "${API_PORT:-20129}:${API_PORT:-20129}"
@@ -75,13 +75,13 @@ services:
   # Required for web-cookie providers (gemini-web, claude-web, claude-turnstile).
   # The default `base` image ships without Chromium, so those providers fail
   # with "Executable doesn't exist at .../ms-playwright/chromium..." (#2832).
-  omniroute-web:
+  nextroute-web:
     <<: *common
-    container_name: omniroute
+    container_name: nextroute
     build:
       context: .
       target: runner-web
-    image: omniroute:web
+    image: nextroute:web
     ports:
       - "${DASHBOARD_PORT:-20128}:${DASHBOARD_PORT:-20128}"
       - "${API_PORT:-20129}:${API_PORT:-20129}"
@@ -89,13 +89,13 @@ services:
       - web
 
   # ── Profile: cli (CLIs installed inside container) ─────────────────
-  omniroute-cli:
+  nextroute-cli:
     <<: *common
-    container_name: omniroute
+    container_name: nextroute
     build:
       context: .
       target: runner-cli
-    image: omniroute:cli
+    image: nextroute:cli
     ports:
       - "${DASHBOARD_PORT:-20128}:${DASHBOARD_PORT:-20128}"
       - "${API_PORT:-20129}:${API_PORT:-20129}"
@@ -103,18 +103,18 @@ services:
       - ./data:/app/data
       - /var/run/docker.sock:/var/run/docker.sock
       - /usr/libexec/docker/cli-plugins:/usr/libexec/docker/cli-plugins:ro
-      - ${AUTO_UPDATE_HOST_REPO_DIR:-.}:/workspace/omniroute:rw
+      - ${AUTO_UPDATE_HOST_REPO_DIR:-.}:/workspace/nextroute:rw
     profiles:
       - cli
 
   # ── Profile: host (host-mounted CLI binaries, Linux-first) ────────
-  omniroute-host:
+  nextroute-host:
     <<: *common
-    container_name: omniroute
+    container_name: nextroute
     build:
       context: .
       target: runner-base
-    image: omniroute:base
+    image: nextroute:base
     ports:
       - "${DASHBOARD_PORT:-20128}:${DASHBOARD_PORT:-20128}"
       - "${API_PORT:-20129}:${API_PORT:-20129}"
@@ -175,4 +175,4 @@ volumes:
   cliproxyapi-data:
     name: cliproxyapi-data
   redis-data:
-    name: omniroute-redis-data
+    name: nextroute-redis-data

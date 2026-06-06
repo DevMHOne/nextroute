@@ -10,7 +10,7 @@ import {
   generateHermesAgentConfig,
   getCurrentHermesAgentRoles,
 } from "@/lib/cli-helper/config-generator/hermes-agent";
-import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error.ts";
+import { sanitizeErrorMessage } from "@nextroute/open-sse/utils/error.ts";
 
 const hermesAgentSettingsSchema = z.object({
   baseUrl: z.string().min(1, "baseUrl is required"),
@@ -123,7 +123,7 @@ export async function POST(request: Request) {
 
   await fs.writeFile(configPath, result.yaml, "utf-8");
 
-  // Record first setup time if this is the first save via OmniRoute
+  // Record first setup time if this is the first save via NextRoute
   const metaPath = getMetadataPath(configPath);
   try {
     await fs.access(metaPath);

@@ -8,7 +8,7 @@ lastUpdated: 2026-05-13
 
 🌐 **Languages:** 🇺🇸 [English](./USER_GUIDE.md) | 🇧🇷 [Português (Brasil)](../i18n/pt-BR/docs/guides/USER_GUIDE.md) | 🇪🇸 [Español](../i18n/es/docs/guides/USER_GUIDE.md) | 🇫🇷 [Français](../i18n/fr/docs/guides/USER_GUIDE.md) | 🇮🇹 [Italiano](../i18n/it/docs/guides/USER_GUIDE.md) | 🇷🇺 [Русский](../i18n/ru/docs/guides/USER_GUIDE.md) | 🇨🇳 [中文 (简体)](../i18n/zh-CN/docs/guides/USER_GUIDE.md) | 🇩🇪 [Deutsch](../i18n/de/docs/guides/USER_GUIDE.md) | 🇮🇳 [हिन्दी](../i18n/in/docs/guides/USER_GUIDE.md) | 🇹🇭 [ไทย](../i18n/th/docs/guides/USER_GUIDE.md) | 🇺🇦 [Українська](../i18n/uk-UA/docs/guides/USER_GUIDE.md) | 🇸🇦 [العربية](../i18n/ar/docs/guides/USER_GUIDE.md) | 🇯🇵 [日本語](../i18n/ja/docs/guides/USER_GUIDE.md) | 🇻🇳 [Tiếng Việt](../i18n/vi/docs/guides/USER_GUIDE.md) | 🇧🇬 [Български](../i18n/bg/docs/guides/USER_GUIDE.md) | 🇩🇰 [Dansk](../i18n/da/docs/guides/USER_GUIDE.md) | 🇫🇮 [Suomi](../i18n/fi/docs/guides/USER_GUIDE.md) | 🇮🇱 [עברית](../i18n/he/docs/guides/USER_GUIDE.md) | 🇭🇺 [Magyar](../i18n/hu/docs/guides/USER_GUIDE.md) | 🇮🇩 [Bahasa Indonesia](../i18n/id/docs/guides/USER_GUIDE.md) | 🇰🇷 [한국어](../i18n/ko/docs/guides/USER_GUIDE.md) | 🇲🇾 [Bahasa Melayu](../i18n/ms/docs/guides/USER_GUIDE.md) | 🇳🇱 [Nederlands](../i18n/nl/docs/guides/USER_GUIDE.md) | 🇳🇴 [Norsk](../i18n/no/docs/guides/USER_GUIDE.md) | 🇵🇹 [Português (Portugal)](../i18n/pt/docs/guides/USER_GUIDE.md) | 🇷🇴 [Română](../i18n/ro/docs/guides/USER_GUIDE.md) | 🇵🇱 [Polski](../i18n/pl/docs/guides/USER_GUIDE.md) | 🇸🇰 [Slovenčina](../i18n/sk/docs/guides/USER_GUIDE.md) | 🇸🇪 [Svenska](../i18n/sv/docs/guides/USER_GUIDE.md) | 🇵🇭 [Filipino](../i18n/phi/docs/guides/USER_GUIDE.md) | 🇨🇿 [Čeština](../i18n/cs/docs/guides/USER_GUIDE.md)
 
-Complete guide for configuring providers, creating combos, integrating CLI tools, and deploying OmniRoute.
+Complete guide for configuring providers, creating combos, integrating CLI tools, and deploying NextRoute.
 
 ---
 
@@ -142,10 +142,10 @@ Models:
   cc/claude-haiku-4-5-20251001
 ```
 
-**Pro Tip:** Use Opus for complex tasks, Sonnet for speed. OmniRoute tracks quota per model!
+**Pro Tip:** Use Opus for complex tasks, Sonnet for speed. NextRoute tracks quota per model!
 
 Claude and Claude Code-compatible routes preserve `max` thinking effort for Opus and Sonnet
-models. Haiku models do not accept the `max` effort tier, so OmniRoute downgrades that
+models. Haiku models do not accept the `max` effort tier, so NextRoute downgrades that
 request to a high thinking budget before sending it upstream.
 
 #### OpenAI Codex (Plus/Pro)
@@ -282,7 +282,7 @@ Cost: $0 forever!
 ```
 Settings → Models → Advanced:
   OpenAI API Base URL: http://localhost:20128/v1
-  OpenAI API Key: [from omniroute dashboard]
+  OpenAI API Key: [from nextroute dashboard]
   Model: cc/claude-opus-4-7
 ```
 
@@ -294,7 +294,7 @@ Edit `~/.claude/settings.json`:
 {
   "env": {
     "ANTHROPIC_BASE_URL": "http://localhost:20128",
-    "ANTHROPIC_AUTH_TOKEN": "your-omniroute-api-key"
+    "ANTHROPIC_AUTH_TOKEN": "your-nextroute-api-key"
   }
 }
 ```
@@ -305,7 +305,7 @@ Use the Claude-compatible root endpoint here. Do not append `/v1` to `ANTHROPIC_
 
 ```bash
 export OPENAI_BASE_URL="http://localhost:20128"
-export OPENAI_API_KEY="your-omniroute-api-key"
+export OPENAI_API_KEY="your-nextroute-api-key"
 codex "your prompt"
 ```
 
@@ -317,14 +317,14 @@ Edit `~/.openclaw/openclaw.json`:
 {
   "agents": {
     "defaults": {
-      "model": { "primary": "omniroute/if/kimi-k2" }
+      "model": { "primary": "nextroute/if/kimi-k2" }
     }
   },
   "models": {
     "providers": {
-      "omniroute": {
+      "nextroute": {
         "baseUrl": "http://localhost:20128/v1",
-        "apiKey": "your-omniroute-api-key",
+        "apiKey": "your-nextroute-api-key",
         "api": "openai-completions",
         "models": [{ "id": "if/kimi-k2", "name": "kimi-k2" }]
       }
@@ -351,42 +351,42 @@ Model: cc/claude-opus-4-7
 ### Global npm install (Recommended)
 
 ```bash
-npm install -g omniroute
+npm install -g nextroute
 
 # Create config directory
-mkdir -p ~/.omniroute
+mkdir -p ~/.nextroute
 
 # Create .env file (see .env.example)
-cp .env.example ~/.omniroute/.env
+cp .env.example ~/.nextroute/.env
 
 # Start server
-omniroute
+nextroute
 # Or with custom port:
-omniroute --port 3000
+nextroute --port 3000
 ```
 
-The CLI automatically loads `.env` from `~/.omniroute/.env` or `./.env`.
+The CLI automatically loads `.env` from `~/.nextroute/.env` or `./.env`.
 
 ### Uninstalling
 
-When you no longer need OmniRoute, we provide two quick scripts for a clean removal:
+When you no longer need NextRoute, we provide two quick scripts for a clean removal:
 
 | Command                  | Action                                                                              |
 | ------------------------ | ----------------------------------------------------------------------------------- |
-| `npm run uninstall`      | Removes the system app but **keeps your DB and configurations** in `~/.omniroute`.  |
+| `npm run uninstall`      | Removes the system app but **keeps your DB and configurations** in `~/.nextroute`.  |
 | `npm run uninstall:full` | Removes the app AND permanently **erases all configurations, keys, and databases**. |
 
-> Note: To run these commands, navigate to the OmniRoute project folder (if you cloned it) and run them. Alternatively, if globally installed, you can simply run `npm uninstall -g omniroute`.
+> Note: To run these commands, navigate to the NextRoute project folder (if you cloned it) and run them. Alternatively, if globally installed, you can simply run `npm uninstall -g nextroute`.
 
 ### VPS Deployment
 
 ```bash
-git clone https://github.com/diegosouzapw/OmniRoute.git
-cd OmniRoute && npm install && npm run build
+git clone https://github.com/diegosouzapw/NextRoute.git
+cd NextRoute && npm install && npm run build
 
 export JWT_SECRET="your-secure-secret-change-this"
 export INITIAL_PASSWORD="your-password"
-export DATA_DIR="/var/lib/omniroute"
+export DATA_DIR="/var/lib/nextroute"
 export PORT="20128"
 export HOSTNAME="0.0.0.0"
 export NODE_ENV="production"
@@ -394,7 +394,7 @@ export NEXT_PUBLIC_BASE_URL="http://localhost:20128"
 export API_KEY_SECRET="endpoint-proxy-api-key-secret"
 
 npm run start
-# Or: pm2 start npm --name omniroute -- start
+# Or: pm2 start npm --name nextroute -- start
 ```
 
 ### PM2 Deployment (Low Memory)
@@ -403,10 +403,10 @@ For servers with limited RAM, use the memory limit option:
 
 ```bash
 # With 512MB limit (default)
-pm2 start npm --name omniroute -- start
+pm2 start npm --name nextroute -- start
 
 # Or with custom memory limit
-OMNIROUTE_MEMORY_MB=512 pm2 start npm --name omniroute -- start
+NEXTROUTE_MEMORY_MB=512 pm2 start npm --name nextroute -- start
 
 # Or using ecosystem.config.js
 pm2 start ecosystem.config.js
@@ -418,12 +418,12 @@ Create `ecosystem.config.js`:
 module.exports = {
   apps: [
     {
-      name: "omniroute",
+      name: "nextroute",
       script: "npm",
       args: "start",
       env: {
         NODE_ENV: "production",
-        OMNIROUTE_MEMORY_MB: "512",
+        NEXTROUTE_MEMORY_MB: "512",
         JWT_SECRET: "your-secret",
         INITIAL_PASSWORD: "your-password",
       },
@@ -438,24 +438,24 @@ module.exports = {
 
 ```bash
 # Build image (default = runner-cli with codex/claude/droid preinstalled)
-docker build -t omniroute:cli .
+docker build -t nextroute:cli .
 
 # Portable mode (recommended)
-docker run -d --name omniroute -p 20128:20128 --env-file ./.env -v omniroute-data:/app/data omniroute:cli
+docker run -d --name nextroute -p 20128:20128 --env-file ./.env -v nextroute-data:/app/data nextroute:cli
 ```
 
 For host-integrated mode with CLI binaries, see the Docker section in the main docs.
 
 ### Void Linux (xbps-src)
 
-Void Linux users can package and install OmniRoute natively using the `xbps-src` cross-compilation framework. This automates the Node.js standalone build along with the required `better-sqlite3` native bindings.
+Void Linux users can package and install NextRoute natively using the `xbps-src` cross-compilation framework. This automates the Node.js standalone build along with the required `better-sqlite3` native bindings.
 
 <details>
 <summary><b>View xbps-src template</b></summary>
 
 ```bash
-# Template file for 'omniroute'
-pkgname=omniroute
+# Template file for 'nextroute'
+pkgname=nextroute
 version=3.8.0
 revision=1
 hostmakedepends="nodejs python3 make"
@@ -463,11 +463,11 @@ depends="openssl"
 short_desc="Universal AI gateway with smart routing for multiple LLM providers"
 maintainer="zenobit <zenobit@disroot.org>"
 license="MIT"
-homepage="https://github.com/diegosouzapw/OmniRoute"
-distfiles="https://github.com/diegosouzapw/OmniRoute/archive/refs/tags/v${version}.tar.gz"
+homepage="https://github.com/diegosouzapw/NextRoute"
+distfiles="https://github.com/diegosouzapw/NextRoute/archive/refs/tags/v${version}.tar.gz"
 checksum=009400afee90a9f32599d8fe734145cfd84098140b7287990183dde45ae2245b
-system_accounts="_omniroute"
-omniroute_homedir="/var/lib/omniroute"
+system_accounts="_nextroute"
+nextroute_homedir="/var/lib/nextroute"
 export NODE_ENV=production
 export npm_config_engine_strict=false
 export npm_config_loglevel=error
@@ -517,26 +517,26 @@ do_check() {
 }
 
 do_install() {
-	vmkdir usr/lib/omniroute/.next
-	vcopy .next/standalone/. usr/lib/omniroute/.next/standalone
+	vmkdir usr/lib/nextroute/.next
+	vcopy .next/standalone/. usr/lib/nextroute/.next/standalone
 
 	# Prevent removal of empty Next.js app router dirs by the post-install hook
 	for _d in \
 		.next/standalone/.next/server/app/dashboard \
 		.next/standalone/.next/server/app/dashboard/settings \
 		.next/standalone/.next/server/app/dashboard/providers; do
-		touch "${DESTDIR}/usr/lib/omniroute/${_d}/.keep"
+		touch "${DESTDIR}/usr/lib/nextroute/${_d}/.keep"
 	done
 
-	cat > "${WRKDIR}/omniroute" <<'EOF'
+	cat > "${WRKDIR}/nextroute" <<'EOF'
 #!/bin/sh
 export PORT="${PORT:-20128}"
-export DATA_DIR="${DATA_DIR:-${XDG_DATA_HOME:-${HOME}/.local/share}/omniroute}"
+export DATA_DIR="${DATA_DIR:-${XDG_DATA_HOME:-${HOME}/.local/share}/nextroute}"
 export APP_LOG_TO_FILE="${APP_LOG_TO_FILE:-false}"
 mkdir -p "${DATA_DIR}"
-exec node /usr/lib/omniroute/.next/standalone/server.js "$@"
+exec node /usr/lib/nextroute/.next/standalone/server.js "$@"
 EOF
-	vbin "${WRKDIR}/omniroute"
+	vbin "${WRKDIR}/nextroute"
 }
 
 post_install() {
@@ -550,14 +550,14 @@ post_install() {
 
 | Variable                                | Default                              | Description                                                                                               |
 | --------------------------------------- | ------------------------------------ | --------------------------------------------------------------------------------------------------------- |
-| `JWT_SECRET`                            | `omniroute-default-secret-change-me` | JWT signing secret (**change in production**)                                                             |
+| `JWT_SECRET`                            | `nextroute-default-secret-change-me` | JWT signing secret (**change in production**)                                                             |
 | `INITIAL_PASSWORD`                      | `CHANGEME`                           | First login password                                                                                      |
-| `DATA_DIR`                              | `~/.omniroute`                       | Data directory (db, usage, logs)                                                                          |
+| `DATA_DIR`                              | `~/.nextroute`                       | Data directory (db, usage, logs)                                                                          |
 | `PORT`                                  | framework default                    | Service port (`20128` in examples)                                                                        |
 | `HOSTNAME`                              | framework default                    | Bind host (Docker defaults to `0.0.0.0`)                                                                  |
 | `NODE_ENV`                              | runtime default                      | Set `production` for deploy                                                                               |
 | `NEXT_PUBLIC_BASE_URL`                  | `http://localhost:20128`             | Public base URL surfaced to the dashboard and exposed to the server (replaces legacy `BASE_URL`)          |
-| `NEXT_PUBLIC_CLOUD_URL`                 | `https://omniroute.dev`              | Cloud sync endpoint base URL (replaces legacy `CLOUD_URL`)                                                |
+| `NEXT_PUBLIC_CLOUD_URL`                 | `https://nextroute.dev`              | Cloud sync endpoint base URL (replaces legacy `CLOUD_URL`)                                                |
 | `API_KEY_SECRET`                        | `endpoint-proxy-api-key-secret`      | HMAC secret for generated API keys                                                                        |
 | `REQUIRE_API_KEY`                       | `false`                              | Enforce Bearer API key on `/v1/*`                                                                         |
 | `ALLOW_API_KEY_REVEAL`                  | `false`                              | Allow Api Manager to copy full API keys on demand                                                         |
@@ -567,7 +567,7 @@ post_install() {
 | `AUTH_COOKIE_SECURE`                    | `false`                              | Force `Secure` auth cookie (behind HTTPS reverse proxy)                                                   |
 | `CLOUDFLARED_BIN`                       | unset                                | Use an existing `cloudflared` binary instead of managed download                                          |
 | `CLOUDFLARED_PROTOCOL`                  | `http2`                              | Transport for managed Quick Tunnels (`http2`, `quic`, or `auto`)                                          |
-| `OMNIROUTE_MEMORY_MB`                   | `512`                                | Node.js heap limit in MB                                                                                  |
+| `NEXTROUTE_MEMORY_MB`                   | `512`                                | Node.js heap limit in MB                                                                                  |
 | `PROMPT_CACHE_MAX_SIZE`                 | `50`                                 | Max prompt cache entries                                                                                  |
 | `SEMANTIC_CACHE_MAX_SIZE`               | `100`                                | Max semantic cache entries                                                                                |
 
@@ -630,7 +630,7 @@ For the full environment variable reference, see the [README](../README.md).
 
 **Other compatible providers** (selected): `cohere`, `databricks`, `snowflake`, `together`, `vertex`, `alibaba`, `alibaba-cn`, `bedrock` (via `aws-bedrock`), `azure-ai`, `openrouter` (passthrough catalog), `siliconflow`, `hyperbolic`, `huggingface`, `featherless-ai`, `cloudflare-ai`, `scaleway`, `deepinfra`, `vercel-ai-gateway`, `bazaarlink`, `friendliai`, `nous-research`, `reka`, `volcengine`, `ai21`, `gigachat`. Each maintains its own model list in `providerRegistry.ts` and can be auto-synced when the provider exposes a `/models` endpoint.
 
-**Note on model IDs:** OmniRoute uses provider-native IDs (`claude-opus-4-8`, `gpt-5.5`, `glm-5.1`, `MiniMax-M2.7`, `kimi-k2.5`, `grok-4.20-0309-reasoning`). Some IDs include dotted versions because that is how the upstream API expects them. If a model is not listed above, run `omniroute models --search <term>` or hit `GET /api/models/catalog` to confirm availability.
+**Note on model IDs:** NextRoute uses provider-native IDs (`claude-opus-4-8`, `gpt-5.5`, `glm-5.1`, `MiniMax-M2.7`, `kimi-k2.5`, `grok-4.20-0309-reasoning`). Some IDs include dotted versions because that is how the upstream API expects them. If a model is not listed above, run `nextroute models --search <term>` or hit `GET /api/models/catalog` to confirm availability.
 
 </details>
 
@@ -708,7 +708,7 @@ Returns models grouped by provider with types (`chat`, `embedding`, `image`).
 - Available in **Dashboard → Endpoints** for Docker and other self-hosted deployments
 - Creates a temporary `https://*.trycloudflare.com` URL that forwards to your current OpenAI-compatible `/v1` endpoint
 - First enable installs `cloudflared` only when needed; later restarts reuse the same managed binary
-- Quick Tunnels are not auto-restored after an OmniRoute or container restart; re-enable them from the dashboard when needed
+- Quick Tunnels are not auto-restored after an NextRoute or container restart; re-enable them from the dashboard when needed
 - Tunnel URLs are ephemeral and change every time you stop/start the tunnel
 - Managed Quick Tunnels default to HTTP/2 transport to avoid noisy QUIC UDP buffer warnings in constrained containers
 - Set `CLOUDFLARED_PROTOCOL=quic` or `auto` if you want to override the managed transport choice
@@ -717,15 +717,15 @@ Returns models grouped by provider with types (`chat`, `embedding`, `image`).
 
 ### LLM Gateway Intelligence (Phase 9)
 
-- **Semantic Cache** — Auto-caches non-streaming, temperature=0 responses (bypass with `X-OmniRoute-No-Cache: true`)
+- **Semantic Cache** — Auto-caches non-streaming, temperature=0 responses (bypass with `X-NextRoute-No-Cache: true`)
 - **Request Idempotency** — Deduplicates requests within 5s via `Idempotency-Key` or `X-Request-Id` header
-- **Progress Tracking** — Opt-in SSE `event: progress` events via `X-OmniRoute-Progress: true` header
+- **Progress Tracking** — Opt-in SSE `event: progress` events via `X-NextRoute-Progress: true` header
 
 ---
 
 ### Translator Playground
 
-Access via **Dashboard → Translator**. Debug and visualize how OmniRoute translates API requests between providers.
+Access via **Dashboard → Translator**. Debug and visualize how NextRoute translates API requests between providers.
 
 | Mode             | Purpose                                                                                |
 | ---------------- | -------------------------------------------------------------------------------------- |
@@ -778,7 +778,7 @@ For external session affinity (for example, Claude Code/Codex agents behind reve
 X-Session-Id: your-session-key
 ```
 
-OmniRoute also accepts `x_session_id` and returns the effective session key in `X-OmniRoute-Session-Id`.
+NextRoute also accepts `x_session_id` and returns the effective session key in `X-NextRoute-Session-Id`.
 
 If you use Nginx and send underscore-form headers, enable:
 
@@ -814,7 +814,7 @@ Chain: production-fallback
 
 Configure via **Dashboard → Settings → Resilience**.
 
-OmniRoute implements provider-level resilience with five components:
+NextRoute implements provider-level resilience with five components:
 
 1. **Request Queue & Pacing** — System-level request shaping:
    - **Requests Per Minute (RPM)** — Maximum requests per minute per account
@@ -837,7 +837,7 @@ OmniRoute implements provider-level resilience with five components:
 
    The provider breaker runtime state is shown on **Dashboard → Health** only.
 
-4. **Wait For Cooldown** — If every candidate connection is already cooling down, OmniRoute can wait for the earliest cooldown and retry the same client request automatically.
+4. **Wait For Cooldown** — If every candidate connection is already cooling down, NextRoute can wait for the earliest cooldown and retry the same client request automatically.
 
 5. **Rate Limit Auto-Detection** — When upstream providers return explicit wait windows, those hints override the local connection cooldown when the setting is enabled.
 
@@ -871,7 +871,7 @@ curl -X POST http://localhost:20128/api/db-backups/import \
 
 **Use Cases:**
 
-- Migrate OmniRoute between machines
+- Migrate NextRoute between machines
 - Create external backups for disaster recovery
 - Share configurations between team members (export all → share archive)
 
@@ -918,7 +918,7 @@ curl http://localhost:20128/api/usage/budget
 
 ### Audio Transcription
 
-OmniRoute supports audio transcription via the OpenAI-compatible endpoint:
+NextRoute supports audio transcription via the OpenAI-compatible endpoint:
 
 ```bash
 POST /v1/audio/transcriptions
@@ -1008,7 +1008,7 @@ Access via **Dashboard → Health**. Real-time system health overview with 6 car
 
 ## 🤖 Auto-Routing (Zero-config)
 
-OmniRoute ships with a **score-driven auto-router** that picks the best model for each request across every connected provider — no combo to maintain. Just send the request with one of the `auto/*` prefixes and OmniRoute will assemble a virtual combo on the fly, scoring candidates on latency, cost, success rate, context fit, model fitness for the task, recent failures, quota, and circuit-breaker state.
+NextRoute ships with a **score-driven auto-router** that picks the best model for each request across every connected provider — no combo to maintain. Just send the request with one of the `auto/*` prefixes and NextRoute will assemble a virtual combo on the fly, scoring candidates on latency, cost, success rate, context fit, model fitness for the task, recent failures, quota, and circuit-breaker state.
 
 | Prefix         | Optimizes for                                                                 |
 | -------------- | ----------------------------------------------------------------------------- |
@@ -1024,7 +1024,7 @@ Example:
 
 ```bash
 curl -X POST http://localhost:20128/v1/chat/completions \
-  -H "Authorization: Bearer $OMNIROUTE_KEY" \
+  -H "Authorization: Bearer $NEXTROUTE_KEY" \
   -H "Content-Type: application/json" \
   -d '{
     "model": "auto/coding",
@@ -1039,13 +1039,13 @@ The auto-router is fully described in [AUTO-COMBO.md](../routing/AUTO-COMBO.md) 
 
 ## 🔌 MCP & A2A Integration
 
-OmniRoute is both an **MCP server** (Model Context Protocol) and an **A2A server** (Agent-to-Agent JSON-RPC 2.0). Any MCP-compatible IDE or agent host can call OmniRoute tools directly — no extra wrapper required.
+NextRoute is both an **MCP server** (Model Context Protocol) and an **A2A server** (Agent-to-Agent JSON-RPC 2.0). Any MCP-compatible IDE or agent host can call NextRoute tools directly — no extra wrapper required.
 
 ### MCP transports
 
 - **SSE**: `http://localhost:20128/api/mcp/sse`
 - **Streamable HTTP**: `http://localhost:20128/api/mcp/stream`
-- **stdio**: `omniroute --mcp` (for IDE plugins that prefer stdio)
+- **stdio**: `nextroute --mcp` (for IDE plugins that prefer stdio)
 
 ### Connect Claude Desktop
 
@@ -1054,8 +1054,8 @@ Edit `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS) o
 ```json
 {
   "mcpServers": {
-    "omniroute": {
-      "command": "omniroute",
+    "nextroute": {
+      "command": "nextroute",
       "args": ["--mcp"]
     }
   }
@@ -1074,7 +1074,7 @@ MCP tools are grouped into 10 scopes: `analytics`, `auth`, `billing`, `combos`, 
 
 ## 🧠 Skills System
 
-OmniRoute exposes an extensible **skill framework** (`src/lib/skills/`) so agents and the A2A endpoint can run domain-specific routines (e.g. `code-review`, `summarize`, `extract-facts`, `web-research`).
+NextRoute exposes an extensible **skill framework** (`src/lib/skills/`) so agents and the A2A endpoint can run domain-specific routines (e.g. `code-review`, `summarize`, `extract-facts`, `web-research`).
 
 - **Marketplace UI** — Browse and install skills from **Dashboard → Skills**
 - **Per-key scopes** — Restrict which API keys can invoke which skills
@@ -1086,7 +1086,7 @@ Full reference: [SKILLS.md](../frameworks/SKILLS.md).
 
 ## 💾 Memory System
 
-OmniRoute persists **long-term conversational memory** with hybrid retrieval:
+NextRoute persists **long-term conversational memory** with hybrid retrieval:
 
 - **SQLite FTS5** for keyword search across past turns
 - **Qdrant vector store** (optional) for semantic recall
@@ -1099,11 +1099,11 @@ Manage memories in **Dashboard → Memory** (search, edit, export, purge). The H
 
 ## 🔔 Webhooks
 
-Subscribe to OmniRoute events for real-time monitoring and automation.
+Subscribe to NextRoute events for real-time monitoring and automation.
 
 - Create a webhook in **Dashboard → Webhooks** with target URL and HMAC signing secret
 - Available events: `request.completed`, `request.failed`, `provider.unavailable`, `budget.exceeded`, `combo.switched`, `circuit_breaker.opened`, `circuit_breaker.closed`
-- Every payload includes `X-OmniRoute-Signature` (HMAC-SHA256) for verification
+- Every payload includes `X-NextRoute-Signature` (HMAC-SHA256) for verification
 - Retries: 3 attempts with exponential backoff, then dead-letter queue
 
 Full schema in [WEBHOOKS.md](../frameworks/WEBHOOKS.md).
@@ -1112,11 +1112,11 @@ Full schema in [WEBHOOKS.md](../frameworks/WEBHOOKS.md).
 
 ## ☁️ Cloud Agents
 
-OmniRoute integrates with cloud coding agents (**OpenAI Codex Cloud**, **Devin**, **Jules**, **Antigravity**) so you can dispatch long-running tasks from the same dashboard that handles your local routing.
+NextRoute integrates with cloud coding agents (**OpenAI Codex Cloud**, **Devin**, **Jules**, **Antigravity**) so you can dispatch long-running tasks from the same dashboard that handles your local routing.
 
 - Create tasks in **Dashboard → Cloud Agents** or via `POST /api/v1/agents/tasks`
 - Track status, logs, and artifacts per task
-- Bring-your-own API key per provider — credentials never leave the OmniRoute instance
+- Bring-your-own API key per provider — credentials never leave the NextRoute instance
 
 Full reference: [CLOUD_AGENT.md](../frameworks/CLOUD_AGENT.md).
 
@@ -1124,30 +1124,30 @@ Full reference: [CLOUD_AGENT.md](../frameworks/CLOUD_AGENT.md).
 
 ## 🛠️ Programmatic Management
 
-You can manage every OmniRoute resource (providers, combos, keys, settings) over HTTP using a **Bearer key with the `manage` scope**.
+You can manage every NextRoute resource (providers, combos, keys, settings) over HTTP using a **Bearer key with the `manage` scope**.
 
 Generate the key in **Dashboard → API Manager → New Key → Scope: manage**, then:
 
 ```bash
 # List providers
 curl http://localhost:20128/api/providers \
-  -H "Authorization: Bearer $OMNIROUTE_MANAGE_KEY"
+  -H "Authorization: Bearer $NEXTROUTE_MANAGE_KEY"
 
 # Add a provider connection
 curl -X POST http://localhost:20128/api/providers \
-  -H "Authorization: Bearer $OMNIROUTE_MANAGE_KEY" \
+  -H "Authorization: Bearer $NEXTROUTE_MANAGE_KEY" \
   -H "Content-Type: application/json" \
   -d '{ "provider": "openai", "apiKey": "sk-...", "name": "main" }'
 
 # Create a combo
 curl -X POST http://localhost:20128/api/combos \
-  -H "Authorization: Bearer $OMNIROUTE_MANAGE_KEY" \
+  -H "Authorization: Bearer $NEXTROUTE_MANAGE_KEY" \
   -H "Content-Type: application/json" \
   -d '{ "name": "premium", "strategy": "priority", "models": [{ "model": "cc/claude-opus-4-7" }, { "model": "glm/glm-5.1" }] }'
 
 # List/create API keys
-curl http://localhost:20128/api/keys -H "Authorization: Bearer $OMNIROUTE_MANAGE_KEY"
-curl -X POST http://localhost:20128/api/keys -H "Authorization: Bearer $OMNIROUTE_MANAGE_KEY" \
+curl http://localhost:20128/api/keys -H "Authorization: Bearer $NEXTROUTE_MANAGE_KEY"
+curl -X POST http://localhost:20128/api/keys -H "Authorization: Bearer $NEXTROUTE_MANAGE_KEY" \
   -d '{ "name": "ci-bot", "scopes": ["chat"] }'
 ```
 
@@ -1157,38 +1157,38 @@ See [API_REFERENCE.md](../reference/API_REFERENCE.md) for the full endpoint cata
 
 ## 💻 Internal CLI
 
-OmniRoute ships an internal CLI (`omniroute …`) for setup, diagnostics, and runtime control. This is **separate from the "CLI Tools" page in the dashboard**, which configures third-party CLIs (Claude Code, Cursor, Codex, Cline, …) so they can talk to OmniRoute.
+NextRoute ships an internal CLI (`nextroute …`) for setup, diagnostics, and runtime control. This is **separate from the "CLI Tools" page in the dashboard**, which configures third-party CLIs (Claude Code, Cursor, Codex, Cline, …) so they can talk to NextRoute.
 
 ```bash
-omniroute setup                    # Interactive wizard (password, providers, combos)
-omniroute setup --non-interactive  # CI-friendly
-omniroute doctor                   # Health diagnostics (data dir, DB, providers, ports)
-omniroute providers available      # List supported providers
-omniroute providers list           # List configured connections
-omniroute providers test <id>      # Live test a provider connection
-omniroute combos list              # List combos
-omniroute combos switch <name>     # Set default combo
-omniroute models                   # List available models (--json, --search)
-omniroute keys add | list | remove # Manage API keys from the terminal
-omniroute backup                   # Snapshot config + DB
-omniroute restore [<timestamp>]    # Restore from a snapshot
-omniroute health                   # Detailed health (breakers, cache, memory)
-omniroute quota                    # Provider quota usage
-omniroute mcp status               # MCP server status
-omniroute a2a status               # A2A server status
-omniroute tunnel list|create|stop  # Cloudflare/Tailscale/ngrok tunnels
-omniroute reset-password           # Reset the admin password
-omniroute --mcp                    # Start MCP server over stdio
-omniroute --port 3000              # Start the server on a custom port
+nextroute setup                    # Interactive wizard (password, providers, combos)
+nextroute setup --non-interactive  # CI-friendly
+nextroute doctor                   # Health diagnostics (data dir, DB, providers, ports)
+nextroute providers available      # List supported providers
+nextroute providers list           # List configured connections
+nextroute providers test <id>      # Live test a provider connection
+nextroute combos list              # List combos
+nextroute combos switch <name>     # Set default combo
+nextroute models                   # List available models (--json, --search)
+nextroute keys add | list | remove # Manage API keys from the terminal
+nextroute backup                   # Snapshot config + DB
+nextroute restore [<timestamp>]    # Restore from a snapshot
+nextroute health                   # Detailed health (breakers, cache, memory)
+nextroute quota                    # Provider quota usage
+nextroute mcp status               # MCP server status
+nextroute a2a status               # A2A server status
+nextroute tunnel list|create|stop  # Cloudflare/Tailscale/ngrok tunnels
+nextroute reset-password           # Reset the admin password
+nextroute --mcp                    # Start MCP server over stdio
+nextroute --port 3000              # Start the server on a custom port
 ```
 
-Tip: pair `omniroute doctor --json` with your monitoring tool to alert on unhealthy provider connections.
+Tip: pair `nextroute doctor --json` with your monitoring tool to alert on unhealthy provider connections.
 
 ---
 
 ## 🖥️ Desktop Application (Electron)
 
-OmniRoute is available as a native desktop application for Windows, macOS, and Linux.
+NextRoute is available as a native desktop application for Windows, macOS, and Linux.
 
 ### Installation
 
@@ -1231,7 +1231,7 @@ Output → `electron/dist-electron/`
 
 | Variable              | Default | Description                      |
 | --------------------- | ------- | -------------------------------- |
-| `OMNIROUTE_PORT`      | `20128` | Server port                      |
-| `OMNIROUTE_MEMORY_MB` | `512`   | Node.js heap limit (64–16384 MB) |
+| `NEXTROUTE_PORT`      | `20128` | Server port                      |
+| `NEXTROUTE_MEMORY_MB` | `512`   | Node.js heap limit (64–16384 MB) |
 
 📖 Full documentation: [`electron/README.md`](../../electron/README.md)

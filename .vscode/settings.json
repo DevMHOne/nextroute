@@ -26,7 +26,7 @@
   //   "**/node_modules": true,
   //   "**/.next": true,
   //   "**/coverage": true,
-  //   "**/omniroute-*.tgz": true,
+  //   "**/nextroute-*.tgz": true,
   //   "**/_tasks": true
   // },
   "files.watcherExclude": {
@@ -43,7 +43,7 @@
     "**/out/**": true,
     "**/.cache/**": true,
     "**/.turbo/**": true,
-    "**/OmniRoute-*/**": true,
+    "**/NextRoute-*/**": true,
     "**/*-merge-*/**": true,
     "**/*-worktree-*/**": true,
     "**/*-issues-*/**": true,
@@ -60,7 +60,7 @@
     "**/dist": true,
     "**/build": true,
     "**/out": true,
-    "**/OmniRoute-*": true,
+    "**/NextRoute-*": true,
     "**/*-merge-*": true,
     "**/*-worktree-*": true,
     "**/*-issues-*": true,

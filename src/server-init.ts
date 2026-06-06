@@ -8,7 +8,7 @@ import { startBudgetResetJob } from "./lib/jobs/budgetResetJob";
 import { startReasoningCacheCleanupJob } from "./lib/jobs/reasoningCacheCleanupJob";
 import { getSettings } from "./lib/db/settings";
 import { applyRuntimeSettings } from "./lib/config/runtimeSettings";
-import { setSystemPromptConfig } from "@omniroute/open-sse/services/systemPrompt.ts";
+import { setSystemPromptConfig } from "@nextroute/open-sse/services/systemPrompt.ts";
 import { startRuntimeConfigHotReload } from "./lib/config/hotReload";
 import { startSpendBatchWriter } from "./lib/spend/batchWriter";
 import { registerDefaultGuardrails } from "./lib/guardrails";

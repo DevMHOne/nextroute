@@ -20,7 +20,7 @@ import {
   getComboByName,
   updateCombo,
 } from "@/lib/db/combos";
-import { REGISTRY } from "@omniroute/open-sse/config/providerRegistry";
+import { REGISTRY } from "@nextroute/open-sse/config/providerRegistry";
 import { quotaModelName, parseQuotaModelName, isQuotaModelName, quotaGroupSlug } from "./quotaModelNaming";
 import { createLogger } from "@/shared/utils/logger";
 

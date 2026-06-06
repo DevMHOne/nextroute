@@ -4,7 +4,7 @@ import { validateBody, isValidationFailure } from "@/shared/validation/helpers";
 import { QdrantSettingsUpdateSchema } from "@/shared/schemas/qdrant";
 import { getQdrantConfig, normalizeQdrantConfig } from "@/lib/memory/qdrant";
 import { updateSettings, getSettings } from "@/lib/localDb";
-import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error.ts";
+import { sanitizeErrorMessage } from "@nextroute/open-sse/utils/error.ts";
 
 function maskApiKey(apiKey: string | null): { hasApiKey: boolean; apiKeyMasked: string | null } {
   if (!apiKey || apiKey.trim().length === 0) {

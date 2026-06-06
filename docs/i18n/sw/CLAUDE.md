@@ -39,7 +39,7 @@ Kwa matrix kamili ya majaribio, angalia `CONTRIBUTING.md` → "Kuendesha Majarib
 
 ## Mradi kwa Muonekano
 
-**OmniRoute** — proxy/router ya AI iliyounganishwa. Kipengele kimoja, watoa huduma 160+, auto-fallback.
+**NextRoute** — proxy/router ya AI iliyounganishwa. Kipengele kimoja, watoa huduma 160+, auto-fallback.
 
 | Tabaka        | Mahali                  | Kusudi                                                                   |
 | ------------- | ----------------------- | ------------------------------------------------------------------------ |
@@ -82,7 +82,7 @@ Njia za API zinafuata muundo thabiti: `Njia → CORS preflight → Uthibitisho w
 
 ## Hali ya Uhimilivu wa Wakati
 
-OmniRoute ina mitambo mitatu inayohusiana lakini tofauti ya kushindwa kwa muda. Hifadhi upeo wao tofauti unapofanya ufuatiliaji wa tabia ya mwelekeo. Tazama
+NextRoute ina mitambo mitatu inayohusiana lakini tofauti ya kushindwa kwa muda. Hifadhi upeo wao tofauti unapofanya ufuatiliaji wa tabia ya mwelekeo. Tazama
 [chati ya uhimilivu ya tabaka 3](./docs/diagrams/exported/resilience-3layers.svg)
 (chanzo: [docs/diagrams/resilience-3layers.mmd](./docs/diagrams/resilience-3layers.mmd))
 kwa ramani ya haraka.
@@ -215,7 +215,7 @@ Kufungwa kwa mfano kunaishi katika `open-sse/services/accountFallback.ts` na ina
 ### Mtindo wa Kanuni
 
 - **Spaces 2**, semicolons, double quotes, upana wa herufi 100, es5 trailing commas (inasimamiwa na lint-staged kupitia Prettier)
-- **Maaliko**: nje → ndani (`@/`, `@omniroute/open-sse`) → ya uhusiano
+- **Maaliko**: nje → ndani (`@/`, `@nextroute/open-sse`) → ya uhusiano
 - **Majina**: faili=camelCase/kebab, vipengele=PascalCase, constants=UPPER_SNAKE
 - **ESLint**: `no-eval`, `no-implied-eval`, `no-new-func` = kosa kila mahali; `no-explicit-any` = onyo katika `open-sse/` na `tests/`
 - **TypeScript**: `strict: false`, lengo ES2022, moduli esnext, resolution bundler. Prefer explicit types.
@@ -383,9 +383,9 @@ git push -u origin feat/your-feature
 
 - **Muda wa kukimbia**: Node.js ≥20.20.2 <21 || ≥22.22.2 <23 || ≥24 <25, Moduli za ES
 - **TypeScript**: 5.9+, lengo ES2022, moduli esnext, ufumbuzi wa bundler
-- **Majina ya njia**: `@/*` → `src/`, `@omniroute/open-sse` → `open-sse/`, `@omniroute/open-sse/*` → `open-sse/*`
+- **Majina ya njia**: `@/*` → `src/`, `@nextroute/open-sse` → `open-sse/`, `@nextroute/open-sse/*` → `open-sse/*`
 - **Bandari ya kawaida**: 20128 (API + dashibodi kwenye bandari moja)
-- **Direktori ya data**: `DATA_DIR` env var, inarudiwa kwa `~/.omniroute/`
+- **Direktori ya data**: `DATA_DIR` env var, inarudiwa kwa `~/.nextroute/`
 - **Vigezo muhimu vya env**: `PORT`, `JWT_SECRET`, `API_KEY_SECRET`, `INITIAL_PASSWORD`, `REQUIRE_API_KEY`, `APP_LOG_LEVEL`
 - Mipangilio: `cp .env.example .env` kisha tengeneza `JWT_SECRET` (`openssl rand -base64 48`) na `API_KEY_SECRET` (`openssl rand -hex 32`)
 
@@ -408,4 +408,4 @@ git push -u origin feat/your-feature
 13. Kamwe usiingize njia za nje au thamani za kukimbia katika scripts za shell zinazopitishwa kwa `exec()`/`spawn()` — pitisha kupitia chaguo la `env` badala yake. Kumbuka: `src/mitm/cert/install.ts::updateNssDatabases`.
 14. Kamwe usikatae arifa za CodeQL / Secret-Scanning bila (a) kwanza kuangalia hati za muundo hapo juu kuona kama msaidizi anatumika, na (b) kurekodi sababu ya kiufundi katika maoni ya kukataa. Kiwango: `js/stack-trace-exposure` kilichoinuliwa kwenye maeneo ya wito ambayo tayari yanapitia `sanitizeErrorMessage()` ni ukomo unaojulikana wa CodeQL (wasafishaji wa kawaida hawatambuliwi) — kataa kama `false positive` ukirejelea `docs/security/ERROR_SANITIZATION.md`.
 15. Kamwe usifichue njia zinazozalisha michakato ya watoto (`/api/mcp/`, `/api/cli-tools/runtime/`) bila uainishaji wa `isLocalOnlyPath()` katika `src/server/authz/routeGuard.ts`. Utekelezaji wa loopback unafanyika bila masharti kabla ya ukaguzi wowote wa uthibitisho — JWT iliyovuja kupitia tunnel haiwezi kuanzisha uzalishaji wa mchakato. Tazama `docs/security/ROUTE_GUARD_TIERS.md`.
-16. Usijumuishe kamwe trailers `Co-Authored-By` zinazompa sifa msaidizi wa AI, LLM, au akaunti ya automation (mfano majina yenye "Claude", "GPT", "Copilot", "Bot"; barua pepe katika `anthropic.com` / `openai.com` / anwani za `noreply.github.com` zinazomilikiwa na bots). Trailers kama hizi huelekeza attribution ya commit kwa akaunti ya bot katika GitHub, zikificha mwandishi halisi (`diegosouzapw`) katika historia ya PR. Washirikiano wa kibinadamu — pamoja na waandishi wa PR za upstream na waripoti wa issues wanaohamishwa kwenda OmniRoute — WANAWEZA na WANAPASWA kupewa sifa kwa trailers za kawaida `Co-authored-by: Name <email>`; mtiririko wa kazi wa upstream-port (`/port-upstream-features`, `/port-upstream-issues`) hutegemea hii.
+16. Usijumuishe kamwe trailers `Co-Authored-By` zinazompa sifa msaidizi wa AI, LLM, au akaunti ya automation (mfano majina yenye "Claude", "GPT", "Copilot", "Bot"; barua pepe katika `anthropic.com` / `openai.com` / anwani za `noreply.github.com` zinazomilikiwa na bots). Trailers kama hizi huelekeza attribution ya commit kwa akaunti ya bot katika GitHub, zikificha mwandishi halisi (`diegosouzapw`) katika historia ya PR. Washirikiano wa kibinadamu — pamoja na waandishi wa PR za upstream na waripoti wa issues wanaohamishwa kwenda NextRoute — WANAWEZA na WANAPASWA kupewa sifa kwa trailers za kawaida `Co-authored-by: Name <email>`; mtiririko wa kazi wa upstream-port (`/port-upstream-features`, `/port-upstream-issues`) hutegemea hii.

@@ -1,4 +1,4 @@
-# OmniRoute tray icon for Windows using NotifyIcon (zero binary, AV-safe)
+# NextRoute tray icon for Windows using NotifyIcon (zero binary, AV-safe)
 # IPC: stdin JSON commands, stdout JSON events
 param([string]$IconPath, [string]$Tooltip)
 

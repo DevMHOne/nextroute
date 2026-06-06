@@ -6,18 +6,18 @@ lastUpdated: 2026-05-13
 
 # Free Tiers
 
-> **Last consolidated:** 2026-05-13 — OmniRoute v3.8.2
+> **Last consolidated:** 2026-05-13 — NextRoute v3.8.2
 > **Source of truth:** `src/shared/constants/providers.ts` (`FREE_PROVIDERS`, `OAUTH_PROVIDERS`, and `APIKEY_PROVIDERS` entries flagged with `hasFree: true` + `freeNote`)
 
-This page lists providers with usable free tiers shipped in OmniRoute v3.8.2. The data is derived from the provider catalog. If a provider does not appear here, it either has no free tier in the catalog or its `hasFree` flag is `false`.
+This page lists providers with usable free tiers shipped in NextRoute v3.8.2. The data is derived from the provider catalog. If a provider does not appear here, it either has no free tier in the catalog or its `hasFree` flag is `false`.
 
-Add credentials from the dashboard (`/dashboard/providers/new`) — OmniRoute reads keys from the database, not from per-provider environment variables. The only env vars that influence provider behavior are listed in the [Environment Variables](#environment-variables) section.
+Add credentials from the dashboard (`/dashboard/providers/new`) — NextRoute reads keys from the database, not from per-provider environment variables. The only env vars that influence provider behavior are listed in the [Environment Variables](#environment-variables) section.
 
 ---
 
 ## How free providers are wired
 
-OmniRoute classifies providers into the following groups in `src/shared/constants/providers.ts`:
+NextRoute classifies providers into the following groups in `src/shared/constants/providers.ts`:
 
 | Group              | Auth                           | Example IDs                                 |
 | ------------------ | ------------------------------ | ------------------------------------------- |
@@ -107,7 +107,7 @@ These providers are designed around a vendor OAuth flow and ship a free tier by 
 
 ### OAuth providers with vendor-controlled free tiers (in `OAUTH_PROVIDERS`)
 
-The free-tier surface here depends entirely on each vendor's account plan, not on OmniRoute:
+The free-tier surface here depends entirely on each vendor's account plan, not on NextRoute:
 
 | Provider             | ID            | Auth hint                                                                               |
 | -------------------- | ------------- | --------------------------------------------------------------------------------------- |
@@ -156,7 +156,7 @@ Check Command Code's website for the current free-tier policy.
 
 ## Environment variables
 
-OmniRoute v3.8.2 does **not** read provider API keys from environment variables (with one exception below). Keys are stored in the encrypted SQLite database and configured from the dashboard. The env vars listed here are the only ones that affect free-tier behavior:
+NextRoute v3.8.2 does **not** read provider API keys from environment variables (with one exception below). Keys are stored in the encrypted SQLite database and configured from the dashboard. The env vars listed here are the only ones that affect free-tier behavior:
 
 ```bash
 # Windsurf / Devin CLI — Firebase Web API key used by the Secure Token
@@ -218,7 +218,7 @@ For all other providers (Groq, Cerebras, Mistral, Gemini, Cohere, NVIDIA, OpenRo
 ### Tips
 
 - Combine multiple free providers in a combo (`/dashboard/combos`) to maximize daily quota and route around outages.
-- Use `omniroute doctor` to verify all configured free providers are reachable.
+- Use `nextroute doctor` to verify all configured free providers are reachable.
 - Check provider health in `/dashboard/monitoring/health` — a provider with an open circuit breaker is skipped automatically.
 - Free-tier limits change frequently; the `freeNote` strings reflect the limits as known at v3.8.0 ship date. Verify with each provider's official docs before relying on a specific number.
 

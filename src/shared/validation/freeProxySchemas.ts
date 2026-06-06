@@ -49,5 +49,5 @@ export const vercelDeploySchema = z.object({
     .min(3)
     .max(52)
     .regex(/^[a-z0-9-]+$/, "Project name must be lowercase alphanumeric with hyphens")
-    .default("omniroute-relay"),
+    .default("nextroute-relay"),
 });

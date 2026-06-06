@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { createHash, timingSafeEqual } from "node:crypto";
 import { z } from "zod";
-import { CodexExecutor } from "@omniroute/open-sse/executors/codex.ts";
+import { CodexExecutor } from "@nextroute/open-sse/executors/codex.ts";
 import { getApiKeyMetadata } from "@/lib/db/apiKeys";
 import { authorizeWebSocketHandshake, extractWsTokenFromRequest } from "@/lib/ws/handshake";
 import { getModelInfo } from "@/sse/services/model";
@@ -29,7 +29,7 @@ function isRecord(value: unknown): value is JsonRecord {
 }
 
 function getBridgeSecret(): string {
-  return process.env.OMNIROUTE_WS_BRIDGE_SECRET || "";
+  return process.env.NEXTROUTE_WS_BRIDGE_SECRET || "";
 }
 
 function hashBridgeSecret(value: string): Buffer {
@@ -46,7 +46,7 @@ export function bridgeSecretMatches(expectedSecret: string, receivedSecret: stri
 function getAuthRequest(body: JsonRecord): Request {
   const requestUrl = typeof body.requestUrl === "string" ? body.requestUrl : "/api/v1/responses";
   const headers = isRecord(body.headers) ? body.headers : {};
-  const url = new URL(requestUrl, "http://omniroute.local");
+  const url = new URL(requestUrl, "http://nextroute.local");
   const requestHeaders = new Headers();
 
   for (const [key, value] of Object.entries(headers)) {
@@ -110,9 +110,9 @@ async function authenticate(body: JsonRecord) {
 }
 
 async function prepare(body: JsonRecord) {
-  // Global kill-switch (feature flag OMNIROUTE_CODEX_WS_ENABLED, default ON).
+  // Global kill-switch (feature flag NEXTROUTE_CODEX_WS_ENABLED, default ON).
   // When disabled, the public Responses-over-WebSocket endpoint is unavailable.
-  if (!isFeatureFlagEnabled("OMNIROUTE_CODEX_WS_ENABLED")) {
+  if (!isFeatureFlagEnabled("NEXTROUTE_CODEX_WS_ENABLED")) {
     return jsonError(503, "codex_ws_disabled", "Codex Responses WebSocket transport is disabled");
   }
 
@@ -192,7 +192,7 @@ async function prepare(body: JsonRecord) {
 
 export async function POST(request: Request) {
   const expectedSecret = getBridgeSecret();
-  const receivedSecret = request.headers.get("x-omniroute-ws-bridge-secret") || "";
+  const receivedSecret = request.headers.get("x-nextroute-ws-bridge-secret") || "";
   if (!bridgeSecretMatches(expectedSecret, receivedSecret)) {
     return jsonError(403, "internal_bridge_forbidden", "Forbidden");
   }

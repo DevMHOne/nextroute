@@ -1,13 +1,13 @@
-import { getEmbeddingProvider } from "@omniroute/open-sse/config/embeddingRegistry.ts";
-import { getRerankProvider } from "@omniroute/open-sse/config/rerankRegistry.ts";
-import { getImageProvider } from "@omniroute/open-sse/config/imageRegistry.ts";
-import { getVideoProvider } from "@omniroute/open-sse/config/videoRegistry.ts";
+import { getEmbeddingProvider } from "@nextroute/open-sse/config/embeddingRegistry.ts";
+import { getRerankProvider } from "@nextroute/open-sse/config/rerankRegistry.ts";
+import { getImageProvider } from "@nextroute/open-sse/config/imageRegistry.ts";
+import { getVideoProvider } from "@nextroute/open-sse/config/videoRegistry.ts";
 import {
   getSpeechProvider,
   getTranscriptionProvider,
-} from "@omniroute/open-sse/config/audioRegistry.ts";
-import { ANTIGRAVITY_PUBLIC_MODELS } from "@omniroute/open-sse/config/antigravityModelAliases.ts";
-import { getStaticQoderModels } from "@omniroute/open-sse/services/qoderCli.ts";
+} from "@nextroute/open-sse/config/audioRegistry.ts";
+import { ANTIGRAVITY_PUBLIC_MODELS } from "@nextroute/open-sse/config/antigravityModelAliases.ts";
+import { getStaticQoderModels } from "@nextroute/open-sse/services/qoderCli.ts";
 
 import { getModelsByProviderId } from "@/shared/constants/models";
 

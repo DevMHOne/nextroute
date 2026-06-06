@@ -1,6 +1,6 @@
 import { buildClientRawRequest, handleChat } from "@/sse/handlers/chat";
-import { initTranslators } from "@omniroute/open-sse/translator/index.ts";
-import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
+import { initTranslators } from "@nextroute/open-sse/translator/index.ts";
+import { sanitizeErrorMessage } from "@nextroute/open-sse/utils/error";
 import { v1betaGeminiGenerateSchema } from "@/shared/validation/schemas";
 import { isValidationFailure, validateBody } from "@/shared/validation/helpers";
 

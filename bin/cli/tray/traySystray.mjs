@@ -42,14 +42,14 @@ export function initSystrayUnix({ port, onQuit, onOpenDashboard, onShowLogs }) {
 
   const autostartEnabled = isAutostartEnabled();
   const items = [
-    { title: `OmniRoute  •  port ${port}`, tooltip: "Server running", enabled: false },
+    { title: `NextRoute  •  port ${port}`, tooltip: "Server running", enabled: false },
     { title: "Open Dashboard", enabled: true },
     { title: "Show Logs", enabled: true },
     {
       title: autostartEnabled ? "✓ Auto-start (click to disable)" : "Enable Auto-start",
       enabled: true,
     },
-    { title: "Quit OmniRoute", enabled: true },
+    { title: "Quit NextRoute", enabled: true },
   ];
 
   let tray;
@@ -59,7 +59,7 @@ export function initSystrayUnix({ port, onQuit, onOpenDashboard, onShowLogs }) {
         icon: getIconBase64(),
         isTemplateIcon: process.platform === "darwin",
         title: "",
-        tooltip: `OmniRoute — port ${port}`,
+        tooltip: `NextRoute — port ${port}`,
         items,
       },
       debug: false,
@@ -94,7 +94,7 @@ export function initSystrayUnix({ port, onQuit, onOpenDashboard, onShowLogs }) {
   });
 
   tray.ready().catch((err) => {
-    process.stderr.write(`[omniroute][tray] systray2 failed: ${err?.message ?? String(err)}\n`);
+    process.stderr.write(`[nextroute][tray] systray2 failed: ${err?.message ?? String(err)}\n`);
   });
 
   return tray;

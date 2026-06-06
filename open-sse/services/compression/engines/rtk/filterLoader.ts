@@ -72,7 +72,7 @@ function getFiltersDir(): string {
 }
 
 function getDataDir(): string {
-  return process.env.DATA_DIR || path.join(os.homedir(), ".omniroute");
+  return process.env.DATA_DIR || path.join(os.homedir(), ".nextroute");
 }
 
 function sha256(value: string): string {
@@ -84,7 +84,7 @@ function projectFiltersTrusted(
   trustProjectFilters = false
 ): boolean | "changed" {
   if (trustProjectFilters) return true;
-  if (process.env.OMNIROUTE_RTK_TRUST_PROJECT_FILTERS === "1") return true;
+  if (process.env.NEXTROUTE_RTK_TRUST_PROJECT_FILTERS === "1") return true;
   const trustPath = path.join(path.dirname(filtersPath), "trust.json");
   if (!fs.existsSync(trustPath)) return false;
   try {
@@ -171,7 +171,7 @@ export function loadRtkFilters(options: RtkFilterLoadOptions = {}): RtkFilterDef
     getDataDir(),
     options.customFiltersEnabled === false ? "builtin-only" : "custom",
     options.trustProjectFilters === true ? "trusted-project" : "trust-file",
-    process.env.OMNIROUTE_RTK_TRUST_PROJECT_FILTERS === "1" ? "env-trust" : "env-normal",
+    process.env.NEXTROUTE_RTK_TRUST_PROJECT_FILTERS === "1" ? "env-trust" : "env-normal",
   ].join("|");
   if (cache && cacheKey === currentCacheKey && !options.refresh) return cache;
   diagnostics = [];

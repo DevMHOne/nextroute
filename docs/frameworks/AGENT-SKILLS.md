@@ -1,15 +1,15 @@
 ---
-title: "OmniRoute Agent Skills Catalog"
+title: "NextRoute Agent Skills Catalog"
 version: 3.8.6
 lastUpdated: 2026-05-28
 ---
 
-# OmniRoute Agent Skills Catalog
+# NextRoute Agent Skills Catalog
 
 > **Source of truth:** `src/lib/agentSkills/` (catalog, generator, parsers) + `skills/` directory (SKILL.md files)
 > **Last updated:** 2026-05-28 — v3.8.6
 
-Agent Skills are structured SKILL.md files that teach external agents, MCP clients, and A2A orchestrators how to use OmniRoute's REST API and CLI. Unlike [Omni Skills](./SKILLS.md) (which are LLM tool definitions executed inside OmniRoute), Agent Skills are a *documentation catalog* — static markdown that can be fed directly into agent context.
+Agent Skills are structured SKILL.md files that teach external agents, MCP clients, and A2A orchestrators how to use NextRoute's REST API and CLI. Unlike [Omni Skills](./SKILLS.md) (which are LLM tool definitions executed inside NextRoute), Agent Skills are a *documentation catalog* — static markdown that can be fed directly into agent context.
 
 ---
 
@@ -20,7 +20,7 @@ The catalog contains **42 canonical Agent Skills** (22 REST API + 20 CLI). Each 
 - A **canonical ID** (`omni-auth`, `cli-serve`, etc.)
 - A **SKILL.md** file in `skills/{id}/SKILL.md` with YAML frontmatter (`name`, `description`) + rich markdown body
 - **REST endpoints** (API skills) or **CLI subcommands** (CLI skills) derived from the OpenAPI spec and CLI registry
-- A **GitHub raw URL** for live fetch: `https://raw.githubusercontent.com/diegosouzapw/OmniRoute/refs/heads/main/skills/{id}/SKILL.md`
+- A **GitHub raw URL** for live fetch: `https://raw.githubusercontent.com/diegosouzapw/NextRoute/refs/heads/main/skills/{id}/SKILL.md`
 
 ---
 
@@ -111,9 +111,9 @@ Three MCP tools are registered under scope `read:catalog`:
 
 | Tool | Description |
 | :--- | :--- |
-| `omniroute_agent_skills_list` | List skills (optional `category` / `area` filters) |
-| `omniroute_agent_skills_get` | Get metadata + SKILL.md for one skill by `id` |
-| `omniroute_agent_skills_coverage` | Coverage stats (API/CLI have/total) |
+| `nextroute_agent_skills_list` | List skills (optional `category` / `area` filters) |
+| `nextroute_agent_skills_get` | Get metadata + SKILL.md for one skill by `id` |
+| `nextroute_agent_skills_coverage` | Coverage stats (API/CLI have/total) |
 
 See [MCP-SERVER.md](./MCP-SERVER.md) for scope wiring and authentication.
 
@@ -171,26 +171,26 @@ See [A2A-SERVER.md](./A2A-SERVER.md) for protocol details.
 
 | ID | Area | CLI Command Root |
 | :--- | :--- | :--- |
-| `cli-serve` | cli-serve | `omniroute serve` |
-| `cli-health` | cli-health | `omniroute health` |
-| `cli-providers` | cli-providers | `omniroute providers` |
-| `cli-keys` | cli-keys | `omniroute keys` |
-| `cli-models` | cli-models | `omniroute models` |
-| `cli-chat` | cli-chat | `omniroute chat` |
-| `cli-routing` | cli-routing | `omniroute routing` |
-| `cli-resilience` | cli-resilience | `omniroute resilience` |
-| `cli-compression` | cli-compression | `omniroute compression` |
-| `cli-contexts` | cli-contexts | `omniroute contexts` |
-| `cli-cost-usage` | cli-cost-usage | `omniroute cost` |
-| `cli-mcp` | cli-mcp | `omniroute mcp` |
-| `cli-a2a` | cli-a2a | `omniroute a2a` |
-| `cli-tunnel` | cli-tunnel | `omniroute tunnel` |
-| `cli-backup-sync` | cli-backup-sync | `omniroute backup` |
-| `cli-policy-audit` | cli-policy-audit | `omniroute policy` |
-| `cli-batches` | cli-batches | `omniroute batch` |
-| `cli-eval` | cli-eval | `omniroute eval` |
-| `cli-plugins-skills` | cli-plugins-skills | `omniroute plugins` |
-| `cli-setup` | cli-setup | `omniroute setup` |
+| `cli-serve` | cli-serve | `nextroute serve` |
+| `cli-health` | cli-health | `nextroute health` |
+| `cli-providers` | cli-providers | `nextroute providers` |
+| `cli-keys` | cli-keys | `nextroute keys` |
+| `cli-models` | cli-models | `nextroute models` |
+| `cli-chat` | cli-chat | `nextroute chat` |
+| `cli-routing` | cli-routing | `nextroute routing` |
+| `cli-resilience` | cli-resilience | `nextroute resilience` |
+| `cli-compression` | cli-compression | `nextroute compression` |
+| `cli-contexts` | cli-contexts | `nextroute contexts` |
+| `cli-cost-usage` | cli-cost-usage | `nextroute cost` |
+| `cli-mcp` | cli-mcp | `nextroute mcp` |
+| `cli-a2a` | cli-a2a | `nextroute a2a` |
+| `cli-tunnel` | cli-tunnel | `nextroute tunnel` |
+| `cli-backup-sync` | cli-backup-sync | `nextroute backup` |
+| `cli-policy-audit` | cli-policy-audit | `nextroute policy` |
+| `cli-batches` | cli-batches | `nextroute batch` |
+| `cli-eval` | cli-eval | `nextroute eval` |
+| `cli-plugins-skills` | cli-plugins-skills | `nextroute plugins` |
+| `cli-setup` | cli-setup | `nextroute setup` |
 
 ---
 
@@ -200,17 +200,17 @@ See [A2A-SERVER.md](./A2A-SERVER.md) for protocol details.
 
 ```bash
 # Get the full catalog
-curl "http://your-omniroute/api/agent-skills" | jq '.skills[] | {id, name, category}'
+curl "http://your-nextroute/api/agent-skills" | jq '.skills[] | {id, name, category}'
 
 # Get SKILL.md for context injection
-curl "http://your-omniroute/api/agent-skills/omni-providers/raw" > omni-providers.md
+curl "http://your-nextroute/api/agent-skills/omni-providers/raw" > omni-providers.md
 ```
 
 ### 2. Discovery via MCP
 
 ```typescript
 // In a Claude Desktop / Cursor MCP client:
-const result = await client.callTool("omniroute_agent_skills_list", { category: "api" });
+const result = await client.callTool("nextroute_agent_skills_list", { category: "api" });
 // result.skills → array of AgentSkill with rawUrl for each
 ```
 
@@ -219,7 +219,7 @@ const result = await client.callTool("omniroute_agent_skills_list", { category: 
 ```python
 import requests
 
-resp = requests.post("http://your-omniroute/a2a", json={
+resp = requests.post("http://your-nextroute/a2a", json={
     "jsonrpc": "2.0", "id": "1",
     "method": "message/send",
     "params": {"skill": "list-capabilities", "messages": [{"role": "user", "content": "list"}]}
@@ -231,7 +231,7 @@ table = resp.json()["result"]["artifacts"][0]["content"]
 ### 4. Direct GitHub raw fetch (no server required)
 
 ```bash
-BASE="https://raw.githubusercontent.com/diegosouzapw/OmniRoute/refs/heads/main/skills"
+BASE="https://raw.githubusercontent.com/diegosouzapw/NextRoute/refs/heads/main/skills"
 curl "${BASE}/omni-providers/SKILL.md"
 ```
 
@@ -295,7 +295,7 @@ curl "http://localhost:20128/api/agent-skills/coverage"
 ## Related
 
 - [SKILLS.md](./SKILLS.md) — Omni Skills framework (LLM tool injection + marketplace)
-- [MCP-SERVER.md](./MCP-SERVER.md) — MCP tool catalog (`omniroute_agent_skills_*` tools)
+- [MCP-SERVER.md](./MCP-SERVER.md) — MCP tool catalog (`nextroute_agent_skills_*` tools)
 - [A2A-SERVER.md](./A2A-SERVER.md) — A2A protocol (`list-capabilities` skill)
 - `src/lib/agentSkills/` — catalog, generator, parsers
 - `skills/` — generated SKILL.md files (42 entries)

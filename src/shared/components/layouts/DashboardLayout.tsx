@@ -11,7 +11,7 @@ import NavigationProgress from "../NavigationProgress";
 import { useIsElectron } from "@/shared/hooks/useElectron";
 
 const SIDEBAR_COLLAPSED_KEY = "sidebar-collapsed";
-const isE2EMode = process.env.NEXT_PUBLIC_OMNIROUTE_E2E_MODE === "1";
+const isE2EMode = process.env.NEXT_PUBLIC_NEXTROUTE_E2E_MODE === "1";
 
 export default function DashboardLayout({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);

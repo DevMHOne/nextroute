@@ -45,7 +45,7 @@ export const CLAUDE_CODE_COMPATIBLE_USER_AGENT = "claude-cli/2.1.158 (external, 
 export const CLAUDE_CODE_COMPATIBLE_STAINLESS_PACKAGE_VERSION = "0.94.0";
 export const CLAUDE_CODE_COMPATIBLE_STAINLESS_RUNTIME_VERSION = "v24.3.0";
 export const CONTEXT_1M_BETA_HEADER = "context-1m-2025-08-07";
-const COPILOT_REASONING_SUMMARY_MARKER = "_omnirouteCopilotReasoningSummary";
+const COPILOT_REASONING_SUMMARY_MARKER = "_nextrouteCopilotReasoningSummary";
 const CLAUDE_CODE_COMPATIBLE_DEFAULT_SYSTEM_BLOCKS = [
   {
     type: "text",
@@ -214,7 +214,7 @@ export function resolveClaudeCodeCompatibleSessionId(headers?: HeaderLike): stri
     getHeader(headers, "x-claude-code-session-id") ||
     getHeader(headers, "x-session-id") ||
     getHeader(headers, "x_session_id") ||
-    getHeader(headers, "x-omniroute-session") ||
+    getHeader(headers, "x-nextroute-session") ||
     null;
 
   return (raw && raw.trim()) || randomUUID();

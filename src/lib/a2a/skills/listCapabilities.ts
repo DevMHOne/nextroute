@@ -1,7 +1,7 @@
 /**
  * A2A Skill: List Capabilities
  *
- * Returns the full catalog of 42 OmniRoute agent skills (22 API + 20 CLI)
+ * Returns the full catalog of 42 NextRoute agent skills (22 API + 20 CLI)
  * as a markdown table with raw SKILL.md URLs for orchestrating agents.
  */
 
@@ -45,7 +45,7 @@ export async function executeListCapabilities(_task: A2ATask): Promise<ListCapab
   const table = buildMarkdownTable(catalog);
 
   const content = [
-    `# OmniRoute Agent Skills Catalog`,
+    `# NextRoute Agent Skills Catalog`,
     ``,
     `Total: ${catalog.length} skills (${coverage.api.total} API + ${coverage.cli.total} CLI)`,
     ``,

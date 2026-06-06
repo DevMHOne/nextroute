@@ -20,7 +20,7 @@ import { getConsistentMachineId } from "@/shared/utils/machineId";
 import { syncToCloud } from "@/lib/cloudSync";
 import { createProviderSchema } from "@/shared/validation/schemas";
 import { isValidationFailure, validateBody } from "@/shared/validation/helpers";
-import { normalizeQoderPatProviderData } from "@omniroute/open-sse/services/qoderCli";
+import { normalizeQoderPatProviderData } from "@nextroute/open-sse/services/qoderCli";
 import {
   normalizeProviderSpecificData,
   sanitizeProviderSpecificDataForResponse,

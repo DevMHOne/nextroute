@@ -32,7 +32,7 @@ test("next config exposes standalone build settings and canonical rewrites", asy
   assert.equal(nextConfig.output, "standalone");
   assert.equal(nextConfig.images.unoptimized, true);
   assert.deepEqual(nextConfig.transpilePackages, [
-    "@omniroute/open-sse",
+    "@nextroute/open-sse",
     "@lobehub/icons",
     "fumadocs-ui",
     "fumadocs-core",

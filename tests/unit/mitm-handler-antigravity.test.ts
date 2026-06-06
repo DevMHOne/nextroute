@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { AntigravityHandler } from "../../src/mitm/handlers/antigravity.ts";
 import { runHandler } from "./_mitmHandlerHarness.ts";
 
-test("antigravity handler — forwards to OmniRoute and pipes SSE", async () => {
+test("antigravity handler — forwards to NextRoute and pipes SSE", async () => {
   const r = await runHandler(
     new AntigravityHandler(),
     { model: "gpt-4o", messages: [{ role: "user", content: "hi" }] },

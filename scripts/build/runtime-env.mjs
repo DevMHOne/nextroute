@@ -7,9 +7,9 @@ export function parsePort(value, fallback) {
 
 /**
  * Resolve the V8 heap ceiling (MB) for the server process from
- * `OMNIROUTE_MEMORY_MB`, mirroring `omniroute serve`. Clamped to [64, 16384];
+ * `NEXTROUTE_MEMORY_MB`, mirroring `nextroute serve`. Clamped to [64, 16384];
  * invalid/unset → fallback (512). The standalone launcher uses this so
- * OMNIROUTE_MEMORY_MB can override the Docker image's NODE_OPTIONS fallback
+ * NEXTROUTE_MEMORY_MB can override the Docker image's NODE_OPTIONS fallback
  * without clobbering any other runtime flags (#2939).
  * @param {string | number | undefined | null} value
  * @param {number} [fallback]
@@ -24,7 +24,7 @@ export function resolveMaxOldSpaceMb(value, fallback = 512) {
  *        Defaults to process.env. Pass bootstrap `merged` so project `.env` PORT applies before spawn.
  */
 export function resolveRuntimePorts(fromEnv = process.env) {
-  const basePort = parsePort(fromEnv.PORT || "20128", 20128);
+  const basePort = parsePort(fromEnv.PORT || "8080", 8080);
   const apiPort = parsePort(fromEnv.API_PORT || String(basePort), basePort);
   const dashboardPort = parsePort(fromEnv.DASHBOARD_PORT || String(basePort), basePort);
 
@@ -36,7 +36,7 @@ export function withRuntimePortEnv(env, runtimePorts) {
 
   return {
     ...env,
-    OMNIROUTE_PORT: String(basePort),
+    NEXTROUTE_PORT: String(basePort),
     PORT: String(dashboardPort),
     DASHBOARD_PORT: String(dashboardPort),
     API_PORT: String(apiPort),

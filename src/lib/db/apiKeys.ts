@@ -9,7 +9,7 @@ import { backupDbFile } from "./backup";
 import { registerDbStateResetter } from "./stateReset";
 import { getKeyGroupsForApiKey, checkKeyModelAccess } from "./apiKeyGroups";
 import { setNoLog } from "../compliance/noLog";
-import { resolveModelAlias } from "@omniroute/open-sse/services/modelDeprecation.ts";
+import { resolveModelAlias } from "@nextroute/open-sse/services/modelDeprecation.ts";
 import {
   getSyncedAvailableModelsByConnection,
   getCustomModels,
@@ -207,13 +207,13 @@ function toRecord(value: unknown): JsonRecord {
 }
 
 function isConfiguredEnvApiKey(key: string): boolean {
-  const envKey = process.env.OMNIROUTE_API_KEY || process.env.ROUTER_API_KEY;
+  const envKey = process.env.NEXTROUTE_API_KEY || process.env.ROUTER_API_KEY;
   return Boolean(envKey && key === envKey);
 }
 
 function isRedisAuthCacheEnabled(): boolean {
   return (
-    process.env.OMNIROUTE_DISABLE_REDIS_AUTH_CACHE !== "1" &&
+    process.env.NEXTROUTE_DISABLE_REDIS_AUTH_CACHE !== "1" &&
     process.env.NODE_ENV !== "test" &&
     process.env.DISABLE_SQLITE_AUTO_BACKUP !== "true"
   );
@@ -1225,7 +1225,7 @@ export async function getApiKeyMetadata(
   // persistent env-var key support (persistent passthrough keys) (#1350)
   if (isConfiguredEnvApiKey(key)) {
     // ─── Env-key management-scope bypass ──────────────────────────────────
-    // The deployment-time env key (`OMNIROUTE_API_KEY` / `ROUTER_API_KEY`)
+    // The deployment-time env key (`NEXTROUTE_API_KEY` / `ROUTER_API_KEY`)
     // is granted the "manage" scope unconditionally. This is intentional:
     //
     //   1. The env key never exists in the SQLite `api_keys` table, so the

@@ -325,7 +325,7 @@ export default function OAuthModal({
       let forceManual = false;
 
       // Claude Code and Cline OAuth flows can finish on provider-hosted pages that
-      // show an auth code instead of redirecting back to OmniRoute.
+      // show an auth code instead of redirecting back to NextRoute.
       // Start directly in manual mode so users always have an input to paste code/url.
       if (provider === "claude" || provider === "cline") {
         forceManual = true;
@@ -392,21 +392,21 @@ export default function OAuthModal({
       // Authorization code flow
       // Redirect URI strategy:
       // - Codex/OpenAI: always port 1455 (registered in OAuth app)
-      // - Windsurf/Devin CLI (remote fallback): use localhost with OmniRoute port + /auth/callback
+      // - Windsurf/Devin CLI (remote fallback): use localhost with NextRoute port + /auth/callback
       //   (on true localhost the callback server handles it; this is only reached on remote)
       // - Google OAuth providers (antigravity, gemini-cli): default to loopback so the
       //   bundled native/desktop credentials keep working. Prefer 127.0.0.1 over
       //   localhost for the Google native-app handoff; Google documents that localhost
       //   can run into local firewall/name-resolution edge cases. The authorize route
       //   upgrades this to the public callback when custom Google web credentials plus
-      //   NEXT_PUBLIC_BASE_URL or OMNIROUTE_PUBLIC_BASE_URL are configured.
+      //   NEXT_PUBLIC_BASE_URL or NEXTROUTE_PUBLIC_BASE_URL are configured.
       // - Other providers on remote: use actual origin (supports PUBLIC_URL env var)
       // - Localhost: use localhost:port
       let redirectUri: string;
       if (provider === "codex" || provider === "openai") {
         redirectUri = "http://localhost:1455/auth/callback";
       } else if (provider === "windsurf" || provider === "devin-cli") {
-        // Remote fallback: use OmniRoute's port with the /auth/callback path Windsurf expects.
+        // Remote fallback: use NextRoute's port with the /auth/callback path Windsurf expects.
         // On true localhost this code is never reached (callback server handles the flow above).
         const port = window.location.port || "20128";
         redirectUri = `http://localhost:${port}/auth/callback`;
@@ -416,7 +416,7 @@ export default function OAuthModal({
         const port = window.location.port || "20128";
         redirectUri = `http://127.0.0.1:${port}/callback`;
       } else if (!isLocalhost) {
-        // Behind reverse proxy: use actual origin (e.g., https://omniroute.example.com/callback)
+        // Behind reverse proxy: use actual origin (e.g., https://nextroute.example.com/callback)
         // Supports PUBLIC_URL env var override, or falls back to window.location.origin.
         const publicUrl = process.env.NEXT_PUBLIC_BASE_URL;
         const origin =
@@ -837,7 +837,7 @@ export default function OAuthModal({
                           code: (c) => <code className="font-mono">{c}</code>,
                           a: (c) => (
                             <a
-                              href="https://github.com/diegosouzapw/OmniRoute#oauth-on-a-remote-server"
+                              href="https://github.com/diegosouzapw/NextRoute#oauth-on-a-remote-server"
                               target="_blank"
                               rel="noreferrer"
                               className="underline"

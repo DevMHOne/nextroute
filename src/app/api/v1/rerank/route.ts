@@ -1,8 +1,8 @@
-import { handleRerank } from "@omniroute/open-sse/handlers/rerank.ts";
+import { handleRerank } from "@nextroute/open-sse/handlers/rerank.ts";
 import { getProviderCredentials, clearRecoveredProviderState } from "@/sse/services/auth";
-import { parseRerankModel, getRerankProvider } from "@omniroute/open-sse/config/rerankRegistry.ts";
-import { errorResponse } from "@omniroute/open-sse/utils/error.ts";
-import { HTTP_STATUS } from "@omniroute/open-sse/config/constants.ts";
+import { parseRerankModel, getRerankProvider } from "@nextroute/open-sse/config/rerankRegistry.ts";
+import { errorResponse } from "@nextroute/open-sse/utils/error.ts";
+import { HTTP_STATUS } from "@nextroute/open-sse/config/constants.ts";
 import { enforceApiKeyPolicy } from "@/shared/utils/apiKeyPolicy";
 import { v1RerankSchema } from "@/shared/validation/schemas";
 import { isValidationFailure, validateBody } from "@/shared/validation/helpers";

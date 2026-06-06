@@ -40,7 +40,7 @@ import { registerMonitorFetcher } from "./quotaMonitor.ts";
 // OpenCode quota endpoint — same key works across opencode, opencode-go, opencode-zen
 // (#2852) Defensive: based on provider baseUrl + /quota suffix (community plugin pattern)
 const OPENCODE_QUOTA_URL =
-  process.env.OMNIROUTE_OPENCODE_QUOTA_URL ?? "https://opencode.ai/zen/go/v1/quota";
+  process.env.NEXTROUTE_OPENCODE_QUOTA_URL ?? "https://opencode.ai/zen/go/v1/quota";
 
 // Cache TTL — matches Codex / DeepSeek / Bailian pattern (60s)
 const CACHE_TTL_MS = 60_000;

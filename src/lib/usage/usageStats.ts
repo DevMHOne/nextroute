@@ -191,9 +191,9 @@ function getApiKeyStatsKey(apiKeyId: string | null, apiKeyName: string | null): 
 /**
  * Sum of all token columns recorded for one provider connection in the current
  * UTC calendar month. Powers SELF-TRACKED provider quotas (e.g. Xiaomi MiMo
- * Token Plan), where the upstream exposes no API-key usage endpoint — OmniRoute
+ * Token Plan), where the upstream exposes no API-key usage endpoint — NextRoute
  * counts the tokens it routed and compares against the known monthly limit.
- * Only reflects traffic that went THROUGH OmniRoute (not the provider's panel).
+ * Only reflects traffic that went THROUGH NextRoute (not the provider's panel).
  */
 export function getMonthlyProviderTokensForConnection(
   provider: string,

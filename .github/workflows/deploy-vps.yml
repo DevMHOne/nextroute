@@ -14,7 +14,7 @@ jobs:
     if: >-
       (github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success')
       && vars.DEPLOY_ENABLED == 'true'
-    name: Deploy OmniRoute to VPS
+    name: Deploy NextRoute to VPS
     runs-on: ubuntu-latest
     steps:
       - name: Deploy via SSH
@@ -28,16 +28,16 @@ jobs:
           timeout: 30s
           command_timeout: 5m
           script: |
-            echo "=== Updating OmniRoute ==="
-            npm install -g omniroute@latest 2>&1
-            INSTALLED_VERSION=$(omniroute --version 2>/dev/null || echo "unknown")
+            echo "=== Updating NextRoute ==="
+            npm install -g nextroute@latest 2>&1
+            INSTALLED_VERSION=$(nextroute --version 2>/dev/null || echo "unknown")
             echo "Installed version: $INSTALLED_VERSION"
 
             echo "=== Restarting PM2 ==="
-            pm2 restart omniroute || pm2 start omniroute --name omniroute -- --port 20128
+            pm2 restart nextroute || pm2 start nextroute --name nextroute -- --port 20128
             pm2 save
 
             echo "=== Health Check ==="
             sleep 3
-            curl -sf http://localhost:20128/api/settings > /dev/null && echo "✅ OmniRoute is healthy" || echo "❌ Health check failed"
+            curl -sf http://localhost:20128/api/settings > /dev/null && echo "✅ NextRoute is healthy" || echo "❌ Health check failed"
             echo "=== Deploy complete ==="

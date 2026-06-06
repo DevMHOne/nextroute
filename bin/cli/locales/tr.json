@@ -1,8 +1,8 @@
 {
   "common": {
     "error": "Hata: {message}",
-    "serverOffline": "OmniRoute sunucusu çevrimdışı. Başlatın: omniroute serve",
-    "authRequired": "Kimlik doğrulama gerekli. OMNIROUTE_API_KEY ayarlayın veya çalıştırın: omniroute setup",
+    "serverOffline": "NextRoute sunucusu çevrimdışı. Başlatın: nextroute serve",
+    "authRequired": "Kimlik doğrulama gerekli. NEXTROUTE_API_KEY ayarlayın veya çalıştırın: nextroute setup",
     "rateLimited": "İstek limiti aşıldı. {seconds}s sonra tekrar deneyin.",
     "timeout": "İstek {ms}ms sonra zaman aşımına uğradı.",
     "success": "Tamamlandı.",
@@ -15,15 +15,15 @@
     "yesOpt": "Onayı atla"
   },
   "program": {
-    "description": "OmniRoute — Otomatik Fallback ile Akıllı AI Yönlendirici",
+    "description": "NextRoute — Otomatik Fallback ile Akıllı AI Yönlendirici",
     "version": "Sürümü yazdır ve çık",
     "output": "Çıktı formatı (table, json, jsonl, csv)",
     "quiet": "Önemsiz çıktıyı gizle",
     "no_color": "Renkli çıktıyı devre dışı bırak",
     "timeout": "HTTP istek zaman aşımı (milisaniye)",
-    "api_key": "OmniRoute sunucusu için API anahtarı",
-    "base_url": "OmniRoute sunucusu temel URL'si",
+    "api_key": "NextRoute sunucusu için API anahtarı",
+    "base_url": "NextRoute sunucusu temel URL'si",
     "context": "Bu komut için sunucu bağlamı/profili",
-    "lang": "CLI görüntüleme dilini ayarla (OMNIROUTE_LANG'ı geçersiz kılar)"
+    "lang": "CLI görüntüleme dilini ayarla (NEXTROUTE_LANG'ı geçersiz kılar)"
   }
 }

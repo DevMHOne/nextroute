@@ -9,7 +9,7 @@ lastUpdated: 2026-05-28
 > **Source of truth:** `src/lib/memory/` and `src/app/api/memory/`
 > **Last updated:** 2026-05-28 — v3.8.6 (plan 21 — Memory Engine Redesign)
 
-OmniRoute provides persistent conversational memory keyed by API key (and
+NextRoute provides persistent conversational memory keyed by API key (and
 optionally session id). Memories are extracted automatically from LLM responses
 via lightweight regex pattern matching and injected back into subsequent
 requests as a leading system message (or first user message for providers that
@@ -214,7 +214,7 @@ vector store. Enabled via `qdrantEnabled` in settings / toggle in Engine tab.
   vectors on first use), and upsert a point with payload `{memoryId,
 apiKeyId, sessionId, key, content, metadata, createdAtUnix, expiresAtUnix}`.
 - `searchSemanticMemory(query, topK, scope)` — embed the query, search the
-  collection filtered by `kind = "omniroute_memory"` and optionally by
+  collection filtered by `kind = "nextroute_memory"` and optionally by
   `apiKeyId` / `sessionId`. Caps `topK` to `[1, 20]`.
 - `deleteSemanticMemoryPoint(id)` — single point delete. Called by
   `deleteMemory()` after the SQLite row is removed (D15).
@@ -300,7 +300,7 @@ facts without storing them.
    returns at least one entry when any matched.
 
 `estimateTokens` is exported and used by retrieval, summarisation, and the MCP
-`omniroute_memory_search` tool.
+`nextroute_memory_search` tool.
 
 ## Injection (`injection.ts`)
 
@@ -356,7 +356,7 @@ See also the "Settings extension" section above for field descriptions.
 | `memoryVectorStore`       | `vectorStore`          | `"auto"`      |
 
 Qdrant-related DB keys (`qdrantEnabled`, `qdrantHost`, `qdrantPort`,
-`qdrantApiKey`, `qdrantCollection` default `"omniroute_memory"`,
+`qdrantApiKey`, `qdrantCollection` default `"nextroute_memory"`,
 `qdrantEmbeddingModel` default `"openai/text-embedding-3-small"`) are read by
 `normalizeQdrantConfig()` in `qdrant.ts`.
 
@@ -434,15 +434,15 @@ takes precedence and a derived `page` is computed for the response shape.
 
 When the MCP server is enabled, three memory tools are registered:
 
-- `omniroute_memory_search` — `{apiKeyId, query?, type?, maxTokens?, limit?}`
+- `nextroute_memory_search` — `{apiKeyId, query?, type?, maxTokens?, limit?}`
   → wraps `retrieveMemories()`. As of v3.8.6 (D16), the `strategy` is read
   from `getMemorySettings()` instead of being hardcoded to `"exact"`. If
   `query` is provided and `strategy` is `semantic` or `hybrid`, the vector
   store is used when available.
-- `omniroute_memory_add` — `{apiKeyId, sessionId?, type, key, content,
+- `nextroute_memory_add` — `{apiKeyId, sessionId?, type, key, content,
 metadata?}` → wraps `createMemory()`. Accepts only the 4 canonical types:
   `factual`, `episodic`, `procedural`, `semantic` (D17).
-- `omniroute_memory_clear` — `{apiKeyId, type?, olderThan?}` → lists matching
+- `nextroute_memory_clear` — `{apiKeyId, type?, olderThan?}` → lists matching
   entries, optionally filters by created-before timestamp, then deletes each
   via `deleteMemory()` (which also removes vectors from sqlite-vec + Qdrant).
 
@@ -502,7 +502,7 @@ default TTL 5 min).
 - Entries with a future `expires_at` are filtered out of retrieval; old
   entries beyond `retentionDays` are excluded by the
   `created_at >= cutoff` clause in `retrieveMemories`.
-- For hard deletion, use `DELETE /api/memory/[id]` or `omniroute_memory_clear`.
+- For hard deletion, use `DELETE /api/memory/[id]` or `nextroute_memory_clear`.
 - Extraction is fire-and-forget via `setImmediate`; failures are logged under
   `memory.extraction.background.failed` and never surface to the caller.
 - Verification round-trips (`verifyExtractionPipeline`) clean up their own

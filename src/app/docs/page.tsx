@@ -3,20 +3,20 @@ import { Metadata } from "next";
 import { source } from "@/lib/source";
 
 export const metadata: Metadata = {
-  title: "OmniRoute Documentation",
+  title: "NextRoute Documentation",
   description:
     "Everything you need to route, compress, and scale your AI — setup guides, API reference, compression, deployment, and more.",
   openGraph: {
-    title: "OmniRoute Documentation",
+    title: "NextRoute Documentation",
     description:
-      "Comprehensive docs for OmniRoute AI gateway — setup, API, compression, deployment, and more.",
+      "Comprehensive docs for NextRoute AI gateway — setup, API, compression, deployment, and more.",
     type: "website",
-    url: "https://omniroute.online/docs",
+    url: "https://nextroute.online/docs",
   },
   twitter: {
     card: "summary_large_image",
-    title: "OmniRoute Documentation",
-    description: "Comprehensive docs for OmniRoute AI gateway",
+    title: "NextRoute Documentation",
+    description: "Comprehensive docs for NextRoute AI gateway",
   },
 };
 
@@ -25,7 +25,7 @@ const featuredLinks = [
     href: "/docs/guides/setup-guide",
     title: "Setup Guide",
     icon: "rocket_launch",
-    desc: "Get OmniRoute running in 3 minutes",
+    desc: "Get NextRoute running in 3 minutes",
   },
   {
     href: "/docs/reference/api-reference",
@@ -58,7 +58,7 @@ export default function DocsHomePage() {
   return (
     <div className="max-w-4xl mx-auto py-8 px-4">
       <div className="text-center mb-16 mt-8">
-        <h1 className="text-4xl font-bold text-fd-foreground mb-5">OmniRoute Documentation</h1>
+        <h1 className="text-4xl font-bold text-fd-foreground mb-5">NextRoute Documentation</h1>
         <p className="text-lg text-fd-muted-foreground mb-6">
           Everything you need to route, compress, and scale your AI
         </p>

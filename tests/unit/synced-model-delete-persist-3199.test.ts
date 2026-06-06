@@ -19,7 +19,7 @@ import fs from "node:fs";
 // up, so the SECOND run would see `model-del` already hidden and the first-sync
 // precondition would fail. Point DATA_DIR at a throwaway dir before any import
 // that opens the SQLite connection.
-const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "omniroute-test-synced-del-"));
+const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "nextroute-test-synced-del-"));
 process.env.DATA_DIR = tmpDir;
 
 const { replaceSyncedAvailableModelsForConnection, getSyncedAvailableModels, mergeModelCompatOverride } =

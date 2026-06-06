@@ -44,7 +44,7 @@ import {
 import {
   checkTokenLimits,
   recordTokenUsage,
-} from "@omniroute/open-sse/services/tokenLimitCounter.ts";
+} from "@nextroute/open-sse/services/tokenLimitCounter.ts";
 import {
   COOLDOWN_MS,
   HTTP_STATUS,
@@ -63,7 +63,7 @@ import {
   isEmptyContentResponse,
 } from "../services/errorClassifier.ts";
 import { updateProviderConnection, getProviderConnectionById } from "@/lib/db/providers";
-import { wasRefreshTokenRotated } from "@omniroute/open-sse/services/refreshSerializer.ts";
+import { wasRefreshTokenRotated } from "@nextroute/open-sse/services/refreshSerializer.ts";
 import {
   recordKeyFailure,
   recordKeySuccess,
@@ -100,7 +100,7 @@ import {
 } from "@/lib/usage/tokenAccounting";
 import { recordCost } from "@/domain/costRules";
 import { calculateCost } from "@/lib/usage/costCalculator";
-import { buildOmniRouteResponseMetaHeaders } from "@/domain/omnirouteResponseMeta";
+import { buildNextRouteResponseMetaHeaders } from "@/domain/nextrouteResponseMeta";
 import { CLAUDE_OAUTH_TOOL_PREFIX } from "../translator/request/openai-to-claude.ts";
 import {
   getModelNormalizeToolCallId,
@@ -217,7 +217,7 @@ import {
 } from "@/lib/memory/settings";
 import { injectSkills } from "@/lib/skills/injection";
 import { handleToolCallExecution } from "@/lib/skills/interception";
-import { OMNIROUTE_RESPONSE_HEADERS } from "@/shared/constants/headers";
+import { NEXTROUTE_RESPONSE_HEADERS } from "@/shared/constants/headers";
 import {
   buildClaudeCodeCompatibleRequest,
   isClaudeCodeCompatibleProvider,
@@ -268,7 +268,7 @@ function cloneBoundedChatLogPayload(value: unknown, depth = 0): unknown {
     if (value.length > maxTailItems) {
       return [
         {
-          _omniroute_truncated_array: true,
+          _nextroute_truncated_array: true,
           originalLength: value.length,
           retainedTailItems: maxTailItems,
         },
@@ -285,7 +285,7 @@ function cloneBoundedChatLogPayload(value: unknown, depth = 0): unknown {
     result[key] = cloneBoundedChatLogPayload(item, depth + 1);
   }
   if (maxKeys > 0 && entries.length > maxKeys) {
-    result._omniroute_truncated_keys = entries.length - maxKeys;
+    result._nextroute_truncated_keys = entries.length - maxKeys;
   }
   return result;
 }
@@ -621,7 +621,7 @@ const STREAMING_RESPONSE_HEADER_DENYLIST = new Set([
 
 export function buildStreamingResponseHeaders(
   providerHeaders: Headers,
-  meta: Parameters<typeof buildOmniRouteResponseMetaHeaders>[0]
+  meta: Parameters<typeof buildNextRouteResponseMetaHeaders>[0]
 ): Record<string, string> {
   const forwardedHeaders: [string, string][] = [];
   providerHeaders.forEach((value, key) => {
@@ -636,8 +636,8 @@ export function buildStreamingResponseHeaders(
     "Cache-Control": "no-cache, no-transform",
     Connection: "keep-alive",
     "X-Accel-Buffering": "no",
-    [OMNIROUTE_RESPONSE_HEADERS.cache]: "MISS",
-    ...buildOmniRouteResponseMetaHeaders(meta),
+    [NEXTROUTE_RESPONSE_HEADERS.cache]: "MISS",
+    ...buildNextRouteResponseMetaHeaders(meta),
   };
 }
 
@@ -1323,17 +1323,17 @@ function attachLogMeta(
   );
   if (Object.keys(compactMeta).length === 0) return payload;
   if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
-    return { _omniroute: compactMeta, _payload: payload ?? null };
+    return { _nextroute: compactMeta, _payload: payload ?? null };
   }
   const existing =
-    payload._omniroute &&
-    typeof payload._omniroute === "object" &&
-    !Array.isArray(payload._omniroute)
-      ? payload._omniroute
+    payload._nextroute &&
+    typeof payload._nextroute === "object" &&
+    !Array.isArray(payload._nextroute)
+      ? payload._nextroute
       : {};
   return {
     ...payload,
-    _omniroute: {
+    _nextroute: {
       ...existing,
       ...compactMeta,
     },
@@ -1871,8 +1871,8 @@ export async function handleChatCore({
         status: cachedIdemp.status,
         headers: {
           "Content-Type": "application/json",
-          "X-OmniRoute-Idempotent": "true",
-          ...buildOmniRouteResponseMetaHeaders({
+          "X-NextRoute-Idempotent": "true",
+          ...buildNextRouteResponseMetaHeaders({
             provider,
             model,
             cacheHit: false,
@@ -2003,7 +2003,7 @@ export async function handleChatCore({
     body = bodyWithWebSearchFallback as typeof body;
     log?.info?.(
       "TOOLS",
-      `Converted ${webSearchFallbackPlan.convertedToolCount} web_search tool(s) to OmniRoute fallback for ${provider}`
+      `Converted ${webSearchFallbackPlan.convertedToolCount} web_search tool(s) to NextRoute fallback for ${provider}`
     );
   }
   const noLogEnabled = apiKeyInfo?.noLog === true;
@@ -2036,10 +2036,10 @@ export async function handleChatCore({
   };
   const pipelineSessionId =
     (clientRawRequest?.headers && typeof clientRawRequest.headers.get === "function"
-      ? clientRawRequest.headers.get("x-omniroute-session-id")
+      ? clientRawRequest.headers.get("x-nextroute-session-id")
       : getHeaderValueCaseInsensitive(
           clientRawRequest?.headers ?? null,
-          "x-omniroute-session-id"
+          "x-nextroute-session-id"
         )) || skillRequestId;
   const persistAttemptLogs = ({
     status,
@@ -2216,7 +2216,7 @@ export async function handleChatCore({
   const explicitStreamAlias = resolveExplicitStreamAlias(body);
 
   // Remove non-standard non-stream aliases before provider translation/execution.
-  // They are accepted for compatibility at the OmniRoute API boundary only.
+  // They are accepted for compatibility at the NextRoute API boundary only.
   if (body && typeof body === "object") {
     const b = body as Record<string, unknown>;
     if (explicitStreamAlias !== undefined) {
@@ -2308,7 +2308,7 @@ export async function handleChatCore({
       // OpenAI-compatible streaming clients lose reasoning_content. Non-OpenAI
       // shapes (no `choices`) yield "" and fall back to the JSON body unchanged.
       const cachedSse = stream ? synthesizeOpenAiSseFromJson(JSON.stringify(cached)) : "";
-      const cacheHitMetaHeaders = buildOmniRouteResponseMetaHeaders({
+      const cacheHitMetaHeaders = buildNextRouteResponseMetaHeaders({
         provider,
         model,
         cacheHit: true,
@@ -2321,7 +2321,7 @@ export async function handleChatCore({
         response: new Response(cachedSse || JSON.stringify(cached), {
           headers: {
             "Content-Type": cachedSse ? "text/event-stream" : "application/json",
-            [OMNIROUTE_RESPONSE_HEADERS.cache]: "HIT",
+            [NEXTROUTE_RESPONSE_HEADERS.cache]: "HIT",
             ...cacheHitMetaHeaders,
           },
         }),
@@ -3773,7 +3773,7 @@ export async function handleChatCore({
       targetFormat === FORMATS.OPENAI_RESPONSES &&
       (provider === "azure-ai" || provider === "oci")
     ) {
-      providerSpecificData._omnirouteForceResponsesUpstream = true;
+      providerSpecificData._nextrouteForceResponsesUpstream = true;
     }
 
     const withApiType = {
@@ -3880,7 +3880,7 @@ export async function handleChatCore({
         typeof credentials?.accessToken === "string" &&
         credentials.accessToken.trim().length > 0;
       if (isQwenOAuthRequest && !hasValidQwenUser) {
-        bodyToSend = { ...bodyToSend, user: "omniroute-qwen-oauth" };
+        bodyToSend = { ...bodyToSend, user: "nextroute-qwen-oauth" };
         log?.debug?.("QWEN", "Injected fallback user for OAuth request");
       }
 
@@ -5493,8 +5493,8 @@ export async function handleChatCore({
       response: new Response(JSON.stringify(translatedResponse), {
         headers: {
           "Content-Type": "application/json",
-          [OMNIROUTE_RESPONSE_HEADERS.cache]: "MISS",
-          ...buildOmniRouteResponseMetaHeaders({
+          [NEXTROUTE_RESPONSE_HEADERS.cache]: "MISS",
+          ...buildNextRouteResponseMetaHeaders({
             provider,
             model,
             cacheHit: false,
@@ -5886,7 +5886,7 @@ export async function handleChatCore({
     const progressTransform = createProgressTransform({ signal: streamController.signal });
     // Chain: provider → transform → progress → client
     finalStream = piiStream.pipeThrough(progressTransform);
-    responseHeaders[OMNIROUTE_RESPONSE_HEADERS.progress] = "enabled";
+    responseHeaders[NEXTROUTE_RESPONSE_HEADERS.progress] = "enabled";
   } else {
     finalStream = piiStream;
   }

@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/shared/utils/cn";
 import { getActiveSidebarHref } from "@/shared/utils/sidebarRouteMatch";
 import { APP_CONFIG } from "@/shared/constants/appConfig";
-import OmniRouteLogo from "./OmniRouteLogo";
+import NextRouteLogo from "./NextRouteLogo";
 import Button from "./Button";
 import { ConfirmModal } from "./Modal";
 import CloudSyncStatus from "./CloudSyncStatus";
@@ -27,7 +27,7 @@ import {
   type SidebarItemOrder,
 } from "@/shared/constants/sidebarVisibility";
 
-const isE2EMode = process.env.NEXT_PUBLIC_OMNIROUTE_E2E_MODE === "1";
+const isE2EMode = process.env.NEXT_PUBLIC_NEXTROUTE_E2E_MODE === "1";
 const DEFAULT_EXPANDED: SidebarSectionId = "omni-proxy";
 const EXPANDED_SECTIONS_KEY = "sidebar-expanded-sections";
 const PINNED_SECTIONS_KEY = "sidebar-pinned-sections";
@@ -238,6 +238,15 @@ export default function Sidebar({
 
   // Auto-expand the section containing the active page (without closing others)
   useEffect(() => {
+    // If client session storage doesn't exist, we fallback
+    if (typeof window !== "undefined") {
+      const loginTime = localStorage.getItem("nextroute_login_time");
+      if (!loginTime && pathname !== "/login" && !pathname.startsWith("/api/")) {
+        window.location.href = "/login";
+        return;
+      }
+    }
+
     if (collapsed) return;
     for (const section of visibleSections) {
       const sectionItems = section.children.flatMap((child: any) =>
@@ -348,15 +357,15 @@ export default function Sidebar({
   const renderNavLink = (item) => {
     const active = !item.external && activeHref === item.href;
     const className = cn(
-      "flex items-center gap-3 rounded-lg transition-all group",
-      collapsed ? "justify-center px-2 py-2.5" : "px-3 py-1.5",
+      "flex items-center gap-3 rounded-xl transition-all duration-200 group relative",
+      collapsed ? "justify-center px-2 py-3" : "px-3.5 py-2.5",
       active
-        ? "bg-primary/10 text-primary"
-        : "text-text-muted hover:bg-surface/50 hover:text-text-main"
+        ? "bg-gradient-to-r from-primary/15 via-primary/5 to-transparent text-primary border-l-2 border-primary"
+        : "text-text-muted hover:bg-primary/[0.03] hover:text-text-main border-l-2 border-transparent"
     );
     const iconClassName = cn(
-      "material-symbols-outlined text-[18px] shrink-0",
-      active ? "fill-1" : "group-hover:text-primary transition-colors"
+      "material-symbols-outlined text-[20px] shrink-0 transition-transform duration-200 group-hover:scale-110",
+      active ? "fill-1 text-primary" : "group-hover:text-primary transition-colors"
     );
     const content = (
       <>
@@ -410,8 +419,8 @@ export default function Sidebar({
       <aside
         ref={sidebarRef}
         className={cn(
-          "flex h-full min-h-0 flex-col border-r border-black/5 bg-sidebar transition-all duration-300 ease-in-out dark:border-white/5",
-          collapsed ? "w-16" : "w-[220px]"
+          "flex h-full min-h-0 flex-col border-r border-black/5 bg-sidebar transition-all duration-300 ease-in-out dark:border-white/5 shadow-sm shadow-black/[0.02] dark:shadow-black/[0.2]",
+          collapsed ? "w-16" : "w-[240px]"
         )}
         style={{ paddingTop: isMacElectron ? "var(--desktop-safe-top)" : undefined }}
       >
@@ -459,12 +468,12 @@ export default function Sidebar({
           </div>
         )}
 
-        <div className={cn("py-3", collapsed ? "px-2" : "px-4")}>
+        <div className={cn("py-4 border-b border-black/5 dark:border-white/5 mb-2", collapsed ? "px-2" : "px-4")}>
           <Link
             href="/home"
-            className={cn("flex items-center", collapsed ? "justify-center" : "gap-2.5")}
+            className={cn("flex items-center", collapsed ? "justify-center" : "gap-3")}
           >
-            <div className="flex items-center justify-center size-8 rounded bg-linear-to-br from-[#E54D5E] to-[#C93D4E] shrink-0">
+            <div className="flex items-center justify-center size-9 rounded-xl bg-gradient-to-br from-primary to-primary-hover shadow-md shadow-primary/20 shrink-0">
               {customLogo ? (
                 <img
                   src={customLogo}
@@ -472,7 +481,7 @@ export default function Sidebar({
                   className="size-5 object-contain"
                 />
               ) : (
-                <OmniRouteLogo size={18} className="text-white" />
+                <NextRouteLogo size={18} className="text-white" />
               )}
             </div>
             {!collapsed && (
@@ -490,7 +499,7 @@ export default function Sidebar({
           aria-label="Main navigation"
           className={cn(
             "min-h-0 flex-1 overflow-y-auto py-1 custom-scrollbar",
-            collapsed ? "px-2 space-y-0.5" : "px-3"
+            collapsed ? "px-2 space-y-2" : "px-3 space-y-1"
           )}
         >
           {visibleSections.map((section, idx) => {

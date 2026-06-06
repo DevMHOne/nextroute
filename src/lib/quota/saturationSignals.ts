@@ -73,7 +73,7 @@ async function fetchCodexSaturation(
   dim: DimensionSpec
 ): Promise<number> {
   // Dynamic import — codexQuotaFetcher lives in open-sse workspace
-  const mod = await import("@omniroute/open-sse/services/codexQuotaFetcher");
+  const mod = await import("@nextroute/open-sse/services/codexQuotaFetcher");
   const quota = await mod.fetchCodexQuota(connectionId);
   if (!quota) return 0;
 
@@ -91,7 +91,7 @@ async function fetchBailianSaturation(
   connectionId: string,
   dim: DimensionSpec
 ): Promise<number> {
-  const mod = await import("@omniroute/open-sse/services/bailianQuotaFetcher");
+  const mod = await import("@nextroute/open-sse/services/bailianQuotaFetcher");
   const quota = await mod.fetchBailianQuota(connectionId);
   if (!quota) return 0;
 
@@ -117,7 +117,7 @@ async function fetchGenericSaturation(
   connectionId: string,
   provider: string
 ): Promise<number> {
-  const mod = await import("@omniroute/open-sse/services/usage");
+  const mod = await import("@nextroute/open-sse/services/usage");
   // getUsageForProvider returns an object with percentUsed or similar
   const result = await mod.getUsageForProvider(provider, connectionId);
   if (!result || typeof result !== "object") return 0;

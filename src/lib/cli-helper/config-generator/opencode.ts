@@ -15,7 +15,7 @@ export function generateOpencodeConfig(options: {
   if (base.endsWith("/v1")) base = base.slice(0, -3);
 
   const config = {
-    provider: "omniroute",
+    provider: "nextroute",
     baseURL: `${base}/v1`,
     apiKey: options.apiKey,
     model: options.model || "opencode",

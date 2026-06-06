@@ -11,8 +11,8 @@ Manage context engineering configurations, RTK filter sets, and conversation ses
 ## Quick install
 
 ```bash
-npm install -g omniroute   # or: npx omniroute
-omniroute --version
+npm install -g nextroute   # or: npx nextroute
+nextroute --version
 ```
 
 ## Subcommands
@@ -22,7 +22,7 @@ omniroute --version
 **Example:**
 
 ```bash
-omniroute context-eng
+nextroute context-eng
 ```
 
 ### `context-eng analytics`
@@ -34,7 +34,7 @@ omniroute context-eng
 **Example:**
 
 ```bash
-omniroute context-eng analytics
+nextroute context-eng analytics
 ```
 
 ### `context-eng caveman`
@@ -42,7 +42,7 @@ omniroute context-eng analytics
 **Example:**
 
 ```bash
-omniroute context-eng caveman
+nextroute context-eng caveman
 ```
 
 ### `context-eng config`
@@ -50,7 +50,7 @@ omniroute context-eng caveman
 **Example:**
 
 ```bash
-omniroute context-eng config
+nextroute context-eng config
 ```
 
 ### `context-eng show`
@@ -58,7 +58,7 @@ omniroute context-eng config
 **Example:**
 
 ```bash
-omniroute context-eng show
+nextroute context-eng show
 ```
 
 ### `context-eng set`
@@ -72,7 +72,7 @@ omniroute context-eng show
 **Example:**
 
 ```bash
-omniroute context-eng set
+nextroute context-eng set
 ```
 
 ### `context-eng rtk`
@@ -80,7 +80,7 @@ omniroute context-eng set
 **Example:**
 
 ```bash
-omniroute context-eng rtk
+nextroute context-eng rtk
 ```
 
 ### `context-eng config`
@@ -88,7 +88,7 @@ omniroute context-eng rtk
 **Example:**
 
 ```bash
-omniroute context-eng config
+nextroute context-eng config
 ```
 
 ### `context-eng show`
@@ -96,7 +96,7 @@ omniroute context-eng config
 **Example:**
 
 ```bash
-omniroute context-eng show
+nextroute context-eng show
 ```
 
 ### `context-eng set`
@@ -109,7 +109,7 @@ omniroute context-eng show
 **Example:**
 
 ```bash
-omniroute context-eng set
+nextroute context-eng set
 ```
 
 ### `context-eng filters`
@@ -117,7 +117,7 @@ omniroute context-eng set
 **Example:**
 
 ```bash
-omniroute context-eng filters
+nextroute context-eng filters
 ```
 
 ### `context-eng list`
@@ -125,7 +125,7 @@ omniroute context-eng filters
 **Example:**
 
 ```bash
-omniroute context-eng list
+nextroute context-eng list
 ```
 
 ### `context-eng add`
@@ -138,7 +138,7 @@ omniroute context-eng list
 **Example:**
 
 ```bash
-omniroute context-eng add
+nextroute context-eng add
 ```
 
 ### `context-eng remove <id>`
@@ -150,7 +150,7 @@ omniroute context-eng add
 **Example:**
 
 ```bash
-omniroute context-eng remove <id>
+nextroute context-eng remove <id>
 ```
 
 ### `context-eng test`
@@ -158,7 +158,7 @@ omniroute context-eng remove <id>
 **Example:**
 
 ```bash
-omniroute context-eng test
+nextroute context-eng test
 ```
 
 ### `context-eng raw-output <id>`
@@ -166,7 +166,7 @@ omniroute context-eng test
 **Example:**
 
 ```bash
-omniroute context-eng raw-output <id>
+nextroute context-eng raw-output <id>
 ```
 
 ### `context-eng combos`
@@ -174,7 +174,7 @@ omniroute context-eng raw-output <id>
 **Example:**
 
 ```bash
-omniroute context-eng combos
+nextroute context-eng combos
 ```
 
 ### `context-eng list`
@@ -182,7 +182,7 @@ omniroute context-eng combos
 **Example:**
 
 ```bash
-omniroute context-eng list
+nextroute context-eng list
 ```
 
 ### `context-eng get <id>`
@@ -190,7 +190,7 @@ omniroute context-eng list
 **Example:**
 
 ```bash
-omniroute context-eng get <id>
+nextroute context-eng get <id>
 ```
 
 ### `context-eng assignments <id>`
@@ -198,7 +198,7 @@ omniroute context-eng get <id>
 **Example:**
 
 ```bash
-omniroute context-eng assignments <id>
+nextroute context-eng assignments <id>
 ```
 
 ### `contexts`
@@ -206,7 +206,7 @@ omniroute context-eng assignments <id>
 **Example:**
 
 ```bash
-omniroute contexts
+nextroute contexts
 ```
 
 ### `contexts list`
@@ -216,7 +216,7 @@ List all contexts
 **Example:**
 
 ```bash
-omniroute contexts list
+nextroute contexts list
 ```
 
 ### `contexts add <name>`
@@ -232,7 +232,7 @@ Add a new context
 **Example:**
 
 ```bash
-omniroute contexts add <name>
+nextroute contexts add <name>
 ```
 
 ### `contexts use <name>`
@@ -242,7 +242,7 @@ Switch active context
 **Example:**
 
 ```bash
-omniroute contexts use <name>
+nextroute contexts use <name>
 ```
 
 ### `contexts current`
@@ -252,7 +252,7 @@ Show current active context name
 **Example:**
 
 ```bash
-omniroute contexts current
+nextroute contexts current
 ```
 
 ### `contexts show <name>`
@@ -262,7 +262,7 @@ Show context details
 **Example:**
 
 ```bash
-omniroute contexts show <name>
+nextroute contexts show <name>
 ```
 
 ### `contexts remove <name>`
@@ -276,7 +276,7 @@ Remove a context
 **Example:**
 
 ```bash
-omniroute contexts remove <name>
+nextroute contexts remove <name>
 ```
 
 ### `contexts rename <old> <new>`
@@ -286,7 +286,7 @@ Rename a context
 **Example:**
 
 ```bash
-omniroute contexts rename <old> <new>
+nextroute contexts rename <old> <new>
 ```
 
 ### `contexts export`
@@ -301,7 +301,7 @@ Export contexts to JSON
 **Example:**
 
 ```bash
-omniroute contexts export
+nextroute contexts export
 ```
 
 ### `contexts import <file>`
@@ -315,7 +315,7 @@ Import contexts from a JSON file
 **Example:**
 
 ```bash
-omniroute contexts import <file>
+nextroute contexts import <file>
 ```
 
 ### `sessions`
@@ -323,7 +323,7 @@ omniroute contexts import <file>
 **Example:**
 
 ```bash
-omniroute sessions
+nextroute sessions
 ```
 
 ### `sessions list`
@@ -338,7 +338,7 @@ omniroute sessions
 **Example:**
 
 ```bash
-omniroute sessions list
+nextroute sessions list
 ```
 
 ### `sessions show <sessionId>`
@@ -346,7 +346,7 @@ omniroute sessions list
 **Example:**
 
 ```bash
-omniroute sessions show <sessionId>
+nextroute sessions show <sessionId>
 ```
 
 ### `sessions expire <sessionId>`
@@ -358,7 +358,7 @@ omniroute sessions show <sessionId>
 **Example:**
 
 ```bash
-omniroute sessions expire <sessionId>
+nextroute sessions expire <sessionId>
 ```
 
 ### `sessions expire-all`
@@ -370,7 +370,7 @@ omniroute sessions expire <sessionId>
 **Example:**
 
 ```bash
-omniroute sessions expire-all
+nextroute sessions expire-all
 ```
 
 ### `sessions current`
@@ -378,5 +378,5 @@ omniroute sessions expire-all
 **Example:**
 
 ```bash
-omniroute sessions current
+nextroute sessions current
 ```

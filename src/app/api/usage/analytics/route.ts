@@ -471,7 +471,7 @@ export async function GET(request: Request) {
     }
     const { computeCostFromPricing, getCodexFastCostMultiplier, normalizeModelName } =
       await import("@/lib/usage/costCalculator");
-    const { PROVIDER_ID_TO_ALIAS } = await import("@omniroute/open-sse/config/providerModels");
+    const { PROVIDER_ID_TO_ALIAS } = await import("@nextroute/open-sse/config/providerModels");
 
     const summaryRow = db
       .prepare(

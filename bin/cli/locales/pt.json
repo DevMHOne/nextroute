@@ -1,8 +1,8 @@
 {
   "common": {
     "error": "Erro: {message}",
-    "serverOffline": "O servidor OmniRoute está offline. Inicie com: omniroute serve",
-    "authRequired": "Autenticação necessária. Defina OMNIROUTE_API_KEY ou execute: omniroute setup",
+    "serverOffline": "O servidor NextRoute está offline. Inicie com: nextroute serve",
+    "authRequired": "Autenticação necessária. Defina NEXTROUTE_API_KEY ou execute: nextroute setup",
     "rateLimited": "Limite de pedidos atingido. Tente novamente em {seconds}s.",
     "timeout": "O pedido expirou após {ms}ms.",
     "success": "Concluído.",
@@ -15,15 +15,15 @@
     "yesOpt": "Ignorar confirmação"
   },
   "program": {
-    "description": "OmniRoute — Router de IA inteligente com fallback automático",
+    "description": "NextRoute — Router de IA inteligente com fallback automático",
     "version": "Mostrar versão e sair",
     "output": "Formato de saída (table, json, jsonl, csv)",
     "quiet": "Suprimir saída não essencial",
     "no_color": "Desativar saída colorida",
     "timeout": "Timeout de pedidos HTTP em milissegundos",
-    "api_key": "Chave de API para o servidor OmniRoute",
-    "base_url": "URL base do servidor OmniRoute",
+    "api_key": "Chave de API para o servidor NextRoute",
+    "base_url": "URL base do servidor NextRoute",
     "context": "Contexto/perfil do servidor para este comando",
-    "lang": "Definir idioma de apresentação do CLI (substitui OMNIROUTE_LANG)"
+    "lang": "Definir idioma de apresentação do CLI (substitui NEXTROUTE_LANG)"
   }
 }

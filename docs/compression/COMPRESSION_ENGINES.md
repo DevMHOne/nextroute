@@ -6,7 +6,7 @@ lastUpdated: 2026-05-13
 
 # Compression Engines
 
-OmniRoute compression is built around engine contracts. A mode can run one engine directly
+NextRoute compression is built around engine contracts. A mode can run one engine directly
 (`caveman` or `rtk`) or a deterministic stacked pipeline that executes multiple engines in order.
 
 ## Modes
@@ -57,7 +57,7 @@ Caveman mode focuses on semantic condensation of normal prose:
 The dashboard surface is `Dashboard -> Context & Cache -> Caveman`.
 
 Caveman upstream reports `~75%` fewer output tokens, `65%` average output savings in benchmarks
-with a `22-87%` range, and a `~46%` input-compression tool. OmniRoute uses the Caveman input-side
+with a `22-87%` range, and a `~46%` input-compression tool. NextRoute uses the Caveman input-side
 number when documenting stacked prompt/context savings; Caveman output mode remains a separate
 response-behavior feature.
 
@@ -203,11 +203,11 @@ Compression exposes five MCP tools:
 
 | Tool                                | Scope               | Purpose                          |
 | ----------------------------------- | ------------------- | -------------------------------- |
-| `omniroute_compression_status`      | `read:compression`  | Settings, analytics, cache stats |
-| `omniroute_compression_configure`   | `write:compression` | Update global settings           |
-| `omniroute_set_compression_engine`  | `write:compression` | Set mode and optional pipeline   |
-| `omniroute_list_compression_combos` | `read:compression`  | List compression combos          |
-| `omniroute_compression_combo_stats` | `read:compression`  | Read combo/engine analytics      |
+| `nextroute_compression_status`      | `read:compression`  | Settings, analytics, cache stats |
+| `nextroute_compression_configure`   | `write:compression` | Update global settings           |
+| `nextroute_set_compression_engine`  | `write:compression` | Set mode and optional pipeline   |
+| `nextroute_list_compression_combos` | `read:compression`  | List compression combos          |
+| `nextroute_compression_combo_stats` | `read:compression`  | Read combo/engine analytics      |
 
 ## Validation
 

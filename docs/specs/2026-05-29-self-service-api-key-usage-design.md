@@ -2,7 +2,7 @@
 
 ## Problem
 
-Operators often share one upstream coding account, such as Codex, across multiple OmniRoute API keys. OmniRoute already records per-key usage and supports per-key USD budgets, but a normal client API key cannot query its own spend or token totals. The existing usage APIs are management endpoints, so exposing them to each API key would disclose other keys, account metadata, and operational settings.
+Operators often share one upstream coding account, such as Codex, across multiple NextRoute API keys. NextRoute already records per-key usage and supports per-key USD budgets, but a normal client API key cannot query its own spend or token totals. The existing usage APIs are management endpoints, so exposing them to each API key would disclose other keys, account metadata, and operational settings.
 
 Operators also need a way to decide whether a key may see shared upstream account quotas. For Codex this includes the short session window and weekly window fetched from ChatGPT usage APIs, and other subscription providers can expose their own normalized provider-limit windows. That quota is account-level state, not key-level state, so it should not be visible by default.
 
@@ -18,7 +18,7 @@ The goal is to add a small self-service status API and matching dashboard contro
 This design was written after comparing the official source and a live deployment:
 
 - Official checkout: `origin/main` at `dc3915a4`, package version `3.8.5`.
-- Live deployment: package version `3.8.3`, installed under `/usr/lib/node_modules/omniroute/app`.
+- Live deployment: package version `3.8.3`, installed under `/usr/lib/node_modules/nextroute/app`.
 - Contributor guide: PRs currently target `release/v3.8.3`, so implementation should start from the release branch even though the source survey used current `main`.
 
 Relevant current implementation:
@@ -40,7 +40,7 @@ Relevant current implementation:
 - Include token totals as reporting data only, not as quota enforcement.
 - Make account quota visibility opt-in per API key.
 - Add create/edit UI controls for self-service visibility while reusing the existing budget configuration flow for USD limits.
-- Add all new dashboard text through OmniRoute's i18n message system.
+- Add all new dashboard text through NextRoute's i18n message system.
 - Preserve arbitrary existing scopes when the dashboard edits permissions.
 - Provide a design that can become an upstream-quality PR with tests and docs.
 
@@ -282,7 +282,7 @@ Usage display:
 
 ## Internationalization
 
-OmniRoute's dashboard is localized through `src/i18n/messages/*.json` and components use `useTranslations()`. All new API Manager labels, descriptions, tooltips, empty states, and error messages must use translation keys instead of hard-coded UI strings.
+NextRoute's dashboard is localized through `src/i18n/messages/*.json` and components use `useTranslations()`. All new API Manager labels, descriptions, tooltips, empty states, and error messages must use translation keys instead of hard-coded UI strings.
 
 Implementation should:
 

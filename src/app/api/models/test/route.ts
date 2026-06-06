@@ -6,7 +6,7 @@ import { POST as postRerank } from "@/app/api/v1/rerank/route";
 import { buildComboTestRequestBody, extractComboTestResponseText } from "@/lib/combos/testHealth";
 import { requireManagementAuth } from "@/lib/api/requireManagementAuth";
 import { getCustomModels } from "@/lib/localDb";
-import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
+import { sanitizeErrorMessage } from "@nextroute/open-sse/utils/error";
 import { z } from "zod";
 
 const testModelSchema = z.object({
@@ -15,7 +15,7 @@ const testModelSchema = z.object({
 });
 
 const MODEL_TEST_TIMEOUT_MS = 20_000;
-const INTERNAL_ORIGIN = "http://omniroute.internal";
+const INTERNAL_ORIGIN = "http://nextroute.internal";
 
 function asRecord(value: unknown): Record<string, unknown> {
   return value && typeof value === "object" && !Array.isArray(value)
@@ -67,7 +67,7 @@ function buildInternalChatRequest(testBody: Record<string, unknown>, signal: Abo
       "Content-Type": "application/json",
       // Reuse the existing strict-mode internal bypass for live health checks.
       "X-Internal-Test": "combo-health-check",
-      "X-OmniRoute-No-Cache": "true",
+      "X-NextRoute-No-Cache": "true",
       "X-Request-Id": `model-test-${randomUUID()}`,
     },
     body: JSON.stringify(testBody),
@@ -81,7 +81,7 @@ function buildInternalRerankRequest(testBody: Record<string, unknown>, signal: A
     headers: {
       "Content-Type": "application/json",
       "X-Internal-Test": "combo-health-check",
-      "X-OmniRoute-No-Cache": "true",
+      "X-NextRoute-No-Cache": "true",
       "X-Request-Id": `model-test-${randomUUID()}`,
     },
     body: JSON.stringify(testBody),
@@ -172,9 +172,9 @@ export async function POST(request: Request) {
     const testBody = isRerank
       ? {
           model: fullModelStr,
-          query: "What is OmniRoute?",
+          query: "What is NextRoute?",
           documents: [
-            "OmniRoute routes AI requests across configured providers.",
+            "NextRoute routes AI requests across configured providers.",
             "This document is unrelated to the test query.",
           ],
           top_n: 1,

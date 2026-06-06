@@ -4,7 +4,7 @@
 
 import { getDbInstance } from "./core";
 import { backupDbFile } from "./backup";
-import { PROVIDER_ID_TO_ALIAS } from "@omniroute/open-sse/config/providerModels.ts";
+import { PROVIDER_ID_TO_ALIAS } from "@nextroute/open-sse/config/providerModels.ts";
 import { invalidateDbCache } from "./readCache";
 import { getProxyRegistryGeneration, resolveProxyForScopeFromRegistry } from "./proxies";
 import { getComboModelProvider as getComboEntryProvider } from "@/lib/combos/steps";
@@ -802,7 +802,7 @@ export async function resolveProxyForConnection(connectionId: string, apiKeyId?:
 
   // Step 11: Auto-selection fallback (only when global proxy is enabled)
   try {
-    const { selectWorkingProxyFallback } = await import("@omniroute/open-sse/utils/proxyFallback");
+    const { selectWorkingProxyFallback } = await import("@nextroute/open-sse/utils/proxyFallback");
     const fallback = await selectWorkingProxyFallback(connectionId);
     if (fallback) {
       cacheProxyResolution(cacheKey, startGeneration, startRegistryGeneration, fallback);

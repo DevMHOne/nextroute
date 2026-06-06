@@ -1,14 +1,14 @@
 {
-  "name": "omniroute-desktop",
+  "name": "nextroute-desktop",
   "version": "3.8.10",
-  "description": "OmniRoute Desktop Application",
+  "description": "NextRoute Desktop Application",
   "main": "main.js",
   "author": {
-    "name": "OmniRoute Team",
-    "email": "support@omniroute.online"
+    "name": "NextRoute Team",
+    "email": "support@nextroute.online"
   },
   "license": "MIT",
-  "homepage": "https://omniroute.online",
+  "homepage": "https://nextroute.online",
   "engines": {
     "node": ">=22.22.2 <23 || >=24.0.0 <27"
   },
@@ -36,9 +36,9 @@
     "plist": "^4.0.0"
   },
   "build": {
-    "appId": "online.omniroute.desktop",
-    "productName": "OmniRoute",
-    "copyright": "Copyright © 2025 OmniRoute",
+    "appId": "online.nextroute.desktop",
+    "productName": "NextRoute",
+    "copyright": "Copyright © 2025 NextRoute",
     "directories": {
       "output": "dist-electron",
       "buildResources": "assets"
@@ -46,7 +46,7 @@
     "publish": {
       "provider": "github",
       "owner": "diegosouzapw",
-      "repo": "OmniRoute"
+      "repo": "NextRoute"
     },
     "files": [
       "main.js",

@@ -365,7 +365,7 @@ export async function startLiveDashboardServer(
 // ── Auto-start on import (opt-in) ────────────────────────────────────────
 //
 // Default: OFF. The live dashboard WebSocket is an opt-in feature — operators
-// who want it must set OMNIROUTE_ENABLE_LIVE_WS=1 (or "true"). This avoids
+// who want it must set NEXTROUTE_ENABLE_LIVE_WS=1 (or "true"). This avoids
 // silently opening a network listener on every Next.js boot.
 //
 // Build/test environments never auto-start regardless of the flag.
@@ -380,7 +380,7 @@ function isBuildOrTest(): boolean {
 }
 
 function isLiveWsEnabled(): boolean {
-  const v = process.env.OMNIROUTE_ENABLE_LIVE_WS;
+  const v = process.env.NEXTROUTE_ENABLE_LIVE_WS;
   return v === "1" || v === "true";
 }
 

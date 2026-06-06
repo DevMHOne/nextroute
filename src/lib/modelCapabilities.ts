@@ -1,8 +1,8 @@
 import {
   PROVIDER_ID_TO_ALIAS,
   PROVIDER_MODELS,
-} from "@omniroute/open-sse/config/providerModels.ts";
-import { parseModel, resolveCanonicalProviderModel } from "@omniroute/open-sse/services/model.ts";
+} from "@nextroute/open-sse/config/providerModels.ts";
+import { parseModel, resolveCanonicalProviderModel } from "@nextroute/open-sse/services/model.ts";
 import { MODEL_SPECS, getModelSpec, type ModelSpec } from "@/shared/constants/modelSpecs";
 import { getSyncedCapability } from "@/lib/modelsDevSync";
 

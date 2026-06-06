@@ -1,8 +1,8 @@
 {
   "common": {
     "error": "Erreur : {message}",
-    "serverOffline": "Le serveur OmniRoute est hors ligne. Démarrez avec : omniroute serve",
-    "authRequired": "Authentification requise. Définissez OMNIROUTE_API_KEY ou exécutez : omniroute setup",
+    "serverOffline": "Le serveur NextRoute est hors ligne. Démarrez avec : nextroute serve",
+    "authRequired": "Authentification requise. Définissez NEXTROUTE_API_KEY ou exécutez : nextroute setup",
     "rateLimited": "Limite de requêtes atteinte. Réessayez dans {seconds}s.",
     "timeout": "La requête a expiré après {ms}ms.",
     "success": "Terminé.",
@@ -15,15 +15,15 @@
     "yesOpt": "Ignorer la confirmation"
   },
   "program": {
-    "description": "OmniRoute — Routeur IA intelligent avec basculement automatique",
+    "description": "NextRoute — Routeur IA intelligent avec basculement automatique",
     "version": "Afficher la version et quitter",
     "output": "Format de sortie (table, json, jsonl, csv)",
     "quiet": "Supprimer les sorties non essentielles",
     "no_color": "Désactiver la sortie en couleur",
     "timeout": "Délai d'expiration des requêtes HTTP en millisecondes",
-    "api_key": "Clé API pour le serveur OmniRoute",
-    "base_url": "URL de base du serveur OmniRoute",
+    "api_key": "Clé API pour le serveur NextRoute",
+    "base_url": "URL de base du serveur NextRoute",
     "context": "Contexte/profil du serveur pour cette commande",
-    "lang": "Définir la langue d'affichage du CLI (remplace OMNIROUTE_LANG)"
+    "lang": "Définir la langue d'affichage du CLI (remplace NEXTROUTE_LANG)"
   }
 }

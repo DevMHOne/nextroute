@@ -4,7 +4,7 @@
 
 ### Requirement: Self-service status endpoint
 
-OmniRoute SHALL provide `GET /api/v1/me/status` for a valid Bearer API key to retrieve status for that same API key.
+NextRoute SHALL provide `GET /api/v1/me/status` for a valid Bearer API key to retrieve status for that same API key.
 
 #### Scenario: Valid key reads own status
 
@@ -79,7 +79,7 @@ The self-service endpoint SHALL report token totals from `usage_history` for the
 
 ### Requirement: Self-service scopes
 
-OmniRoute SHALL support `self:usage` and `self:account-quota` API key scopes. These scopes SHALL NOT grant management API access.
+NextRoute SHALL support `self:usage` and `self:account-quota` API key scopes. These scopes SHALL NOT grant management API access.
 
 #### Scenario: Self-service scope is not management
 
@@ -178,7 +178,7 @@ The API Manager SHALL allow operators to configure self-service visibility and S
 
 - GIVEN an operator wants to change a key's USD budget limit
 - WHEN they use the dashboard
-- THEN OmniRoute SHALL direct them to the existing budget configuration surface
+- THEN NextRoute SHALL direct them to the existing budget configuration surface
 - AND the create-key dialog SHALL NOT introduce a second budget editor
 
 #### Scenario: No budget is displayed as not configured
@@ -190,7 +190,7 @@ The API Manager SHALL allow operators to configure self-service visibility and S
 
 ### Requirement: Dashboard internationalization
 
-All new API Manager text for self-service usage visibility, shared account quota visibility, and no-budget display SHALL use OmniRoute's existing i18n message system.
+All new API Manager text for self-service usage visibility, shared account quota visibility, and no-budget display SHALL use NextRoute's existing i18n message system.
 
 #### Scenario: New UI strings use translation keys
 

@@ -21,7 +21,7 @@ afterEach(() => {
 
 describe("RTK raw output retention", () => {
   it("redacts secrets before raw output persistence and exposes a pointer", () => {
-    const tempData = fs.mkdtempSync(path.join(os.tmpdir(), "omniroute-rtk-raw-"));
+    const tempData = fs.mkdtempSync(path.join(os.tmpdir(), "nextroute-rtk-raw-"));
     process.env.DATA_DIR = tempData;
     const raw = [
       "Error: failed with token=sk-1234567890abcdefghijklmnop",
@@ -60,7 +60,7 @@ describe("RTK raw output retention", () => {
   });
 
   it("retains only configured failure output and enforces byte caps", () => {
-    const tempData = fs.mkdtempSync(path.join(os.tmpdir(), "omniroute-rtk-raw-cap-"));
+    const tempData = fs.mkdtempSync(path.join(os.tmpdir(), "nextroute-rtk-raw-cap-"));
     process.env.DATA_DIR = tempData;
 
     assert.equal(
@@ -79,7 +79,7 @@ describe("RTK raw output retention", () => {
   });
 
   it("propagates raw output pointers from stacked RTK runs", () => {
-    const tempData = fs.mkdtempSync(path.join(os.tmpdir(), "omniroute-rtk-stacked-raw-"));
+    const tempData = fs.mkdtempSync(path.join(os.tmpdir(), "nextroute-rtk-stacked-raw-"));
     process.env.DATA_DIR = tempData;
 
     const result = applyCompression(

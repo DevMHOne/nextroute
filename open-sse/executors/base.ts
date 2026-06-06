@@ -826,17 +826,17 @@ export class BaseExecutor {
           }
 
           // Per-request behavior overrides via custom client headers.
-          //   x-omniroute-effort:   low | medium | high | xhigh | max | off
-          //   x-omniroute-thinking: adaptive | off
+          //   x-nextroute-effort:   low | medium | high | xhigh | max | off
+          //   x-nextroute-thinking: adaptive | off
           // A header value applies only when the corresponding body field is
           // not already set; "off" force-strips the field.
           const headerEffort = (
-            clientHeaders?.["x-omniroute-effort"] ?? clientHeaders?.["X-OmniRoute-Effort"]
+            clientHeaders?.["x-nextroute-effort"] ?? clientHeaders?.["X-NextRoute-Effort"]
           )
             ?.trim()
             .toLowerCase();
           const headerThinking = (
-            clientHeaders?.["x-omniroute-thinking"] ?? clientHeaders?.["X-OmniRoute-Thinking"]
+            clientHeaders?.["x-nextroute-thinking"] ?? clientHeaders?.["X-NextRoute-Thinking"]
           )
             ?.trim()
             .toLowerCase();
@@ -921,7 +921,7 @@ export class BaseExecutor {
           // For any Claude OAuth request, ignore client-supplied metadata.user_id /
           // X-Claude-Code-Session-Id and synthesize per-account: the CC device_id from
           // ~/.claude.json is shared across every account on one machine, which lets
-          // Anthropic correlate accounts behind one OmniRoute.
+          // Anthropic correlate accounts behind one NextRoute.
           const cloakIdentity = isClaudeCodeClient || hasClaudeOAuthToken;
           const upstreamUserId = cloakIdentity ? null : parseUpstreamMetadataUserId(tb);
           if (upstreamUserId) {

@@ -5,7 +5,7 @@ import os from "node:os";
 import path from "node:path";
 import { makeManagementSessionRequest } from "../helpers/managementSession.ts";
 
-const TEST_DATA_DIR = fs.mkdtempSync(path.join(os.tmpdir(), "omniroute-health-autopilot-"));
+const TEST_DATA_DIR = fs.mkdtempSync(path.join(os.tmpdir(), "nextroute-health-autopilot-"));
 const ORIGINAL_DATA_DIR = process.env.DATA_DIR;
 const ORIGINAL_INITIAL_PASSWORD = process.env.INITIAL_PASSWORD;
 const ORIGINAL_JWT_SECRET = process.env.JWT_SECRET;
@@ -19,7 +19,7 @@ const autopilot = await import("../../src/lib/monitoring/providerHealthAutopilot
 const actionsRoute = await import("../../src/app/api/providers/health-autopilot/actions/route.ts");
 const reportRoute = await import("../../src/app/api/providers/health-autopilot/route.ts");
 const routeGuard = await import("../../src/server/authz/routeGuard.ts");
-const accountFallback = await import("@omniroute/open-sse/services/accountFallback");
+const accountFallback = await import("@nextroute/open-sse/services/accountFallback");
 
 const PROVIDER = "autopilot-test-provider";
 

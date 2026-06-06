@@ -1,4 +1,4 @@
-import { handleMusicGeneration } from "@omniroute/open-sse/handlers/musicGeneration.ts";
+import { handleMusicGeneration } from "@nextroute/open-sse/handlers/musicGeneration.ts";
 import {
   getProviderCredentials,
   clearRecoveredProviderState,
@@ -9,9 +9,9 @@ import {
   parseMusicModel,
   getAllMusicModels,
   getMusicProvider,
-} from "@omniroute/open-sse/config/musicRegistry.ts";
-import { errorResponse } from "@omniroute/open-sse/utils/error.ts";
-import { HTTP_STATUS } from "@omniroute/open-sse/config/constants.ts";
+} from "@nextroute/open-sse/config/musicRegistry.ts";
+import { errorResponse } from "@nextroute/open-sse/utils/error.ts";
+import { HTTP_STATUS } from "@nextroute/open-sse/config/constants.ts";
 import * as log from "@/sse/utils/logger";
 import { toJsonErrorPayload } from "@/shared/utils/upstreamError";
 import { enforceApiKeyPolicy } from "@/shared/utils/apiKeyPolicy";

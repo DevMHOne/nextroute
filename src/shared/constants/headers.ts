@@ -1,11 +1,11 @@
-export const OMNIROUTE_RESPONSE_HEADERS = {
-  cache: "X-OmniRoute-Cache",
-  cacheHit: "X-OmniRoute-Cache-Hit",
-  latencyMs: "X-OmniRoute-Latency-Ms",
-  model: "X-OmniRoute-Model",
-  progress: "X-OmniRoute-Progress",
-  provider: "X-OmniRoute-Provider",
-  responseCost: "X-OmniRoute-Response-Cost",
-  tokensIn: "X-OmniRoute-Tokens-In",
-  tokensOut: "X-OmniRoute-Tokens-Out",
+export const NEXTROUTE_RESPONSE_HEADERS = {
+  cache: "X-NextRoute-Cache",
+  cacheHit: "X-NextRoute-Cache-Hit",
+  latencyMs: "X-NextRoute-Latency-Ms",
+  model: "X-NextRoute-Model",
+  progress: "X-NextRoute-Progress",
+  provider: "X-NextRoute-Provider",
+  responseCost: "X-NextRoute-Response-Cost",
+  tokensIn: "X-NextRoute-Tokens-In",
+  tokensOut: "X-NextRoute-Tokens-Out",
 } as const;

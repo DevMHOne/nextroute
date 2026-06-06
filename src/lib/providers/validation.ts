@@ -1,8 +1,8 @@
 import { randomUUID } from "node:crypto";
-import { getEmbeddingProvider } from "@omniroute/open-sse/config/embeddingRegistry.ts";
-import { getRerankProvider } from "@omniroute/open-sse/config/rerankRegistry.ts";
-import { getRegistryEntry } from "@omniroute/open-sse/config/providerRegistry.ts";
-import { selectProxyForValidation } from "@omniroute/open-sse/services/proxyAutoSelector.ts";
+import { getEmbeddingProvider } from "@nextroute/open-sse/config/embeddingRegistry.ts";
+import { getRerankProvider } from "@nextroute/open-sse/config/rerankRegistry.ts";
+import { getRegistryEntry } from "@nextroute/open-sse/config/providerRegistry.ts";
+import { selectProxyForValidation } from "@nextroute/open-sse/services/proxyAutoSelector.ts";
 import {
   buildClaudeCodeCompatibleHeaders,
   buildClaudeCodeCompatibleValidationPayload,
@@ -12,7 +12,7 @@ import {
   joinBaseUrlAndPath,
   stripClaudeCodeCompatibleEndpointSuffix,
   stripAnthropicMessagesSuffix,
-} from "@omniroute/open-sse/services/claudeCodeCompatible.ts";
+} from "@nextroute/open-sse/services/claudeCodeCompatible.ts";
 import {
   isClaudeCodeCompatibleProvider,
   isAnthropicCompatibleProvider,
@@ -35,51 +35,51 @@ import {
 } from "@/lib/providers/webCookieAuth";
 import { buildJulesApiUrl } from "@/lib/cloudAgent/julesApi.ts";
 import { resolveNvidiaValidationModel } from "@/lib/providers/nvidiaValidationModel";
-import { getGigachatAccessToken } from "@omniroute/open-sse/services/gigachatAuth.ts";
-import { validateQoderCliPat } from "@omniroute/open-sse/services/qoderCli.ts";
+import { getGigachatAccessToken } from "@nextroute/open-sse/services/gigachatAuth.ts";
+import { validateQoderCliPat } from "@nextroute/open-sse/services/qoderCli.ts";
 import {
   AZURE_AI_DEFAULT_BASE_URL,
   buildAzureAiChatUrl,
   buildAzureAiModelsUrl,
-} from "@omniroute/open-sse/config/azureAi.ts";
+} from "@nextroute/open-sse/config/azureAi.ts";
 import {
   discoverBedrockNativeModels,
   isBedrockNativeApiError,
   isBedrockNativeAuthError,
-} from "@omniroute/open-sse/services/bedrock.ts";
+} from "@nextroute/open-sse/services/bedrock.ts";
 import {
   DATAROBOT_DEFAULT_BASE_URL,
   buildDataRobotCatalogUrl,
   buildDataRobotChatUrl,
   isDataRobotDeploymentUrl,
-} from "@omniroute/open-sse/config/datarobot.ts";
+} from "@nextroute/open-sse/config/datarobot.ts";
 import {
   OCI_DEFAULT_BASE_URL,
   buildOciChatUrl,
   buildOciModelsUrl,
-} from "@omniroute/open-sse/config/oci.ts";
+} from "@nextroute/open-sse/config/oci.ts";
 import {
   SAP_DEFAULT_BASE_URL,
   buildSapChatUrl,
   buildSapModelsUrl,
   getSapResourceGroup,
   isSapDeploymentUrl,
-} from "@omniroute/open-sse/config/sap.ts";
+} from "@nextroute/open-sse/config/sap.ts";
 import {
   WATSONX_DEFAULT_BASE_URL,
   buildWatsonxChatUrl,
   buildWatsonxModelsUrl,
-} from "@omniroute/open-sse/config/watsonx.ts";
+} from "@nextroute/open-sse/config/watsonx.ts";
 import {
   buildRunwayApiUrl,
   buildRunwayHeaders,
   normalizeRunwayBaseUrl,
-} from "@omniroute/open-sse/config/runway.ts";
+} from "@nextroute/open-sse/config/runway.ts";
 import {
   buildMaritalkChatUrl,
   buildMaritalkModelsUrl,
-} from "@omniroute/open-sse/config/maritalk.ts";
-import { signAwsRequest } from "@omniroute/open-sse/utils/awsSigV4.ts";
+} from "@nextroute/open-sse/config/maritalk.ts";
+import { signAwsRequest } from "@nextroute/open-sse/utils/awsSigV4.ts";
 import { validateImageProviderApiKey } from "@/lib/providers/imageValidation";
 
 const OPENAI_LIKE_FORMATS = new Set(["openai", "openai-responses"]);
@@ -869,7 +869,7 @@ async function validateClaudeOAuthInline({
     providerSpecificData?.validationModelId || modelId || "claude-haiku-4-5-20251001";
 
   try {
-    const { getExecutor } = await import("@omniroute/open-sse/executors/index.ts");
+    const { getExecutor } = await import("@nextroute/open-sse/executors/index.ts");
     const { response } = await getExecutor("claude").execute({
       model: testModelId,
       body: {
@@ -2951,7 +2951,7 @@ async function validateChatGptWebProvider({ apiKey, providerSpecificData = {} }:
     // cf_clearance to JA3/JA4 + HTTP/2 SETTINGS, so plain Node fetch always
     // gets cf-mitigated: challenge regardless of cookies.
     const { tlsFetchChatGpt, TlsClientUnavailableError } =
-      await import("@omniroute/open-sse/services/chatgptTlsClient.ts");
+      await import("@nextroute/open-sse/services/chatgptTlsClient.ts");
 
     let response;
     try {
@@ -3082,7 +3082,7 @@ async function validatePerplexityWebProvider({ apiKey, providerSpecificData = {}
     // VPS/datacenter IPs even with a valid cookie. Use the Firefox-fingerprinted
     // TLS client so the validator's verdict reflects the cookie, not the IP (issue #2459).
     const { tlsFetchPerplexity, isCloudflareChallenge, TlsClientUnavailableError } =
-      await import("@omniroute/open-sse/services/perplexityTlsClient.ts");
+      await import("@nextroute/open-sse/services/perplexityTlsClient.ts");
 
     let response: { status: number; text: string | null };
     try {
@@ -3381,7 +3381,7 @@ async function validateClaudeWebProvider({ apiKey, providerSpecificData = {} }: 
     }
 
     const { tlsFetchClaude, TlsClientUnavailableError } = await import(
-      "@omniroute/open-sse/services/claudeTlsClient.ts"
+      "@nextroute/open-sse/services/claudeTlsClient.ts"
     );
 
     let response: { status: number; text: string | null };
@@ -3499,7 +3499,7 @@ async function validateCopilotWebProvider({ apiKey, providerSpecificData = {} }:
     }
 
     // Extract token — may be bare JWT, cookie string with access_token=, or Bearer prefix
-    const { extractAccessToken } = await import("@omniroute/open-sse/executors/copilot-web.ts");
+    const { extractAccessToken } = await import("@nextroute/open-sse/executors/copilot-web.ts");
     const token = extractAccessToken(raw);
     if (!token) {
       return { valid: false, error: "Could not extract access_token from input" };
@@ -3930,7 +3930,7 @@ export async function validateProviderApiKey({ provider, apiKey, providerSpecifi
     vertex: async ({ apiKey }: any) => {
       try {
         const { parseSAFromApiKey, getAccessToken } =
-          await import("@omniroute/open-sse/executors/vertex.ts");
+          await import("@nextroute/open-sse/executors/vertex.ts");
         const sa = parseSAFromApiKey(apiKey);
         // Validates credentials by successfully successfully exchanging them for a JWT from Google Identity
         await getAccessToken(sa);
@@ -3942,7 +3942,7 @@ export async function validateProviderApiKey({ provider, apiKey, providerSpecifi
     "vertex-partner": async ({ apiKey }: any) => {
       try {
         const { parseSAFromApiKey, getAccessToken } =
-          await import("@omniroute/open-sse/executors/vertex.ts");
+          await import("@nextroute/open-sse/executors/vertex.ts");
         const sa = parseSAFromApiKey(apiKey);
         await getAccessToken(sa);
         return { valid: true, error: null };

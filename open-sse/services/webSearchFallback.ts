@@ -1,6 +1,6 @@
 import { FORMATS } from "../translator/formats.ts";
 
-export const OMNIROUTE_WEB_SEARCH_FALLBACK_TOOL_NAME = "omniroute_web_search";
+export const NEXTROUTE_WEB_SEARCH_FALLBACK_TOOL_NAME = "nextroute_web_search";
 const WEB_SEARCH_TOOL_TYPES = new Set(["web_search", "web_search_preview"]);
 const SEARCH_CONTEXT_DEFAULTS: Record<string, number> = {
   low: 5,
@@ -110,7 +110,7 @@ function buildFallbackParameters(tool: JsonRecord): JsonRecord {
 }
 
 function buildFallbackTool(tool: JsonRecord, targetFormat?: string | null): JsonRecord {
-  const name = OMNIROUTE_WEB_SEARCH_FALLBACK_TOOL_NAME;
+  const name = NEXTROUTE_WEB_SEARCH_FALLBACK_TOOL_NAME;
   const description = buildFallbackDescription(tool);
   const parameters = buildFallbackParameters(tool);
 
@@ -145,7 +145,7 @@ export function supportsNativeWebSearchFallbackBypass({
   if (targetFormat === FORMATS.GEMINI) return true;
   // Claude -> Claude passthrough: the Anthropic Messages upstream (e.g. a Claude
   // subscription driven by Claude Code) natively runs web_search_20250305. Forward the
-  // native tool untouched instead of rewriting it to omniroute_web_search. Mirrors the
+  // native tool untouched instead of rewriting it to nextroute_web_search. Mirrors the
   // Codex/Gemini bypasses so every native-web-search provider is treated symmetrically.
   if (sourceFormat === FORMATS.CLAUDE && targetFormat === FORMATS.CLAUDE) return true;
   return false;
@@ -202,7 +202,7 @@ export function prepareWebSearchFallbackBody<T extends JsonRecord>(
 
   const isResponsesTarget = options.targetFormat === FORMATS.OPENAI_RESPONSES;
 
-  if (!toolNames.has(OMNIROUTE_WEB_SEARCH_FALLBACK_TOOL_NAME)) {
+  if (!toolNames.has(NEXTROUTE_WEB_SEARCH_FALLBACK_TOOL_NAME)) {
     preservedTools.unshift(
       buildFallbackTool(toRecord(builtInSearchTools[0]), options.targetFormat)
     );
@@ -217,8 +217,8 @@ export function prepareWebSearchFallbackBody<T extends JsonRecord>(
     // Match the injected tool shape: flat for Responses API, nested for Chat Completions.
     nextBody.tool_choice = (
       isResponsesTarget
-        ? { type: "function", name: OMNIROUTE_WEB_SEARCH_FALLBACK_TOOL_NAME }
-        : { type: "function", function: { name: OMNIROUTE_WEB_SEARCH_FALLBACK_TOOL_NAME } }
+        ? { type: "function", name: NEXTROUTE_WEB_SEARCH_FALLBACK_TOOL_NAME }
+        : { type: "function", function: { name: NEXTROUTE_WEB_SEARCH_FALLBACK_TOOL_NAME } }
     ) as T["tool_choice"];
   }
 
@@ -226,7 +226,7 @@ export function prepareWebSearchFallbackBody<T extends JsonRecord>(
     body: nextBody,
     fallback: {
       enabled: true,
-      toolName: OMNIROUTE_WEB_SEARCH_FALLBACK_TOOL_NAME,
+      toolName: NEXTROUTE_WEB_SEARCH_FALLBACK_TOOL_NAME,
       convertedToolCount: builtInSearchTools.length,
     },
   };

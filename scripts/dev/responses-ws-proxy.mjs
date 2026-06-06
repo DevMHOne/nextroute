@@ -165,7 +165,7 @@ const WRITE_ERROR_RESERVED_HEADERS = new Set([
   "referrer-policy",
   "permissions-policy",
   "strict-transport-security",
-  "x-omniroute-route-class",
+  "x-nextroute-route-class",
   "x-request-id",
   "date",
 ]);
@@ -209,7 +209,7 @@ function getAuthHeaders(requestUrl, requestHeaders) {
   if (isText(requestHeaders.authorization)) {
     headers.authorization = requestHeaders.authorization;
   } else {
-    const url = new URL(requestUrl, "http://omniroute.local");
+    const url = new URL(requestUrl, "http://nextroute.local");
     for (const key of WS_QUERY_TOKEN_KEYS) {
       const value = url.searchParams.get(key);
       if (isText(value)) {
@@ -274,7 +274,7 @@ async function callInternal(fetchImpl, baseUrl, bridgeSecret, action, payload) {
     method: "POST",
     headers: {
       "content-type": "application/json",
-      "x-omniroute-ws-bridge-secret": bridgeSecret,
+      "x-nextroute-ws-bridge-secret": bridgeSecret,
     },
     body: JSON.stringify({ action, ...payload }),
   });

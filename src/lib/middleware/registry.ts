@@ -25,7 +25,7 @@ import {
 // ── State (globalThis singleton) ──────────────────────────────────────────
 
 declare global {
-  var __omniroutePreRequestRegistry:
+  var __nextroutePreRequestRegistry:
     | {
         initialized: boolean;
         hooks: Map<string, HookConfig>;
@@ -37,8 +37,8 @@ declare global {
 }
 
 function getRegistryState() {
-  if (!globalThis.__omniroutePreRequestRegistry) {
-    globalThis.__omniroutePreRequestRegistry = {
+  if (!globalThis.__nextroutePreRequestRegistry) {
+    globalThis.__nextroutePreRequestRegistry = {
       initialized: false,
       hooks: new Map(),
       middlewares: new Map(),
@@ -46,7 +46,7 @@ function getRegistryState() {
       maxLogs: 1000,
     };
   }
-  return globalThis.__omniroutePreRequestRegistry;
+  return globalThis.__nextroutePreRequestRegistry;
 }
 
 // ── Compile hook code into middleware function ────────────────────────────

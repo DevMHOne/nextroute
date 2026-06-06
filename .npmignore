@@ -66,8 +66,8 @@ app/vscode-extension/
 
 # Subprojects
 clipr/
-omnirouteCloud/
-omnirouteSite/
+nextrouteCloud/
+nextrouteSite/
 vscode-extension/
 
 # Root-level underscore-prefixed directories (private/draft — never publish)
@@ -100,4 +100,4 @@ test-results/
 playwright-report/
 blob-report/
 coverage/
-@omniroute/
+@nextroute/

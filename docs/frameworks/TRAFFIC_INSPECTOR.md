@@ -6,7 +6,7 @@ lastUpdated: 2026-05-28
 
 # Traffic Inspector
 
-Traffic Inspector is OmniRoute's built-in HTTPS traffic debugger — a Charles Proxy / mitmweb / HTTP Toolkit-like tool that is **LLM-aware** and **agent-aware**. It lives at `/dashboard/tools/traffic-inspector` and receives live traffic from up to 4 simultaneous capture sources.
+Traffic Inspector is NextRoute's built-in HTTPS traffic debugger — a Charles Proxy / mitmweb / HTTP Toolkit-like tool that is **LLM-aware** and **agent-aware**. It lives at `/dashboard/tools/traffic-inspector` and receives live traffic from up to 4 simultaneous capture sources.
 
 **Dashboard location:** `/dashboard/tools/traffic-inspector`
 **Sidebar group:** Tools (after AgentBridge)
@@ -18,7 +18,7 @@ Traffic Inspector is OmniRoute's built-in HTTPS traffic debugger — a Charles P
 
 ### What makes Traffic Inspector unique
 
-| Feature | mitmweb | Charles | Fiddler | **OmniRoute Traffic Inspector** |
+| Feature | mitmweb | Charles | Fiddler | **NextRoute Traffic Inspector** |
 |---------|:-------:|:-------:|:-------:|:-------------------------------:|
 | Web-based | ✓ | ✗ | ✗ | ✓ |
 | Open-source | ✓ | ✗ | partial | ✓ |
@@ -26,7 +26,7 @@ Traffic Inspector is OmniRoute's built-in HTTPS traffic debugger — a Charles P
 | **LLM-aware** (parses OpenAI/Anthropic/Gemini shape, tokens, model) | ✗ | ✗ | ✗ | ✓ |
 | **Model mapping visible** (gemini-3-flash → claude-sonnet-4.7) | ✗ | ✗ | ✗ | ✓ |
 | **Proxy/upstream latency split** | partial | ✗ | ✗ | ✓ |
-| **Integrated with OmniRoute** routing, fallback, cost | ✗ | ✗ | ✗ | ✓ |
+| **Integrated with NextRoute** routing, fallback, cost | ✗ | ✗ | ✗ | ✓ |
 | **System-wide proxy debug** (any app on the machine) | ✓ | ✓ | ✓ | ✓ |
 | **Custom host capture** (per-host DNS redirect) | ✓ | ✓ | ✓ | ✓ |
 | **HTTP_PROXY env mode** | ✓ | ✓ | ✓ | ✓ |
@@ -240,8 +240,8 @@ interface LlmMetadata {
   tokensIn: number | null;        // usage.prompt_tokens / usage.input_tokens
   tokensOut: number | null;       // usage.completion_tokens / usage.output_tokens
   streamed: boolean;              // true if SSE response
-  mappedTo: string | null;        // x-omniroute-mapped header
-  costEstimateUsd: number | null; // estimated cost based on OmniRoute pricing
+  mappedTo: string | null;        // x-nextroute-mapped header
+  costEstimateUsd: number | null; // estimated cost based on NextRoute pricing
 }
 ```
 
@@ -327,7 +327,7 @@ INSPECTOR_HTTP_PROXY_PORT=8888
 
 ### System proxy not reverted
 
-If OmniRoute crashes while system-wide proxy mode is active:
+If NextRoute crashes while system-wide proxy mode is active:
 
 **macOS:**
 ```bash
@@ -368,7 +368,7 @@ Base path: `/api/tools/traffic-inspector/`
 | GET | `/requests` | List requests (filterable: `?profile=llm&host=&agent=&status=&source=&sessionId=`) |
 | GET | `/requests/{id}` | Single request details |
 | DELETE | `/requests` | Clear the in-memory buffer |
-| POST | `/requests/{id}/replay` | Re-execute the same request through OmniRoute router |
+| POST | `/requests/{id}/replay` | Re-execute the same request through NextRoute router |
 | PUT | `/requests/{id}/annotation` | Save or update a note on a request |
 
 ### WebSocket

@@ -165,11 +165,11 @@ function proxyUpgrade(
 }
 
 declare global {
-  var __omnirouteApiBridgeStarted: boolean | undefined;
+  var __nextrouteApiBridgeStarted: boolean | undefined;
 }
 
 export function initApiBridgeServer(): void {
-  if (globalThis.__omnirouteApiBridgeStarted) return;
+  if (globalThis.__nextrouteApiBridgeStarted) return;
 
   const { apiPort, dashboardPort } = getRuntimePorts();
   if (apiPort === dashboardPort) return;
@@ -227,7 +227,7 @@ export function initApiBridgeServer(): void {
   });
 
   server.listen(apiPort, host, () => {
-    globalThis.__omnirouteApiBridgeStarted = true;
+    globalThis.__nextrouteApiBridgeStarted = true;
     console.log(`[API Bridge] Listening on ${host}:${apiPort} -> dashboard:${dashboardPort}`);
   });
 }

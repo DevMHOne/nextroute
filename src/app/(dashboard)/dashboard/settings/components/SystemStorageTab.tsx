@@ -46,7 +46,7 @@ export default function SystemStorageTab() {
   const tc = useTranslations("common");
   const [storageHealth, setStorageHealth] = useState({
     driver: "sqlite",
-    dbPath: "~/.omniroute/storage.sqlite",
+    dbPath: "~/.nextroute/storage.sqlite",
     sizeBytes: 0,
     retentionDays: {
       app: 7,
@@ -343,7 +343,7 @@ export default function SystemStorageTab() {
     try {
       await fetchAndDownload(
         "/api/settings/export-json",
-        `omniroute-legacy-backup-${new Date().toISOString().replace(/[:.]/g, "-")}.json`,
+        `nextroute-legacy-backup-${new Date().toISOString().replace(/[:.]/g, "-")}.json`,
         "JSON Export failed"
       );
     } catch (err) {
@@ -408,7 +408,7 @@ export default function SystemStorageTab() {
     try {
       await fetchAndDownload(
         "/api/db-backups/export",
-        `omniroute-backup-${new Date().toISOString().replace(/[:.]/g, "-")}.sqlite`,
+        `nextroute-backup-${new Date().toISOString().replace(/[:.]/g, "-")}.sqlite`,
         t("exportFailed")
       );
     } catch (err) {
@@ -536,7 +536,7 @@ export default function SystemStorageTab() {
             {t("databasePath")}
           </p>
           <p className="text-sm font-mono text-text-main break-all">
-            {storageHealth.dbPath || "~/.omniroute/storage.sqlite"}
+            {storageHealth.dbPath || "~/.nextroute/storage.sqlite"}
           </p>
         </div>
         <div className="p-3 rounded-lg bg-bg border border-border">
@@ -770,7 +770,7 @@ export default function SystemStorageTab() {
             try {
               await fetchAndDownload(
                 "/api/db-backups/exportAll",
-                "omniroute-full-backup.tar.gz",
+                "nextroute-full-backup.tar.gz",
                 t("exportFailed")
               );
             } catch (err) {

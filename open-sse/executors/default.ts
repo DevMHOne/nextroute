@@ -160,7 +160,7 @@ export class DefaultExecutor extends BaseExecutor {
       }
       case "azure-ai": {
         const forceResponses =
-          credentials?.providerSpecificData?._omnirouteForceResponsesUpstream === true;
+          credentials?.providerSpecificData?._nextrouteForceResponsesUpstream === true;
         const apiType =
           forceResponses || credentials?.providerSpecificData?.apiType === "responses"
             ? "responses"
@@ -174,7 +174,7 @@ export class DefaultExecutor extends BaseExecutor {
       }
       case "oci": {
         const forceResponses =
-          credentials?.providerSpecificData?._omnirouteForceResponsesUpstream === true;
+          credentials?.providerSpecificData?._nextrouteForceResponsesUpstream === true;
         const apiType =
           forceResponses || credentials?.providerSpecificData?.apiType === "responses"
             ? "responses"

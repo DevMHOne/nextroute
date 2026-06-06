@@ -724,7 +724,7 @@ test("OpenAI -> Antigravity preserves multiple signature-less historical tool re
     "gemini-3.5-flash-low",
     {
       messages: [
-        { role: "user", content: "Inspect OmniRoute config" },
+        { role: "user", content: "Inspect NextRoute config" },
         {
           role: "assistant",
           tool_calls: [
@@ -736,7 +736,7 @@ test("OpenAI -> Antigravity preserves multiple signature-less historical tool re
             {
               id: "call_list_dir",
               type: "function",
-              function: { name: "terminal", arguments: '{"command":"ls ~/.omniroute"}' },
+              function: { name: "terminal", arguments: '{"command":"ls ~/.nextroute"}' },
             },
           ],
         },

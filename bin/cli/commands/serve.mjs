@@ -82,18 +82,18 @@ export async function runServe(opts = {}) {
     const isNvm = nodeExec.includes(".nvm") || nodeExec.includes("nvm");
     if (isMise) {
       console.error(
-        "  \x1b[33m⚠ mise detected:\x1b[0m If you installed via `npm install -g omniroute`,"
+        "  \x1b[33m⚠ mise detected:\x1b[0m If you installed via `npm install -g nextroute`,"
       );
-      console.error("    try: \x1b[36mnpx omniroute@latest\x1b[0m  (downloads a fresh copy)");
-      console.error("    or:  \x1b[36mmise exec -- npx omniroute\x1b[0m");
+      console.error("    try: \x1b[36mnpx nextroute@latest\x1b[0m  (downloads a fresh copy)");
+      console.error("    or:  \x1b[36mmise exec -- npx nextroute\x1b[0m");
     } else if (isNvm) {
       console.error(
         "  \x1b[33m⚠ nvm detected:\x1b[0m Try reinstalling after loading the correct Node version:"
       );
-      console.error("    \x1b[36mnvm use --lts && npm install -g omniroute\x1b[0m");
+      console.error("    \x1b[36mnvm use --lts && npm install -g nextroute\x1b[0m");
     } else {
-      console.error("  Try: \x1b[36mnpm install -g omniroute\x1b[0m  (reinstall)");
-      console.error("  Or:  \x1b[36mnpx omniroute@latest\x1b[0m");
+      console.error("  Try: \x1b[36mnpm install -g nextroute\x1b[0m  (reinstall)");
+      console.error("  Or:  \x1b[36mnpx nextroute@latest\x1b[0m");
     }
     process.exit(1);
   }
@@ -119,13 +119,13 @@ export async function runServe(opts = {}) {
 
   console.log(`  \x1b[2m⏳ Starting server...\x1b[0m\n`);
 
-  const rawMemory = parseInt(process.env.OMNIROUTE_MEMORY_MB || "512", 10);
+  const rawMemory = parseInt(process.env.NEXTROUTE_MEMORY_MB || "512", 10);
   const memoryLimit =
     Number.isFinite(rawMemory) && rawMemory >= 64 && rawMemory <= 16384 ? rawMemory : 512;
 
   const env = {
     ...process.env,
-    OMNIROUTE_PORT: String(port),
+    NEXTROUTE_PORT: String(port),
     PORT: String(dashboardPort),
     DASHBOARD_PORT: String(dashboardPort),
     API_PORT: String(apiPort),
@@ -167,7 +167,7 @@ function runDaemon(serverJs, env, memoryLimit, dashboardPort, apiPort) {
   });
   writePidFile("server", server.pid);
   server.unref();
-  console.log(`\x1b[32m✔ OmniRoute started in background (PID: ${server.pid})\x1b[0m`);
+  console.log(`\x1b[32m✔ NextRoute started in background (PID: ${server.pid})\x1b[0m`);
   console.log(`  \x1b[1mDashboard:\x1b[0m  http://localhost:${dashboardPort}`);
   console.log(`  \x1b[1mAPI Base:\x1b[0m   http://localhost:${apiPort}/v1`);
 }
@@ -210,7 +210,7 @@ function runWithoutRecovery(serverJs, env, memoryLimit, dashboardPort, apiPort, 
   });
 
   const shutdown = () => {
-    console.log("\n\x1b[33m⏹ Shutting down OmniRoute...\x1b[0m");
+    console.log("\n\x1b[33m⏹ Shutting down NextRoute...\x1b[0m");
     cleanupPidFile("server");
     server.kill("SIGTERM");
     setTimeout(() => {
@@ -241,7 +241,7 @@ async function runWithSupervisor(
   maxRestarts,
   useTray = false
 ) {
-  if (showLog) process.env.OMNIROUTE_SHOW_LOG = "1";
+  if (showLog) process.env.NEXTROUTE_SHOW_LOG = "1";
 
   const supervisor = new ServerSupervisor({
     serverPath: serverJs,
@@ -307,7 +307,7 @@ async function maybeStartTray(port, apiPort, supervisor) {
       onOpenDashboard: () => open?.(dashboardUrl),
       onShowLogs: () => {
         // In-place: open logs stream (best-effort)
-        process.stdout.write(`[omniroute][tray] Logs at: ${dashboardUrl}/logs\n`);
+        process.stdout.write(`[nextroute][tray] Logs at: ${dashboardUrl}/logs\n`);
       },
     });
     if (tray) {
@@ -324,7 +324,7 @@ async function onReady(dashboardPort, apiPort, noOpen) {
   const apiUrl = `http://localhost:${apiPort}`;
 
   console.log(`
-  \x1b[32m✔ OmniRoute is running!\x1b[0m
+  \x1b[32m✔ NextRoute is running!\x1b[0m
 
   \x1b[1m  Dashboard:\x1b[0m  ${dashboardUrl}
   \x1b[1m  API Base:\x1b[0m   ${apiUrl}/v1

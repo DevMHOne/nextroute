@@ -141,7 +141,7 @@ async function handleComfyUIVideoGeneration({ model, provider, providerConfig, b
     "7": {
       class_type: "SaveAnimatedWEBP",
       inputs: {
-        filename_prefix: "omniroute_video",
+        filename_prefix: "nextroute_video",
         fps: body.fps || 8,
         lossless: false,
         quality: 80,

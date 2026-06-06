@@ -144,7 +144,7 @@ export const updateSettingsSchema = z.object({
             z.object({
               kind: z.literal("inject_billing_header"),
               entrypoint: z.string().min(1).max(50),
-              versionFormat: z.enum(["ex-machina", "omniroute-daystamp"]),
+              versionFormat: z.enum(["ex-machina", "nextroute-daystamp"]),
               cchAlgo: z.enum(["sha256-first-user", "xxhash64-body", "static-zero"]),
               version: z.string().max(50).optional(),
             }),
@@ -204,7 +204,7 @@ export const updateSettingsSchema = z.object({
                 z.object({
                   kind: z.literal("inject_billing_header"),
                   entrypoint: z.string().min(1).max(50),
-                  versionFormat: z.enum(["ex-machina", "omniroute-daystamp"]),
+                  versionFormat: z.enum(["ex-machina", "nextroute-daystamp"]),
                   cchAlgo: z.enum(["sha256-first-user", "xxhash64-body", "static-zero"]),
                   version: z.string().max(50).optional(),
                 }),

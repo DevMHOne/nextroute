@@ -18,7 +18,7 @@ import {
   unwrapGeminiChunk,
 } from "./streamHelpers.ts";
 import { calculateCost } from "@/lib/usage/costCalculator";
-import { buildOmniRouteSseMetadataComment } from "@/domain/omnirouteResponseMeta";
+import { buildNextRouteSseMetadataComment } from "@/domain/nextrouteResponseMeta";
 import {
   createStructuredSSECollector,
   buildStreamSummaryFromEvents,
@@ -60,7 +60,7 @@ export { COLORS, formatSSE };
 
 type JsonRecord = Record<string, unknown>;
 
-export const PENDING_REQUEST_CLEARED_MARKER = "__omniroutePendingRequestCleared";
+export const PENDING_REQUEST_CLEARED_MARKER = "__nextroutePendingRequestCleared";
 
 function markPendingRequestCleared(error: Error): Error {
   (error as Error & Record<string, unknown>)[PENDING_REQUEST_CLEARED_MARKER] = true;
@@ -1027,7 +1027,7 @@ export function createSSEStream(options: StreamOptions = {}) {
     finalUsage: UsageTokenRecord | Record<string, unknown> | null | undefined
   ) => {
     const costUsd = finalUsage ? await calculateCost(provider, model, finalUsage) : 0;
-    const comment = buildOmniRouteSseMetadataComment({
+    const comment = buildNextRouteSseMetadataComment({
       provider,
       model,
       cacheHit: false,
@@ -1102,7 +1102,7 @@ export function createSSEStream(options: StreamOptions = {}) {
     item.summary = [
       {
         type: "summary_text",
-        text: "Codex is reasoning, but the upstream Responses API exposed this reasoning block only as encrypted state. OmniRoute cannot recover the private reasoning text.",
+        text: "Codex is reasoning, but the upstream Responses API exposed this reasoning block only as encrypted state. NextRoute cannot recover the private reasoning text.",
       },
     ];
     return true;

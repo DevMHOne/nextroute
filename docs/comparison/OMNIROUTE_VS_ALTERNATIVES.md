@@ -1,17 +1,17 @@
 ---
-title: "OmniRoute vs Alternatives"
+title: "NextRoute vs Alternatives"
 version: 3.8.2
 lastUpdated: 2026-05-15
 ---
 
-# OmniRoute vs Alternatives
+# NextRoute vs Alternatives
 
 Objective feature comparison vs popular open-source AI routers.
 
 > **Methodology**: Public repos audited 2026-Q2. Versions as listed.
 > Submit corrections via PR — we want this to be accurate.
 
-| Feature                                            |       OmniRoute 3.8        |  LiteLLM 1.x   | OpenRouter (SaaS) |   Portkey   |
+| Feature                                            |       NextRoute 3.8        |  LiteLLM 1.x   | OpenRouter (SaaS) |   Portkey   |
 | -------------------------------------------------- | :------------------------: | :------------: | :---------------: | :---------: |
 | **Providers**                                      |          **207+**          |      ~100      |        ~50        |     ~30     |
 | **Self-hostable**                                  |             ✅             |       ✅       |        ❌         |   ⚠ paid    |
@@ -36,7 +36,7 @@ Objective feature comparison vs popular open-source AI routers.
 | **Tunnel support (Cloudflared, Tailscale, Ngrok)** |             ✅             |       ❌       |        n/a        |     n/a     |
 | **License**                                        |            MIT             |      MIT       |    proprietary    | proprietary |
 
-## When to choose OmniRoute
+## When to choose NextRoute
 
 - You self-host and want **maximum provider coverage** (207+)
 - You need a **built-in MCP server** (LLM tools, memory, skills exposed as tools)

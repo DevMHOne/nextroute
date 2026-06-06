@@ -9,7 +9,7 @@ import { resolveMitmDataDir } from "@/mitm/dataDir";
 import { getCachedPassword } from "@/mitm/manager";
 import path from "path";
 import fs from "fs";
-import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
+import { sanitizeErrorMessage } from "@nextroute/open-sse/utils/error";
 import { createErrorResponse } from "@/lib/api/errorResponse";
 
 // Exported for unit testing. Next.js only treats GET/POST/etc. as route

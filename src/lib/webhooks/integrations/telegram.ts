@@ -37,7 +37,7 @@ export function buildTelegramPayload(
   if (model) lines.push(`Model: \`${model}\``);
   if (provider && !model) lines.push(`Provider: \`${provider}\``);
   if (error) lines.push(`Error: \`${error}\``);
-  lines.push(`_OmniRoute · ${new Date().toISOString()}_`);
+  lines.push(`_NextRoute · ${new Date().toISOString()}_`);
 
   return {
     chat_id: chatId,

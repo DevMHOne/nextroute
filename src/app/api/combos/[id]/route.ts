@@ -11,11 +11,11 @@ import { getConsistentMachineId } from "@/shared/utils/machineId";
 import { syncToCloud } from "@/lib/cloudSync";
 import { validateCompositeTiersConfig } from "@/lib/combos/compositeTiers";
 import { normalizeComboModels } from "@/lib/combos/steps";
-import { validateComboDAG } from "@omniroute/open-sse/services/combo.ts";
+import { validateComboDAG } from "@nextroute/open-sse/services/combo.ts";
 import { updateComboSchema } from "@/shared/validation/schemas";
 import { isValidationFailure, validateBody } from "@/shared/validation/helpers";
 import { requireManagementAuth } from "@/lib/api/requireManagementAuth";
-import { buildErrorBody } from "@omniroute/open-sse/utils/error";
+import { buildErrorBody } from "@nextroute/open-sse/utils/error";
 import { QUOTA_MODEL_PREFIX } from "@/lib/quota/quotaModelNaming";
 
 // GET /api/combos/[id] - Get combo by ID

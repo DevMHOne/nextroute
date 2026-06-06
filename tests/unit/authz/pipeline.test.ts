@@ -27,7 +27,7 @@ function resetEnvironment() {
   process.env.JWT_SECRET = "pipeline-jwt-secret";
   process.env.INITIAL_PASSWORD = "pipeline-initial-password";
   delete process.env.AUTH_COOKIE_SECURE;
-  globalThis.__omnirouteShutdown = { init: false, shuttingDown: false, activeRequests: 0 };
+  globalThis.__nextrouteShutdown = { init: false, shuttingDown: false, activeRequests: 0 };
 }
 
 async function forceAuthRequired() {
@@ -59,7 +59,7 @@ test.after(() => {
   else process.env.INITIAL_PASSWORD = ORIGINAL_INITIAL;
   if (ORIGINAL_AUTH_COOKIE_SECURE === undefined) delete process.env.AUTH_COOKIE_SECURE;
   else process.env.AUTH_COOKIE_SECURE = ORIGINAL_AUTH_COOKIE_SECURE;
-  globalThis.__omnirouteShutdown = { init: false, shuttingDown: false, activeRequests: 0 };
+  globalThis.__nextrouteShutdown = { init: false, shuttingDown: false, activeRequests: 0 };
 });
 
 test("runAuthzPipeline redirects root to dashboard before management auth", async () => {
@@ -80,7 +80,7 @@ test("runAuthzPipeline redirects unauthenticated dashboard pages to login", asyn
 
   assert.equal(response.status, 307);
   assert.equal(response.headers.get("location"), "http://localhost/login");
-  assert.equal(response.headers.get("x-omniroute-route-class"), "MANAGEMENT");
+  assert.equal(response.headers.get("x-nextroute-route-class"), "MANAGEMENT");
   assert.ok(response.headers.get("x-request-id"));
 });
 
@@ -93,7 +93,7 @@ test("runAuthzPipeline redirects unauthenticated /home to login (#2712)", async 
 
   assert.equal(response.status, 307);
   assert.equal(response.headers.get("location"), "http://localhost/login");
-  assert.equal(response.headers.get("x-omniroute-route-class"), "MANAGEMENT");
+  assert.equal(response.headers.get("x-nextroute-route-class"), "MANAGEMENT");
 });
 
 test("runAuthzPipeline redirects unauthenticated /home/* nested paths to login (#2712)", async () => {
@@ -105,7 +105,7 @@ test("runAuthzPipeline redirects unauthenticated /home/* nested paths to login (
 
   assert.equal(response.status, 307);
   assert.equal(response.headers.get("location"), "http://localhost/login");
-  assert.equal(response.headers.get("x-omniroute-route-class"), "MANAGEMENT");
+  assert.equal(response.headers.get("x-nextroute-route-class"), "MANAGEMENT");
 });
 
 test("runAuthzPipeline allows onboarding when login is required but no password exists", async () => {
@@ -122,7 +122,7 @@ test("runAuthzPipeline allows onboarding when login is required but no password 
   );
 
   assert.equal(response.status, 200);
-  assert.equal(response.headers.get("x-omniroute-route-class"), "PUBLIC");
+  assert.equal(response.headers.get("x-nextroute-route-class"), "PUBLIC");
 });
 
 test("runAuthzPipeline allows first password writes when login is required but no password exists", async () => {
@@ -139,7 +139,7 @@ test("runAuthzPipeline allows first password writes when login is required but n
   );
 
   assert.equal(response.status, 200);
-  assert.equal(response.headers.get("x-omniroute-route-class"), "MANAGEMENT");
+  assert.equal(response.headers.get("x-nextroute-route-class"), "MANAGEMENT");
 });
 
 test("runAuthzPipeline keeps management API rejections as JSON", async () => {
@@ -168,7 +168,7 @@ test("runAuthzPipeline rejects oversized API bodies before auth", async () => {
   );
 
   assert.equal(response.status, 413);
-  assert.equal(response.headers.get("x-omniroute-route-class"), "CLIENT_API");
+  assert.equal(response.headers.get("x-nextroute-route-class"), "CLIENT_API");
   assert.ok(response.headers.get("x-request-id"));
   assert.equal(
     response.headers.get("Access-Control-Allow-Methods"),
@@ -189,12 +189,12 @@ test("runAuthzPipeline rejects oversized rewritten alias API bodies before auth"
   );
 
   assert.equal(response.status, 413);
-  assert.equal(response.headers.get("x-omniroute-route-class"), "CLIENT_API");
+  assert.equal(response.headers.get("x-nextroute-route-class"), "CLIENT_API");
   assert.ok(response.headers.get("x-request-id"));
 });
 
 test("runAuthzPipeline rejects new API requests during shutdown drain", async () => {
-  globalThis.__omnirouteShutdown = { init: true, shuttingDown: true, activeRequests: 0 };
+  globalThis.__nextrouteShutdown = { init: true, shuttingDown: true, activeRequests: 0 };
 
   const response = await pipeline.runAuthzPipeline(request("http://localhost/api/v1/models"), {
     enforce: true,
@@ -206,7 +206,7 @@ test("runAuthzPipeline rejects new API requests during shutdown drain", async ()
 });
 
 test("runAuthzPipeline rejects rewritten API aliases during shutdown drain", async () => {
-  globalThis.__omnirouteShutdown = { init: true, shuttingDown: true, activeRequests: 0 };
+  globalThis.__nextrouteShutdown = { init: true, shuttingDown: true, activeRequests: 0 };
 
   const response = await pipeline.runAuthzPipeline(request("http://localhost/responses"), {
     enforce: true,
@@ -214,7 +214,7 @@ test("runAuthzPipeline rejects rewritten API aliases during shutdown drain", asy
   const body = await response.json();
 
   assert.equal(response.status, 503);
-  assert.equal(response.headers.get("x-omniroute-route-class"), "CLIENT_API");
+  assert.equal(response.headers.get("x-nextroute-route-class"), "CLIENT_API");
   assert.equal(body.error.code, "SERVICE_UNAVAILABLE");
 });
 
@@ -229,7 +229,7 @@ test("runAuthzPipeline allows dashboard sessions to read model catalog aliases",
   );
 
   assert.equal(response.status, 200);
-  assert.equal(response.headers.get("x-omniroute-route-class"), "CLIENT_API");
+  assert.equal(response.headers.get("x-nextroute-route-class"), "CLIENT_API");
 });
 
 test("runAuthzPipeline allows dashboard sessions to reach DB health management API", async () => {
@@ -243,7 +243,7 @@ test("runAuthzPipeline allows dashboard sessions to reach DB health management A
   );
 
   assert.equal(response.status, 200);
-  assert.equal(response.headers.get("x-omniroute-route-class"), "MANAGEMENT");
+  assert.equal(response.headers.get("x-nextroute-route-class"), "MANAGEMENT");
 });
 
 test("runAuthzPipeline refreshes dashboard JWTs near expiry", async () => {

@@ -6,7 +6,7 @@ import {
   writeGeminiAuthFileToLocalCli,
 } from "@/lib/oauth/utils/geminiAuthFile";
 import { getAuditRequestContext, logAuditEvent } from "@/lib/compliance/index";
-import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
+import { sanitizeErrorMessage } from "@nextroute/open-sse/utils/error";
 
 function toErrorResponse(error: unknown) {
   if (error instanceof GeminiAuthFileError) {

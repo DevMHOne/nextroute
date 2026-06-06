@@ -10,7 +10,7 @@ const os = require("os");
 // This file runs as a standalone CommonJS process and cannot import the ES module.
 function getDataDir() {
   if (process.env.DATA_DIR) return path.resolve(process.env.DATA_DIR.trim());
-  return path.join(os.homedir(), ".omniroute");
+  return path.join(os.homedir(), ".nextroute");
 }
 
 // Configuration
@@ -35,7 +35,7 @@ const LOCAL_PORT =
     ? parsedLocalPort
     : 443;
 const ROUTER_BASE_URL = (
-  process.env.OMNIROUTE_BASE_URL ||
+  process.env.NEXTROUTE_BASE_URL ||
   process.env.BASE_URL ||
   "http://localhost:20128"
 )
@@ -368,7 +368,7 @@ async function intercept(req, res, bodyBuffer, mappedModel) {
     body.model = mappedModel;
 
     // C2 — Inject AgentBridge correlation headers per master plan §3.5.
-    // The OmniRoute router uses these to distinguish AgentBridge traffic from
+    // The NextRoute router uses these to distinguish AgentBridge traffic from
     // other inbound clients and to record the originating IDE agent id.
     // Resolve agent id from the Host header against the target map; defensive
     // fallback to "unknown" when the host is somehow not in the map.
@@ -380,15 +380,15 @@ async function intercept(req, res, bodyBuffer, mappedModel) {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${API_KEY}`,
-        "x-omniroute-source": "agent-bridge",
-        "x-omniroute-agent": agentId,
+        "x-nextroute-source": "agent-bridge",
+        "x-nextroute-agent": agentId,
       },
       body: JSON.stringify(body),
     });
 
     if (!response.ok) {
       const errText = await response.text().catch(() => "");
-      throw new Error(`OmniRoute ${response.status}: ${errText}`);
+      throw new Error(`NextRoute ${response.status}: ${errText}`);
     }
 
     res.writeHead(200, {
@@ -438,8 +438,8 @@ const server = https.createServer(sslOptions, async (req, res) => {
 
   if (bodyBuffer.length > 0) saveRequestLog(req.url, bodyBuffer);
 
-  if (req.headers["x-omniroute-source"] === "omniroute") {
-    console.log(`[MITM] → PASSTHROUGH (OmniRoute source loop)`);
+  if (req.headers["x-nextroute-source"] === "nextroute") {
+    console.log(`[MITM] → PASSTHROUGH (NextRoute source loop)`);
     return passthrough(req, res, bodyBuffer);
   }
 

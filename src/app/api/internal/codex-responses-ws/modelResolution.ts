@@ -5,7 +5,7 @@
  * model ids (e.g. "codex/gpt-5.5") client-side when `supports_websockets` is
  * enabled — it only accepts bare ChatGPT model ids (e.g. "gpt-5.5"). Those bare
  * ids can resolve to a different default provider (openai / openrouter) under
- * OmniRoute's global model routing, which the bridge would then reject with
+ * NextRoute's global model routing, which the bridge would then reject with
  * `codex_ws_provider_required` (or fail the credentials lookup).
  *
  * Since this endpoint only ever talks to the Codex upstream, re-resolve a bare
@@ -52,7 +52,7 @@ export async function resolveCodexWsModelInfo(
  * for bare ChatGPT-style model IDs (those without a provider prefix).
  *
  * When the Codex CLI falls back from WebSocket to HTTP (#15492), it sends bare
- * model IDs like "gpt-5.5" to /v1/responses. Without this resolution, OmniRoute
+ * model IDs like "gpt-5.5" to /v1/responses. Without this resolution, NextRoute
  * routes them to openrouter/openai instead of the configured codex OAuth
  * connections, producing "No credentials for provider: openrouter".
  *

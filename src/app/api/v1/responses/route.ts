@@ -1,5 +1,5 @@
 import { handleChat } from "@/sse/handlers/chat";
-import { withEarlyStreamKeepalive } from "@omniroute/open-sse/utils/earlyStreamKeepalive";
+import { withEarlyStreamKeepalive } from "@nextroute/open-sse/utils/earlyStreamKeepalive";
 import { resolveResponsesApiModel } from "@/app/api/internal/codex-responses-ws/modelResolution";
 import { getModelInfo } from "@/sse/services/model";
 import { getComboByName } from "@/lib/db/combos";
@@ -26,7 +26,7 @@ export async function OPTIONS() {
  * Rewrite a bare ChatGPT-style model id to the codex/ prefix when the model
  * resolves to a codex provider. This fixes the Codex CLI WS→HTTP fallback path:
  * the CLI sends bare "gpt-5.5" over HTTP after WS closes (1008 Policy), and
- * without this rewrite OmniRoute routes it to openrouter instead of codex.
+ * without this rewrite NextRoute routes it to openrouter instead of codex.
  *
  * Safe: only rewrites when codex/model is genuinely registered; all other models
  * pass through unchanged. Errors are caught and the original request is returned.

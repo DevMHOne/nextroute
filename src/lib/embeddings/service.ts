@@ -1,18 +1,18 @@
-import { handleEmbedding } from "@omniroute/open-sse/handlers/embeddings.ts";
+import { handleEmbedding } from "@nextroute/open-sse/handlers/embeddings.ts";
 import {
   parseEmbeddingModel,
   getEmbeddingProvider,
   buildDynamicEmbeddingProvider,
   type EmbeddingProviderNodeRow,
   type EmbeddingProvider,
-} from "@omniroute/open-sse/config/embeddingRegistry.ts";
-import { errorResponse, unavailableResponse } from "@omniroute/open-sse/utils/error.ts";
-import { HTTP_STATUS } from "@omniroute/open-sse/config/constants.ts";
+} from "@nextroute/open-sse/config/embeddingRegistry.ts";
+import { errorResponse, unavailableResponse } from "@nextroute/open-sse/utils/error.ts";
+import { HTTP_STATUS } from "@nextroute/open-sse/config/constants.ts";
 import * as log from "@/sse/utils/logger";
 import { toJsonErrorPayload } from "@/shared/utils/upstreamError";
 import { getProviderCredentials, clearRecoveredProviderState } from "@/sse/services/auth";
 import { getProviderNodes, getComboByName, getCombos, getDatabaseSettings } from "@/lib/localDb";
-import { handleComboChat } from "@omniroute/open-sse/services/combo.ts";
+import { handleComboChat } from "@nextroute/open-sse/services/combo.ts";
 
 type ValidatedEmbeddingBody = Record<string, unknown> & { model: string };
 type ProviderCredentialsResult = Awaited<ReturnType<typeof getProviderCredentials>>;

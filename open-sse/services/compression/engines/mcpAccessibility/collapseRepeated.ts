@@ -72,7 +72,7 @@ export function collapseRepeated(
       const tailStart = findLastNSiblingStart(lines.slice(0, j), j, indent, role, keepTail);
       for (let k = i; k < headEnd; k++) out.push(lines[k]);
       out.push(
-        `${indent}... [${groupLen - keepHead - keepTail} similar "${role}" items omitted by OmniRoute MCP filter]`
+        `${indent}... [${groupLen - keepHead - keepTail} similar "${role}" items omitted by NextRoute MCP filter]`
       );
       for (let k = tailStart; k < j; k++) out.push(lines[k]);
     } else {

@@ -1,8 +1,8 @@
 {
   "common": {
     "error": "Fel: {message}",
-    "serverOffline": "OmniRoute-servern är offline. Starta med: omniroute serve",
-    "authRequired": "Autentisering krävs. Ange OMNIROUTE_API_KEY eller kör: omniroute setup",
+    "serverOffline": "NextRoute-servern är offline. Starta med: nextroute serve",
+    "authRequired": "Autentisering krävs. Ange NEXTROUTE_API_KEY eller kör: nextroute setup",
     "rateLimited": "Begäransgräns nådd. Försök igen om {seconds}s.",
     "timeout": "Begäran tog slut efter {ms}ms.",
     "success": "Klar.",
@@ -15,15 +15,15 @@
     "yesOpt": "Hoppa över bekräftelse"
   },
   "program": {
-    "description": "OmniRoute — Smart AI-router med automatisk fallback",
+    "description": "NextRoute — Smart AI-router med automatisk fallback",
     "version": "Skriv ut version och avsluta",
     "output": "Utdataformat (table, json, jsonl, csv)",
     "quiet": "Undertryck icke-väsentlig utdata",
     "no_color": "Inaktivera färgad utdata",
     "timeout": "HTTP-begärans timeout i millisekunder",
-    "api_key": "API-nyckel för OmniRoute-servern",
-    "base_url": "OmniRoute-serverns bas-URL",
+    "api_key": "API-nyckel för NextRoute-servern",
+    "base_url": "NextRoute-serverns bas-URL",
     "context": "Serverkontext/profil för det här kommandot",
-    "lang": "Ange CLI-visningsspråk (åsidosätter OMNIROUTE_LANG)"
+    "lang": "Ange CLI-visningsspråk (åsidosätter NEXTROUTE_LANG)"
   }
 }

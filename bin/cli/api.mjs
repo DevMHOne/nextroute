@@ -25,7 +25,7 @@ const MUTATING_METHODS = new Set(["POST", "PUT", "PATCH", "DELETE"]);
 
 export function getBaseUrl(opts = {}) {
   if (opts.baseUrl) return stripTrailingSlash(opts.baseUrl);
-  const envUrl = process.env.OMNIROUTE_BASE_URL;
+  const envUrl = process.env.NEXTROUTE_BASE_URL;
   if (envUrl) return stripTrailingSlash(envUrl);
 
   try {
@@ -62,12 +62,12 @@ async function buildHeaders(opts) {
   if (opts.body && !headers.has("content-type") && typeof opts.body !== "string") {
     headers.set("content-type", "application/json");
   }
-  const apiKey = opts.apiKey ?? process.env.OMNIROUTE_API_KEY;
+  const apiKey = opts.apiKey ?? process.env.NEXTROUTE_API_KEY;
   if (apiKey && !headers.has("authorization")) {
     headers.set("authorization", `Bearer ${apiKey}`);
   }
   // Inject machine-id derived CLI token; env var override for testing.
-  const cliToken = opts.cliToken ?? process.env.OMNIROUTE_CLI_TOKEN ?? (await getCliToken());
+  const cliToken = opts.cliToken ?? process.env.NEXTROUTE_CLI_TOKEN ?? (await getCliToken());
   if (cliToken && !headers.has(CLI_TOKEN_HEADER)) {
     headers.set(CLI_TOKEN_HEADER, cliToken);
   }
@@ -162,9 +162,9 @@ export async function apiFetch(path, opts = {}) {
   const headers = await buildHeaders(opts);
   const body = serializeBody(opts.body, headers);
   const timeout =
-    opts.timeout ?? (Number.parseInt(process.env.OMNIROUTE_HTTP_TIMEOUT_MS || "", 10) || 30000);
+    opts.timeout ?? (Number.parseInt(process.env.NEXTROUTE_HTTP_TIMEOUT_MS || "", 10) || 30000);
   const maxAttempts = opts.retry === false ? 1 : (opts.retryMax ?? RETRY_DEFAULTS.maxAttempts);
-  const verbose = opts.verbose ?? process.env.OMNIROUTE_VERBOSE === "1";
+  const verbose = opts.verbose ?? process.env.NEXTROUTE_VERBOSE === "1";
 
   let lastErr;
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {

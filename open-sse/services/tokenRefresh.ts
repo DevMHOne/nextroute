@@ -56,7 +56,7 @@ export function getRefreshLeadMs(provider: string): number {
   return REFRESH_LEAD_MS[provider] ?? TOKEN_EXPIRY_BUFFER_MS;
 }
 
-const CACHE_SECRET = "omniroute-token-cache";
+const CACHE_SECRET = "nextroute-token-cache";
 
 // In-flight refresh promise cache to prevent race conditions
 // Key: "provider:sha256(refreshToken)" → Value: Promise<result>

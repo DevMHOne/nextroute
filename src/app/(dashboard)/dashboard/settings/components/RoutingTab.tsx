@@ -507,7 +507,7 @@ function OpEditor({
             onChange={(e) => updateField("versionFormat", e.target.value)}
             options={[
               { value: "ex-machina", label: "ex-machina (sha256 per-msg suffix)" },
-              { value: "omniroute-daystamp", label: "omniroute-daystamp (sha256 day+version)" },
+              { value: "nextroute-daystamp", label: "nextroute-daystamp (sha256 day+version)" },
             ]}
           />
           <Select

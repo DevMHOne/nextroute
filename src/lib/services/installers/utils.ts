@@ -6,7 +6,7 @@
  */
 
 import { execFile } from "node:child_process";
-import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
+import { sanitizeErrorMessage } from "@nextroute/open-sse/utils/error";
 
 const DEFAULT_TIMEOUT_MS = 300_000; // 5 min — npm install can be slow
 

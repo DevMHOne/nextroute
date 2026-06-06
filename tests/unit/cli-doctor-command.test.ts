@@ -22,7 +22,7 @@ interface DoctorResult {
 }
 
 function createTempDataDir() {
-  return fs.mkdtempSync(path.join(os.tmpdir(), "omniroute-cli-doctor-"));
+  return fs.mkdtempSync(path.join(os.tmpdir(), "nextroute-cli-doctor-"));
 }
 
 async function withDoctorEnv(fn: (dataDir: string) => Promise<void>) {

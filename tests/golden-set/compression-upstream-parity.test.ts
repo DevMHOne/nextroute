@@ -18,11 +18,11 @@ const upstream = require(
   compress(text: string): { compressed: string; before: number; after: number };
 };
 
-function omnirouteCompress(text: string): string {
-  return omniroutePromptCompression(text).text;
+function nextrouteCompress(text: string): string {
+  return nextroutePromptCompression(text).text;
 }
 
-function omniroutePromptCompression(text: string): { text: string; fallbackApplied: boolean } {
+function nextroutePromptCompression(text: string): { text: string; fallbackApplied: boolean } {
   const result = cavemanCompress(
     { messages: [{ role: "user", content: text }] },
     {
@@ -50,9 +50,9 @@ const parityCases = [
 describe("upstream Caveman parity benchmark", () => {
   it("matches core upstream shrink protections and savings direction", () => {
     for (const input of parityCases) {
-      const ours = omnirouteCompress(input);
+      const ours = nextrouteCompress(input);
       const theirs = upstream.compress(input).compressed;
-      assert.ok(ours.length <= input.length, `OmniRoute did not reduce: ${input}`);
+      assert.ok(ours.length <= input.length, `NextRoute did not reduce: ${input}`);
       assert.ok(theirs.length <= input.length, `Upstream did not reduce: ${input}`);
       for (const protectedToken of [
         "config.api.endpoint()",
@@ -71,11 +71,11 @@ describe("upstream Caveman parity benchmark", () => {
   it("stays within upstream token budget on representative prose", () => {
     const input =
       "Sure, I will make sure to return the current weather for a given location and the temperature in Fahrenheit.";
-    const ours = omnirouteCompress(input);
+    const ours = nextrouteCompress(input);
     const theirs = upstream.compress(input).compressed;
     assert.ok(
       ours.length <= Math.ceil(theirs.length * 1.2),
-      `Expected OmniRoute within 20% of upstream shrink length. ours=${ours.length}, upstream=${theirs.length}`
+      `Expected NextRoute within 20% of upstream shrink length. ours=${ours.length}, upstream=${theirs.length}`
     );
   });
 
@@ -116,7 +116,7 @@ describe("upstream Caveman parity benchmark", () => {
     for (const fixture of fixturePairs) {
       const original = readFileSync(fixture.originalPath, "utf8");
       const expected = readFileSync(fixture.compressedPath, "utf8");
-      const ours = omniroutePromptCompression(original);
+      const ours = nextroutePromptCompression(original);
       const upstreamShrink = upstream.compress(original).compressed;
 
       assert.ok(
@@ -130,10 +130,10 @@ describe("upstream Caveman parity benchmark", () => {
           `${fixture.name}: fallback must preserve original fixture verbatim`
         );
       } else {
-        assert.ok(ours.text.length < original.length, `${fixture.name}: OmniRoute did not reduce`);
+        assert.ok(ours.text.length < original.length, `${fixture.name}: NextRoute did not reduce`);
         assert.ok(
           ours.text.length <= Math.ceil(Math.max(expected.length, upstreamShrink.length) * 1.35),
-          `${fixture.name}: OmniRoute drifted too far from upstream fixture budget`
+          `${fixture.name}: NextRoute drifted too far from upstream fixture budget`
         );
       }
 

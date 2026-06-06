@@ -8,16 +8,16 @@ import {
   getProviderNodes,
   getModelIsHidden,
 } from "@/lib/localDb";
-import { getAllEmbeddingModels } from "@omniroute/open-sse/config/embeddingRegistry";
-import { getAllImageModels } from "@omniroute/open-sse/config/imageRegistry";
-import { getAllRerankModels } from "@omniroute/open-sse/config/rerankRegistry";
-import { getAllAudioModels } from "@omniroute/open-sse/config/audioRegistry";
-import { getAllModerationModels } from "@omniroute/open-sse/config/moderationRegistry";
-import { getAllVideoModels } from "@omniroute/open-sse/config/videoRegistry";
-import { getAllMusicModels } from "@omniroute/open-sse/config/musicRegistry";
-import { REGISTRY } from "@omniroute/open-sse/config/providerRegistry";
-import { CODEX_NATIVE_UNPREFIXED_MODELS } from "@omniroute/open-sse/services/model";
-import { resolveNestedComboTargets } from "@omniroute/open-sse/services/combo";
+import { getAllEmbeddingModels } from "@nextroute/open-sse/config/embeddingRegistry";
+import { getAllImageModels } from "@nextroute/open-sse/config/imageRegistry";
+import { getAllRerankModels } from "@nextroute/open-sse/config/rerankRegistry";
+import { getAllAudioModels } from "@nextroute/open-sse/config/audioRegistry";
+import { getAllModerationModels } from "@nextroute/open-sse/config/moderationRegistry";
+import { getAllVideoModels } from "@nextroute/open-sse/config/videoRegistry";
+import { getAllMusicModels } from "@nextroute/open-sse/config/musicRegistry";
+import { REGISTRY } from "@nextroute/open-sse/config/providerRegistry";
+import { CODEX_NATIVE_UNPREFIXED_MODELS } from "@nextroute/open-sse/services/model";
+import { resolveNestedComboTargets } from "@nextroute/open-sse/services/combo";
 import { getAllSyncedAvailableModels, type SyncedAvailableModel } from "@/lib/db/models";
 import { getCompatibleFallbackModels } from "@/lib/providers/managedAvailableModels";
 import { hasEligibleConnectionForModel } from "@/domain/connectionModelRules";
@@ -30,8 +30,8 @@ import {
 import { getSyncedCapability } from "@/lib/modelsDevSync";
 import { getModelSpec } from "@/shared/constants/modelSpecs";
 import { isAuthRequired, isDashboardSessionAuthenticated } from "@/shared/utils/apiAuth";
-import { parseModel } from "@omniroute/open-sse/services/model";
-import { getTokenLimit } from "@omniroute/open-sse/services/contextManager";
+import { parseModel } from "@nextroute/open-sse/services/model";
+import { getTokenLimit } from "@nextroute/open-sse/services/contextManager";
 import type { ComboModelStep } from "@/lib/combos/steps";
 
 interface CustomModelEntry {

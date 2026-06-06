@@ -27,7 +27,7 @@ git status                       # working tree limpo
 O `npm pack` e `npm run build` geram `app/` na raiz (gitignored, mirror de `src/app/`). Se ele existir, **o Next.js dev prefere a raiz e quebra todas as rotas** (Turbopack devolve `PageNotFoundError: Cannot find module for page: route not found /(dashboard)/...`).
 
 ```bash
-[ -d app ] && mv app /tmp/omniroute-pack-artifact-$(date +%s)
+[ -d app ] && mv app /tmp/nextroute-pack-artifact-$(date +%s)
 ls -d app 2>/dev/null && echo "STILL THERE — abortar" || echo "ok"
 ```
 
@@ -42,7 +42,7 @@ rm -rf .next/dev
 Em um terminal dedicado:
 
 ```bash
-npm run dev 2>&1 | tee /tmp/omniroute-dev.log
+npm run dev 2>&1 | tee /tmp/nextroute-dev.log
 ```
 
 Esperar `Ready` e `Local: http://localhost:20128`. Mantenha o terminal visível durante toda a sessão — é a fonte primária de erros de backend.
@@ -58,7 +58,7 @@ Esperar `Ready` e `Local: http://localhost:20128`. Mantenha o terminal visível 
 Em outro terminal:
 
 ```bash
-tail -F /tmp/omniroute-dev.log | grep --line-buffered -iE "error|warn|cannot|undefined|TypeError|PageNotFoundError"
+tail -F /tmp/nextroute-dev.log | grep --line-buffered -iE "error|warn|cannot|undefined|TypeError|PageNotFoundError"
 ```
 
 Mantenha aberto. Se algo aparecer enquanto você está em uma página, anote na coluna **Erros** da linha correspondente.
@@ -72,7 +72,7 @@ Uma página passa quando **todas** estas condições são atendidas:
 1. HTTP final é `200` (não `4xx`/`5xx`). Redirects (`307`/`302`) só são aceitáveis se intencionais (ex.: `/dashboard` → `/home`).
 2. Nenhum **error overlay** do Turbopack/React aparece na tela.
 3. Nenhum `console.error` no DevTools (warnings são toleráveis, mas anote os novos).
-4. Nenhuma stack trace nova no `/tmp/omniroute-dev.log`. Erros pré-existentes recorrentes (refresh de token de provider sem credencial, p.ex.) podem ser ignorados — mas confirme que são os mesmos de antes.
+4. Nenhuma stack trace nova no `/tmp/nextroute-dev.log`. Erros pré-existentes recorrentes (refresh de token de provider sem credencial, p.ex.) podem ser ignorados — mas confirme que são os mesmos de antes.
 5. Conteúdo principal da página renderiza (não apenas o layout/sidebar vazio).
 6. Pelo menos uma interação básica funciona (clique em uma aba, filtro, ou link interno) sem erro.
 
@@ -286,7 +286,7 @@ Para cada linha do checklist:
 2. **Navegar** clicando na sidebar (preferível a digitar URL — testa também a navegação).
 3. **Esperar carregar** (até o spinner sumir e o conteúdo principal aparecer; timeout subjetivo: 10s).
 4. **Olhar o DevTools Console**: qualquer `error` vermelho conta.
-5. **Olhar o terminal do `tail -F /tmp/omniroute-dev.log`**: stack trace nova = falha.
+5. **Olhar o terminal do `tail -F /tmp/nextroute-dev.log`**: stack trace nova = falha.
 6. **Interagir** com o elemento óbvio da página (1 clique em filtro/aba/CTA). Se o clique disparar erro, falha.
 7. **Marcar `✅`** se ok, **`❌` + nota** se falhar.
 8. **Se falhar**:

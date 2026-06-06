@@ -136,7 +136,7 @@ import { WINDSURF_CONFIG } from "../constants/oauth";
  *
  *   1. User opens https://windsurf.com/show-auth-token in a browser
  *   2. Copies the displayed Windsurf API key (`sk-ws-...` style)
- *   3. Pastes it into OmniRoute via /api/oauth/windsurf/import-token
+ *   3. Pastes it into NextRoute via /api/oauth/windsurf/import-token
  *
  * The pasted token is stored as `accessToken` and used directly by `WindsurfExecutor`
  * (open-sse/executors/windsurf.ts) as the `Authorization: Bearer ...` header against
@@ -550,7 +550,7 @@ Replace any string mentioning "Sign in", "browser login", or `app.devin.ai` with
 1. Open https://windsurf.com/show-auth-token in your browser
 2. Sign in to your Windsurf account if prompted
 3. Copy the API token displayed on the page
-4. Paste it into the OmniRoute Windsurf connection form
+4. Paste it into the NextRoute Windsurf connection form
 ```
 
 - [ ] **Step 8.4: Sync the other 38 languages**

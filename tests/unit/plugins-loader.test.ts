@@ -81,7 +81,7 @@ test(
   "loadPlugin runs hooks in an isolated child process over IPC",
   { timeout: 5_000 },
   async (t) => {
-    const pluginDir = await mkdtemp(join(tmpdir(), "omniroute-plugin-loader-"));
+    const pluginDir = await mkdtemp(join(tmpdir(), "nextroute-plugin-loader-"));
     const entryPoint = join(pluginDir, "index.mjs");
     let loaded: LoadedPlugin | undefined;
 

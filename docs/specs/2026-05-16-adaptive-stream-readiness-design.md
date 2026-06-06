@@ -2,7 +2,7 @@
 
 ## Problem
 
-Long Codex continue sessions can produce very large Responses API payloads (hundreds of messages, 20 tools, and large cached input). OmniRoute currently uses a fixed `STREAM_READINESS_TIMEOUT_MS` default of 30 seconds for the first useful SSE event. That fixed threshold is too short for some large Codex requests, even when the upstream later completes successfully.
+Long Codex continue sessions can produce very large Responses API payloads (hundreds of messages, 20 tools, and large cached input). NextRoute currently uses a fixed `STREAM_READINESS_TIMEOUT_MS` default of 30 seconds for the first useful SSE event. That fixed threshold is too short for some large Codex requests, even when the upstream later completes successfully.
 
 Recent local evidence showed:
 
@@ -67,7 +67,7 @@ Log the chosen timeout and reasons when it differs from the base timeout, for ex
 
 ## Failure Behavior
 
-If no useful stream content appears before the adaptive timeout, OmniRoute should continue using the existing failure path and return `STREAM_READINESS_TIMEOUT`. This change only changes the budget, not the fallback/error semantics.
+If no useful stream content appears before the adaptive timeout, NextRoute should continue using the existing failure path and return `STREAM_READINESS_TIMEOUT`. This change only changes the budget, not the fallback/error semantics.
 
 ## Testing
 

@@ -155,8 +155,8 @@ export function buildElevatedScriptWrapper(scriptPath: string): string {
 //     local dashboard at /dashboard/cli-tools/mitm.
 // See docs/security/SOCKET_DEV_FINDINGS.md §3 for the full attestation.
 export async function runElevatedPowerShell(script: string): Promise<string> {
-  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "omniroute-elevate-"));
-  const scriptName = `omniroute-elevate-${crypto.randomUUID()}.ps1`;
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "nextroute-elevate-"));
+  const scriptName = `nextroute-elevate-${crypto.randomUUID()}.ps1`;
   const scriptPath = path.join(tempDir, scriptName);
   fs.writeFileSync(scriptPath, script, { encoding: "utf8", mode: 0o600 });
   try {
@@ -180,8 +180,8 @@ export async function _runElevatedPowerShellForTest(
   script: string,
   runner: (wrapper: string, scriptPath: string) => Promise<string>
 ): Promise<string> {
-  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "omniroute-elevate-"));
-  const scriptName = `omniroute-elevate-${crypto.randomUUID()}.ps1`;
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "nextroute-elevate-"));
+  const scriptName = `nextroute-elevate-${crypto.randomUUID()}.ps1`;
   const scriptPath = path.join(tempDir, scriptName);
   fs.writeFileSync(scriptPath, script, { encoding: "utf8", mode: 0o600 });
   try {

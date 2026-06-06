@@ -10,7 +10,7 @@ import { WINDSURF_CONFIG } from "../constants/oauth";
  *
  *   1. User opens https://windsurf.com/show-auth-token in a browser
  *   2. Copies the displayed Windsurf API key (`sk-ws-...` style)
- *   3. Pastes it into OmniRoute via /api/oauth/windsurf/import-token
+ *   3. Pastes it into NextRoute via /api/oauth/windsurf/import-token
  *
  * The pasted token is stored as `accessToken` and used directly by `WindsurfExecutor`
  * (open-sse/executors/windsurf.ts) as the `Authorization: Bearer ...` header against

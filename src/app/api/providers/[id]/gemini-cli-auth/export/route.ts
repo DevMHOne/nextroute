@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { buildGeminiAuthFile, GeminiAuthFileError } from "@/lib/oauth/utils/geminiAuthFile";
 import { requireManagementAuth } from "@/lib/api/requireManagementAuth";
-import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
+import { sanitizeErrorMessage } from "@nextroute/open-sse/utils/error";
 
 function toErrorResponse(error: unknown) {
   if (error instanceof GeminiAuthFileError) {

@@ -1,7 +1,7 @@
 /**
- * OmniRoute Copilot — Tool definitions
+ * NextRoute Copilot — Tool definitions
  *
- * Tools the copilot can execute to configure OmniRoute on behalf of the user,
+ * Tools the copilot can execute to configure NextRoute on behalf of the user,
  * query the codebase via CodeGraph, and execute CLI commands for full control.
  */
 
@@ -56,11 +56,11 @@ function formatCodeGraphResult(result: CodeGraphQueryResult): string {
   );
 }
 
-// ── Helper: check if omniroute CLI is available ──────────────────────────────
+// ── Helper: check if nextroute CLI is available ──────────────────────────────
 
-function getOmniRouteCliPath(): string | null {
+function getNextRouteCliPath(): string | null {
   try {
-    const result = execSync("which omniroute 2>/dev/null || command -v omniroute 2>/dev/null", {
+    const result = execSync("which nextroute 2>/dev/null || command -v nextroute 2>/dev/null", {
       encoding: "utf-8",
       timeout: 3000,
     }).trim();
@@ -250,7 +250,7 @@ export const COPILOT_TOOLS: CopilotTool[] = [
   {
     name: "searchCodeGraph",
     description:
-      "Search for symbols in the OmniRoute codebase by name (functions, classes, types, variables). Use this to understand how the app works internally.",
+      "Search for symbols in the NextRoute codebase by name (functions, classes, types, variables). Use this to understand how the app works internally.",
     parameters: [
       {
         name: "query",
@@ -293,7 +293,7 @@ export const COPILOT_TOOLS: CopilotTool[] = [
   {
     name: "findCallees",
     description:
-      "Find all functions/symbols that a specific function calls. Useful for understanding dependencies and code flow within OmniRoute.",
+      "Find all functions/symbols that a specific function calls. Useful for understanding dependencies and code flow within NextRoute.",
     parameters: [
       {
         name: "symbol",
@@ -361,15 +361,15 @@ export const COPILOT_TOOLS: CopilotTool[] = [
 
   // ── CLI Execution Tool ──
   {
-    name: "runOmniRouteCli",
+    name: "runNextRouteCli",
     description:
-      "Execute an 'omniroute' CLI command to configure or query the OmniRoute app. Gives complete control over the app — use for advanced operations not covered by other tools. Common commands: omniroute list-keys, omniroute switch-combo [id], omniroute set-budget 10, omniroute set-strategy [id] priority, omniroute health, omniroute mcp (starts MCP server), omniroute db-health, omniroute reset-password.",
+      "Execute an 'nextroute' CLI command to configure or query the NextRoute app. Gives complete control over the app — use for advanced operations not covered by other tools. Common commands: nextroute list-keys, nextroute switch-combo [id], nextroute set-budget 10, nextroute set-strategy [id] priority, nextroute health, nextroute mcp (starts MCP server), nextroute db-health, nextroute reset-password.",
     parameters: [
       {
         name: "command",
         type: "string",
         description:
-          "CLI command arguments (everything after 'omniroute'). Example: 'list-keys', 'switch-combo abc123', 'health'",
+          "CLI command arguments (everything after 'nextroute'). Example: 'list-keys', 'switch-combo abc123', 'health'",
         required: true,
       },
     ],
@@ -377,11 +377,11 @@ export const COPILOT_TOOLS: CopilotTool[] = [
       const cmd = args.command as string;
       if (!cmd) return "Please provide a command to execute.";
 
-      const cliPath = getOmniRouteCliPath();
-      if (!cliPath) return "omniroute CLI not found in PATH. Install OmniRoute first.";
+      const cliPath = getNextRouteCliPath();
+      if (!cliPath) return "nextroute CLI not found in PATH. Install NextRoute first.";
 
       try {
-        const output = execSync(`omniroute ${cmd}`, {
+        const output = execSync(`nextroute ${cmd}`, {
           encoding: "utf-8",
           timeout: 30000,
           maxBuffer: 1024 * 1024,

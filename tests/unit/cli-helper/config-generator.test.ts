@@ -59,7 +59,7 @@ describe("config-generator", () => {
       assert.strictEqual(result.success, true);
       assert.ok(result.configPath.endsWith(".hermes/config.yaml"));
       assert.ok(String(result.content || "").includes("providers:"));
-      assert.ok(String(result.content || "").includes("omniroute"));
+      assert.ok(String(result.content || "").includes("nextroute"));
     });
 
     it("returns error for unknown tool", async () => {
@@ -107,7 +107,7 @@ describe("config-generator", () => {
         await import("../../../src/lib/cli-helper/config-generator/hermes-agent.ts");
       const result = await hermesAgent.generateHermesAgentConfig({
         baseUrl: "http://localhost:20128",
-        apiKey: "sk-test-omniroute",
+        apiKey: "sk-test-nextroute",
         selections: [
           { role: "default", model: "gpt-4o" },
           { role: "delegation", model: "claude-3-5-sonnet" },
@@ -118,7 +118,7 @@ describe("config-generator", () => {
       assert.ok(!result.error);
       assert.ok(typeof result.yaml === "string");
       assert.ok(result.yaml.length > 50);
-      assert.ok(result.yaml.includes("provider: omniroute"));
+      assert.ok(result.yaml.includes("provider: nextroute"));
     });
 
     it("generateHermesAgentConfig includes auxiliary section for non-default roles", async () => {

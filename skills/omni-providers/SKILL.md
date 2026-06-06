@@ -20,7 +20,7 @@ List provider connections
 
 ```bash
 curl https://localhost:20128/api/providers \
-  -H "Authorization: Bearer $OMNIROUTE_TOKEN"
+  -H "Authorization: Bearer $NEXTROUTE_TOKEN"
 ```
 
 ### POST /api/providers
@@ -29,7 +29,7 @@ Create provider connection
 
 ```bash
 curl -X POST https://localhost:20128/api/providers \
-  -H "Authorization: Bearer $OMNIROUTE_TOKEN"
+  -H "Authorization: Bearer $NEXTROUTE_TOKEN"
   -H "Content-Type: application/json" \
   -d '{}'
 ```
@@ -40,7 +40,7 @@ Get provider connection
 
 ```bash
 curl https://localhost:20128/api/providers/{id} \
-  -H "Authorization: Bearer $OMNIROUTE_TOKEN"
+  -H "Authorization: Bearer $NEXTROUTE_TOKEN"
 ```
 
 ### PATCH /api/providers/{id}
@@ -49,7 +49,7 @@ Update provider connection
 
 ```bash
 curl -X PATCH https://localhost:20128/api/providers/{id} \
-  -H "Authorization: Bearer $OMNIROUTE_TOKEN"
+  -H "Authorization: Bearer $NEXTROUTE_TOKEN"
   -H "Content-Type: application/json" \
   -d '{}'
 ```
@@ -60,7 +60,7 @@ Delete provider connection
 
 ```bash
 curl -X DELETE https://localhost:20128/api/providers/{id} \
-  -H "Authorization: Bearer $OMNIROUTE_TOKEN"
+  -H "Authorization: Bearer $NEXTROUTE_TOKEN"
 ```
 
 ### POST /api/providers/{id}/test
@@ -69,7 +69,7 @@ Test provider connection
 
 ```bash
 curl -X POST https://localhost:20128/api/providers/{id}/test \
-  -H "Authorization: Bearer $OMNIROUTE_TOKEN"
+  -H "Authorization: Bearer $NEXTROUTE_TOKEN"
   -H "Content-Type: application/json" \
   -d '{}'
 ```
@@ -80,7 +80,7 @@ List models for a provider
 
 ```bash
 curl https://localhost:20128/api/providers/{id}/models \
-  -H "Authorization: Bearer $OMNIROUTE_TOKEN"
+  -H "Authorization: Bearer $NEXTROUTE_TOKEN"
 ```
 
 ### POST /api/providers/test-batch
@@ -89,7 +89,7 @@ Test multiple providers at once
 
 ```bash
 curl -X POST https://localhost:20128/api/providers/test-batch \
-  -H "Authorization: Bearer $OMNIROUTE_TOKEN"
+  -H "Authorization: Bearer $NEXTROUTE_TOKEN"
   -H "Content-Type: application/json" \
   -d '{}'
 ```
@@ -100,7 +100,7 @@ Validate provider credentials
 
 ```bash
 curl -X POST https://localhost:20128/api/providers/validate \
-  -H "Authorization: Bearer $OMNIROUTE_TOKEN"
+  -H "Authorization: Bearer $NEXTROUTE_TOKEN"
   -H "Content-Type: application/json" \
   -d '{}'
 ```
@@ -111,7 +111,7 @@ Get client-side provider info
 
 ```bash
 curl https://localhost:20128/api/providers/client \
-  -H "Authorization: Bearer $OMNIROUTE_TOKEN"
+  -H "Authorization: Bearer $NEXTROUTE_TOKEN"
 ```
 
 ### GET /api/provider-nodes
@@ -120,7 +120,7 @@ List provider nodes
 
 ```bash
 curl https://localhost:20128/api/provider-nodes \
-  -H "Authorization: Bearer $OMNIROUTE_TOKEN"
+  -H "Authorization: Bearer $NEXTROUTE_TOKEN"
 ```
 
 ### POST /api/provider-nodes
@@ -129,7 +129,7 @@ Create provider node
 
 ```bash
 curl -X POST https://localhost:20128/api/provider-nodes \
-  -H "Authorization: Bearer $OMNIROUTE_TOKEN"
+  -H "Authorization: Bearer $NEXTROUTE_TOKEN"
   -H "Content-Type: application/json" \
   -d '{}'
 ```
@@ -140,7 +140,7 @@ Update provider node
 
 ```bash
 curl -X PATCH https://localhost:20128/api/provider-nodes/{id} \
-  -H "Authorization: Bearer $OMNIROUTE_TOKEN"
+  -H "Authorization: Bearer $NEXTROUTE_TOKEN"
   -H "Content-Type: application/json" \
   -d '{}'
 ```
@@ -151,7 +151,7 @@ Delete provider node
 
 ```bash
 curl -X DELETE https://localhost:20128/api/provider-nodes/{id} \
-  -H "Authorization: Bearer $OMNIROUTE_TOKEN"
+  -H "Authorization: Bearer $NEXTROUTE_TOKEN"
 ```
 
 ### POST /api/provider-nodes/validate
@@ -160,7 +160,7 @@ Validate a provider node
 
 ```bash
 curl -X POST https://localhost:20128/api/provider-nodes/validate \
-  -H "Authorization: Bearer $OMNIROUTE_TOKEN"
+  -H "Authorization: Bearer $NEXTROUTE_TOKEN"
   -H "Content-Type: application/json" \
   -d '{}'
 ```
@@ -171,7 +171,7 @@ List provider models
 
 ```bash
 curl https://localhost:20128/api/provider-models \
-  -H "Authorization: Bearer $OMNIROUTE_TOKEN"
+  -H "Authorization: Bearer $NEXTROUTE_TOKEN"
 ```
 
 ## Payloads
@@ -187,7 +187,7 @@ Rotate / refresh OAuth tokens or re-validate credentials for a provider connecti
 
 ```bash
 curl -X POST https://localhost:20128/api/providers/{id}/refresh \
-  -H "Authorization: Bearer $OMNIROUTE_TOKEN" \
+  -H "Authorization: Bearer $NEXTROUTE_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{}'
 ```
@@ -198,7 +198,7 @@ Retrieve aggregated usage and performance metrics for all provider connections (
 
 ```bash
 curl https://localhost:20128/api/provider-metrics \
-  -H "Authorization: Bearer $OMNIROUTE_TOKEN"
+  -H "Authorization: Bearer $NEXTROUTE_TOKEN"
 ```
 
 **Response example:**
@@ -224,6 +224,6 @@ Returns a health-matrix view of all providers with per-connection status, circui
 
 ```bash
 curl https://localhost:20128/api/providers/health-matrix \
-  -H "Authorization: Bearer $OMNIROUTE_TOKEN"
+  -H "Authorization: Bearer $NEXTROUTE_TOKEN"
 ```
 <!-- skill:custom-end -->

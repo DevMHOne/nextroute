@@ -9,7 +9,7 @@ const REQUIRED_FRONTMATTER = ["name:", "description:"];
 async function listSkillDirs(): Promise<string[]> {
   const entries = await readdir(SKILLS_DIR, { withFileTypes: true });
   return entries
-    .filter((e) => e.isDirectory() && e.name.startsWith("omniroute"))
+    .filter((e) => e.isDirectory() && e.name.startsWith("nextroute"))
     .map((e) => e.name);
 }
 
@@ -24,7 +24,7 @@ test("each skill dir has SKILL.md with frontmatter", async () => {
       assert.ok(content.includes(key), `${dir}: missing frontmatter key ${key}`);
     }
     assert.ok(
-      content.includes("$OMNIROUTE_URL") || content.includes("OMNIROUTE_KEY"),
+      content.includes("$NEXTROUTE_URL") || content.includes("NEXTROUTE_KEY"),
       `${dir}: missing env-var references`
     );
   }

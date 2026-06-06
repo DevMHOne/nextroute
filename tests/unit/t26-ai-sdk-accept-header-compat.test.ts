@@ -27,12 +27,12 @@ test("T26: mixed Accept header prefers SSE only when text/event-stream is presen
 });
 
 test("T26: markdown code fence stripping unwraps Claude JSON blocks", () => {
-  const wrapped = '```json\n{"name":"omniroute"}\n```';
-  assert.equal(stripMarkdownCodeFence(wrapped), '{"name":"omniroute"}');
+  const wrapped = '```json\n{"name":"nextroute"}\n```';
+  assert.equal(stripMarkdownCodeFence(wrapped), '{"name":"nextroute"}');
 });
 
 test("T26: non-fenced content is returned unchanged", () => {
-  const plain = '{"name":"omniroute"}';
+  const plain = '{"name":"nextroute"}';
   assert.equal(stripMarkdownCodeFence(plain), plain);
 });
 
@@ -51,7 +51,7 @@ test("T26: explicit stream:false always prevents streaming", () => {
 
 test("T26: sourceFormat=claude applies Anthropic Messages non-stream default (#2325)", () => {
   // Anthropic Messages API spec: stream defaults to false when body omits it,
-  // regardless of Accept header. Previously OmniRoute defaulted to stream=true
+  // regardless of Accept header. Previously NextRoute defaulted to stream=true
   // for Accept: */* or undefined, causing STREAM_EARLY_EOF on /v1/messages.
 
   // Ambiguous cases must default to non-stream when sourceFormat is claude

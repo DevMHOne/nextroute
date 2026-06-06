@@ -11,7 +11,7 @@ import { capMaxOutputTokens } from "../../../src/lib/modelCapabilities.ts";
 // Can be disabled per-request via body._disableToolPrefix = true
 export const CLAUDE_OAUTH_TOOL_PREFIX = "proxy_";
 const CLAUDE_TOOL_CHOICE_REQUIRED = "an" + "y";
-const COPILOT_REASONING_SUMMARY_MARKER = "_omnirouteCopilotReasoningSummary";
+const COPILOT_REASONING_SUMMARY_MARKER = "_nextrouteCopilotReasoningSummary";
 
 function wantsCopilotSummarizedThinking(body: Record<string, unknown> | null | undefined): boolean {
   return body?.[COPILOT_REASONING_SUMMARY_MARKER] === "summarized";

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import pino from "pino";
 
-import { buildErrorBody } from "@omniroute/open-sse/utils/error.ts";
+import { buildErrorBody } from "@nextroute/open-sse/utils/error.ts";
 
 import { getDbInstance } from "@/lib/db/core";
 

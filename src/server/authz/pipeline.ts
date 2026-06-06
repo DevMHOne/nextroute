@@ -246,7 +246,7 @@ export async function runAuthzPipeline(
   requestHeaders.set(
     AUTHZ_HEADER_PEER_LOCALITY,
     classifyHostLocality(
-      resolveStampedPeer(request.headers.get(PEER_IP_HEADER), process.env.OMNIROUTE_PEER_STAMP_TOKEN)
+      resolveStampedPeer(request.headers.get(PEER_IP_HEADER), process.env.NEXTROUTE_PEER_STAMP_TOKEN)
     )
   );
 

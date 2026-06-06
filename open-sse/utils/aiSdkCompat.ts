@@ -43,7 +43,7 @@ export function clientWantsJsonResponse(acceptHeader: unknown): boolean {
  * Optional `sourceFormat` argument lets callers apply spec-correct defaults
  * when both `stream` and `Accept` are ambiguous. The Anthropic Messages API
  * defaults to non-stream when the body omits `stream`, regardless of Accept
- * header. Without this hint, OmniRoute previously routed Anthropic /v1/messages
+ * header. Without this hint, NextRoute previously routed Anthropic /v1/messages
  * requests with a curl-default wildcard Accept header through the streaming
  * branch even though upstream returned JSON, producing STREAM_EARLY_EOF /
  * HTTP 502 errors.
@@ -75,7 +75,7 @@ export function resolveStreamFlag(
 
   // Nextcloud's OpenAI/LocalAI integration sends synchronous JSON requests and
   // does not set `stream: false`. With a wildcard/empty Accept header, the legacy
-  // OmniRoute fallback would force SSE upstream and fail JSON-only providers as
+  // NextRoute fallback would force SSE upstream and fail JSON-only providers as
   // STREAM_EARLY_EOF before Nextcloud could receive a response.
   if (isKnownJsonOnlyClient(options.userAgent) && !acceptsEventStream) {
     return false;
@@ -88,7 +88,7 @@ export function resolveStreamFlag(
     return false;
   }
 
-  // No explicit stream param — preserve OmniRoute's streaming default unless
+  // No explicit stream param — preserve NextRoute's streaming default unless
   // the client explicitly asks for JSON and does not also accept SSE.
   return !clientWantsJsonResponse(acceptHeader);
 }

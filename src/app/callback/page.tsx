@@ -52,8 +52,8 @@ export default function CallbackPage() {
 
     // Method 1: postMessage to opener (popup mode).
     // May be null when Google OAuth's COOP header severs the opener reference.
-    // For remote OmniRoute + local loopback callbacks, the callback page origin
-    // is http://127.0.0.1:<port> while the opener is the public OmniRoute origin.
+    // For remote NextRoute + local loopback callbacks, the callback page origin
+    // is http://127.0.0.1:<port> while the opener is the public NextRoute origin.
     // Use a wildcard fallback only for the opener that initiated this popup; the
     // parent validates the OAuth state before accepting the callback.
     if (window.opener) {

@@ -7,14 +7,14 @@ lastUpdated: 2026-05-13
 # Repository Map
 
 > **One-line description for every directory and root file.**
-> Last updated: 2026-05-13 — OmniRoute v3.8.0
+> Last updated: 2026-05-13 — NextRoute v3.8.0
 >
 > Use this map to navigate the codebase quickly. For deep dives, follow links to dedicated docs.
 
 ## Top-level tree
 
 ```
-OmniRoute/
+NextRoute/
 ├── src/                  # Next.js 16 application (UI + API routes + libs + domain + server)
 ├── open-sse/             # Streaming engine workspace (handlers, executors, translator, MCP server)
 ├── electron/             # Desktop wrapper (Electron 41 + electron-builder 26.10)
@@ -238,7 +238,7 @@ src/
 
 ## `open-sse/` — Streaming Engine Workspace
 
-Separate npm workspace (`@omniroute/open-sse`). Handles request processing + provider execution.
+Separate npm workspace (`@nextroute/open-sse`). Handles request processing + provider execution.
 
 ```
 open-sse/
@@ -280,7 +280,7 @@ open-sse/
 | File             | Purpose                                                                           |
 | ---------------- | --------------------------------------------------------------------------------- |
 | `main.js`        | Electron main process (BrowserWindow, embedded Next.js server, tray, auto-update) |
-| `preload.js`     | IPC bridge (contextBridge → `window.omniroute`)                                   |
+| `preload.js`     | IPC bridge (contextBridge → `window.nextroute`)                                   |
 | `package.json`   | electron-builder config + Electron 41 + electron-builder 26.10 deps               |
 | `assets/`        | App icons (Windows .ico, macOS .icns, Linux .png)                                 |
 | `dist-electron/` | Build output (gitignored)                                                         |
@@ -293,7 +293,7 @@ open-sse/
 
 | File                                                                                                        | Purpose                                                                                                                    |
 | ----------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| `omniroute.mjs`                                                                                             | Main CLI entry — `omniroute serve`, `omniroute setup`, `omniroute doctor`, `omniroute providers`, `omniroute combos`, etc. |
+| `nextroute.mjs`                                                                                             | Main CLI entry — `nextroute serve`, `nextroute setup`, `nextroute doctor`, `nextroute providers`, `nextroute combos`, etc. |
 | `reset-password.mjs`                                                                                        | Standalone password reset CLI                                                                                              |
 | `cli/commands/setup.mjs`                                                                                    | Interactive + non-interactive setup wizard                                                                                 |
 | `cli/commands/doctor.mjs`                                                                                   | System health diagnostics (8+ checks)                                                                                      |
@@ -313,7 +313,7 @@ open-sse/
 
 | File                         | Purpose                                                                            |
 | ---------------------------- | ---------------------------------------------------------------------------------- |
-| `skills/omniroute*/SKILL.md` | 10 skill manifests for external AI agents (Claude Desktop, ChatGPT, Cursor, Cline) |
+| `skills/nextroute*/SKILL.md` | 10 skill manifests for external AI agents (Claude Desktop, ChatGPT, Cursor, Cline) |
 
 ---
 
@@ -375,7 +375,7 @@ open-sse/
 | `RELEASE_CHECKLIST.md`      | Full release flow (skills, husky, conventional commits, deploy)                       |
 | `COVERAGE_PLAN.md`          | Coverage goals and current state                                                      |
 | `FREE_TIERS.md`             | Curated free-tier providers (48+ free + 11 OAuth)                                     |
-| `CLI-TOOLS.md`              | External CLI integrations + Internal OmniRoute CLI                                    |
+| `CLI-TOOLS.md`              | External CLI integrations + Internal NextRoute CLI                                    |
 | `I18N.md`                   | i18n architecture, adding a language, 30 locales                                      |
 | `UNINSTALL.md`              | Clean uninstall steps                                                                 |
 | `PROVIDER_REFERENCE.md`     | **Auto-generated** catalog of 177 providers (regen: `npm run gen:provider-reference`) |
@@ -512,7 +512,7 @@ Shipped configuration templates and sample files (referenced by setup wizard).
 These underscore-prefixed directories hold non-shipping content:
 
 - **`_ideia/`** — design notes (defer / notfit / viable categories)
-- **`_mono_repo/`** — historic subprojects (omnirouteCloud, omnirouteSite, vscode-extension)
+- **`_mono_repo/`** — historic subprojects (nextrouteCloud, nextrouteSite, vscode-extension)
 - **`_references/`** — read-only clones of related OSS projects (LiteLLM, 9router, ClawRouter, CLIProxyAPI, modelrelay, new-api, etc.) for cross-reference during development
 - **`_tasks/`** — per-release task tracking files (informal)
 

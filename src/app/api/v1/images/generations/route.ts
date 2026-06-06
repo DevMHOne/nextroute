@@ -1,4 +1,4 @@
-import { handleImageGeneration } from "@omniroute/open-sse/handlers/imageGeneration.ts";
+import { handleImageGeneration } from "@nextroute/open-sse/handlers/imageGeneration.ts";
 import {
   getProviderCredentials,
   clearRecoveredProviderState,
@@ -10,9 +10,9 @@ import {
   getAllImageModels,
   getImageProvider,
   getImageModelEntry,
-} from "@omniroute/open-sse/config/imageRegistry.ts";
-import { errorResponse, unavailableResponse } from "@omniroute/open-sse/utils/error.ts";
-import { HTTP_STATUS } from "@omniroute/open-sse/config/constants.ts";
+} from "@nextroute/open-sse/config/imageRegistry.ts";
+import { errorResponse, unavailableResponse } from "@nextroute/open-sse/utils/error.ts";
+import { HTTP_STATUS } from "@nextroute/open-sse/config/constants.ts";
 import * as log from "@/sse/utils/logger";
 import { toJsonErrorPayload } from "@/shared/utils/upstreamError";
 import { enforceApiKeyPolicy } from "@/shared/utils/apiKeyPolicy";
@@ -21,7 +21,7 @@ import { isValidationFailure, validateBody } from "@/shared/validation/helpers";
 
 import { getAllCustomModels, resolveProxyForConnection } from "@/lib/localDb";
 import { resolveImageRouteModel } from "@/lib/images/imageRouteModel";
-import { runWithProxyContext } from "@omniroute/open-sse/utils/proxyFetch.ts";
+import { runWithProxyContext } from "@nextroute/open-sse/utils/proxyFetch.ts";
 
 /**
  * Handle CORS preflight

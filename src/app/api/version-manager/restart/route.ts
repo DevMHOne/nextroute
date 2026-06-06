@@ -6,7 +6,7 @@ import { getOrInitSupervisor } from "@/app/api/services/cliproxy/_lib";
 import { versionManagerToolSchema } from "@/shared/validation/schemas";
 import { isValidationFailure, validateBody } from "@/shared/validation/helpers";
 import { requireManagementAuth } from "@/lib/api/requireManagementAuth";
-import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
+import { sanitizeErrorMessage } from "@nextroute/open-sse/utils/error";
 
 const SUPERVISOR_TOOLS = new Set(["cliproxy", "cliproxyapi"]);
 

@@ -500,7 +500,7 @@ export default function ClaudeToolCard({
                   variant="outline"
                   size="sm"
                   onClick={handleResetSettings}
-                  disabled={!claudeStatus?.hasOmniRoute}
+                  disabled={!claudeStatus?.hasNextRoute}
                   loading={restoring}
                 >
                   <span className="material-symbols-outlined text-[14px] mr-1">restore</span>

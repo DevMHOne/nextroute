@@ -1,12 +1,12 @@
 ---
-title: "📖 Setup Guide — OmniRoute"
+title: "📖 Setup Guide — NextRoute"
 version: 3.8.2
 lastUpdated: 2026-05-13
 ---
 
-# 📖 Setup Guide — OmniRoute
+# 📖 Setup Guide — NextRoute
 
-> Complete setup reference for OmniRoute. For the quick version, see the [Quick Start in README](../README.md#-quick-start).
+> Complete setup reference for NextRoute. For the quick version, see the [Quick Start in README](../README.md#-quick-start).
 
 ## Table of Contents
 
@@ -25,8 +25,8 @@ lastUpdated: 2026-05-13
 ### npm (recommended)
 
 ```bash
-npm install -g omniroute
-omniroute
+npm install -g nextroute
+nextroute
 ```
 
 Dashboard opens at `http://localhost:20128` and API base URL is `http://localhost:20128/v1`.
@@ -34,9 +34,9 @@ Dashboard opens at `http://localhost:20128` and API base URL is `http://localhos
 ### pnpm
 
 ```bash
-pnpm install -g omniroute
+pnpm install -g nextroute
 pnpm approve-builds -g   # Select all packages → approve
-omniroute
+nextroute
 ```
 
 > **pnpm users:** `pnpm approve-builds -g` is required to enable native build scripts for `better-sqlite3` and `@swc/core`.
@@ -44,11 +44,11 @@ omniroute
 ### Arch Linux (AUR)
 
 ```bash
-yay -S omniroute-bin
-systemctl --user enable --now omniroute.service
+yay -S nextroute-bin
+systemctl --user enable --now nextroute.service
 ```
 
-The [AUR package](https://aur.archlinux.org/packages/omniroute-bin) installs OmniRoute and provides a systemd user service.
+The [AUR package](https://aur.archlinux.org/packages/nextroute-bin) installs NextRoute and provides a systemd user service.
 
 ### From Source
 
@@ -65,7 +65,7 @@ See the [Docker Guide](./DOCKER_GUIDE.md) for complete Docker setup including Co
 
 ### Desktop App (Electron)
 
-OmniRoute ships a desktop wrapper built on Electron 41 + electron-builder 26.10. Available scripts (workspace root):
+NextRoute ships a desktop wrapper built on Electron 41 + electron-builder 26.10. Available scripts (workspace root):
 
 ```bash
 npm run electron:dev          # Run desktop with hot-reload
@@ -83,56 +83,56 @@ Releases of the desktop installers are attached to GitHub Releases. For the full
 For unattended setups (Docker, Kubernetes, CI), use:
 
 ```bash
-omniroute setup --non-interactive
-omniroute providers test-batch
+nextroute setup --non-interactive
+nextroute providers test-batch
 ```
 
-Combined with env vars (`INITIAL_PASSWORD`, `OMNIROUTE_WS_BRIDGE_SECRET`, etc.), this lets you spin up an OmniRoute instance fully scriptable.
+Combined with env vars (`INITIAL_PASSWORD`, `NEXTROUTE_WS_BRIDGE_SECRET`, etc.), this lets you spin up an NextRoute instance fully scriptable.
 
 ### CLI Options
 
 | Command                 | Description                                                    |
 | ----------------------- | -------------------------------------------------------------- |
-| `omniroute`             | Start server (`PORT=20128`, API and dashboard on same port)    |
-| `omniroute setup`       | Guided CLI onboarding for password and first provider          |
-| `omniroute doctor`      | Run local health checks without starting the server            |
-| `omniroute providers`   | Discover, list, validate, and test providers from CLI          |
-| `omniroute config`      | CLI tool configuration — list, get, set, validate configs      |
-| `omniroute status`      | Offline status dashboard — version, DB, tools, config          |
-| `omniroute logs`        | Stream usage logs from the API (supports `--follow`)           |
-| `omniroute update`      | Check for or apply OmniRoute updates                           |
-| `omniroute provider`    | Manage provider connections — add, list, remove, test, default |
-| `omniroute --port 3000` | Set canonical/API port to 3000                                 |
-| `omniroute --mcp`       | Start MCP server (stdio transport)                             |
-| `omniroute --no-open`   | Don't auto-open browser                                        |
-| `omniroute --help`      | Show help                                                      |
+| `nextroute`             | Start server (`PORT=20128`, API and dashboard on same port)    |
+| `nextroute setup`       | Guided CLI onboarding for password and first provider          |
+| `nextroute doctor`      | Run local health checks without starting the server            |
+| `nextroute providers`   | Discover, list, validate, and test providers from CLI          |
+| `nextroute config`      | CLI tool configuration — list, get, set, validate configs      |
+| `nextroute status`      | Offline status dashboard — version, DB, tools, config          |
+| `nextroute logs`        | Stream usage logs from the API (supports `--follow`)           |
+| `nextroute update`      | Check for or apply NextRoute updates                           |
+| `nextroute provider`    | Manage provider connections — add, list, remove, test, default |
+| `nextroute --port 3000` | Set canonical/API port to 3000                                 |
+| `nextroute --mcp`       | Start MCP server (stdio transport)                             |
+| `nextroute --no-open`   | Don't auto-open browser                                        |
+| `nextroute --help`      | Show help                                                      |
 
 Headless setup can be scripted with flags or environment variables:
 
 ```bash
-omniroute setup --non-interactive --password "$OMNIROUTE_PASSWORD"
-omniroute setup --non-interactive --add-provider --provider openai --api-key "$OPENAI_API_KEY"
-omniroute setup --non-interactive --add-provider --provider openai --api-key "$OPENAI_API_KEY" --test-provider
+nextroute setup --non-interactive --password "$NEXTROUTE_PASSWORD"
+nextroute setup --non-interactive --add-provider --provider openai --api-key "$OPENAI_API_KEY"
+nextroute setup --non-interactive --add-provider --provider openai --api-key "$OPENAI_API_KEY" --test-provider
 ```
 
 Run local diagnostics without opening the dashboard:
 
 ```bash
-omniroute doctor
-omniroute doctor --json
-omniroute doctor --no-liveness
+nextroute doctor
+nextroute doctor --json
+nextroute doctor --no-liveness
 ```
 
 Manage providers from SSH or scripts without opening the dashboard:
 
 ```bash
-omniroute providers available
-omniroute providers available --search openai
-omniroute providers available --category api-key
-omniroute providers list
-omniroute providers test <id-or-name>
-omniroute providers test-all
-omniroute providers validate
+nextroute providers available
+nextroute providers available --search openai
+nextroute providers available --category api-key
+nextroute providers list
+nextroute providers test <id-or-name>
+nextroute providers test-all
+nextroute providers validate
 ```
 
 ---
@@ -166,18 +166,18 @@ For detailed per-tool configuration (Claude Code, Codex CLI, Cursor, Cline, Open
 Start MCP transport in stdio mode:
 
 ```bash
-omniroute --mcp
+nextroute --mcp
 ```
 
 Recommended validation flow:
 
 ```bash
 # 1. Start MCP server
-omniroute --mcp
+nextroute --mcp
 
 # 2. From your MCP client, call:
-omniroute_get_health        # Should return system health
-omniroute_list_combos       # Should return active combos
+nextroute_get_health        # Should return system health
+nextroute_list_combos       # Should return active combos
 
 # 3. Or run the full E2E suite:
 npm run test:protocols:e2e
@@ -188,7 +188,7 @@ npm run test:protocols:e2e
 **Claude Code:**
 
 ```bash
-claude mcp add-server omniroute --type http --url http://localhost:20128/api/mcp/stream
+claude mcp add-server nextroute --type http --url http://localhost:20128/api/mcp/stream
 ```
 
 **Cursor / Cline:**
@@ -198,8 +198,8 @@ Add to your MCP settings:
 ```json
 {
   "mcpServers": {
-    "omniroute": {
-      "command": "omniroute",
+    "nextroute": {
+      "command": "nextroute",
       "args": ["--mcp"],
       "env": {}
     }
@@ -238,15 +238,15 @@ For most deployments, you only need these two variables:
 | Variable                 | Default                       | Purpose                                                                                                                                      |
 | ------------------------ | ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | `REQUEST_TIMEOUT_MS`     | `600000`                      | Shared baseline for upstream response-start timeout, hidden Undici timeouts, TLS fingerprint requests, and API bridge request/proxy timeouts |
-| `STREAM_IDLE_TIMEOUT_MS` | inherits `REQUEST_TIMEOUT_MS` | Maximum gap between streaming chunks before OmniRoute aborts the SSE stream                                                                  |
+| `STREAM_IDLE_TIMEOUT_MS` | inherits `REQUEST_TIMEOUT_MS` | Maximum gap between streaming chunks before NextRoute aborts the SSE stream                                                                  |
 
 Backward compatibility is preserved: existing `FETCH_TIMEOUT_MS`, `API_BRIDGE_PROXY_TIMEOUT_MS`, and other per-layer timeout vars still work and override the shared baseline.
 
 ### Provider-Specific Notes
 
-For Claude Code-compatible upstreams (`anthropic-compatible-cc-*`), OmniRoute derives the outbound `X-Stainless-Timeout` header from the resolved fetch timeout so provider-side read timeouts stay aligned with your env configuration.
+For Claude Code-compatible upstreams (`anthropic-compatible-cc-*`), NextRoute derives the outbound `X-Stainless-Timeout` header from the resolved fetch timeout so provider-side read timeouts stay aligned with your env configuration.
 
-For third-party Claude Code-compatible reverse proxies, OmniRoute keeps the default `anthropic-beta` set conservative and, when `Client Cache Control` is left on `Auto`, only forwards client-provided `cache_control` markers.
+For third-party Claude Code-compatible reverse proxies, NextRoute keeps the default `anthropic-beta` set conservative and, when `Client Cache Control` is left on `Auto`, only forwards client-provided `cache_control` markers.
 
 ### Advanced Timeout Overrides
 
@@ -264,11 +264,11 @@ For third-party Claude Code-compatible reverse proxies, OmniRoute keeps the defa
 | `API_BRIDGE_SERVER_KEEPALIVE_TIMEOUT_MS` | `5000`                                     | Keep-alive timeout on the API bridge server                          |
 | `API_BRIDGE_SERVER_SOCKET_TIMEOUT_MS`    | `0`                                        | Socket inactivity timeout on the API bridge server (`0` disables it) |
 
-> **Note:** For streaming requests, `FETCH_TIMEOUT_MS` only covers connection setup / waiting for the first upstream response. Once the stream is active, OmniRoute will only abort on an actual stall (`STREAM_IDLE_TIMEOUT_MS`) or Undici body inactivity (`FETCH_BODY_TIMEOUT_MS`).
+> **Note:** For streaming requests, `FETCH_TIMEOUT_MS` only covers connection setup / waiting for the first upstream response. Once the stream is active, NextRoute will only abort on an actual stall (`STREAM_IDLE_TIMEOUT_MS`) or Undici body inactivity (`FETCH_BODY_TIMEOUT_MS`).
 
 ### Reverse Proxy Compatibility
 
-If you run OmniRoute behind Nginx, Caddy, Cloudflare, or another reverse proxy, make sure the proxy timeouts are also higher than your OmniRoute stream/fetch timeouts.
+If you run NextRoute behind Nginx, Caddy, Cloudflare, or another reverse proxy, make sure the proxy timeouts are also higher than your NextRoute stream/fetch timeouts.
 
 ---
 
@@ -277,7 +277,7 @@ If you run OmniRoute behind Nginx, Caddy, Cloudflare, or another reverse proxy, 
 Run API and Dashboard on separate ports for advanced scenarios (reverse proxy, container networking):
 
 ```bash
-PORT=20128 DASHBOARD_PORT=20129 omniroute
+PORT=20128 DASHBOARD_PORT=20129 nextroute
 # API:       http://localhost:20128/v1
 # Dashboard: http://localhost:20129
 ```
@@ -286,11 +286,11 @@ PORT=20128 DASHBOARD_PORT=20129 omniroute
 
 ## Void Linux (xbps-src) Template
 
-For Void Linux users, you can build a native package using `xbps-src`. Save this block as `srcpkgs/omniroute/template`:
+For Void Linux users, you can build a native package using `xbps-src`. Save this block as `srcpkgs/nextroute/template`:
 
 ```bash
-# Template file for 'omniroute'
-pkgname=omniroute
+# Template file for 'nextroute'
+pkgname=nextroute
 version=3.8.0
 revision=1
 hostmakedepends="nodejs python3 make"
@@ -298,13 +298,13 @@ depends="openssl"
 short_desc="Universal AI gateway with smart routing for multiple LLM providers"
 maintainer="zenobit <zenobit@disroot.org>"
 license="MIT"
-homepage="https://github.com/diegosouzapw/OmniRoute"
-distfiles="https://github.com/diegosouzapw/OmniRoute/archive/refs/tags/v${version}.tar.gz"
+homepage="https://github.com/diegosouzapw/NextRoute"
+distfiles="https://github.com/diegosouzapw/NextRoute/archive/refs/tags/v${version}.tar.gz"
 # Regenerate the checksum for each release with:
-#   curl -L -o /tmp/omniroute.tar.gz "https://github.com/diegosouzapw/OmniRoute/archive/refs/tags/v${version}.tar.gz" && sha256sum /tmp/omniroute.tar.gz
+#   curl -L -o /tmp/nextroute.tar.gz "https://github.com/diegosouzapw/NextRoute/archive/refs/tags/v${version}.tar.gz" && sha256sum /tmp/nextroute.tar.gz
 checksum=PLACEHOLDER_REGENERATE_PER_RELEASE
-system_accounts="_omniroute"
-omniroute_homedir="/var/lib/omniroute"
+system_accounts="_nextroute"
+nextroute_homedir="/var/lib/nextroute"
 export NODE_ENV=production
 export npm_config_engine_strict=false
 export npm_config_loglevel=error
@@ -344,25 +344,25 @@ do_check() {
 }
 
 do_install() {
-	vmkdir usr/lib/omniroute/.next
-	vcopy .next/standalone/. usr/lib/omniroute/.next/standalone
+	vmkdir usr/lib/nextroute/.next
+	vcopy .next/standalone/. usr/lib/nextroute/.next/standalone
 
 	for _d in \
 		.next/standalone/.next/server/app/dashboard \
 		.next/standalone/.next/server/app/dashboard/settings \
 		.next/standalone/.next/server/app/dashboard/providers; do
-		touch "${DESTDIR}/usr/lib/omniroute/${_d}/.keep"
+		touch "${DESTDIR}/usr/lib/nextroute/${_d}/.keep"
 	done
 
-	cat > "${WRKDIR}/omniroute" <<'EOF'
+	cat > "${WRKDIR}/nextroute" <<'EOF'
 #!/bin/sh
 export PORT="${PORT:-20128}"
-export DATA_DIR="${DATA_DIR:-${XDG_DATA_HOME:-${HOME}/.local/share}/omniroute}"
+export DATA_DIR="${DATA_DIR:-${XDG_DATA_HOME:-${HOME}/.local/share}/nextroute}"
 export APP_LOG_TO_FILE="${APP_LOG_TO_FILE:-false}"
 mkdir -p "${DATA_DIR}"
-exec node /usr/lib/omniroute/.next/standalone/server.js "$@"
+exec node /usr/lib/nextroute/.next/standalone/server.js "$@"
 EOF
-	vbin "${WRKDIR}/omniroute"
+	vbin "${WRKDIR}/nextroute"
 }
 
 post_install() {
@@ -376,7 +376,7 @@ post_install() {
 
 | Command                  | Action                                                                              |
 | ------------------------ | ----------------------------------------------------------------------------------- |
-| `npm run uninstall`      | Removes the system app but **keeps your DB and configurations** in `~/.omniroute`.  |
+| `npm run uninstall`      | Removes the system app but **keeps your DB and configurations** in `~/.nextroute`.  |
 | `npm run uninstall:full` | Removes the app AND permanently **erases all configurations, keys, and databases**. |
 
 > For detailed uninstall instructions across all methods, see [UNINSTALL.md](./UNINSTALL.md).

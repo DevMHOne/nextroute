@@ -1,9 +1,9 @@
 /**
- * OmniRoute MCP Compression Tools — Manage and monitor prompt compression.
+ * NextRoute MCP Compression Tools — Manage and monitor prompt compression.
  *
  * Tools:
- *   1. omniroute_compression_status   — Get compression config, analytics, and cache stats
- *   2. omniroute_compression_configure — Update compression settings
+ *   1. nextroute_compression_status   — Get compression config, analytics, and cache stats
+ *   2. nextroute_compression_configure — Update compression settings
  */
 
 import { logToolCall } from "../audit.ts";
@@ -131,14 +131,14 @@ export async function handleCompressionStatus(
     };
 
     const duration = Date.now() - start;
-    await logToolCall("omniroute_compression_status", args, result, duration, true);
+    await logToolCall("nextroute_compression_status", args, result, duration, true);
 
     return result;
   } catch (error) {
     const duration = Date.now() - start;
     const errorMessage = error instanceof Error ? error.message : String(error);
     await logToolCall(
-      "omniroute_compression_status",
+      "nextroute_compression_status",
       args,
       { error: errorMessage },
       duration,
@@ -216,14 +216,14 @@ export async function handleCompressionConfigure(
     };
 
     const duration = Date.now() - start;
-    await logToolCall("omniroute_compression_configure", args, result, duration, true);
+    await logToolCall("nextroute_compression_configure", args, result, duration, true);
 
     return result;
   } catch (error) {
     const duration = Date.now() - start;
     const errorMessage = error instanceof Error ? error.message : String(error);
     await logToolCall(
-      "omniroute_compression_configure",
+      "nextroute_compression_configure",
       args,
       { error: errorMessage },
       duration,
@@ -295,38 +295,38 @@ export async function handleCompressionComboStats(
 }
 
 export const compressionTools = {
-  omniroute_compression_status: {
-    name: "omniroute_compression_status",
+  nextroute_compression_status: {
+    name: "nextroute_compression_status",
     description:
       "Returns current compression configuration, strategy, analytics summary (requests compressed, tokens saved, avg ratio), and provider-aware cache statistics.",
     scopes: ["read:compression"],
     inputSchema: compressionStatusInput,
     handler: (args: z.infer<typeof compressionStatusInput>) => handleCompressionStatus(args),
   },
-  omniroute_compression_configure: {
-    name: "omniroute_compression_configure",
+  nextroute_compression_configure: {
+    name: "nextroute_compression_configure",
     description:
       "Configure compression settings at runtime. Supports enabling/disabling compression, changing strategy (off/lite/standard/aggressive/ultra/rtk/stacked), adjusting maxTokens threshold, targetRatio, auto-trigger mode, system prompt preservation, and MCP description compression.",
     scopes: ["write:compression"],
     inputSchema: compressionConfigureInput,
     handler: (args: z.infer<typeof compressionConfigureInput>) => handleCompressionConfigure(args),
   },
-  omniroute_set_compression_engine: {
-    name: "omniroute_set_compression_engine",
+  nextroute_set_compression_engine: {
+    name: "nextroute_set_compression_engine",
     description: "Set the active compression engine and Caveman/RTK runtime options.",
     scopes: ["write:compression"],
     inputSchema: setCompressionEngineInput,
     handler: (args: z.infer<typeof setCompressionEngineInput>) => handleSetCompressionEngine(args),
   },
-  omniroute_list_compression_combos: {
-    name: "omniroute_list_compression_combos",
+  nextroute_list_compression_combos: {
+    name: "nextroute_list_compression_combos",
     description: "List compression combos and their engine pipelines.",
     scopes: ["read:compression"],
     inputSchema: listCompressionCombosInput,
     handler: (_args: z.infer<typeof listCompressionCombosInput>) => handleListCompressionCombos(),
   },
-  omniroute_compression_combo_stats: {
-    name: "omniroute_compression_combo_stats",
+  nextroute_compression_combo_stats: {
+    name: "nextroute_compression_combo_stats",
     description: "Get compression analytics grouped by engine and compression combo.",
     scopes: ["read:compression"],
     inputSchema: compressionComboStatsInput,

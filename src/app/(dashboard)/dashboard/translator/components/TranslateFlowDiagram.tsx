@@ -125,7 +125,7 @@ export default function TranslateFlowDiagram() {
         example={tr("conceptDiagramExampleTarget", "Gemini")}
         tooltipContent={tr(
           "conceptDiagramTargetTooltip",
-          "Provider conectado em OmniRoute que vai responder de verdade (ex: Google Gemini, Anthropic, etc).",
+          "Provider conectado em NextRoute que vai responder de verdade (ex: Google Gemini, Anthropic, etc).",
         )}
       />
     </div>

@@ -10,7 +10,7 @@ lastUpdated: 2026-05-13
 > **Last updated:** 2026-05-13 — v3.8.0
 
 Guardrails enforce safety, policy, and content transformations at the boundary
-between OmniRoute and upstream providers. Each guardrail can inspect (and
+between NextRoute and upstream providers. Each guardrail can inspect (and
 optionally reject, transform, or annotate) request payloads (`preCall`) and
 upstream responses (`postCall`).
 
@@ -170,7 +170,7 @@ request. Sources (all optional, all merged):
 - `apiKeyInfo.disabledGuardrails`
 - Request body `disabledGuardrails` (top-level)
 - Request body `metadata.disabledGuardrails`
-- Header `x-omniroute-disabled-guardrails` (or legacy
+- Header `x-nextroute-disabled-guardrails` (or legacy
   `x-disabled-guardrails`)
 
 Values may be arrays of strings or a comma-separated string; names are

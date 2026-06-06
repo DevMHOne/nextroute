@@ -6,7 +6,7 @@ import {
   removeProviderConnectionByProvider,
   upsertApiKeyProviderConnection,
 } from "../provider-store.mjs";
-import { openOmniRouteDb } from "../sqlite.mjs";
+import { openNextRouteDb } from "../sqlite.mjs";
 import { loadAvailableProviders } from "../provider-catalog.mjs";
 import { apiFetch, isServerUp } from "../api.mjs";
 import { t } from "../i18n.mjs";
@@ -191,7 +191,7 @@ export async function runKeysAddCommand(provider, apiKey, opts = {}) {
     } catch {}
   }
 
-  const { db } = await openOmniRouteDb();
+  const { db } = await openNextRouteDb();
   try {
     const existing = listProviderConnections(db).find(
       (c) => c.provider === providerLower && c.authType === "apikey"
@@ -224,7 +224,7 @@ export async function runKeysListCommand(opts = {}) {
     } catch {}
   }
 
-  const { db } = await openOmniRouteDb();
+  const { db } = await openNextRouteDb();
   try {
     ensureProviderSchema(db);
     const connections = listProviderConnections(db).filter(
@@ -308,7 +308,7 @@ export async function runKeysRemoveCommand(provider, opts = {}) {
     } catch {}
   }
 
-  const { db } = await openOmniRouteDb();
+  const { db } = await openNextRouteDb();
   try {
     const changes = removeProviderConnectionByProvider(db, providerLower);
     if (changes > 0) {

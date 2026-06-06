@@ -109,13 +109,13 @@ export default function HermesAgentToolCard({
     }
   };
 
-  const setRoleSelection = (roleId: string, model: string, provider = "OmniRoute") => {
+  const setRoleSelection = (roleId: string, model: string, provider = "NextRoute") => {
     setSelections((prev) => ({ ...prev, [roleId]: { model, provider } }));
   };
 
   const applyToAll = (model: string) => {
     const newSel: Record<string, RoleSelection> = {};
-    HERMES_ROLES.forEach((r) => (newSel[r.id] = { model, provider: "OmniRoute" }));
+    HERMES_ROLES.forEach((r) => (newSel[r.id] = { model, provider: "NextRoute" }));
     setSelections(newSel);
   };
 
@@ -214,12 +214,12 @@ export default function HermesAgentToolCard({
   // Effective per-role data for count + collapsed status.
   // Priority: pending selections > freshly loaded currentRoles > batchStatus from detector (phase 3)
   const effectiveRoles = React.useMemo(() => {
-    // If user has pending changes, treat selected roles as OmniRoute
+    // If user has pending changes, treat selected roles as NextRoute
     if (Object.keys(selections).length > 0) {
       const map: Record<string, any> = {};
       HERMES_ROLES.forEach((r) => {
         if (selections[r.id]) {
-          map[r.id] = { usingOmniRoute: true };
+          map[r.id] = { usingNextRoute: true };
         } else if (currentRoles[r.id]) {
           map[r.id] = currentRoles[r.id];
         } else if (batchStatus?.hermesAgentRoles?.[r.id]) {
@@ -238,20 +238,20 @@ export default function HermesAgentToolCard({
     return batchStatus?.hermesAgentRoles || {};
   }, [selections, currentRoles, batchStatus]);
 
-  // Count of roles that are (or will be) routed via OmniRoute
+  // Count of roles that are (or will be) routed via NextRoute
   const configuredRolesCount = HERMES_ROLES.filter((role) => {
-    // Pending selection always counts as OmniRoute intent
+    // Pending selection always counts as NextRoute intent
     if (selections[role.id]) return true;
 
     const info = effectiveRoles[role.id];
     if (!info) return false;
 
-    // Support both shapes: detector shape (usingOmniRoute) and settings shape (provider + base_url)
-    if (typeof info.usingOmniRoute === "boolean") {
-      return info.usingOmniRoute;
+    // Support both shapes: detector shape (usingNextRoute) and settings shape (provider + base_url)
+    if (typeof info.usingNextRoute === "boolean") {
+      return info.usingNextRoute;
     }
     return (
-      info?.provider === "omniroute" ||
+      info?.provider === "nextroute" ||
       (info?.base_url || "").includes("20128") ||
       (info?.base_url || "").includes("localhost")
     );
@@ -272,7 +272,7 @@ export default function HermesAgentToolCard({
                 {firstSetupAt && (
                   <span
                     className="text-[10px] text-text-muted flex items-center gap-0.5 font-normal"
-                    title={`First set up via OmniRoute on ${new Date(firstSetupAt).toLocaleDateString()}`}
+                    title={`First set up via NextRoute on ${new Date(firstSetupAt).toLocaleDateString()}`}
                   >
                     <span className="material-symbols-outlined text-[11px]">schedule</span>
                     {formatTimeSince(firstSetupAt)} since setup
@@ -346,25 +346,25 @@ export default function HermesAgentToolCard({
               const displayedModel = sel?.model || current?.model;
 
               // Badge logic per user's spec:
-              // - If user has selected something in this session (pending): show as via OmniRoute
-              // - Else if current from disk: show real provider name + "(not OmniRoute)" or "OmniRoute"
+              // - If user has selected something in this session (pending): show as via NextRoute
+              // - Else if current from disk: show real provider name + "(not NextRoute)" or "NextRoute"
               let badge: { label: string; pending: boolean } | null = null;
 
               if (sel) {
-                // pending change made via the Select modal / quick apply → will be routed via OmniRoute
-                const prov = sel.provider || "OmniRoute";
-                badge = { label: `${prov} (via OmniRoute)`, pending: true };
+                // pending change made via the Select modal / quick apply → will be routed via NextRoute
+                const prov = sel.provider || "NextRoute";
+                badge = { label: `${prov} (via NextRoute)`, pending: true };
               } else if (current) {
                 const isOmni =
-                  current?.provider === "omniroute" ||
+                  current?.provider === "nextroute" ||
                   (current?.base_url || "").includes("20128") ||
                   (current?.base_url || "").includes("localhost");
 
                 if (isOmni) {
-                  badge = { label: "OmniRoute", pending: false };
+                  badge = { label: "NextRoute", pending: false };
                 } else {
                   const realProvider = current.provider || "Other";
-                  badge = { label: `${realProvider} (not OmniRoute)`, pending: false };
+                  badge = { label: `${realProvider} (not NextRoute)`, pending: false };
                 }
               }
 
@@ -394,7 +394,7 @@ export default function HermesAgentToolCard({
                     {badge && (
                       <div
                         className={`text-[10px] px-1.5 py-px rounded shrink-0 ${
-                          badge.label.includes("not OmniRoute")
+                          badge.label.includes("not NextRoute")
                             ? "bg-amber-500/10 text-amber-600"
                             : "bg-emerald-500/10 text-emerald-600"
                         }`}
@@ -511,7 +511,7 @@ export default function HermesAgentToolCard({
             if (modelValue) {
               // Capture a useful provider label from the modal selection when available
               const prov =
-                (model && (model.provider || model.providerId || model.group)) || "OmniRoute";
+                (model && (model.provider || model.providerId || model.group)) || "NextRoute";
               setRoleSelection(modalRole, modelValue, prov);
             }
           }

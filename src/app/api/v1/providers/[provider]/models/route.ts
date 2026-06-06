@@ -1,5 +1,5 @@
 import { getUnifiedModelsResponse } from "@/app/api/v1/models/catalog";
-import { getRegistryEntry } from "@omniroute/open-sse/config/providerRegistry.ts";
+import { getRegistryEntry } from "@nextroute/open-sse/config/providerRegistry.ts";
 
 /**
  * Handle CORS preflight

@@ -6,7 +6,7 @@ import { getOrInitSupervisor } from "@/app/api/services/cliproxy/_lib";
 import { versionManagerToolSchema } from "@/shared/validation/schemas";
 import { isValidationFailure, validateBody } from "@/shared/validation/helpers";
 import { requireManagementAuth } from "@/lib/api/requireManagementAuth";
-import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
+import { sanitizeErrorMessage } from "@nextroute/open-sse/utils/error";
 
 // Only "cliproxy" has a supervisor; for other tools the legacy path is not
 // available in this branch, so we return 409 if the tool is not installed.

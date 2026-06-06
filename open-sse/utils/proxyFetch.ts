@@ -41,7 +41,7 @@ type PatchState = {
 };
 
 const isCloud = typeof caches !== "undefined" && typeof caches === "object";
-const PATCH_STATE_KEY = Symbol.for("omniroute.proxyFetch.state");
+const PATCH_STATE_KEY = Symbol.for("nextroute.proxyFetch.state");
 
 function getPatchState(): PatchState {
   const scopedGlobal = globalThis as typeof globalThis & {
@@ -395,7 +395,7 @@ async function patchedFetch(
     // Pass host through proxyUrlForLogs so the same redaction policy applies
     // to relay routing logs (the rest of this module already follows that rule).
     const hostForLogs = proxyUrlForLogs(vc.host ? `https://${vc.host}` : "");
-    if (process.env.OMNIROUTE_PROXY_FETCH_DEBUG === "true") {
+    if (process.env.NEXTROUTE_PROXY_FETCH_DEBUG === "true") {
       console.debug(`[ProxyFetch] Routing via Vercel relay: ${hostForLogs}`);
     }
     return await originalFetch(`https://${vc.host}`, {

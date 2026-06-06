@@ -217,12 +217,12 @@ export class GeminiCLIExecutor extends BaseExecutor {
           }
         } else {
           console.warn(
-            `[OmniRoute] onboardUser returned ${response.status} on attempt ${attempt + 1}`
+            `[NextRoute] onboardUser returned ${response.status} on attempt ${attempt + 1}`
           );
         }
       } catch (error) {
         const msg = error instanceof Error ? error.message : String(error);
-        console.warn(`[OmniRoute] onboardUser attempt ${attempt + 1} failed (${msg})`);
+        console.warn(`[NextRoute] onboardUser attempt ${attempt + 1} failed (${msg})`);
       }
 
       if (attempt < attempts - 1) {
@@ -235,7 +235,7 @@ export class GeminiCLIExecutor extends BaseExecutor {
 
   /**
    * Fetch the current cloudaicompanionProject via loadCodeAssist API.
-   * Native Gemini CLI refreshes this every 30 seconds — OmniRoute stores it once
+   * Native Gemini CLI refreshes this every 30 seconds — NextRoute stores it once
    * at OAuth connection time, so it goes stale. This method keeps it fresh.
    */
   async refreshProject(accessToken: string, model = "unknown"): Promise<string | null> {
@@ -280,7 +280,7 @@ export class GeminiCLIExecutor extends BaseExecutor {
 
       if (!response.ok) {
         console.warn(
-          `[OmniRoute] loadCodeAssist returned ${response.status} — falling back to stored projectId`
+          `[NextRoute] loadCodeAssist returned ${response.status} — falling back to stored projectId`
         );
         return null;
       }
@@ -290,7 +290,7 @@ export class GeminiCLIExecutor extends BaseExecutor {
 
       if (!projectId) {
         console.warn(
-          "[OmniRoute] loadCodeAssist returned no project — attempting managed project onboarding"
+          "[NextRoute] loadCodeAssist returned no project — attempting managed project onboarding"
         );
         projectId = await this.onboardManagedProject(
           accessToken,
@@ -302,7 +302,7 @@ export class GeminiCLIExecutor extends BaseExecutor {
 
       if (!projectId) {
         console.warn(
-          "[OmniRoute] managed project onboarding failed — falling back to stored projectId"
+          "[NextRoute] managed project onboarding failed — falling back to stored projectId"
         );
         return null;
       }
@@ -312,7 +312,7 @@ export class GeminiCLIExecutor extends BaseExecutor {
       return projectId;
     } catch (error) {
       const msg = error instanceof Error ? error.message : String(error);
-      console.warn(`[OmniRoute] loadCodeAssist failed (${msg}) — falling back to stored projectId`);
+      console.warn(`[NextRoute] loadCodeAssist failed (${msg}) — falling back to stored projectId`);
       return null;
     }
   }

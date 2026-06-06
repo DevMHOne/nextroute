@@ -3,7 +3,7 @@ import { requireManagementAuth } from "@/lib/api/requireManagementAuth";
 // extractGeminiAuthZip is a generic, content-agnostic .json-from-ZIP extractor
 // (path-traversal + size guards); reused as-is for agy token-file archives.
 import { extractGeminiAuthZip } from "@/lib/oauth/utils/geminiAuthZipExtract";
-import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
+import { sanitizeErrorMessage } from "@nextroute/open-sse/utils/error";
 
 const ZIP_BODY_LIMIT = 11 * 1024 * 1024; // 11 MB — slightly above the 10 MB extracted limit
 

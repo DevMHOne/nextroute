@@ -6,13 +6,13 @@ export function registerProvider(program) {
     .allowExcessArguments()
     .action(() => {
       console.log(`
-  Use \`omniroute providers\` for the full provider management interface:
+  Use \`nextroute providers\` for the full provider management interface:
 
-    omniroute providers available   — show provider catalog
-    omniroute providers list        — list configured connections
-    omniroute providers test <name> — test a provider connection
-    omniroute providers test-all    — test all active connections
-    omniroute providers validate    — validate local configuration
+    nextroute providers available   — show provider catalog
+    nextroute providers list        — list configured connections
+    nextroute providers test <name> — test a provider connection
+    nextroute providers test-all    — test all active connections
+    nextroute providers validate    — validate local configuration
 `);
     });
 }

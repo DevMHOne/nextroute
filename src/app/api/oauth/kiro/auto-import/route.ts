@@ -6,7 +6,7 @@ import { createProviderConnection, isCloudEnabled, resolveProxyForProvider } fro
 import { syncToCloud } from "@/lib/cloudSync";
 import { getConsistentMachineId } from "@/shared/utils/machineId";
 import { KiroService } from "@/lib/oauth/services/kiro";
-import { runWithProxyContext } from "@omniroute/open-sse/utils/proxyFetch.ts";
+import { runWithProxyContext } from "@nextroute/open-sse/utils/proxyFetch.ts";
 
 /**
  * GET /api/oauth/kiro/auto-import
@@ -195,7 +195,7 @@ async function tryAwsSsoCache(targetProvider: string): Promise<{
   return { found: false, triedPath: cachePath };
 }
 
-// ── Save to OmniRoute DB ──────────────────────────────────────────────────────
+// ── Save to NextRoute DB ──────────────────────────────────────────────────────
 
 async function saveAndRespond(
   result: Awaited<ReturnType<typeof tryKiroCliSqlite>>,

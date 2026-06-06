@@ -2,7 +2,7 @@
 /**
  * Strict environment variable contract checker.
  *
- * Enforces that every env var referenced in OmniRoute source code appears in
+ * Enforces that every env var referenced in NextRoute source code appears in
  * both `.env.example` and `docs/reference/ENVIRONMENT.md`, and that the two files agree
  * on the documented var set. Falls back to a small allowlist for variables
  * that are intentionally documented but not literally referenced (legacy
@@ -60,7 +60,7 @@ const IGNORE_FROM_CODE = new Set([
   "XDG_CONFIG_HOME",
   "USERPROFILE",
   "PREFIX",
-  // X11 display server — set by the OS/session manager, not OmniRoute config.
+  // X11 display server — set by the OS/session manager, not NextRoute config.
   "DISPLAY",
   // POSIX session vars surfaced by cloudflaredTunnel.ts (env passthrough).
   "LOGNAME",
@@ -71,19 +71,19 @@ const IGNORE_FROM_CODE = new Set([
   "NEXT_RUNTIME",
   "NODE_TEST_CONTEXT",
   "VITEST",
-  // Instruction snippet shown to users (Traffic Inspector HttpProxySnippetCard) — not OmniRoute config.
+  // Instruction snippet shown to users (Traffic Inspector HttpProxySnippetCard) — not NextRoute config.
   "NODE_TLS_REJECT_UNAUTHORIZED",
   // CI providers (set by the runner).
   "GITHUB_BASE_REF",
   "GITHUB_BASE_SHA",
   // CLI machine-id token opt-out (server-side flag; not user-configurable via .env).
-  "OMNIROUTE_DISABLE_CLI_TOKEN",
+  "NEXTROUTE_DISABLE_CLI_TOKEN",
   // update-notifier opt-out for the CLI binary.
-  "OMNIROUTE_NO_UPDATE_NOTIFIER",
+  "NEXTROUTE_NO_UPDATE_NOTIFIER",
   // Headless CLI execution flag for Electron.
-  "OMNIROUTE_HEADLESS",
+  "NEXTROUTE_HEADLESS",
   // Platform / OS detection vars read by CLI environment helper (bin/cli/utils/environment.mjs).
-  // These are external signals set by the host OS or cloud provider — not OmniRoute config.
+  // These are external signals set by the host OS or cloud provider — not NextRoute config.
   "CODESPACES",
   "GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN",
   "GITPOD_WORKSPACE_ID",
@@ -110,22 +110,22 @@ const IGNORE_FROM_CODE = new Set([
   "QA_REPORT_SUFFIX",
   "QA_ROUTES",
   // Doctor diagnostic flags (no runtime behavior yet — placeholders).
-  "OMNIROUTE_DOCTOR_HOST",
-  "OMNIROUTE_DOCTOR_LIVENESS_URL",
-  "OMNIROUTE_PROVIDER_CATALOG_PATH",
-  "OMNIROUTE_PROVIDER_TEST_MODEL",
-  // Test-only opt-out: instructs bin/omniroute.mjs to skip auto-loading the
+  "NEXTROUTE_DOCTOR_HOST",
+  "NEXTROUTE_DOCTOR_LIVENESS_URL",
+  "NEXTROUTE_PROVIDER_CATALOG_PATH",
+  "NEXTROUTE_PROVIDER_TEST_MODEL",
+  // Test-only opt-out: instructs bin/nextroute.mjs to skip auto-loading the
   // repository .env so isolation tests get a deterministic environment.
-  "OMNIROUTE_CLI_SKIP_REPO_ENV",
+  "NEXTROUTE_CLI_SKIP_REPO_ENV",
   // Build-time only: set by `build:release` (git short SHA) and read by
   // write-build-sha.mjs to stamp dist/BUILD_SHA — injected by the build, never
   // configured by users in .env.
-  "OMNIROUTE_BUILD_SHA",
+  "NEXTROUTE_BUILD_SHA",
   // Source typo / placeholder.
   "OMNIROUT",
-  // Static config alias path (the canonical var is OMNIROUTE_PAYLOAD_RULES_PATH).
+  // Static config alias path (the canonical var is NEXTROUTE_PAYLOAD_RULES_PATH).
   "PAYLOAD_RULES_PATH",
-  // Node.js module resolution path — OS/Node internal, not an OmniRoute config var.
+  // Node.js module resolution path — OS/Node internal, not an NextRoute config var.
   // Referenced in resolveSpawnArgs (ninerouter) to pass bundled native modules to subprocess.
   "NODE_PATH",
   // NVIDIA diagnostic/test helpers used only by ad-hoc scripts.
@@ -160,8 +160,8 @@ const DOC_ONLY_ALLOWLIST = new Set([
   "CHANGEME",
   // Legacy aliases — present in docs as "would be aliases" but read-only
   // through their canonical names today.
-  "OMNIROUTE_CRYPT_KEY",
-  "OMNIROUTE_API_KEY_BASE64",
+  "NEXTROUTE_CRYPT_KEY",
+  "NEXTROUTE_API_KEY_BASE64",
   // Future-supported hooks: documented but currently hardcoded constants.
   "MAX_RETRY_INTERVAL_SEC",
   "REQUEST_RETRY",

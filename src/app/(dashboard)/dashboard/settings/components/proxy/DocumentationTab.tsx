@@ -7,7 +7,7 @@ export default function DocumentationTab() {
       <section>
         <h3 className="font-semibold mb-2">Proxy scope resolution</h3>
         <p className="text-sm text-text-muted">
-          OmniRoute resolves the outbound proxy in priority order:
+          NextRoute resolves the outbound proxy in priority order:
           <strong> combo → account → provider → global</strong>. The most specific scope wins.
         </p>
       </section>

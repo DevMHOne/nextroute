@@ -4,7 +4,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 
-const TEST_DATA_DIR = fs.mkdtempSync(path.join(os.tmpdir(), "omniroute-combo-routing-"));
+const TEST_DATA_DIR = fs.mkdtempSync(path.join(os.tmpdir(), "nextroute-combo-routing-"));
 const ORIGINAL_DATA_DIR = process.env.DATA_DIR;
 process.env.DATA_DIR = TEST_DATA_DIR;
 
@@ -71,7 +71,7 @@ function providerBreakerOpenResponse() {
       status: 503,
       headers: {
         "content-type": "application/json",
-        "x-omniroute-provider-breaker": "open",
+        "x-nextroute-provider-breaker": "open",
       },
     }
   );
@@ -310,7 +310,7 @@ test("handleComboChat runs shadow targets without changing the primary response 
       if (target?.trafficType === "shadow") {
         shadowRequests.push({
           executionKey: target.executionKey,
-          hasBodyMarker: body._omnirouteShadowRouting === true,
+          hasBodyMarker: body._nextrouteShadowRouting === true,
         });
       }
       if (target?.trafficType === "shadow") return errorResponse(503, "shadow failed");
@@ -2435,7 +2435,7 @@ test("handleComboChat context cache protection preserves omniModel tag in stream
 
   const text = await result.text();
   assert.equal(result.ok, true);
-  assert.equal(result.headers.get("X-OmniRoute-Model"), "openai/gpt-4o-mini");
+  assert.equal(result.headers.get("X-NextRoute-Model"), "openai/gpt-4o-mini");
   assert.match(text, /hello world/);
   assert.match(text, /<omniModel>openai\/gpt-4o-mini<\/omniModel>/);
 });
@@ -2487,7 +2487,7 @@ test("handleComboChat context cache protection flushes cleanly when a stream end
 
   const text = await result.text();
   assert.equal(result.ok, true);
-  assert.equal(result.headers.get("X-OmniRoute-Model"), "openai/gpt-4o-mini");
+  assert.equal(result.headers.get("X-NextRoute-Model"), "openai/gpt-4o-mini");
   assert.match(text, /data: \[DONE\]/);
   assert.match(text, /"content":"<omniModel>openai\/gpt-4o-mini<\/omniModel>"/);
 });

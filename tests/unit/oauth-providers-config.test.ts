@@ -327,27 +327,27 @@ test("custom Google OAuth credentials switch Antigravity remote callbacks to NEX
     "antigravity",
     "http://localhost:20128/callback",
     {
-      NEXT_PUBLIC_BASE_URL: "https://omniroute.example.com/",
+      NEXT_PUBLIC_BASE_URL: "https://nextroute.example.com/",
       ANTIGRAVITY_OAUTH_CLIENT_ID: "custom-antigravity.apps.googleusercontent.com",
       ANTIGRAVITY_OAUTH_CLIENT_SECRET: "custom-antigravity-secret",
     }
   );
 
-  assert.equal(redirectUri, "https://omniroute.example.com/callback");
+  assert.equal(redirectUri, "https://nextroute.example.com/callback");
 });
 
-test("custom Google OAuth credentials switch Gemini remote callbacks to OMNIROUTE_PUBLIC_BASE_URL", () => {
+test("custom Google OAuth credentials switch Gemini remote callbacks to NEXTROUTE_PUBLIC_BASE_URL", () => {
   const redirectUri = resolveBrowserOAuthRedirectUri(
     "gemini-cli",
     "http://127.0.0.1:20128/callback",
     {
-      OMNIROUTE_PUBLIC_BASE_URL: "https://omniroute.example.com",
+      NEXTROUTE_PUBLIC_BASE_URL: "https://nextroute.example.com",
       GEMINI_CLI_OAUTH_CLIENT_ID: "custom-gemini.apps.googleusercontent.com",
       GEMINI_CLI_OAUTH_CLIENT_SECRET: "custom-gemini-secret",
     }
   );
 
-  assert.equal(redirectUri, "https://omniroute.example.com/callback");
+  assert.equal(redirectUri, "https://nextroute.example.com/callback");
 });
 
 test("custom Google OAuth callbacks preserve the requested callback path and query", () => {
@@ -355,13 +355,13 @@ test("custom Google OAuth callbacks preserve the requested callback path and que
     "antigravity",
     "http://127.0.0.1:20128/auth/callback?source=popup",
     {
-      NEXT_PUBLIC_BASE_URL: "https://omniroute.example.com/base",
+      NEXT_PUBLIC_BASE_URL: "https://nextroute.example.com/base",
       ANTIGRAVITY_OAUTH_CLIENT_ID: "custom-antigravity.apps.googleusercontent.com",
       ANTIGRAVITY_OAUTH_CLIENT_SECRET: "custom-antigravity-secret",
     }
   );
 
-  assert.equal(redirectUri, "https://omniroute.example.com/base/auth/callback?source=popup");
+  assert.equal(redirectUri, "https://nextroute.example.com/base/auth/callback?source=popup");
 });
 
 test("custom Google OAuth credentials switch IPv6 loopback callbacks to public base URL", () => {
@@ -369,13 +369,13 @@ test("custom Google OAuth credentials switch IPv6 loopback callbacks to public b
     "gemini-cli",
     "http://[::1]:20128/callback",
     {
-      OMNIROUTE_PUBLIC_BASE_URL: "https://omniroute.example.com",
+      NEXTROUTE_PUBLIC_BASE_URL: "https://nextroute.example.com",
       GEMINI_OAUTH_CLIENT_ID: "custom-gemini.apps.googleusercontent.com",
       GEMINI_OAUTH_CLIENT_SECRET: "custom-gemini-secret",
     }
   );
 
-  assert.equal(redirectUri, "https://omniroute.example.com/callback");
+  assert.equal(redirectUri, "https://nextroute.example.com/callback");
 });
 
 test("custom Google OAuth callbacks default root loopback paths to callback path", () => {
@@ -383,13 +383,13 @@ test("custom Google OAuth callbacks default root loopback paths to callback path
     "antigravity",
     "http://127.0.0.1:20128",
     {
-      NEXT_PUBLIC_BASE_URL: "https://omniroute.example.com",
+      NEXT_PUBLIC_BASE_URL: "https://nextroute.example.com",
       ANTIGRAVITY_OAUTH_CLIENT_ID: "custom-antigravity.apps.googleusercontent.com",
       ANTIGRAVITY_OAUTH_CLIENT_SECRET: "custom-antigravity-secret",
     }
   );
 
-  assert.equal(redirectUri, "https://omniroute.example.com/callback");
+  assert.equal(redirectUri, "https://nextroute.example.com/callback");
 });
 
 test("custom Google OAuth credentials ignore blank Gemini CLI values before checking Gemini fallback values", () => {
@@ -397,7 +397,7 @@ test("custom Google OAuth credentials ignore blank Gemini CLI values before chec
     "gemini-cli",
     "http://127.0.0.1:20128/callback",
     {
-      OMNIROUTE_PUBLIC_BASE_URL: "https://omniroute.example.com",
+      NEXTROUTE_PUBLIC_BASE_URL: "https://nextroute.example.com",
       GEMINI_CLI_OAUTH_CLIENT_ID: "   ",
       GEMINI_CLI_OAUTH_CLIENT_SECRET: "   ",
       GEMINI_OAUTH_CLIENT_ID: "custom-gemini.apps.googleusercontent.com",
@@ -405,7 +405,7 @@ test("custom Google OAuth credentials ignore blank Gemini CLI values before chec
     }
   );
 
-  assert.equal(redirectUri, "https://omniroute.example.com/callback");
+  assert.equal(redirectUri, "https://nextroute.example.com/callback");
 });
 
 test("Google OAuth callbacks stay on loopback when custom credentials are incomplete", () => {
@@ -413,7 +413,7 @@ test("Google OAuth callbacks stay on loopback when custom credentials are incomp
     "antigravity",
     "http://127.0.0.1:20128/callback",
     {
-      NEXT_PUBLIC_BASE_URL: "https://omniroute.example.com",
+      NEXT_PUBLIC_BASE_URL: "https://nextroute.example.com",
       ANTIGRAVITY_OAUTH_CLIENT_ID: "custom-antigravity.apps.googleusercontent.com",
     }
   );
@@ -426,7 +426,7 @@ test("Google OAuth callbacks stay on localhost when no custom credentials are co
     "antigravity",
     "http://localhost:20128/callback",
     {
-      NEXT_PUBLIC_BASE_URL: "https://omniroute.example.com",
+      NEXT_PUBLIC_BASE_URL: "https://nextroute.example.com",
     }
   );
 

@@ -19,7 +19,7 @@ async function getCurrentVersion() {
 
 async function getLatestVersion() {
   try {
-    const { stdout } = await execFileAsync("npm", ["view", "omniroute", "version"], {
+    const { stdout } = await execFileAsync("npm", ["view", "nextroute", "version"], {
       timeout: 15000,
     });
     return stdout.trim();
@@ -40,14 +40,14 @@ function compareVersions(a, b) {
 
 async function createBackup() {
   const binPath = path.join(process.cwd(), "bin");
-  const backupDir = path.join(homedir(), ".omniroute", "backups", `omniroute-${Date.now()}`);
+  const backupDir = path.join(homedir(), ".nextroute", "backups", `nextroute-${Date.now()}`);
 
   try {
     const { mkdirSync, copyFileSync, existsSync } = await import("node:fs");
     if (!existsSync(binPath)) return null;
 
     mkdirSync(backupDir, { recursive: true });
-    const files = ["omniroute.mjs", "cli", "nodeRuntimeSupport.mjs", "mcp-server.mjs"];
+    const files = ["nextroute.mjs", "cli", "nodeRuntimeSupport.mjs", "mcp-server.mjs"];
     for (const f of files) {
       const src = path.join(binPath, f);
       if (existsSync(src)) {
@@ -100,21 +100,21 @@ export async function runUpdateCommand(opts = {}) {
 
   if (showChangelog) {
     try {
-      const { stdout } = await execFileAsync("npm", ["view", "omniroute", "changelog"], {
+      const { stdout } = await execFileAsync("npm", ["view", "nextroute", "changelog"], {
         timeout: 10000,
       });
       if (stdout.trim()) {
         console.log(stdout.trim());
       } else {
-        console.log(`Changelog: https://github.com/your-org/omniroute/releases/tag/v${latest}`);
+        console.log(`Changelog: https://github.com/your-org/nextroute/releases/tag/v${latest}`);
       }
     } catch {
-      console.log(`Changelog: https://github.com/your-org/omniroute/releases/tag/v${latest}`);
+      console.log(`Changelog: https://github.com/your-org/nextroute/releases/tag/v${latest}`);
     }
     return 0;
   }
 
-  printHeading("OmniRoute Update");
+  printHeading("NextRoute Update");
   console.log(`  Current version: ${current}`);
   console.log(`  Latest version:  ${latest}`);
 
@@ -127,13 +127,13 @@ export async function runUpdateCommand(opts = {}) {
   console.log(`\n  Update available: ${current} → ${latest}`);
 
   if (checkOnly) {
-    console.log("\n  Run `omniroute update --apply` to install automatically.");
+    console.log("\n  Run `nextroute update --apply` to install automatically.");
     return 1; // exit 1 = outdated (useful for scripts)
   }
 
   if (dryRun) {
-    console.log("\n  [DRY RUN] Would run: npm install -g omniroute@latest");
-    if (!skipBackup) console.log("  [DRY RUN] Would create backup in ~/.omniroute/backups/");
+    console.log("\n  [DRY RUN] Would run: npm install -g nextroute@latest");
+    if (!skipBackup) console.log("  [DRY RUN] Would create backup in ~/.nextroute/backups/");
     return 0;
   }
 
@@ -161,17 +161,17 @@ export async function runUpdateCommand(opts = {}) {
     }
   }
 
-  printInfo("Updating OmniRoute...");
+  printInfo("Updating NextRoute...");
   try {
     const { execSync } = await import("child_process");
-    execSync("npm install -g omniroute@latest", { stdio: "inherit" });
+    execSync("npm install -g nextroute@latest", { stdio: "inherit" });
     printSuccess(`Updated to version ${latest}`);
-    printInfo("Run `omniroute --version` to verify.");
+    printInfo("Run `nextroute --version` to verify.");
     return 0;
   } catch (err) {
     printError(`Update failed: ${err.message}`);
     printInfo("Restore from backup:");
-    const backupDir = path.join(homedir(), ".omniroute", "backups");
+    const backupDir = path.join(homedir(), ".nextroute", "backups");
     printInfo(`  ls ${backupDir}`);
     return 1;
   }

@@ -11,8 +11,8 @@ Query available AI models, list model aliases, and browse the full model catalog
 ## Quick install
 
 ```bash
-npm install -g omniroute   # or: npx omniroute
-omniroute --version
+npm install -g nextroute   # or: npx nextroute
+nextroute --version
 ```
 
 ## Subcommands
@@ -27,5 +27,5 @@ omniroute --version
 **Example:**
 
 ```bash
-omniroute models [provider]
+nextroute models [provider]
 ```

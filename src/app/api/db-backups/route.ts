@@ -10,7 +10,7 @@ import {
 import { dbBackupCleanupSchema, dbBackupRestoreSchema } from "@/shared/validation/schemas";
 import { isValidationFailure, validateBody } from "@/shared/validation/helpers";
 import { isAuthenticated } from "@/shared/utils/apiAuth";
-import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
+import { sanitizeErrorMessage } from "@nextroute/open-sse/utils/error";
 
 /**
  * PUT /api/db-backups — Trigger a manual backup snapshot.

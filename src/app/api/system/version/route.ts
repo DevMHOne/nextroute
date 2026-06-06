@@ -23,7 +23,7 @@ export const dynamic = "force-dynamic";
 
 async function getLatestNpmVersion(): Promise<string | null> {
   try {
-    const { stdout } = await execFileAsync("npm", ["info", "omniroute", "version", "--json"], {
+    const { stdout } = await execFileAsync("npm", ["info", "nextroute", "version", "--json"], {
       timeout: 10000,
     });
     const parsed = JSON.parse(stdout.trim());
@@ -255,7 +255,7 @@ export async function POST(req: NextRequest) {
 
           send({ step: "restart", status: "running", message: "Restarting service..." });
           try {
-            await execFileAsync("pm2", ["restart", "omniroute", "--update-env"], {
+            await execFileAsync("pm2", ["restart", "nextroute", "--update-env"], {
               timeout: 30_000,
               cwd: process.cwd(),
             });
@@ -305,15 +305,15 @@ export async function POST(req: NextRequest) {
 
       try {
         // Step 1: Install
-        send({ step: "install", status: "running", message: `Installing omniroute@${latest}...` });
+        send({ step: "install", status: "running", message: `Installing nextroute@${latest}...` });
         await execFileAsync(
           "npm",
-          ["install", "-g", `omniroute@${latest}`, "--ignore-scripts", "--legacy-peer-deps"],
+          ["install", "-g", `nextroute@${latest}`, "--ignore-scripts", "--legacy-peer-deps"],
           {
             timeout: 300000,
           }
         );
-        send({ step: "install", status: "done", message: `Installed omniroute@${latest}` });
+        send({ step: "install", status: "done", message: `Installed nextroute@${latest}` });
 
         // Step 2: Rebuild native modules (critical for better-sqlite3)
         send({
@@ -324,7 +324,7 @@ export async function POST(req: NextRequest) {
         const globalRoot = (
           await execFileAsync("npm", ["root", "-g"], { timeout: 10000 })
         ).stdout.trim();
-        const omniPath = `${globalRoot}/omniroute/app`;
+        const omniPath = `${globalRoot}/nextroute/app`;
         await execFileAsync("npm", ["rebuild", "better-sqlite3"], {
           cwd: omniPath,
           timeout: 120000,
@@ -334,7 +334,7 @@ export async function POST(req: NextRequest) {
         // Step 3: Restart PM2
         send({ step: "restart", status: "running", message: "Restarting service via PM2..." });
         try {
-          await execFileAsync("pm2", ["restart", "omniroute", "--update-env"], { timeout: 30000 });
+          await execFileAsync("pm2", ["restart", "nextroute", "--update-env"], { timeout: 30000 });
           send({ step: "restart", status: "done", message: "Service restarted" });
         } catch {
           // PM2 may not be available (Docker/manual setups)

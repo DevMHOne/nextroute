@@ -20,7 +20,7 @@ import {
   type McpAccessibilityConfig,
   type RtkConfig,
   type UltraConfig,
-} from "@omniroute/open-sse/services/compression/types.ts";
+} from "@nextroute/open-sse/services/compression/types.ts";
 
 const NAMESPACE = "compression";
 const COMPRESSION_MODES = new Set<CompressionMode>([

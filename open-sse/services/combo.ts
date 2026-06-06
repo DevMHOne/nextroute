@@ -2759,7 +2759,7 @@ export async function handleComboChat({
             }
           }
         }
-        headers.set("X-OmniRoute-Model", modelStr);
+        headers.set("X-NextRoute-Model", modelStr);
         return new Response(transformedStream, {
           status: res.status,
           headers,

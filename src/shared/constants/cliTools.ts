@@ -1,5 +1,5 @@
 // CLI Tools configuration
-import { getClaudeCodeDefaultModels } from "@omniroute/open-sse/config/providerRegistry";
+import { getClaudeCodeDefaultModels } from "@nextroute/open-sse/config/providerRegistry";
 import type { CliCatalogEntry } from "@/shared/schemas/cliCatalog";
 
 const _cc = getClaudeCodeDefaultModels();
@@ -10,7 +10,7 @@ export const CLI_TOOLS: Record<string, CliCatalogEntry> = {
     name: "Claude Code",
     icon: "terminal",
     color: "#D97757",
-    description: "Anthropic Claude Code CLI — ANTHROPIC_BASE_URL points to OmniRoute",
+    description: "Anthropic Claude Code CLI — ANTHROPIC_BASE_URL points to NextRoute",
     docsUrl: "https://docs.anthropic.com/en/docs/claude-code/overview",
     configType: "env",
     category: "code",
@@ -71,7 +71,7 @@ export const CLI_TOOLS: Record<string, CliCatalogEntry> = {
     id: "codex",
     name: "OpenAI Codex CLI",
     color: "#10A37F",
-    description: "OpenAI Codex CLI — OpenAI-compatible base URL targets OmniRoute",
+    description: "OpenAI Codex CLI — OpenAI-compatible base URL targets NextRoute",
     docsUrl: "https://github.com/openai/codex",
     configType: "custom",
     category: "code",
@@ -277,7 +277,7 @@ export const CLI_TOOLS: Record<string, CliCatalogEntry> = {
       },
       {
         type: "warning",
-        text: 'Thinking variant example: opencode run "implement this feature" --model omniroute/claude-sonnet-4-5-thinking --variant high',
+        text: 'Thinking variant example: opencode run "implement this feature" --model nextroute/claude-sonnet-4-5-thinking --variant high',
       },
     ],
     guideSteps: [
@@ -296,9 +296,9 @@ export const CLI_TOOLS: Record<string, CliCatalogEntry> = {
       code: `{
   "$schema": "https://opencode.ai/config.json",
   "provider": {
-    "omniroute": {
+    "nextroute": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "OmniRoute",
+      "name": "NextRoute",
       "options": {
         "baseURL": "{{baseUrl}}",
         "apiKey": "{{apiKey}}"
@@ -343,7 +343,7 @@ export const CLI_TOOLS: Record<string, CliCatalogEntry> = {
       {
         step: 5,
         title: "Save Provider Block",
-        desc: "Use the JSON block below as the OpenAI-compatible provider definition for OmniRoute.",
+        desc: "Use the JSON block below as the OpenAI-compatible provider definition for NextRoute.",
       },
     ],
     codeBlock: {
@@ -403,7 +403,7 @@ export const CLI_TOOLS: Record<string, CliCatalogEntry> = {
     icon: "psychology",
     color: "#10B981",
     description:
-      "Alibaba Qwen Code CLI — supports OpenAI, Anthropic & Gemini providers via OmniRoute",
+      "Alibaba Qwen Code CLI — supports OpenAI, Anthropic & Gemini providers via NextRoute",
     docsUrl: "https://qwenlm.github.io/qwen-code-docs/en/users/configuration/model-providers/",
     configType: "guide",
     category: "code",
@@ -414,11 +414,11 @@ export const CLI_TOOLS: Record<string, CliCatalogEntry> = {
     notes: [
       {
         type: "info",
-        text: "Qwen Code supports multiple provider types (openai, anthropic, gemini) via modelProviders in settings.json. OmniRoute works as an OpenAI-compatible endpoint.",
+        text: "Qwen Code supports multiple provider types (openai, anthropic, gemini) via modelProviders in settings.json. NextRoute works as an OpenAI-compatible endpoint.",
       },
       {
         type: "info",
-        text: "Any model available in OmniRoute can be used — not just Qwen models. Select from Qwen, Claude, Gemini, GPT, and more.",
+        text: "Any model available in NextRoute can be used — not just Qwen models. Select from Qwen, Claude, Gemini, GPT, and more.",
       },
       {
         type: "warning",
@@ -426,7 +426,7 @@ export const CLI_TOOLS: Record<string, CliCatalogEntry> = {
       },
       {
         type: "error",
-        text: "Qwen OAuth free tier was discontinued on 2026-04-15. Use OmniRoute with bailian-coding-plan/alibaba/alibaba-cn/openrouter/anthropic/gemini providers instead.",
+        text: "Qwen OAuth free tier was discontinued on 2026-04-15. Use NextRoute with bailian-coding-plan/alibaba/alibaba-cn/openrouter/anthropic/gemini providers instead.",
       },
     ],
     modelAliases: [
@@ -511,7 +511,7 @@ export const CLI_TOOLS: Record<string, CliCatalogEntry> = {
     ],
     codeBlock: {
       language: "json",
-      code: `# ~/.qwen/settings.json — OmniRoute via security.auth
+      code: `# ~/.qwen/settings.json — NextRoute via security.auth
 {
   "security": {
     "auth": {

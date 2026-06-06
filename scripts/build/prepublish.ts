@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * OmniRoute — Prepublish Build Script
+ * NextRoute — Prepublish Build Script
  *
  * Consumes the .build/next/standalone artifact produced by `npm run build`
  * (build-next-isolated.mjs) and assembles the npm staging `dist/` directory.
@@ -108,7 +108,7 @@ function removeEmptyDirectories(dir: string): boolean {
   return hasFiles;
 }
 
-console.log("🔨 OmniRoute — Building for npm publish...\n");
+console.log("🔨 NextRoute — Building for npm publish...\n");
 
 // ── Step 1: Clean previous dist/ directory ─────────────────
 if (existsSync(DIST_DIR)) {
@@ -237,8 +237,8 @@ if (existsSync(mcpSrcFile)) {
 }
 
 // ── Step 8.7: Bundle CLI Entrypoint ──────────────────────────
-const cliSrcFile = join(ROOT, "bin", "omniroute.ts");
-const cliDestFile = join(ROOT, "bin", "omniroute.mjs");
+const cliSrcFile = join(ROOT, "bin", "nextroute.ts");
+const cliDestFile = join(ROOT, "bin", "nextroute.mjs");
 
 if (existsSync(cliSrcFile)) {
   console.log("  🔨 Bundling CLI Entrypoint (TypeScript → JavaScript)...");
@@ -247,17 +247,17 @@ if (existsSync(cliSrcFile)) {
       NPX_BIN,
       [
         "esbuild",
-        "bin/omniroute.ts",
+        "bin/nextroute.ts",
         "--bundle",
         "--platform=node",
         "--packages=external",
         "--format=esm",
-        "--outfile=bin/omniroute.mjs",
+        "--outfile=bin/nextroute.mjs",
       ],
       { cwd: ROOT, stdio: "inherit" }
     );
     chmodSync(cliDestFile, 0o755);
-    console.log("  ✅ CLI Entrypoint bundled to bin/omniroute.mjs");
+    console.log("  ✅ CLI Entrypoint bundled to bin/nextroute.mjs");
   } catch (err: any) {
     console.warn("  ⚠️  CLI bundle error:", err.message);
   }

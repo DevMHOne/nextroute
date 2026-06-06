@@ -2,11 +2,11 @@
 
 ## Summary
 
-Add a client-facing self-service status endpoint and dashboard controls that let each OmniRoute API key inspect its own USD usage, token usage, and percent used against its existing USD budget configuration. Optionally expose shared upstream account quota when an operator grants a dedicated per-key scope.
+Add a client-facing self-service status endpoint and dashboard controls that let each NextRoute API key inspect its own USD usage, token usage, and percent used against its existing USD budget configuration. Optionally expose shared upstream account quota when an operator grants a dedicated per-key scope.
 
 ## Motivation
 
-OmniRoute can route multiple delegated API keys through one upstream coding account. Operators need per-key accountability without giving every delegated key management access. Existing management usage APIs are too broad for delegated clients because they can expose other keys and operational state.
+NextRoute can route multiple delegated API keys through one upstream coding account. Operators need per-key accountability without giving every delegated key management access. Existing management usage APIs are too broad for delegated clients because they can expose other keys and operational state.
 
 This change creates a narrow own-key API and UI controls:
 

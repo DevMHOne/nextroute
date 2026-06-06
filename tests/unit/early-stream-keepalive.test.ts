@@ -27,12 +27,12 @@ function sseResponse(bodyText: string): Response {
 test("fast handler is returned verbatim with headers preserved (#2544)", async () => {
   const original = new Response("data: hi\n\n", {
     status: 200,
-    headers: { "Content-Type": "text/event-stream", "x-omniroute-provider": "openai" },
+    headers: { "Content-Type": "text/event-stream", "x-nextroute-provider": "openai" },
   });
   const result = await withEarlyStreamKeepalive(Promise.resolve(original), { thresholdMs: 1000 });
 
   assert.equal(result, original, "fast path should return the same Response object");
-  assert.equal(result.headers.get("x-omniroute-provider"), "openai");
+  assert.equal(result.headers.get("x-nextroute-provider"), "openai");
 });
 
 // #2544: when the handler is slow to produce its first byte (slow upstream / reasoning
@@ -51,7 +51,7 @@ test("slow handler emits early keepalive then forwards the real body (#2544)", a
   assert.match(result.headers.get("content-type") || "", /text\/event-stream/);
 
   const body = await readAll(result);
-  assert.match(body, /: omniroute-keepalive/, "should emit a keepalive comment before the body");
+  assert.match(body, /: nextroute-keepalive/, "should emit a keepalive comment before the body");
   assert.match(body, /event: response\.created/, "should forward the real upstream body");
   assert.match(body, /data: \[DONE\]/);
 });
@@ -77,7 +77,7 @@ test("slow handler that errors emits an in-band error frame (#2544)", async () =
   assert.equal(result.status, 200, "already committed to 200 SSE before the error surfaced");
 
   const body = await readAll(result);
-  assert.match(body, /: omniroute-keepalive/);
+  assert.match(body, /: nextroute-keepalive/);
   assert.match(body, /event: error/);
   assert.match(body, /rate limited/);
 });

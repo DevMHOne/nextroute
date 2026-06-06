@@ -5,7 +5,7 @@ import path from "node:path";
 import fs from "node:fs";
 
 // Set DATA_DIR to temp dir before any imports that touch DB
-const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "omniroute-test-flags-"));
+const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "nextroute-test-flags-"));
 process.env.DATA_DIR = tmpDir;
 
 const core = await import("../../src/lib/db/core.ts");

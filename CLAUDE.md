@@ -35,7 +35,7 @@ For full test matrix, see `CONTRIBUTING.md` → "Running Tests". For deep archit
 
 ## Project at a Glance
 
-**OmniRoute** — unified AI proxy/router. One endpoint, 160+ LLM providers, auto-fallback.
+**NextRoute** — unified AI proxy/router. One endpoint, 160+ LLM providers, auto-fallback.
 
 | Layer         | Location                | Purpose                                                            |
 | ------------- | ----------------------- | ------------------------------------------------------------------ |
@@ -78,7 +78,7 @@ API routes follow a consistent pattern: `Route → CORS preflight → Zod body v
 
 ## Resilience Runtime State
 
-OmniRoute has three related but distinct temporary-failure mechanisms. Keep their
+NextRoute has three related but distinct temporary-failure mechanisms. Keep their
 scope separate when debugging routing behavior. See the
 [3-layer resilience diagram](./docs/diagrams/exported/resilience-3layers.svg)
 (source: [docs/diagrams/resilience-3layers.mmd](./docs/diagrams/resilience-3layers.mmd))
@@ -219,7 +219,7 @@ connection continue serving other models.
 ### Code Style
 
 - **2 spaces**, semicolons, double quotes, 100 char width, es5 trailing commas (enforced by lint-staged via Prettier)
-- **Imports**: external → internal (`@/`, `@omniroute/open-sse`) → relative
+- **Imports**: external → internal (`@/`, `@nextroute/open-sse`) → relative
 - **Naming**: files=camelCase/kebab, components=PascalCase, constants=UPPER_SNAKE
 - **ESLint**: `no-eval`, `no-implied-eval`, `no-new-func` = error everywhere; `no-explicit-any` = warn in `open-sse/` and `tests/`
 - **TypeScript**: `strict: false`, target ES2022, module esnext, resolution bundler. Prefer explicit types.
@@ -410,9 +410,9 @@ git push -u origin feat/your-feature
 
 - **Runtime**: Node.js ≥20.20.2 <21 || ≥22.22.2 <23 || ≥24 <25, ES Modules
 - **TypeScript**: 5.9+, target ES2022, module esnext, resolution bundler
-- **Path aliases**: `@/*` → `src/`, `@omniroute/open-sse` → `open-sse/`, `@omniroute/open-sse/*` → `open-sse/*`
+- **Path aliases**: `@/*` → `src/`, `@nextroute/open-sse` → `open-sse/`, `@nextroute/open-sse/*` → `open-sse/*`
 - **Default port**: 20128 (API + dashboard on same port)
-- **Data directory**: `DATA_DIR` env var, defaults to `~/.omniroute/`
+- **Data directory**: `DATA_DIR` env var, defaults to `~/.nextroute/`
 - **Key env vars**: `PORT`, `JWT_SECRET`, `API_KEY_SECRET`, `INITIAL_PASSWORD`, `REQUIRE_API_KEY`, `APP_LOG_LEVEL`
 - Setup: `cp .env.example .env` then generate `JWT_SECRET` (`openssl rand -base64 48`) and `API_KEY_SECRET` (`openssl rand -hex 32`)
 
@@ -435,7 +435,7 @@ git push -u origin feat/your-feature
 13. Never string-interpolate external paths or runtime values into shell scripts passed to `exec()`/`spawn()` — pass via the `env` option instead. Reference: `src/mitm/cert/install.ts::updateNssDatabases`.
 14. Never dismiss a CodeQL / Secret-Scanning alert without (a) first checking the pattern docs above to see if the helper applies, and (b) recording the technical justification in the dismissal comment. Precedent: `js/stack-trace-exposure` raised on callsites that already route through `sanitizeErrorMessage()` is a known CodeQL limitation (custom sanitizers not recognized) — dismiss as `false positive` referencing `docs/security/ERROR_SANITIZATION.md`.
 15. Never expose routes that spawn child processes (`/api/mcp/`, `/api/cli-tools/runtime/`) without `isLocalOnlyPath()` classification in `src/server/authz/routeGuard.ts`. Loopback enforcement happens unconditionally before any auth check — leaked JWT via tunnel cannot trigger process spawning. See `docs/security/ROUTE_GUARD_TIERS.md`.
-16. Never include `Co-Authored-By` trailers that credit an AI assistant, LLM, or automation account (e.g. names containing "Claude", "GPT", "Copilot", "Bot"; emails at `anthropic.com` / `openai.com` / bot-owned `noreply.github.com` addresses). Such trailers route attribution to the bot account on GitHub, hiding the real author (`diegosouzapw`) in PR history. Human collaborators — including upstream PR authors and issue reporters being ported into OmniRoute — MAY and SHOULD be credited with standard `Co-authored-by: Name <email>` trailers; the upstream-port workflows (`/port-upstream-features`, `/port-upstream-issues`) depend on this.
+16. Never include `Co-Authored-By` trailers that credit an AI assistant, LLM, or automation account (e.g. names containing "Claude", "GPT", "Copilot", "Bot"; emails at `anthropic.com` / `openai.com` / bot-owned `noreply.github.com` addresses). Such trailers route attribution to the bot account on GitHub, hiding the real author (`diegosouzapw`) in PR history. Human collaborators — including upstream PR authors and issue reporters being ported into NextRoute — MAY and SHOULD be credited with standard `Co-authored-by: Name <email>` trailers; the upstream-port workflows (`/port-upstream-features`, `/port-upstream-issues`) depend on this.
 17. Never expose routes under `/api/services/` or `/dashboard/providers/services/*/embed/` without `isLocalOnlyPath()` classification in `src/server/authz/routeGuard.ts`. These routes can spawn child processes (`npm install`, `node`). Loopback enforcement happens unconditionally before any auth check — a leaked JWT via tunnel cannot trigger process spawning. See `docs/security/ROUTE_GUARD_TIERS.md`.
 18. Every bug fix must be validated before shipping: a failing-then-passing unit/integration test (TDD) OR a documented live test on the production VPS (192.168.0.15). A fix without either is not merged. See Testing → "Bug fix / issue triage protocol" for the full decision tree.
 

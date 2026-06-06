@@ -13,7 +13,7 @@
  *   - Target host is always 127.0.0.1 and port comes from the registry — never
  *     from user input. No SSRF risk.
  *   - Server binds to 127.0.0.1 only (loopback) unless EMBED_WS_PROXY_HOST
- *     is set explicitly. The OmniRoute LOCAL_ONLY rule is enforced at the
+ *     is set explicitly. The NextRoute LOCAL_ONLY rule is enforced at the
  *     dashboard layer; the proxy itself is loopback-only as defence-in-depth.
  *   - Max 50 concurrent connections per service. The 51st request receives 503.
  *   - Idle timeout: 5 minutes without any data → both sockets are destroyed.
@@ -41,7 +41,7 @@ const IDLE_TIMEOUT_MS = 5 * 60 * 1000;
 const STRIPPED_HEADERS = new Set(["cookie", "authorization", "origin"]);
 
 declare global {
-  var __omnirouteEmbedWsStarted: boolean | undefined;
+  var __nextrouteEmbedWsStarted: boolean | undefined;
 }
 
 /**
@@ -227,7 +227,7 @@ async function proxyUpgrade(req: IncomingMessage, socket: net.Socket, head: Buff
  * Idempotent — safe to call multiple times.
  */
 export function initEmbedWsProxy(): void {
-  if (globalThis.__omnirouteEmbedWsStarted) return;
+  if (globalThis.__nextrouteEmbedWsStarted) return;
 
   const host = process.env.EMBED_WS_PROXY_HOST ?? DEFAULT_HOST;
   const port = parseInt(process.env.EMBED_WS_PROXY_PORT ?? String(DEFAULT_PORT), 10);
@@ -253,7 +253,7 @@ export function initEmbedWsProxy(): void {
   });
 
   server.listen(port, host, () => {
-    globalThis.__omnirouteEmbedWsStarted = true;
+    globalThis.__nextrouteEmbedWsStarted = true;
     console.log(`[EmbedWsProxy] Listening on ${host}:${port}`);
   });
 }
