@@ -85,7 +85,6 @@ export default function Sidebar({
   const [pinnedSections, setPinnedSections] = useState<Set<SidebarSectionId>>(new Set());
   const [hoveredItem, setHoveredItem] = useState<HoveredItem>(null);
 
-  // Load persisted state on mount; OmniProxy is pinned by default on first visit
   useEffect(() => {
     const storedExpanded = loadFromStorage<SidebarSectionId[]>(EXPANDED_SECTIONS_KEY, [
       DEFAULT_EXPANDED,
@@ -106,7 +105,6 @@ export default function Sidebar({
       storedExpanded.length > 0 ? storedExpanded : [DEFAULT_EXPANDED]
     );
     const initialPinned = new Set<SidebarSectionId>(storedPinned);
-    // Pinned sections must also be expanded
     for (const id of initialPinned) initialExpanded.add(id);
 
     setExpandedSections(initialExpanded);
@@ -202,7 +200,6 @@ export default function Sidebar({
               .map((item) => resolveItem(item, hiddenSidebarSet))
               .filter(Boolean) as (SidebarItemDefinition & { label: string })[];
             if (items.length === 0) return null;
-            // Smart-grouping: single visible item → inline flat (no group header)
             if (items.length === 1) return items[0];
             return {
               ...child,
@@ -236,9 +233,7 @@ export default function Sidebar({
 
   const activeHref = getActiveSidebarHref(pathname, allVisibleItems);
 
-  // Auto-expand the section containing the active page (without closing others)
   useEffect(() => {
-    // If client session storage doesn't exist, we fallback
     if (typeof window !== "undefined") {
       const loginTime = localStorage.getItem("nextroute_login_time");
       if (!loginTime && pathname !== "/login" && !pathname.startsWith("/api/")) {
@@ -266,22 +261,17 @@ export default function Sidebar({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeHref, collapsed]);
 
-  // Accordion toggle: opening a section closes all non-pinned sections
   const toggleSection = useCallback(
     (sectionId: SidebarSectionId) => {
       setExpandedSections((prev) => {
         const isOpen = prev.has(sectionId);
         let next: Set<SidebarSectionId>;
         if (isOpen) {
-          // Close this section
           next = new Set(prev);
           next.delete(sectionId);
         } else {
-          // Accordion: keep only pinned sections + the new one
           next = new Set<SidebarSectionId>();
-          for (const id of pinnedSections) {
-            next.add(id);
-          }
+          for (const id of pinnedSections) next.add(id);
           next.add(sectionId);
         }
         saveToStorage(EXPANDED_SECTIONS_KEY, [...next]);
@@ -298,7 +288,6 @@ export default function Sidebar({
         next.delete(sectionId);
       } else {
         next.add(sectionId);
-        // Ensure the section is expanded when pinned
         setExpandedSections((prevExp) => {
           if (prevExp.has(sectionId)) return prevExp;
           const nextExp = new Set(prevExp);
@@ -316,9 +305,7 @@ export default function Sidebar({
     setIsShuttingDown(true);
     try {
       await fetch("/api/shutdown", { method: "POST" });
-    } catch (e) {
-      // Expected to fail as server shuts down
-    }
+    } catch (e) {}
     setIsShuttingDown(false);
     setShowShutdownModal(false);
     setIsDisconnected(true);
@@ -328,9 +315,7 @@ export default function Sidebar({
     setIsRestarting(true);
     try {
       await fetch("/api/restart", { method: "POST" });
-    } catch (e) {
-      // Expected to fail as server restarts
-    }
+    } catch (e) {}
     setIsRestarting(false);
     setShowRestartModal(false);
     setIsDisconnected(true);
@@ -357,24 +342,30 @@ export default function Sidebar({
   const renderNavLink = (item) => {
     const active = !item.external && activeHref === item.href;
     const className = cn(
-      "flex items-center gap-3 rounded-xl transition-all duration-200 group relative",
-      collapsed ? "justify-center px-2 py-3" : "px-3.5 py-2.5",
+      "flex items-center gap-2.5 rounded-xl transition-all duration-150 group relative",
+      collapsed ? "justify-center px-2 py-2.5" : "px-3 py-2",
       active
-        ? "bg-gradient-to-r from-primary/15 via-primary/5 to-transparent text-primary border-l-2 border-primary"
-        : "text-text-muted hover:bg-primary/[0.03] hover:text-text-main border-l-2 border-transparent"
+        ? "bg-primary/10 text-primary"
+        : "text-text-muted hover:bg-surface/60 hover:text-text-main"
     );
     const iconClassName = cn(
-      "material-symbols-outlined text-[20px] shrink-0 transition-transform duration-200 group-hover:scale-110",
-      active ? "fill-1 text-primary" : "group-hover:text-primary transition-colors"
+      "material-symbols-outlined text-[18px] shrink-0 transition-colors duration-150",
+      active ? "text-primary" : "text-text-muted/70 group-hover:text-text-main"
     );
     const content = (
       <>
-        <span className={iconClassName}>{item.icon}</span>
+        {/* Active indicator pill */}
+        {active && !collapsed && (
+          <span className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-4 rounded-full bg-primary" />
+        )}
+        <span className={iconClassName} style={active ? { fontVariationSettings: "'FILL' 1" } : {}}>
+          {item.icon}
+        </span>
         {!collapsed && (
           <div className="flex min-w-0 flex-col">
-            <span className="truncate text-sm font-medium">{item.label}</span>
+            <span className="truncate text-[13px] font-medium leading-tight">{item.label}</span>
             {item.subtitle && (
-              <span className="truncate text-[10px] text-text-muted/60">{item.subtitle}</span>
+              <span className="truncate text-[10px] text-text-muted/50 mt-0.5">{item.subtitle}</span>
             )}
           </div>
         )}
@@ -419,8 +410,9 @@ export default function Sidebar({
       <aside
         ref={sidebarRef}
         className={cn(
-          "flex h-full min-h-0 flex-col border-r border-black/5 bg-sidebar transition-all duration-300 ease-in-out dark:border-white/5 shadow-sm shadow-black/[0.02] dark:shadow-black/[0.2]",
-          collapsed ? "w-16" : "w-[240px]"
+          "flex h-full min-h-0 flex-col bg-sidebar transition-all duration-300 ease-in-out",
+          "border-r border-border/40",
+          collapsed ? "w-16" : "w-[228px]"
         )}
         style={{ paddingTop: isMacElectron ? "var(--desktop-safe-top)" : undefined }}
       >
@@ -431,20 +423,21 @@ export default function Sidebar({
           Skip to content
         </a>
 
+        {/* ── Top bar: traffic lights + collapse toggle ── */}
         {(onToggleCollapse || !isMacElectron) && (
           <div
             className={cn(
-              "flex items-center gap-2 pb-2",
-              isMacElectron ? "pt-3" : "pt-5",
+              "flex items-center gap-1.5 shrink-0",
+              isMacElectron ? "pt-3 pb-2" : "pt-4 pb-2",
               collapsed ? "px-3 justify-center" : "px-4"
             )}
             aria-hidden="true"
           >
             {!isMacElectron && (
               <>
-                <div className="w-3 h-3 rounded-full bg-[#FF5F56]" />
-                <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
-                <div className="w-3 h-3 rounded-full bg-[#27C93F]" />
+                <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F56] opacity-70" />
+                <div className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E] opacity-70" />
+                <div className="w-2.5 h-2.5 rounded-full bg-[#27C93F] opacity-70" />
               </>
             )}
             {!collapsed && <div className="flex-1" />}
@@ -455,12 +448,12 @@ export default function Sidebar({
                 aria-expanded={!collapsed}
                 aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
                 className={cn(
-                  "rounded-md p-1 text-text-muted/50 transition-colors hover:bg-black/5 hover:text-text-muted dark:hover:bg-white/5",
-                  collapsed && !isMacElectron && "mt-2",
+                  "rounded-lg p-1 text-text-muted/40 transition-all hover:bg-surface hover:text-text-muted",
+                  collapsed && !isMacElectron && "mt-1",
                   isMacElectron && "ml-auto"
                 )}
               >
-                <span className="material-symbols-outlined text-[16px]" aria-hidden="true">
+                <span className="material-symbols-outlined text-[15px]" aria-hidden="true">
                   {collapsed ? "chevron_right" : "chevron_left"}
                 </span>
               </button>
@@ -468,38 +461,48 @@ export default function Sidebar({
           </div>
         )}
 
-        <div className={cn("py-4 border-b border-black/5 dark:border-white/5 mb-2", collapsed ? "px-2" : "px-4")}>
+        {/* ── Brand / Logo ── */}
+        <div className={cn("shrink-0 pb-3", collapsed ? "px-2" : "px-3")}>
           <Link
             href="/home"
-            className={cn("flex items-center", collapsed ? "justify-center" : "gap-3")}
+            className={cn(
+              "flex items-center rounded-xl transition-colors hover:bg-surface/50",
+              collapsed ? "justify-center p-2" : "gap-2.5 px-2 py-2"
+            )}
           >
-            <div className="flex items-center justify-center size-9 rounded-xl bg-gradient-to-br from-primary to-primary-hover shadow-md shadow-primary/20 shrink-0">
+            <div className="flex items-center justify-center size-8 rounded-xl bg-gradient-to-br from-primary to-primary-hover shadow-sm shadow-primary/25 shrink-0">
               {customLogo ? (
                 <img
                   src={customLogo}
                   alt={customAppName || APP_CONFIG.name}
-                  className="size-5 object-contain"
+                  className="size-4 object-contain"
                 />
               ) : (
-                <NextRouteLogo size={18} className="text-white" />
+                <NextRouteLogo size={16} className="text-white" />
               )}
             </div>
             {!collapsed && (
               <div className="flex flex-col min-w-0">
-                <h1 className="text-sm font-semibold tracking-tight text-text-main truncate">
+                <span className="text-[13px] font-semibold tracking-tight text-text-main truncate leading-tight">
                   {customAppName || APP_CONFIG.name}
-                </h1>
-                <span className="text-[10px] text-text-muted">v{APP_CONFIG.version}</span>
+                </span>
+                <span className="text-[10px] text-text-muted/50 leading-tight">
+                  v{APP_CONFIG.version}
+                </span>
               </div>
             )}
           </Link>
         </div>
 
+        {/* ── Nav divider ── */}
+        <div className="mx-3 h-px bg-border/40 mb-2 shrink-0" />
+
+        {/* ── Navigation ── */}
         <nav
           aria-label="Main navigation"
           className={cn(
             "min-h-0 flex-1 overflow-y-auto py-1 custom-scrollbar",
-            collapsed ? "px-2 space-y-2" : "px-3 space-y-1"
+            collapsed ? "px-2 space-y-1" : "px-2 space-y-0.5"
           )}
         >
           {visibleSections.map((section, idx) => {
@@ -511,19 +514,19 @@ export default function Sidebar({
               child.type === "group" ? child.items : [child]
             );
 
-            // Collapsed (mini) mode: flat items with dividers between sections
+            // Collapsed mode: flat icons with dividers
             if (collapsed) {
               return (
                 <div key={section.id}>
                   {!isFirst && (
-                    <div className="border-t border-black/5 dark:border-white/5 my-1.5" />
+                    <div className="h-px bg-border/30 my-1.5 mx-1" />
                   )}
-                  {sectionItems.map(renderNavLink)}
+                  <div className="space-y-0.5">{sectionItems.map(renderNavLink)}</div>
                 </div>
               );
             }
 
-            // Sections without a visible title (e.g. Home) render items directly
+            // Section without title (e.g. Home)
             if (section.showTitle === false) {
               return (
                 <div key={section.id} className={cn("space-y-0.5", !isFirst && "mt-1")}>
@@ -532,20 +535,21 @@ export default function Sidebar({
               );
             }
 
-            // Expanded mode: collapsible section with pin
+            // Collapsible section
             return (
-              <div key={section.id} className={isFirst ? "space-y-0.5" : "mt-2"}>
+              <div key={section.id} className={isFirst ? "space-y-0.5" : "mt-3"}>
+                {/* Section header */}
                 <div
-                  className="flex items-center gap-0.5 px-2 py-1 rounded-md hover:bg-surface/30 transition-colors cursor-pointer group/header"
+                  className="flex items-center gap-1 px-2 py-1 rounded-lg hover:bg-surface/40 transition-colors cursor-pointer group/header mb-0.5"
                   onClick={() => toggleSection(sectionId)}
                   role="button"
                   aria-expanded={isExpanded}
                 >
-                  <span className="flex-1 text-[10px] font-semibold text-text-muted/60 uppercase tracking-wider group-hover/header:text-text-muted/90 transition-colors">
+                  <span className="flex-1 text-[10px] font-semibold text-text-muted/50 uppercase tracking-widest group-hover/header:text-text-muted/80 transition-colors">
                     {section.title}
                   </span>
 
-                  {/* Pin button — right side near chevron */}
+                  {/* Pin */}
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
@@ -556,7 +560,7 @@ export default function Sidebar({
                       "p-0.5 rounded transition-all shrink-0",
                       isPinned
                         ? "text-primary opacity-100"
-                        : "text-text-muted/30 opacity-0 group-hover/header:opacity-100 hover:text-text-muted/70"
+                        : "text-text-muted/30 opacity-0 group-hover/header:opacity-100 hover:text-text-muted/60"
                     )}
                   >
                     <span
@@ -570,9 +574,10 @@ export default function Sidebar({
                     </span>
                   </button>
 
+                  {/* Chevron */}
                   <span
                     className={cn(
-                      "material-symbols-outlined text-[14px] text-text-muted/40 transition-all duration-200 group-hover/header:text-text-muted/70 shrink-0",
+                      "material-symbols-outlined text-[13px] text-text-muted/30 transition-transform duration-200 group-hover/header:text-text-muted/60 shrink-0",
                       isExpanded && "rotate-180"
                     )}
                   >
@@ -581,18 +586,18 @@ export default function Sidebar({
                 </div>
 
                 {isExpanded && (
-                  <div className="mt-0.5 space-y-0.5">
+                  <div className="space-y-0.5">
                     {section.children.map((child: any) => {
                       if (child.type === "group") {
                         if (child.items.length === 0) return null;
                         return (
                           <div key={child.id} className="mt-2">
-                            {/* Visual sub-group separator */}
-                            <div className="flex items-center gap-1.5 px-2 py-0.5 mb-0.5">
-                              <div className="h-px flex-1 bg-black/8 dark:bg-white/8" />
-                              <span className="text-[8px] font-semibold text-text-muted/40 uppercase tracking-widest">
+                            <div className="flex items-center gap-2 px-2 py-0.5 mb-0.5">
+                              <div className="h-px flex-1 bg-border/30" />
+                              <span className="text-[9px] font-semibold text-text-muted/35 uppercase tracking-widest">
                                 {child.title}
                               </span>
+                              <div className="h-px flex-1 bg-border/30" />
                             </div>
                             {child.items.map(renderNavLink)}
                           </div>
@@ -609,10 +614,11 @@ export default function Sidebar({
 
         {!isE2EMode && <CloudSyncStatus collapsed={collapsed} />}
 
+        {/* ── Bottom actions ── */}
         <div
           className={cn(
-            "shrink-0 border-t border-black/5 dark:border-white/5",
-            collapsed ? "p-2 flex flex-col gap-1" : "p-2 flex gap-2"
+            "shrink-0 border-t border-border/40 p-2",
+            collapsed ? "flex flex-col gap-1" : "flex gap-1.5"
           )}
           style={{
             paddingBottom: isMacElectron ? "calc(0.5rem + var(--desktop-safe-bottom))" : undefined,
@@ -622,37 +628,37 @@ export default function Sidebar({
             onClick={() => setShowRestartModal(true)}
             title={t("restart")}
             className={cn(
-              "flex items-center justify-center gap-2 rounded-lg font-medium transition-all",
-              "text-amber-500 hover:bg-amber-500/10 border border-amber-500/20 hover:border-amber-500/40",
-              collapsed ? "p-2" : "flex-1 min-w-0 px-2 py-1.5 text-xs"
+              "flex items-center justify-center gap-1.5 rounded-xl font-medium transition-all duration-150",
+              "text-amber-500/80 hover:text-amber-500 hover:bg-amber-500/8",
+              collapsed ? "p-2.5" : "flex-1 min-w-0 px-2 py-2 text-xs"
             )}
           >
-            <span className="material-symbols-outlined text-[16px]">restart_alt</span>
+            <span className="material-symbols-outlined text-[15px]">restart_alt</span>
             {!collapsed && <span className="truncate">{t("restart")}</span>}
           </button>
           <button
             onClick={() => setShowShutdownModal(true)}
             title={t("shutdown")}
             className={cn(
-              "flex items-center justify-center gap-2 rounded-lg font-medium transition-all",
-              "text-red-500 hover:bg-red-500/10 border border-red-500/20 hover:border-red-500/40",
-              collapsed ? "p-2" : "flex-1 min-w-0 px-2 py-1.5 text-xs"
+              "flex items-center justify-center gap-1.5 rounded-xl font-medium transition-all duration-150",
+              "text-red-500/70 hover:text-red-500 hover:bg-red-500/8",
+              collapsed ? "p-2.5" : "flex-1 min-w-0 px-2 py-2 text-xs"
             )}
           >
-            <span className="material-symbols-outlined text-[16px]">power_settings_new</span>
+            <span className="material-symbols-outlined text-[15px]">power_settings_new</span>
             {!collapsed && <span className="truncate">{t("shutdown")}</span>}
           </button>
         </div>
       </aside>
 
-      {/* Styled tooltip for collapsed (mini) sidebar */}
+      {/* Tooltip for collapsed mode */}
       {collapsed && hoveredItem && (
         <div
           className="fixed z-[200] pointer-events-none flex items-center"
           style={{ left: hoveredItem.x, top: hoveredItem.y, transform: "translateY(-50%)" }}
         >
-          <div className="w-0 h-0 border-t-[5px] border-b-[5px] border-r-[6px] border-t-transparent border-b-transparent border-r-sidebar dark:border-r-sidebar" />
-          <div className="px-2.5 py-1.5 bg-sidebar text-text-main text-xs font-medium rounded-md shadow-lg border border-black/10 dark:border-white/10 whitespace-nowrap">
+          <div className="w-0 h-0 border-t-[5px] border-b-[5px] border-r-[6px] border-t-transparent border-b-transparent border-r-sidebar" />
+          <div className="px-2.5 py-1.5 bg-sidebar text-text-main text-xs font-medium rounded-lg shadow-lg border border-border/60 whitespace-nowrap">
             {hoveredItem.label}
           </div>
         </div>
@@ -683,13 +689,13 @@ export default function Sidebar({
       />
 
       {isDisconnected && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
           <div className="text-center p-8">
-            <div className="flex items-center justify-center size-16 rounded-full bg-red-500/20 text-red-500 mx-auto mb-4">
-              <span className="material-symbols-outlined text-[32px]">power_off</span>
+            <div className="flex items-center justify-center size-14 rounded-2xl bg-red-500/15 text-red-400 mx-auto mb-4">
+              <span className="material-symbols-outlined text-[28px]">power_off</span>
             </div>
-            <h2 className="text-xl font-semibold text-white mb-2">Server Disconnected</h2>
-            <p className="text-text-muted mb-6">
+            <h2 className="text-lg font-semibold text-white mb-2">Server Disconnected</h2>
+            <p className="text-text-muted text-sm mb-6">
               The proxy server has been stopped or is restarting.
             </p>
             <Button variant="secondary" onClick={() => globalThis.location.reload()}>
