@@ -1,6 +1,6 @@
 /**
- * NextRoute logo SVG — network hub icon with connected nodes.
- * Matches the favicon and app icon design.
+ * NextRoute logo — stylized route/signal mark.
+ * A bold "N" with an arrow-through motif: speed + routing.
  */
 type NextRouteLogoProps = {
   size?: number;
@@ -17,69 +17,39 @@ export default function NextRouteLogo({ size = 20, className = "" }: NextRouteLo
       xmlns="http://www.w3.org/2000/svg"
       className={className}
     >
-      {/* Central node */}
-      <circle cx="16" cy="16" r="3" fill="currentColor" />
-      {/* Outer nodes */}
-      <circle cx="8" cy="8" r="2" fill="currentColor" />
-      <circle cx="24" cy="8" r="2" fill="currentColor" />
-      <circle cx="8" cy="24" r="2" fill="currentColor" />
-      <circle cx="24" cy="24" r="2" fill="currentColor" />
-      <circle cx="16" cy="5" r="1.5" fill="currentColor" />
-      <circle cx="16" cy="27" r="1.5" fill="currentColor" />
-      {/* Connection lines */}
-      <line
-        x1="16"
-        y1="13"
-        x2="8"
-        y2="8"
+      {/* Background pill */}
+      <rect x="0" y="0" width="32" height="32" rx="9" fill="currentColor" fillOpacity="0.12" />
+      {/* Bold N strokes */}
+      <path
+        d="M7 24V8L16 20V8"
         stroke="currentColor"
-        strokeWidth="1.2"
+        strokeWidth="2.8"
         strokeLinecap="round"
+        strokeLinejoin="round"
       />
-      <line
-        x1="16"
-        y1="13"
-        x2="24"
-        y2="8"
+      {/* Right stem + arrow */}
+      <path
+        d="M16 20V8H25"
         stroke="currentColor"
-        strokeWidth="1.2"
+        strokeWidth="2.8"
         strokeLinecap="round"
+        strokeLinejoin="round"
       />
-      <line
-        x1="16"
-        y1="19"
-        x2="8"
-        y2="24"
+      {/* Speed slash accent */}
+      <path
+        d="M21 16H27"
         stroke="currentColor"
-        strokeWidth="1.2"
+        strokeWidth="2.2"
         strokeLinecap="round"
+        strokeOpacity="0.5"
       />
-      <line
-        x1="16"
-        y1="19"
-        x2="24"
-        y2="24"
+      <path
+        d="M24.5 13.5L27 16L24.5 18.5"
         stroke="currentColor"
-        strokeWidth="1.2"
+        strokeWidth="2"
         strokeLinecap="round"
-      />
-      <line
-        x1="16"
-        y1="13"
-        x2="16"
-        y2="5"
-        stroke="currentColor"
-        strokeWidth="1.2"
-        strokeLinecap="round"
-      />
-      <line
-        x1="16"
-        y1="19"
-        x2="16"
-        y2="27"
-        stroke="currentColor"
-        strokeWidth="1.2"
-        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeOpacity="0.5"
       />
     </svg>
   );
