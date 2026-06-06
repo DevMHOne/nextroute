@@ -174,7 +174,7 @@ const nextConfig = {
     "process",
   ],
   transpilePackages: ["@nextroute/open-sse", "@lobehub/icons", "fumadocs-ui", "fumadocs-core"],
-  allowedDevOrigins: ["localhost", "127.0.0.1", "192.168.0.250"],
+  allowedDevOrigins: ["localhost", "127.0.0.1", "192.168.0.250", "157.230.251.93"],
   typescript: {
     // TODO: Re-enable after fixing all sub-component useTranslations scope issues
     ignoreBuildErrors: true,
